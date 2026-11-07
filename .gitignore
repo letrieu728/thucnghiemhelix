@@ -1,0 +1,4 @@
+results/*.txt
+results/*.json
+!results/.gitkeep
+
