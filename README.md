@@ -53,10 +53,14 @@ artifact có sẵn trong HELIX thành một lần tái lập mới.
 | --- | --- | --- |
 | Typecheck | PASS (2026-11-07) | Xem `results/2026-11-07-typecheck.md`; chạy tại commit `a090aba`. |
 | Full unit/conformance tests | Không kết luận | Đã chạy trên working tree có thay đổi cục bộ; log thô không được dùng làm kết quả xác nhận. |
-| Sinh cassette task parity | Chưa chạy | Không sinh artifact mới khi runtime `tsx` đang bị block. |
-| Assembly contract | BLOCKED | Lần chạy trước bị `ERR_SYSTEM_ERROR: uv_os_get_passwd returned ENOMEM`. |
-| Cassette/cadence verify và static-audit verify | BLOCKED (2026-11-10) | Tất cả CLI dựa trên `tsx` dừng trước khi thực thi do `uv_os_get_passwd returned ENOMEM`; xem `results/2026-11-10-offline-verification.md`. |
-| Flow graphs | Chưa chạy | Đây là lệnh sinh artifact; không chạy khi runtime `tsx` đang bị block. |
+| Sinh cassette task parity | Chưa chạy | Không tái sinh artifact trên checkout dirty; cần clean checkout để so sánh có ý nghĩa. |
+| Assembly contract | PASS (2026-11-10) | Strict verification hoàn thành trên cả 5 product. |
+| Flow graphs | PASS (2026-11-10) | Cả 9 artifact blueprint/comparison hiện có đều verify được. |
+| Executable audit | PASS (2026-11-10) | Fingerprint `44370eff3ea1ca3a`; không có compile blocker. |
+| TODO-27 inventory & OpenCode acceptance | PASS (2026-11-10) | Hai verifier PASS; acceptance vẫn chỉ là `ready-for-review`, không phải TODO hoàn tất. |
+| Task parity & cadence | FAIL (2026-11-10) | Thiếu metadata bắt buộc cho acceptance-timing drift trong artifact. |
+| Split task parity | FAIL (2026-11-10) | Manifest không khớp hash/kích thước của nhiều attachment. |
+| Current-module audit | FAIL (2026-11-10) | Fingerprint trong artifact (`ce386…`) không khớp fingerprint tính lại (`413e…`). |
 | Live provider/native CLI/LCB/SWE-bench | Không thực hiện | Cần model/credential hoặc dữ liệu và runner không có trong checkout. |
 
 ## Các phần chưa làm được và lý do
@@ -72,12 +76,11 @@ artifact có sẵn trong HELIX thành một lần tái lập mới.
 
 ## Ghi chú về giới hạn môi trường hiện tại
 
-Tại lần rà soát 2026-11-10, `npm run typecheck` vẫn PASS nhưng bảy lệnh CLI
-dùng `tsx` (task-parity, cadence và các static-audit verifier) cùng dừng ngay
-khi `tsx` gọi `node:os.userInfo()`: `ERR_SYSTEM_ERROR` với
-`uv_os_get_passwd returned ENOMEM`. Vì lỗi xảy ra trước logic HELIX, các lệnh
-này được ghi là **BLOCKED**, không phải FAIL. Không chạy lại LCB/SWE-bench hay
-live provider trong môi trường này.
+Khi chạy trong sandbox, `tsx` gọi `node:os.userInfo()` và dừng với
+`uv_os_get_passwd returned ENOMEM`. Chạy cùng các lệnh ngoài sandbox bằng Node
+của tài khoản người dùng hoạt động bình thường; kết quả thực tế được ghi trong
+`results/2026-11-10-offline-verification.md`. Không chạy lại LCB/SWE-bench hay
+live provider vì các hạng mục đó cần model/credential/dữ liệu riêng.
 
 ## Hạn chế cần nêu trong báo cáo
 

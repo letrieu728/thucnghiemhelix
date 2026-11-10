@@ -35,10 +35,10 @@ Thời điểm: 2026-11-07. Nguồn HELIX: commit `a090aba675be000b608e821f40ded
 ## Xác minh offline lần 2 (2026-11-10)
 
 - `npm run typecheck`: **PASS** trên cùng checkout `a090aba`.
-- `task:parity:verify`, `task:parity:cadence:verify`,
-  `executable:audit:verify`, `current-module:audit:verify`,
-  `todo27:inventory:verify` và `todo27:opencode:acceptance:verify`: **BLOCKED**
-  trước khi vào HELIX CLI. Tất cả đều lỗi `tsx`/Node
-  `uv_os_get_passwd returned ENOMEM`.
-- Không thực hiện flow-graph hay các lệnh sinh artifact khi runtime chung đang
-  bị block; tránh tạo output không thể xác nhận.
+- Các lệnh `tsx` được chạy lại ngoài sandbox, nơi `node:os.userInfo()` hoạt
+  động bình thường. Kết quả: assembly contract, 9 flow-graph artifact,
+  executable audit, TODO-27 inventory và OpenCode acceptance đều **PASS**.
+- Task-parity/cadence, split task-parity và current-module audit **FAIL** do
+  artifact không còn nhất quán với các metadata, hash/kích thước attachment,
+  hoặc fingerprint mà verifier yêu cầu. Đây là kết quả của verifier, không phải
+  lỗi môi trường.

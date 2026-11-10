@@ -2,18 +2,22 @@
 
 Source HELIX: `a090aba675be000b608e821f40ded4dc705e92af` (working tree có
 thay đổi cục bộ; không dùng lượt này cho benchmark). Node `v24.21.0`; npm
-`11.19.0`.
+`11.19.0`. Các lệnh `tsx` được chạy ngoài sandbox vì sandbox làm
+`node:os.userInfo()` lỗi `uv_os_get_passwd returned ENOMEM`.
 
 | Lệnh | Kết quả | Ghi chú |
 | --- | --- | --- |
 | `npm run typecheck` | PASS | `tsc -p tsconfig.json --noEmit` hoàn thành không có diagnostics. |
-| `npm run task:parity:verify` | BLOCKED | `tsx` lỗi trước CLI: `uv_os_get_passwd returned ENOMEM`. |
-| `npm run task:parity:cadence:verify` | BLOCKED | Cùng lỗi runtime. |
-| `npm run executable:audit:verify` | BLOCKED | Cùng lỗi runtime. |
-| `npm run current-module:audit:verify` | BLOCKED | Cùng lỗi runtime. |
-| `npm run todo27:inventory:verify` | BLOCKED | Cùng lỗi runtime. |
-| `npm run todo27:opencode:acceptance:verify` | BLOCKED | Cùng lỗi runtime. |
+| `npm run assembly:contract:verify` | PASS | Strict verification của 5 product hoàn thành. |
+| `verify-flow-graph` (9 artifact) | PASS | Bao gồm 5 blueprint và 4 comparison artifact. |
+| `npm run executable:audit:verify` | PASS | Fingerprint `44370eff3ea1ca3a`; không có compile blocker. |
+| `npm run todo27:inventory:verify` | PASS | Fingerprint `e12a2bb0941ac9c7`. |
+| `npm run todo27:opencode:acceptance:verify` | PASS | `ready-for-review`; có 108/124 native và 16 metadata retained. |
+| `npm run task:parity:verify` | FAIL | Thiếu metadata bắt buộc của acceptance-timing drift. |
+| `npm run task:parity:cadence:verify` | FAIL | Cùng thiếu metadata acceptance-timing drift. |
+| `npm run task:parity:split:verify` | FAIL | Nhiều attachment không khớp hash và byte size trong manifest. |
+| `npm run current-module:audit:verify` | FAIL | Artifact fingerprint `ce386d45f16fbeda` khác fingerprint tính lại `413e63553ad22ce5`. |
 
-`ERR_SYSTEM_ERROR` được ném trong `node:os.userInfo()` khi loader của `tsx`
-khởi tạo. Do đó các trạng thái BLOCKED không phản ánh kết quả pass/fail của
-task parity, cadence hay audit.
+Failure ở bảng trên là kết quả kỹ thuật của artifact hiện có. Không tự sửa hay
+tái sinh artifact trong lượt này vì checkout HELIX đang dirty; việc đó phải
+được làm trên clean checkout để có thể quy kết thay đổi và so sánh lại.
