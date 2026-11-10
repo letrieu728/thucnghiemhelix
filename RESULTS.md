@@ -31,3 +31,14 @@ Thời điểm: 2026-11-07. Nguồn HELIX: commit `a090aba675be000b608e821f40ded
   các static audit. Việc có lệnh trong script không đồng nghĩa lệnh đã chạy.
 - **Không chạy lại:** các benchmark/provider live và LCB100/SWE-bench, vì cần
   credential, chi phí inference, hoặc dữ liệu/runner không nằm trong checkout.
+
+## Xác minh offline lần 2 (2026-11-10)
+
+- `npm run typecheck`: **PASS** trên cùng checkout `a090aba`.
+- `task:parity:verify`, `task:parity:cadence:verify`,
+  `executable:audit:verify`, `current-module:audit:verify`,
+  `todo27:inventory:verify` và `todo27:opencode:acceptance:verify`: **BLOCKED**
+  trước khi vào HELIX CLI. Tất cả đều lỗi `tsx`/Node
+  `uv_os_get_passwd returned ENOMEM`.
+- Không thực hiện flow-graph hay các lệnh sinh artifact khi runtime chung đang
+  bị block; tránh tạo output không thể xác nhận.

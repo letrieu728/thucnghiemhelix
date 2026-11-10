@@ -53,9 +53,10 @@ artifact có sẵn trong HELIX thành một lần tái lập mới.
 | --- | --- | --- |
 | Typecheck | PASS (2026-11-07) | Xem `results/2026-11-07-typecheck.md`; chạy tại commit `a090aba`. |
 | Full unit/conformance tests | Không kết luận | Đã chạy trên working tree có thay đổi cục bộ; log thô không được dùng làm kết quả xác nhận. |
-| Cassette task parity và cadence | Chưa có kết quả được lưu | Chỉ chạy khi các artifact đầu vào còn phù hợp với checkout đang kiểm tra. |
+| Sinh cassette task parity | Chưa chạy | Không sinh artifact mới khi runtime `tsx` đang bị block. |
 | Assembly contract | BLOCKED | Lần chạy trước bị `ERR_SYSTEM_ERROR: uv_os_get_passwd returned ENOMEM`. |
-| Flow graphs và static audits | Chưa chạy trong repository này | Có thể chạy offline, nhưng phải lưu kèm commit và trạng thái working tree. |
+| Cassette/cadence verify và static-audit verify | BLOCKED (2026-11-10) | Tất cả CLI dựa trên `tsx` dừng trước khi thực thi do `uv_os_get_passwd returned ENOMEM`; xem `results/2026-11-10-offline-verification.md`. |
+| Flow graphs | Chưa chạy | Đây là lệnh sinh artifact; không chạy khi runtime `tsx` đang bị block. |
 | Live provider/native CLI/LCB/SWE-bench | Không thực hiện | Cần model/credential hoặc dữ liệu và runner không có trong checkout. |
 
 ## Các phần chưa làm được và lý do
@@ -68,6 +69,15 @@ artifact có sẵn trong HELIX thành một lần tái lập mới.
 | Full search / Pass@N | Mỗi task thử nhiều recipe/candidate | Ngân sách inference lớn và quy tắc budget-matched với baseline |
 | So sánh đa seed, đa model | Cần lặp lại nhiều lần inference | API/GPU và một protocol thống kê định trước |
 | Robustness đa provider | Cần endpoint/provider thật để tiêm lỗi mạng/tool | Credentials hoặc hạ tầng provider local tương thích |
+
+## Ghi chú về giới hạn môi trường hiện tại
+
+Tại lần rà soát 2026-11-10, `npm run typecheck` vẫn PASS nhưng bảy lệnh CLI
+dùng `tsx` (task-parity, cadence và các static-audit verifier) cùng dừng ngay
+khi `tsx` gọi `node:os.userInfo()`: `ERR_SYSTEM_ERROR` với
+`uv_os_get_passwd returned ENOMEM`. Vì lỗi xảy ra trước logic HELIX, các lệnh
+này được ghi là **BLOCKED**, không phải FAIL. Không chạy lại LCB/SWE-bench hay
+live provider trong môi trường này.
 
 ## Hạn chế cần nêu trong báo cáo
 
