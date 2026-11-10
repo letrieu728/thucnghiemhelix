@@ -53,7 +53,7 @@ artifact có sẵn trong HELIX thành một lần tái lập mới.
 | --- | --- | --- |
 | Typecheck | PASS (2026-11-07) | Xem `results/2026-11-07-typecheck.md`; chạy tại commit `a090aba`. |
 | Full unit/conformance tests | Không kết luận | Đã chạy trên working tree có thay đổi cục bộ; log thô không được dùng làm kết quả xác nhận. |
-| Sinh cassette task parity | Chưa chạy | Không tái sinh artifact trên checkout dirty; cần clean checkout để so sánh có ý nghĩa. |
+| Sinh cassette task parity | BLOCKED (2026-11-10) | Clean checkout vẫn bị `EPERM` khi tạo workspace tạm của task; xem kết quả chi tiết. |
 | Assembly contract | PASS (2026-11-10) | Strict verification hoàn thành trên cả 5 product. |
 | Flow graphs | PASS (2026-11-10) | Cả 9 artifact blueprint/comparison hiện có đều verify được. |
 | Executable audit | PASS (2026-11-10) | Fingerprint `44370eff3ea1ca3a`; không có compile blocker. |

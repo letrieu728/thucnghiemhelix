@@ -42,3 +42,7 @@ Thời điểm: 2026-11-07. Nguồn HELIX: commit `a090aba675be000b608e821f40ded
   artifact không còn nhất quán với các metadata, hash/kích thước attachment,
   hoặc fingerprint mà verifier yêu cầu. Đây là kết quả của verifier, không phải
   lỗi môi trường.
+- Tái sinh cassette task-parity trên clean worktree `a090aba` bị **BLOCKED**:
+  Windows trả `EPERM` khi CLI tạo thư mục workspace tạm, kể cả khi `TEMP/TMP`
+  trỏ vào thư mục riêng trong worktree. Không có artifact mới được dùng để
+  thay thế artifact hiện có.

@@ -21,3 +21,16 @@ thay đổi cục bộ; không dùng lượt này cho benchmark). Node `v24.21.0
 Failure ở bảng trên là kết quả kỹ thuật của artifact hiện có. Không tự sửa hay
 tái sinh artifact trong lượt này vì checkout HELIX đang dirty; việc đó phải
 được làm trên clean checkout để có thể quy kết thay đổi và so sánh lại.
+
+## Thử tái sinh trên clean checkout
+
+Đã tạo clean worktree tại commit `a090aba` và cài dependency bằng `npm ci`.
+`npm run task:parity` vẫn bị **BLOCKED** trước khi sinh artifact:
+
+```text
+EPERM, Permission denied: ...helix-task-branch-or-fork-opencode-assembled-...
+```
+
+Lỗi lặp lại sau khi đặt `TEMP`, `TMP` và `TMPDIR` vào thư mục tạm riêng trong
+clean worktree. Vì CLI không tạo được workspace tác vụ, không thể tái sinh
+cassette task-parity trong môi trường Windows hiện tại.
