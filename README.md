@@ -42,6 +42,22 @@ Các thí nghiệm trên chứng minh rằng source hiện tại biên dịch, t
 
 `task:parity` ở đây dùng fixture/cassette hoặc original-contract replay khi không bật `--native-original`; vì vậy đây là bằng chứng về khả năng tái lập cấu trúc và hành vi đã ghi nhận, không phải native end-to-end parity.
 
+## Trạng thái tái lập đã xác nhận
+
+Kết quả được lưu trong thư mục `results/` và được version hóa khi có kết luận
+rõ ràng. Lần rà soát ngày 2026-11-10 phân biệt giữa **đã chạy thành công**,
+**đã thử nhưng không kết luận**, và **chưa chạy**; không suy diễn kết quả từ
+artifact có sẵn trong HELIX thành một lần tái lập mới.
+
+| Hạng mục trong HELIX | Trạng thái tái lập | Ghi chú |
+| --- | --- | --- |
+| Typecheck | PASS (2026-11-07) | Xem `results/2026-11-07-typecheck.md`; chạy tại commit `a090aba`. |
+| Full unit/conformance tests | Không kết luận | Đã chạy trên working tree có thay đổi cục bộ; log thô không được dùng làm kết quả xác nhận. |
+| Cassette task parity và cadence | Chưa có kết quả được lưu | Chỉ chạy khi các artifact đầu vào còn phù hợp với checkout đang kiểm tra. |
+| Assembly contract | BLOCKED | Lần chạy trước bị `ERR_SYSTEM_ERROR: uv_os_get_passwd returned ENOMEM`. |
+| Flow graphs và static audits | Chưa chạy trong repository này | Có thể chạy offline, nhưng phải lưu kèm commit và trạng thái working tree. |
+| Live provider/native CLI/LCB/SWE-bench | Không thực hiện | Cần model/credential hoặc dữ liệu và runner không có trong checkout. |
+
 ## Các phần chưa làm được và lý do
 
 | Hạng mục | Lý do chưa chạy | Điều kiện để chạy |

@@ -20,3 +20,14 @@ Thời điểm: 2026-11-07. Nguồn HELIX: commit `a090aba675be000b608e821f40ded
 2. Cài Node LTS theo yêu cầu của HELIX và `npm install`.
 3. Chạy `powershell -ExecutionPolicy Bypass -File .\scripts\run-offline.ps1`.
 4. Nếu các verify pass, chạy thêm `-IncludeFullTest`; đưa log tạo ra vào phần phụ lục, không commit secrets/API keys.
+
+## Rà soát kết quả hiện có (2026-11-10)
+
+- **Đủ điều kiện công bố:** chỉ `typecheck` PASS. Bản tóm tắt có thể kiểm tra
+  lại nằm ở `results/2026-11-07-typecheck.md`.
+- **Không đủ điều kiện kết luận:** lần chạy `npm test` dùng working tree có
+  chỉnh sửa cục bộ; vì thế không đưa kết quả fail vào đánh giá chất lượng HELIX.
+- **Chưa có artifact kết quả:** cadence verify, assembly verify, flow graphs và
+  các static audit. Việc có lệnh trong script không đồng nghĩa lệnh đã chạy.
+- **Không chạy lại:** các benchmark/provider live và LCB100/SWE-bench, vì cần
+  credential, chi phí inference, hoặc dữ liệu/runner không nằm trong checkout.
