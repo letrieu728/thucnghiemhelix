@@ -2,6 +2,8 @@
 
 Repository này tái lập các kiểm tra **offline, miễn phí và có thể chạy lại** của [HELIX](../HELIX-git/). Mục tiêu là đánh giá kỹ thuật của framework, không tuyên bố tái lập kết quả benchmark dùng LLM trả phí.
 
+Báo cáo đối chiếu giữa công bố của tác giả và kết quả tái lập nằm tại [`REPORT.md`](./REPORT.md).
+
 ## Phạm vi đã thực hiện
 
 | Thực nghiệm | Mục tiêu | Lệnh | Kết quả |
