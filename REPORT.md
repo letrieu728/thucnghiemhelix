@@ -38,7 +38,7 @@ minh; các số liệu LiveCodeBench và SWE-bench của tác giả chưa đư�
 | Split task parity | Summary và attachment | **FAIL** | Nhiều attachment lệch hash/kích thước manifest. |
 | Current-module audit | Audit fingerprint | **FAIL** | Artifact `ce386…` khác fingerprint tính lại `413e…`. |
 | Tái sinh task parity | Script cassette không cần LLM | **BLOCKED** | Clean checkout gặp `EPERM` khi tạo workspace tạm. |
-| Unit/conformance suite | Tác giả nói có 108 file Vitest | **Không kết luận** | Lần chạy trước dùng working tree dirty; chưa có full-suite sạch. |
+| Unit/conformance suite | Tác giả nói có 108 file Vitest | **Có failure quan sát được** | Clean-run bắt gặp 4 failure ở tools và 1 ở hooks trước khi môi trường không trả tổng kết suite; chưa có tổng số cuối cùng. |
 | Live provider/native CLI | Live parity/capture | **Không thực hiện** | Cần credential, provider thật, internet và inference. |
 | LiveCodeBench 100 | pi-mono 76, tổ hợp 79, full search 87 | **Không tái lập** | Thiếu 100 task/runner; summary còn đánh dấu tổ hợp tốt nhất là contaminated. |
 | SWE-bench Verified 55 | 44 → 49/55 | **Không tái lập** | Thiếu Docker/runner/grader; cần model thật. |

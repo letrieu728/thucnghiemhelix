@@ -46,3 +46,7 @@ Thời điểm: 2026-11-07. Nguồn HELIX: commit `a090aba675be000b608e821f40ded
   Windows trả `EPERM` khi CLI tạo thư mục workspace tạm, kể cả khi `TEMP/TMP`
   trỏ vào thư mục riêng trong worktree. Không có artifact mới được dùng để
   thay thế artifact hiện có.
+- Đã thử `npm test` trên clean worktree. Vitest quan sát được failure ngay ở
+  `tools.conformance` (4 test) và `hooks.conformance` (1 test), nhưng môi
+  trường điều phối không trả tổng kết/exit code của toàn suite; chưa báo cáo
+  tổng số failure cuối cùng.
