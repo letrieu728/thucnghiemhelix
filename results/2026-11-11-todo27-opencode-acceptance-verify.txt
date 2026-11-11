@@ -1,0 +1,201 @@
+# HELIX offline experiment: 06-todo27-opencode-acceptance-verify
+# Timestamp: 2026-11-11T13:26:24Z (UTC) / 2026-11-11T13:26:24+0000 local
+# HelixDir: /home/hatch/workspace/helix-repro-clean-2026-11-11
+# Commit: a090aba675be000b608e821f40ded4dc705e92af
+# Node: v24.22.1
+# npm: 10.9.4
+# Command: npm run todo27:opencode:acceptance:verify
+# Install note: npm ci FAILED (node-pty EPERM fchown); installed with npm ci --ignore-scripts
+
+
+> helix@0.1.0 todo27:opencode:acceptance:verify
+> tsx packages/cli/src/index.ts verify-todo27-opencode-split-acceptance --artifact docs/reports/todo27-opencode-split-acceptance.json --json
+
+{
+  "ok": true,
+  "fingerprint": "9e131ed2f49d6188",
+  "checks": [
+    {
+      "id": "todo27-opencode-acceptance.schema",
+      "ok": true,
+      "severity": "error",
+      "message": "OpenCode split acceptance artifact must use schema v1 and product opencode.",
+      "refs": [
+        "1",
+        "todo27-opencode-split-acceptance",
+        "opencode"
+      ]
+    },
+    {
+      "id": "todo27-opencode-acceptance.fingerprint",
+      "ok": true,
+      "severity": "error",
+      "message": "OpenCode split acceptance fingerprint must match source fingerprints, tracked stages, tracked atoms, and summary.",
+      "refs": [
+        "9e131ed2f49d6188"
+      ]
+    },
+    {
+      "id": "todo27-opencode-acceptance.target",
+      "ok": true,
+      "severity": "error",
+      "message": "OpenCode acceptance must keep the pinned upstream parity target, native-proof-required policy, and executable native parity result.",
+      "refs": [
+        "anomalyco/opencode@1a8fd0e1dca58a473d85500530dd45def3f512ab",
+        "native-proof-required",
+        "nativeParityVerified=false",
+        "executableNativeParityVerified=true"
+      ]
+    },
+    {
+      "id": "todo27-opencode-acceptance.scope-not-todo-complete",
+      "ok": true,
+      "severity": "error",
+      "message": "OpenCode split acceptance verifies executable native parity but remains review scope and must not be represented as TODO27 completion while metadata overlays are retained.",
+      "refs": [
+        "opencode-split-review-only",
+        "executable-native-parity-verified-metadata-retained",
+        "completionClaim=false",
+        "nativeParityVerified=false",
+        "executableNativeParityVerified=true",
+        "productNativeComplete=108/124",
+        "metadataRetained=16"
+      ]
+    },
+    {
+      "id": "todo27-opencode-acceptance.source-verifiers",
+      "ok": true,
+      "severity": "error",
+      "message": "Assembly, Flow, executable audit, current-module audit, and TODO27 inventory verifiers must all pass.",
+      "refs": [
+        "assembly=true",
+        "flow=true",
+        "executable=true",
+        "current=true",
+        "inventory=true"
+      ]
+    },
+    {
+      "id": "todo27-opencode-acceptance.assembly-evidence-linked",
+      "ok": true,
+      "severity": "error",
+      "message": "OpenCode acceptance assembly source must link the refreshed task parity and native fixture evidence artifacts.",
+      "refs": [
+        "taskParity=linked",
+        "nativeFixtures=linked"
+      ]
+    },
+    {
+      "id": "todo27-opencode-acceptance.inventory-opencode-only",
+      "ok": true,
+      "severity": "error",
+      "message": "Acceptance inventory must be scoped to OpenCode transition atoms.",
+      "refs": [
+        "opencode"
+      ]
+    },
+    {
+      "id": "todo27-opencode-acceptance.native-not-claimed",
+      "ok": true,
+      "severity": "error",
+      "message": "OpenCode split acceptance must keep TODO completion separate from executable native parity while metadata-only overlays remain retained.",
+      "refs": [
+        "inventoryNative=108/124",
+        "currentModuleNative=108/124",
+        "metadataRetained=16",
+        "executableNativeParityVerified=true",
+        "flowSatisfiedStages=19/19",
+        "flowBlockedStages=0"
+      ]
+    },
+    {
+      "id": "todo27-opencode-acceptance.executable-native-parity-verified",
+      "ok": true,
+      "severity": "error",
+      "message": "OpenCode executable module parity must be verified independently from metadata-only retained overlays.",
+      "refs": [
+        "summary=true",
+        "todo=true",
+        "target=true",
+        "flowSatisfiedStages=19/19",
+        "rewriteOpen=0",
+        "previewRetained=0"
+      ]
+    },
+    {
+      "id": "todo27-opencode-acceptance.transition-evidence-complete",
+      "ok": true,
+      "severity": "error",
+      "message": "Every OpenCode transition atom must carry fixture and lossiness evidence for split review.",
+      "refs": [
+        "fixtureLinked=124/124",
+        "lossinessOrNative=16+108/124",
+        "partialEvidence=0"
+      ]
+    },
+    {
+      "id": "todo27-opencode-acceptance.flow-claims-visible",
+      "ok": true,
+      "severity": "error",
+      "message": "OpenCode Flow blueprint must show executable parity target stages satisfied while metadata-only overlays remain visible as module claims.",
+      "refs": [
+        "opencode",
+        "blueprint",
+        "blocked=0/19",
+        "satisfied=19/19"
+      ]
+    },
+    {
+      "id": "todo27-opencode-acceptance.tracked-stages-present",
+      "ok": true,
+      "severity": "error",
+      "message": "Acceptance report must track prompt, provider, tool, and session split stages.",
+      "refs": []
+    },
+    {
+      "id": "todo27-opencode-acceptance.tracked-stages-blocked",
+      "ok": true,
+      "severity": "error",
+      "message": "Tracked stages must show OpenCode target evidence plus either native satisfaction or explicit native-parity blockers.",
+      "refs": []
+    },
+    {
+      "id": "todo27-opencode-acceptance.tracked-atoms-present",
+      "ok": true,
+      "severity": "error",
+      "message": "Acceptance report must track the key OpenCode split atoms needed for review.",
+      "refs": []
+    },
+    {
+      "id": "todo27-opencode-acceptance.tracked-atoms-evidenced",
+      "ok": true,
+      "severity": "error",
+      "message": "Tracked OpenCode atoms must expose fixtures plus either native completion proof or remaining lossiness.",
+      "refs": []
+    },
+    {
+      "id": "todo27-opencode-acceptance.executable-audit-clean",
+      "ok": true,
+      "severity": "error",
+      "message": "OpenCode acceptance requires no compile-blocking executable placeholders.",
+      "refs": [
+        "compile=0",
+        "metadata=0",
+        "preview=0"
+      ]
+    },
+    {
+      "id": "todo27-opencode-acceptance.status",
+      "ok": true,
+      "severity": "error",
+      "message": "Acceptance status must reflect the report facts.",
+      "refs": [
+        "ready-for-review",
+        "ready-for-review"
+      ]
+    }
+  ],
+  "issues": [],
+  "warnings": []
+}
+# EXIT_CODE: 0

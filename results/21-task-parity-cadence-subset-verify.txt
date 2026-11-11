@@ -1,0 +1,71 @@
+{
+  "ok": true,
+  "checks": [
+    {
+      "id": "artifact.schema",
+      "ok": true,
+      "message": "Artifact uses task parity schema version 1."
+    },
+    {
+      "id": "artifact.no-secrets",
+      "ok": true,
+      "message": "Artifact does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.status",
+      "ok": true,
+      "message": "All task parity reports are matched or acceptable drift."
+    },
+    {
+      "id": "artifact.pairs",
+      "ok": true,
+      "message": "Artifact includes assembled-vs-original pair evidence."
+    },
+    {
+      "id": "artifact.summary-consistent",
+      "ok": true,
+      "message": "Artifact summary matches report statuses and pair gap evidence."
+    },
+    {
+      "id": "artifact.pair-status-consistent",
+      "ok": true,
+      "message": "Pair status matches gap evidence and parity flags."
+    },
+    {
+      "id": "artifact.cadence.report-evidence",
+      "ok": true,
+      "message": "Every task parity report includes cadence evidence."
+    },
+    {
+      "id": "artifact.observation-shape",
+      "ok": true,
+      "message": "Every task parity report includes observation shape, acceptance timing, and replay evidence."
+    },
+    {
+      "id": "artifact.cadence.pair-evidence",
+      "ok": true,
+      "message": "Every assembled-vs-original pair includes cadence parity evidence."
+    },
+    {
+      "id": "artifact.acceptance-timing.pair-evidence",
+      "ok": true,
+      "message": "Every assembled-vs-original pair includes acceptance timing drift evidence."
+    },
+    {
+      "id": "artifact.cadence.score-breakdown",
+      "ok": true,
+      "message": "Every assembled-vs-original pair includes cadence score breakdown model v2."
+    },
+    {
+      "id": "artifact.cadence.drift-metadata",
+      "ok": true,
+      "message": "Every cadence drift has ownership, candidate fixes, score delta, reproduction metadata, and observability metadata."
+    },
+    {
+      "id": "artifact.acceptance-timing.drift-metadata",
+      "ok": true,
+      "message": "Every acceptance timing drift records runtime ownership, candidate fixes, native fixture requirement, and full timing lossiness."
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-11T13:58:17.629Z",
+  "suite": "smoke",
+  "provider": "cassette",
+  "reports": [
+    {
+      "taskID": "branch-or-fork",
+      "product": "opencode",
+      "mode": "assembled",
+      "runner": {
+        "id": "task.runner.assembled",
+        "evidence": "assembled-harness",
+        "nativeAvailable": true
+      },
+      "productEvidence": {
+        "recipeID": "opencode",
+        "upstream": "https://github.com/anomalyco/opencode",
+        "upstreamCommit": "1a8fd0e1dca58a473d85500530dd45def3f512ab",
+        "nativeAdapter": "assembled-harness"
+      },
+      "status": "matched",
+      "workspaceDiff": [],
+      "transcriptSummary": {
+        "visibleText": "Record a short answer so the runner can fork this session and verify the forked transcript.\nSession fork smoke completed.",
+        "messageCount": 2
+      },
+      "sessionEvidence": {
+        "sessionID": "ses_e35191c84ffeaO9S6VZwsvGcST",
+        "transcriptMessages": 2,
+        "persisted": true,
+        "forked": true,
+        "forkParentID": "ses_e35191c84ffeaO9S6VZwsvGcST",
+        "forkMessageCount": 2
+      },
+      "providerEvidence": {
+        "provider": "cassette",
+        "modelID": "fixture-model",
+        "deterministic": true,
+        "requests": 1
+
+[... TRUNCATED for commit size: 37347 middle lines omitted —  ...]
+
+          "lossinessRefs": [
+            "partial-runtime-acceptance-replay",
+            "partial-runtime-acceptance-timing-boundary",
+            "partial-runtime-acceptance-lifecycle",
+            "partial-runtime-acceptance-persistence-cleanup",
+            "runtime-acceptance-policy-approximation",
+            "full-upstream-stop-continue-timing-not-replayed",
+            "native-evidence-persistence-order-not-replayed",
+            "cleanup-side-effect-order-not-full-native"
+          ],
+          "requiresNativeFixture": true
+        }
+      ],
+      "gaps": []
+    }
+  ],
+  "summary": {
+    "reports": 96,
+    "matched": 48,
+    "acceptableDrift": 48,
+    "gapsFound": 0,
+    "failed": 0
+  }
+}

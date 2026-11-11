@@ -1,0 +1,92 @@
+# HELIX offline experiment: 04-executable-audit-verify
+# Timestamp: 2026-11-11T13:26:19Z (UTC) / 2026-11-11T13:26:19+0000 local
+# HelixDir: /home/hatch/workspace/helix-repro-clean-2026-11-11
+# Commit: a090aba675be000b608e821f40ded4dc705e92af
+# Node: v24.22.1
+# npm: 10.9.4
+# Command: npm run executable:audit:verify
+# Install note: npm ci FAILED (node-pty EPERM fchown); installed with npm ci --ignore-scripts
+
+
+> helix@0.1.0 executable:audit:verify
+> tsx packages/cli/src/index.ts verify-executable-placeholder-audit --artifact docs/reports/executable-placeholder-audit.json --json
+
+{
+  "ok": true,
+  "fingerprint": "44370eff3ea1ca3a",
+  "checks": [
+    {
+      "id": "executable-audit.schema",
+      "ok": true,
+      "severity": "error",
+      "message": "Audit artifact uses schema version 1.",
+      "refs": []
+    },
+    {
+      "id": "executable-audit.items.present",
+      "ok": true,
+      "severity": "error",
+      "message": "Audit artifact lists binding items.",
+      "refs": []
+    },
+    {
+      "id": "executable-audit.rules.present",
+      "ok": true,
+      "severity": "error",
+      "message": "Audit artifact lists executable port rules.",
+      "refs": []
+    },
+    {
+      "id": "executable-audit.required-fields",
+      "ok": true,
+      "severity": "error",
+      "message": "Every audit item has required fields.",
+      "refs": []
+    },
+    {
+      "id": "executable-audit.compile-blockers.none",
+      "ok": true,
+      "severity": "error",
+      "message": "Required executable ports must not bind metadata-only, mock, fixture, cassette, or invalid placeholder providers.",
+      "refs": []
+    },
+    {
+      "id": "executable-audit.compile-blockers.resolved",
+      "ok": true,
+      "severity": "error",
+      "message": "Compile blocker items must include a concrete resolution.",
+      "refs": []
+    },
+    {
+      "id": "executable-audit.metadata-overlays.not-providers",
+      "ok": true,
+      "severity": "error",
+      "message": "Metadata overlay atoms must be distinct from the executable provider.",
+      "refs": []
+    },
+    {
+      "id": "executable-audit.native-upgrade.evidence",
+      "ok": true,
+      "severity": "error",
+      "message": "Native rewrite items must carry upstream source refs and evidence refs.",
+      "refs": []
+    },
+    {
+      "id": "executable-audit.todo027-native-evidence-consumed",
+      "ok": true,
+      "severity": "error",
+      "message": "TODO-027 keep-with-evidence items must expose native evidence refs, fixture IDs, or known lossiness for TODO-028 audit consumption.",
+      "refs": []
+    },
+    {
+      "id": "executable-audit.fingerprint",
+      "ok": true,
+      "severity": "error",
+      "message": "Audit fingerprint matches canonical content.",
+      "refs": []
+    }
+  ],
+  "issues": [],
+  "warnings": []
+}
+# EXIT_CODE: 0

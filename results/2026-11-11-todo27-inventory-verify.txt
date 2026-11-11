@@ -1,0 +1,76 @@
+# HELIX offline experiment: 05-todo27-inventory-verify
+# Timestamp: 2026-11-11T13:26:22Z (UTC) / 2026-11-11T13:26:22+0000 local
+# HelixDir: /home/hatch/workspace/helix-repro-clean-2026-11-11
+# Commit: a090aba675be000b608e821f40ded4dc705e92af
+# Node: v24.22.1
+# npm: 10.9.4
+# Command: npm run todo27:inventory:verify
+# Install note: npm ci FAILED (node-pty EPERM fchown); installed with npm ci --ignore-scripts
+
+
+> helix@0.1.0 todo27:inventory:verify
+> tsx packages/cli/src/index.ts verify-todo27-native-rewrite-inventory --artifact docs/reports/todo27-native-rewrite-inventory.json --json
+
+{
+  "ok": true,
+  "fingerprint": "e12a2bb0941ac9c7",
+  "checks": [
+    {
+      "id": "todo27-inventory.fingerprint",
+      "ok": true,
+      "severity": "error",
+      "message": "Inventory fingerprint must match products, transition items, and summary.",
+      "refs": [
+        "e12a2bb0941ac9c7"
+      ]
+    },
+    {
+      "id": "todo27-inventory.transition-items.present",
+      "ok": true,
+      "severity": "error",
+      "message": "Inventory must contain every product-scoped transition atom and keep summary.total in sync.",
+      "refs": [
+        "445",
+        "445"
+      ]
+    },
+    {
+      "id": "todo27-inventory.transition-level-only",
+      "ok": true,
+      "severity": "error",
+      "message": "Inventory items must only cover TODO-027 product transition levels, never common-shared atoms.",
+      "refs": []
+    },
+    {
+      "id": "todo27-inventory.classification-complete",
+      "ok": true,
+      "severity": "error",
+      "message": "Every transition atom must have an owner section, disposition, fixture target, and blocker.",
+      "refs": []
+    },
+    {
+      "id": "todo27-inventory.transition-evidence-or-lossiness",
+      "ok": true,
+      "severity": "error",
+      "message": "Non-metadata transition atoms must expose native evidence, fixture refs, or explicit lossiness.",
+      "refs": []
+    },
+    {
+      "id": "todo27-inventory.no-unproven-native-complete",
+      "ok": true,
+      "severity": "error",
+      "message": "TODO-027 transition inventory must only mark fully proven native atoms as product-native complete.",
+      "refs": []
+    },
+    {
+      "id": "todo27-inventory.preview-retained",
+      "ok": true,
+      "severity": "error",
+      "message": "Preview shells must stay explicitly preview-retained until native TUI/Web parity exists.",
+      "refs": []
+    }
+  ],
+  "issues": [],
+  "warnings": []
+}
+# EXIT_CODE: 0

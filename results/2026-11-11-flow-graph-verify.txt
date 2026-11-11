@@ -1,0 +1,107 @@
+# HELIX offline experiment: 03-flow-graph-verify
+# Timestamp: 2026-11-11T13:25:51Z (UTC)
+# Commit: a090aba675be000b608e821f40ded4dc705e92af
+# Node: v24.22.1
+# npm: 10.9.4
+# Command: for each docs/reports/flow-graph-*.json: npx tsx packages/cli/src/index.ts verify-flow-graph --artifact <file> --json
+
+=== docs/reports/flow-graph-compare-hermes-agent-read-only-answer.json ===
+{
+  "ok": true,
+  "issues": [],
+  "summary": {
+    "graphs": 2,
+    "comparisons": 1,
+    "stages": 38
+  }
+}
+--- exit 0 ---
+=== docs/reports/flow-graph-compare-nanobot-read-only-answer.json ===
+{
+  "ok": true,
+  "issues": [],
+  "summary": {
+    "graphs": 2,
+    "comparisons": 1,
+    "stages": 38
+  }
+}
+--- exit 0 ---
+=== docs/reports/flow-graph-compare-opencode-read-only-answer.json ===
+{
+  "ok": true,
+  "issues": [],
+  "summary": {
+    "graphs": 2,
+    "comparisons": 1,
+    "stages": 38
+  }
+}
+--- exit 0 ---
+=== docs/reports/flow-graph-compare-pi-mono-read-only-answer.json ===
+{
+  "ok": true,
+  "issues": [],
+  "summary": {
+    "graphs": 2,
+    "comparisons": 1,
+    "stages": 38
+  }
+}
+--- exit 0 ---
+=== docs/reports/flow-graph-hermes-agent.json ===
+{
+  "ok": true,
+  "issues": [],
+  "summary": {
+    "graphs": 1,
+    "comparisons": 0,
+    "stages": 19
+  }
+}
+--- exit 0 ---
+=== docs/reports/flow-graph-minimal.json ===
+{
+  "ok": true,
+  "issues": [],
+  "summary": {
+    "graphs": 1,
+    "comparisons": 0,
+    "stages": 19
+  }
+}
+--- exit 0 ---
+=== docs/reports/flow-graph-nanobot.json ===
+{
+  "ok": true,
+  "issues": [],
+  "summary": {
+    "graphs": 1,
+    "comparisons": 0,
+    "stages": 19
+  }
+}
+--- exit 0 ---
+=== docs/reports/flow-graph-opencode.json ===
+{
+  "ok": true,
+  "issues": [],
+  "summary": {
+    "graphs": 1,
+    "comparisons": 0,
+    "stages": 19
+  }
+}
+--- exit 0 ---
+=== docs/reports/flow-graph-pi-mono.json ===
+{
+  "ok": true,
+  "issues": [],
+  "summary": {
+    "graphs": 1,
+    "comparisons": 0,
+    "stages": 19
+  }
+}
+--- exit 0 ---
+# FLOW_GRAPH_PASS: 9 FAIL: 0

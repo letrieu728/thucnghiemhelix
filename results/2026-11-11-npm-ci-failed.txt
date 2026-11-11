@@ -1,0 +1,11 @@
+# npm ci failure (plain) — 2026-11-11, Linux clean checkout
+# Commit: a090aba675be000b608e821f40ded4dc705e92af
+# Node: v24.22.1; npm: 10.9.4
+# Command: npm ci
+# Result: exit 1. node-pty native build failed: node-gyp could not extract the node headers tarball:
+#   TAR_ENTRY_ERROR EPERM: operation not permitted, fchown
+#   (sandbox blocks chown even as root; the full npm debug log was rotated away by npm,
+#    error lines above are copied verbatim from the npm ci output.)
+# Fallback used for all runs in this batch: npm ci --ignore-scripts (exit 0; native node-pty build skipped).
+# Verifiers run here are tsx/tsc-based and do not load node-pty.
+

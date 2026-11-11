@@ -1,0 +1,116 @@
+# HELIX offline experiment: 11-task-parity-regenerate
+# Timestamp: 2026-11-11T13:26:59Z (UTC)
+# Commit: a090aba675be000b608e821f40ded4dc705e92af
+# Node: v24.22.1
+# npm: 10.9.4
+# Command: npm run task:parity
+# Note: writes docs/reports/task-parity.json (regeneration attempt on clean checkout)
+
+
+> helix@0.1.0 task:parity
+> tsx packages/cli/src/index.ts task-parity --suite smoke --provider cassette --out docs/reports/task-parity.json --json
+
+ENOENT: no such file or directory, stat '/home/hatch/workspace/helix-repro-clean-2026-11-11/packages/conformance/fixtures/tasks/livecodebench-v6-000-abc387-b'
+
+Usage:
+  npm run helix -- run <opencode|pi-mono|nanobot|hermes-agent> --provider <openai-compatible|openrouter|anthropic|google> --model id [--api-key key] [--base-url url] [--max-steps n] [--max-retries n] [--synthetic-continue] [--prompt text] [--json|--native-json-events]
+  npm run helix -- inspect recipe <coding-agent.minimal|opencode|pi-mono|nanobot|hermes-agent|swap-id> [--json]
+  npm run helix -- graph recipe <coding-agent.minimal|opencode|pi-mono|nanobot|hermes-agent|swap-id> [--json]
+  npm run helix -- graph recipe-file <path> [--json]
+  npm run helix -- diff recipe <left> <right> [--json]
+  npm run helix -- validate recipe <coding-agent.minimal|opencode|pi-mono|nanobot|hermes-agent|swap-id> [--json]
+  npm run helix -- validate recipe-file <path> [--json]
+  npm run helix -- compose --recipe <id> --override <port=module> [--json]
+  npm run helix -- assemble --product opencode,pi-mono,opencode-pi-hybrid,nanobot,hermes-agent,minimal|--recipe-file path [--explain] [--with-task-parity [path]] [--with-native-fixtures [path]] [--with-external-capture path] [--external-run-manifest path] [--strict] [--out path|--out-dir dir] [--json]
+  npm run helix -- verify-assembly-contract --artifact path [--require-task-parity] [--require-native-fixtures] [--require-external-tool-evidence] [--json]
+  npm run helix -- flow-graph (--product opencode|pi-mono|opencode-pi-hybrid|nanobot|hermes-agent|minimal|--recipe-file path) [--mode blueprint|trace|native|compare] [--task id] [--artifact external-native-capture.json|native-cadence.json|legacy-task-parity.json|native-cadence-summary.json|native-cadence-manifest.json] [--out path] [--json]
+  npm run helix -- flow-graph reports [--product opencode,pi-mono,nanobot,hermes-agent,minimal] [--task id] [--out-dir dir] [--json]
+  npm run helix -- verify-flow-graph --artifact path [--json]
+  npm run helix -- external-tools <list|doctor|capture|import|verify|verify-run-manifest|to-native-cadence> [claude-tap] [--strategy binary|uvx|explicitPath] [--tool-path path] [--dry-run|--capture-only] [--require-tool] [--artifact path] [--run-manifest path] [--manifest path] [--require-artifact path:role] [--expect-command command] [--expect-args-json json] [--allow-unknown-tool-version] [--allow-empty-artifacts] [--product opencode|pi-mono|hermes-agent|codex] [--task id] [--capture-mode mode] [--out path|--out-dir dir] [--json] [-- <tool args>]
+  npm run helix -- executable-placeholder-audit [--product opencode,pi-mono,nanobot,hermes-agent,minimal] [--out path] [--markdown path] [--json]
+  npm run helix -- verify-executable-placeholder-audit --artifact path [--json]
+  npm run helix -- todo27-native-rewrite-inventory [--product opencode,pi-mono,nanobot,hermes-agent] [--out path] [--markdown path] [--json]
+  npm run helix -- verify-todo27-native-rewrite-inventory --artifact path [--json]
+  npm run helix -- todo27-opencode-split-acceptance [--out path] [--markdown path] [--json]
+  npm run helix -- verify-todo27-opencode-split-acceptance --artifact path [--json]
+  npm run helix -- current-module-placeholder-audit [--product opencode,pi-mono,nanobot,hermes-agent] [--out path] [--markdown path] [--json]
+  npm run helix -- verify-current-module-placeholder-audit --artifact path [--json]
+  npm run helix -- tui (--recipe-file path|--profile name) [--provider profile-live] [--text prompt] [--profile-root path] [--cwd path] [--storage-dir path] [--json]
+  npm run helix -- gateway <start|stop|restart|status|logs|manifests|worker|smoke|smoke-local> <profile> [--channel telegram] [--profile-root path] [--json]
+  npm run helix -- live-provider-parity [--provider openai-compatible|openrouter|anthropic|google] [--model id] [--api-key key] [--base-url url] [--product opencode|pi-mono|nanobot|hermes-agent] [--require-credentials] [--artifact-format legacy|split] [--out path] [--out-dir dir] [--summary-out path] [--json]
+  npm run helix -- verify-live-provider-parity --artifact path [--provider openai-compatible|openrouter|anthropic|google] [--model id] [--product opencode|pi-mono|nanobot|hermes-agent] [--max-age-ms n] [--json]
+  npm run helix -- live-provider-parity migrate-artifact --artifact path --out-dir dir [--summary-out path] [--json]
+  npm run helix -- task-parity [--suite smoke] [--task id] [--product opencode,pi-mono,opencode-pi-hybrid,nanobot,hermes-agent] [--recipe-file path] [--mode assembled,original] [--provider cassette|live] [--native-original] [--external-capture native-capture.json] [--model id] [--api-key key] [--base-url url] [--package spec] [--timeout-ms n] [--artifact-format legacy|split] [--out path] [--out-dir dir] [--summary-out path] [--json]
+  npm run helix -- verify-task-parity --artifact path [--product opencode,pi-mono,opencode-pi-hybrid,nanobot,hermes-agent] [--mode assembled,original] [--task id] [--json]
+  npm run helix -- task-parity diff --artifact-a path --artifact-b path [--json]
+  npm run helix -- task-parity migrate-artifact --artifact path --out-dir dir [--summary-out path] [--json]
+  npm run helix -- task-parity cadence-diagnose --artifact path [--out path] [--json]
+  npm run helix -- task-parity native-cadence-fixtures --artifact path [--artifact-format legacy|split] [--out path] [--out-dir dir] [--summary-out path] [--json]
+  npm run helix -- task-parity replay-native-cadence --fixture path [--out path] [--json]
+  npm run helix -- differential <opencode|pi-mono|nanobot|hermes-agent> [--native-original] [--model id] [--api-key key] [--base-url url] [--prompt text] [--assistant text] [--json]
+  npm run helix -- nanobot lego-depth [--out path] [--markdown path] [--json]
+
+Examples:
+  npm run helix -- run opencode --provider openai-compatible --model "$HELIX_LIVE_MODEL" --api-key "$HELIX_LIVE_API_KEY" --prompt hello --json
+  npm run helix -- run opencode --provider openrouter --model openai/gpt-4.1 --prompt hello --native-json-events
+  npm run helix -- run opencode --provider openrouter --model openai/gpt-4.1 --prompt hello --json
+  npm run helix -- run pi-mono --provider anthropic --model "$HELIX_LIVE_MODEL" --api-key "$HELIX_LIVE_API_KEY" --prompt hello --json
+  npm run helix -- graph recipe coding-agent.minimal --json
+  npm run helix -- graph recipe-file docs/site/harness-builder-export.json --json
+  npm run helix -- validate recipe minimal.no-shell --json
+  npm run helix -- validate recipe-file docs/site/harness-builder-export.json --json
+  npm run helix -- assemble --recipe-file docs/site/harness-builder-export.json --explain --json
+  npm run helix -- graph recipe opencode.full --json
+  npm run helix -- diff recipe opencode.full pi-mono.full
+  npm run helix -- compose --recipe opencode.full --override session=lego-session --json
+  npm run helix -- assemble --product opencode --explain --json
+  npm run helix -- assemble --product pi-mono --with-external-capture docs/reports/external-tools/claude-tap/pi-read-only/native-capture.json --json
+  npm run helix -- assemble --product opencode,pi-mono,opencode-pi-hybrid,nanobot,hermes-agent,minimal --with-task-parity --with-native-fixtures --out-dir docs/reports --strict --json
+  npm run helix -- verify-assembly-contract --artifact docs/reports/assembly-contract-opencode.json --require-task-parity --require-native-fixtures --json
+  npm run helix -- flow-graph --product opencode --mode blueprint --json
+  npm run helix -- flow-graph --recipe-file docs/site/harness-builder-export.json --mode blueprint --out docs/reports/flow-graph-custom.json --json
+  npm run helix -- flow-graph --product opencode --mode trace --task read-only-answer --json
+  npm run helix -- flow-graph --product hermes-agent --mode native --artifact docs/reports/task-parity-native-cadence-fixtures/manifest.json --json
+  npm run helix -- flow-graph --product pi-mono --mode compare --artifact .helix/external-tools/runs/pi-read-only/normalized/native-capture.json --json
+  npm run helix -- flow-graph --product opencode --mode native --artifact docs/reports/task-parity-native-cadence-fixtures/manifest.json --json
+  npm run helix -- flow-graph --product opencode --mode compare --task read-only-answer --out docs/reports/flow-graph-compare-opencode-read-only-answer.json --json
+  npm run helix -- flow-graph reports --out-dir docs/reports --json
+  npm run helix -- verify-flow-graph --artifact docs/reports/flow-graph-compare-opencode-read-only-answer.json --json
+  HELIX_EXTERNAL_CAPTURE=1 npm run helix -- external-tools capture claude-tap --product pi-mono --task read-only-answer --out-dir .helix/external-tools/runs/pi-read-only --json -- --tap-client pi -- -p "Reply OK"
+  npm run helix -- external-tools capture claude-tap --strategy uvx --dry-run --product pi-mono --task read-only-answer --json -- --tap-client pi -- -p "Reply OK"
+  npm run helix -- external-tools capture claude-tap --dry-run --product pi-mono --task read-only-answer --out-dir .helix/external-tools/runs/pi-read-only --json -- --tap-client pi -- -p "Reply OK"
+  npm run helix -- external-tools import claude-tap --artifact external-tools/claude-tap/fixtures/minimal-jsonl.trace.jsonl --product pi-mono --task read-only-answer --json
+  npm run helix -- external-tools verify --artifact .helix/external-tools/runs/pi-read-only/normalized/native-capture.json --run-manifest .helix/external-tools/runs/pi-read-only/run-manifest.json --json
+  npm run helix -- external-tools to-native-cadence --artifact .helix/external-tools/runs/pi-read-only/normalized/native-capture.json --out docs/reports/external-tools/claude-tap/pi-read-only/native-cadence-fixture.json --json
+  npm run helix -- executable-placeholder-audit --out docs/reports/executable-placeholder-audit.json --markdown docs/reports/executable-placeholder-audit.md --json
+  npm run helix -- verify-executable-placeholder-audit --artifact docs/reports/executable-placeholder-audit.json --json
+  npm run helix -- todo27-native-rewrite-inventory --out docs/reports/todo27-native-rewrite-inventory.json --markdown docs/reports/todo27-native-rewrite-inventory.md --json
+  npm run helix -- verify-todo27-native-rewrite-inventory --artifact docs/reports/todo27-native-rewrite-inventory.json --json
+  npm run helix -- todo27-opencode-split-acceptance --out docs/reports/todo27-opencode-split-acceptance.json --markdown docs/reports/todo27-opencode-split-acceptance.md --json
+  npm run helix -- verify-todo27-opencode-split-acceptance --artifact docs/reports/todo27-opencode-split-acceptance.json --json
+  npm run helix -- current-module-placeholder-audit --out docs/reports/current-module-placeholder-audit.json --markdown docs/reports/current-module-placeholder-audit.md --json
+  npm run helix -- verify-current-module-placeholder-audit --artifact docs/reports/current-module-placeholder-audit.json --json
+  npm run helix -- tui --recipe-file docs/site/harness-builder-export.json --text hello --json
+  npm run helix -- tui --profile my-harness --provider profile-live
+  npm run helix -- live-provider-parity --provider openrouter --model openai/gpt-4.1 --require-credentials --out docs/reports/live-provider-parity.json --json
+  npm run helix -- verify-live-provider-parity --artifact docs/reports/live-provider-parity.json --provider openrouter --json
+  npm run helix -- task-parity --suite smoke --provider cassette --out docs/reports/task-parity.json --json
+  npm run helix -- task-parity --product pi-mono --task read-only-answer --mode original --external-capture docs/reports/external-tools/claude-tap/pi-read-only/native-capture.json --json
+  npm run helix -- task-parity cadence-diagnose --artifact docs/reports/task-parity-cadence.json --out docs/reports/task-parity-cadence-diagnosis.md --json
+  npm run helix -- task-parity native-cadence-fixtures --artifact docs/reports/task-parity.json --artifact-format split --out-dir docs/reports/task-parity-native-cadence-fixtures --json
+  npm run helix -- task-parity replay-native-cadence --fixture docs/reports/task-parity-native-cadence-fixtures/summary.json --json
+  npm run helix -- task-parity --task read-only-answer --product opencode --mode original --provider live --native-original --model claude-sonnet-4-5 --json
+  npm run helix -- verify-task-parity --artifact docs/reports/task-parity.json --json
+  npm run helix -- differential opencode --json
+  npm run helix -- differential opencode --native-original --model claude-sonnet-4-5 --json
+  npm run helix -- differential pi-mono --json
+  npm run helix -- nanobot lego-depth --out docs/reports/nanobot-lego-depth.json --markdown docs/reports/nanobot-lego-depth.md --json
+EXIT:1
+# EXIT_CODE recorded above
+
+=== INVESTIGATION (same run, no source modified) ===
+Fixture entries are symlinks committed in git, all pointing to an absolute path on the author's machine:
+  packages/conformance/fixtures/tasks/livecodebench-v6-000-abc387-b -> /home/HarnessLego-pi-lcb-eval/packages/conformance/fixtures/tasks/livecodebench-v6-000-abc387-b
+Counts on this clean checkout: 101 symlinks in packages/conformance/fixtures/tasks, 101 broken (target /home/HarnessLego-pi-lcb-eval does not exist here); git ls-files shows 101 symlinks total in the repo, all of them these fixtures.
+Conclusion: regeneration fails on Linux with ENOENT (not EPERM). The Windows EPERM was a different, earlier failure point; even past it, the committed absolute symlinks would break regeneration on any machine without /home/HarnessLego-pi-lcb-eval.
+No artifact was written: git status remains clean.

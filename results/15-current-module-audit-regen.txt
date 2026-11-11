@@ -1,0 +1,69 @@
+
+> helix@0.1.0 current-module:audit
+> tsx packages/cli/src/index.ts current-module-placeholder-audit --product opencode,pi-mono,nanobot,hermes-agent --out docs/reports/current-module-placeholder-audit.json --markdown docs/reports/current-module-placeholder-audit.md --json
+
+{
+  "audit": {
+    "schemaVersion": 1,
+    "artifactKind": "current-module-placeholder-audit",
+    "generatedAt": "2026-11-11T13:54:53.455Z",
+    "products": [
+      "opencode",
+      "pi-mono",
+      "nanobot",
+      "hermes-agent"
+    ],
+    "upstreamBaselines": [
+      {
+        "product": "opencode",
+        "pinnedRepo": "anomalyco/opencode",
+        "pinnedRef": "1a8fd0e1dca58a473d85500530dd45def3f512ab",
+        "latestRepo": "anomalyco/opencode",
+        "latestHead": "bf05e8a1224d6560f7a441f70d09e0c77e50e931",
+        "checkedAt": "2026-06-11",
+        "driftStatus": "pinned-behind-latest-head",
+        "alternateLatestHeads": [
+          {
+            "repo": "opencode-ai/opencode",
+            "head": "73ee493265acf15fcd8caab2bc8cd3bd375b63cb",
+            "relation": "official-successor-candidate"
+          }
+        ]
+      },
+      {
+        "product": "pi-mono",
+        "pinnedRepo": "earendil-works/pi",
+        "pinnedRef": "7c2775f6f67c38ed491a1ff68240ee4f8ba688da",
+        "latestRepo": "earendil-works/pi",
+        "latestHead": "406a2214aa1dce746a1902605daf04e6727349dc",
+        "checkedAt": "2026-06-11",
+        "driftStatus": "pinned-behind-latest-head",
+
+[... TRUNCATED for commit size: 166258 middle lines omitted —  ...]
+
+        "ok": true,
+        "severity": "error",
+        "message": "Native items must carry upstream refs and evidence, and must not retain known lossiness.",
+        "refs": []
+      },
+      {
+        "id": "current-module-audit.preview-metadata-executable-bindings.none",
+        "ok": true,
+        "severity": "warning",
+        "message": "Preview or metadata-only providers must not satisfy executable-required ports.",
+        "refs": []
+      },
+      {
+        "id": "current-module-audit.open-work-visible",
+        "ok": true,
+        "severity": "error",
+        "message": "Current audit must not overstate native completion; package-only source checks and demotion gates remain visible.",
+        "refs": []
+      }
+    ],
+    "issues": [],
+    "warnings": []
+  }
+}
+
+# NOTE appended by the experimenter (not part of the command output): the regen command exited 0; this was observed in the terminal when the command ran. The verify step afterwards (log 16) passed.

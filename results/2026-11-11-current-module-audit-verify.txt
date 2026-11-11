@@ -1,0 +1,248 @@
+# HELIX offline experiment: 10-current-module-audit-verify
+# Timestamp: 2026-11-11T13:26:36Z (UTC) / 2026-11-11T13:26:36+0000 local
+# HelixDir: /home/hatch/workspace/helix-repro-clean-2026-11-11
+# Commit: a090aba675be000b608e821f40ded4dc705e92af
+# Node: v24.22.1
+# npm: 10.9.4
+# Command: npm run current-module:audit:verify
+# Install note: npm ci FAILED (node-pty EPERM fchown); installed with npm ci --ignore-scripts
+
+
+> helix@0.1.0 current-module:audit:verify
+> tsx packages/cli/src/index.ts verify-current-module-placeholder-audit --artifact docs/reports/current-module-placeholder-audit.json --json
+
+{
+  "ok": false,
+  "fingerprint": "413e63553ad22ce5",
+  "checks": [
+    {
+      "id": "current-module-audit.schema",
+      "ok": true,
+      "severity": "error",
+      "message": "Artifact uses current module placeholder audit schema v1.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.fingerprint",
+      "ok": false,
+      "severity": "error",
+      "message": "Fingerprint matches package, plane, atom, and binding audit content.",
+      "refs": [
+        "ce386d45f16fbeda",
+        "413e63553ad22ce5"
+      ]
+    },
+    {
+      "id": "current-module-audit.package-catalog.complete",
+      "ok": true,
+      "severity": "error",
+      "message": "Audit must include every current package in the package catalog.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.upstream-baseline.complete",
+      "ok": true,
+      "severity": "error",
+      "message": "Every audited product must carry pinned and latest upstream baseline metadata.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.transition-atoms.covered",
+      "ok": true,
+      "severity": "error",
+      "message": "Every product-scoped transition atom must have an audit item.",
+      "refs": [
+        "445",
+        "445"
+      ]
+    },
+    {
+      "id": "current-module-audit.selected-transition-atoms.covered",
+      "ok": true,
+      "severity": "error",
+      "message": "Every selected product-scoped transition atom must have an audit item.",
+      "refs": [
+        "433",
+        "433"
+      ]
+    },
+    {
+      "id": "current-module-audit.required-bindings.covered",
+      "ok": true,
+      "severity": "error",
+      "message": "Every required binding must have an audit item.",
+      "refs": [
+        "416",
+        "416"
+      ]
+    },
+    {
+      "id": "current-module-audit.upstream-head-drift.marked",
+      "ok": true,
+      "severity": "error",
+      "message": "Product-scoped items must explicitly mark pinned-vs-latest upstream HEAD drift.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.upstream-source.product-scoped-mapped",
+      "ok": true,
+      "severity": "error",
+      "message": "Every product-scoped atom and binding must map to pinned upstream repo/ref/source path evidence.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.pinned-upstream-behavior.classified",
+      "ok": true,
+      "severity": "error",
+      "message": "Every item must classify pinned upstream behavior alignment; product-scoped items cannot be marked not-product-scoped.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.pinned-upstream-divergence.details",
+      "ok": true,
+      "severity": "error",
+      "message": "Product-scoped non-native items must include field-level pinned upstream divergence details.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.pinned-upstream-divergence.verification-targets",
+      "ok": true,
+      "severity": "error",
+      "message": "Pinned upstream divergence details must name upstream/current anchors, required evidence, and the next verification gate.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.behavior-exact-diff.targets",
+      "ok": true,
+      "severity": "error",
+      "message": "Pinned upstream divergences must include an exact-diff status, fixture target, comparison dimensions, and current coverage statement.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.work-queue.covered",
+      "ok": true,
+      "severity": "error",
+      "message": "Every pinned divergence item must appear in a stable owner/product/plane work queue with evidence targets and action text.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.fixture-diff-queue.covered",
+      "ok": true,
+      "severity": "error",
+      "message": "Every pinned divergence item must appear in a stable fixture-diff queue grouped by fixture target and exact-diff status.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.source-file-fixture-queue.covered",
+      "ok": true,
+      "severity": "error",
+      "message": "Every current source file divergence must appear in a stable source-file fixture queue with source owner, fixture implementation target, negative verification target, and sample anchors.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.source-owner-line-level-summaries.complete",
+      "ok": true,
+      "severity": "error",
+      "message": "Each source owner package must expose a stable line-level exact-diff summary across source-file fixture queue items.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.product-summaries.complete",
+      "ok": true,
+      "severity": "error",
+      "message": "Each audited product must expose a stable summary of mismatch, behavior, exact-diff, fixture target, and dimension counts.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.package-summaries.complete",
+      "ok": true,
+      "severity": "error",
+      "message": "Each current package must expose a stable summary of source status, mismatch, exact-diff, fixture target, and dimension counts.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.package-source-ownership.visible",
+      "ok": true,
+      "severity": "error",
+      "message": "Packages that own current source files must expose source-owned item, source-file, exact-diff, and fixture-target summaries.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.plane-summaries.complete",
+      "ok": true,
+      "severity": "error",
+      "message": "Each current plane must expose a stable summary of source status, mismatch, exact-diff, fixture target, and dimension counts.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.current-source-file-summaries.complete",
+      "ok": true,
+      "severity": "error",
+      "message": "Each current source file referenced by audit items must expose a stable module summary with item IDs, source status, exact-diff, fixture target, and owner counts.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.classification-complete",
+      "ok": true,
+      "severity": "error",
+      "message": "Every audit item must have mismatch kind, owner TODO, next action, and summary.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.source-verification-classified",
+      "ok": true,
+      "severity": "error",
+      "message": "Every audit item must classify source verification status.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.current-source-files.mapped",
+      "ok": true,
+      "severity": "error",
+      "message": "Items with current source refs must expose concrete current source files.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.manual-package-entrypoints.mapped",
+      "ok": true,
+      "severity": "error",
+      "message": "Package-level manual source checks must name concrete current source/API entrypoints.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.native-requires-source-evidence",
+      "ok": true,
+      "severity": "error",
+      "message": "Native items must carry upstream refs and evidence, and must not retain known lossiness.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.preview-metadata-executable-bindings.none",
+      "ok": true,
+      "severity": "warning",
+      "message": "Preview or metadata-only providers must not satisfy executable-required ports.",
+      "refs": []
+    },
+    {
+      "id": "current-module-audit.open-work-visible",
+      "ok": true,
+      "severity": "error",
+      "message": "Current audit must not overstate native completion; package-only source checks and demotion gates remain visible.",
+      "refs": []
+    }
+  ],
+  "issues": [
+    {
+      "id": "current-module-audit.fingerprint",
+      "ok": false,
+      "severity": "error",
+      "message": "Fingerprint matches package, plane, atom, and binding audit content.",
+      "refs": [
+        "ce386d45f16fbeda",
+        "413e63553ad22ce5"
+      ]
+    }
+  ],
+  "warnings": []
+}
+# EXIT_CODE: 1

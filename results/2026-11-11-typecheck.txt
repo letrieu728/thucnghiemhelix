@@ -1,0 +1,14 @@
+# HELIX offline experiment: 01-typecheck
+# Timestamp: 2026-11-11T13:25:18Z (UTC) / 2026-11-11T13:25:18+0000 local
+# HelixDir: /home/hatch/workspace/helix-repro-clean-2026-11-11
+# Commit: a090aba675be000b608e821f40ded4dc705e92af
+# Node: v24.22.1
+# npm: 10.9.4
+# Command: npm run typecheck
+# Install note: npm ci FAILED (node-pty EPERM fchown); installed with npm ci --ignore-scripts
+
+
+> helix@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+# EXIT_CODE: 0
