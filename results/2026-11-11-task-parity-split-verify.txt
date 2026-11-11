@@ -1,0 +1,2436 @@
+# HELIX offline experiment: 09-task-parity-split-verify
+# Timestamp: 2026-11-11T13:26:33Z (UTC) / 2026-11-11T13:26:33+0000 local
+# HelixDir: /home/hatch/workspace/helix-repro-clean-2026-11-11
+# Commit: a090aba675be000b608e821f40ded4dc705e92af
+# Node: v24.22.1
+# npm: 10.9.4
+# Command: npm run task:parity:split:verify
+# Install note: npm ci FAILED (node-pty EPERM fchown); installed with npm ci --ignore-scripts
+
+
+> helix@0.1.0 task:parity:split:verify
+> tsx packages/cli/src/index.ts verify-task-parity --artifact docs/reports/task-parity-split/summary.json --product opencode,pi-mono,nanobot,hermes-agent --mode assembled,original --json
+
+{
+  "ok": false,
+  "checks": [
+    {
+      "id": "artifact.schema",
+      "ok": true,
+      "message": "Artifact uses task parity schema version 2."
+    },
+    {
+      "id": "artifact.kind",
+      "ok": true,
+      "message": "Artifact is a task parity summary."
+    },
+    {
+      "id": "artifact.no-secrets",
+      "ok": true,
+      "message": "Artifact does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.summary.stable-fields",
+      "ok": true,
+      "message": "Summary omits host-specific temporary paths."
+    },
+    {
+      "id": "artifact.product.opencode",
+      "ok": true,
+      "message": "Artifact includes opencode."
+    },
+    {
+      "id": "artifact.product.pi-mono",
+      "ok": true,
+      "message": "Artifact includes pi-mono."
+    },
+    {
+      "id": "artifact.product.nanobot",
+      "ok": true,
+      "message": "Artifact includes nanobot."
+    },
+    {
+      "id": "artifact.product.hermes-agent",
+      "ok": true,
+      "message": "Artifact includes hermes-agent."
+    },
+    {
+      "id": "artifact.mode.assembled",
+      "ok": true,
+      "message": "Artifact includes assembled mode."
+    },
+    {
+      "id": "artifact.mode.original",
+      "ok": true,
+      "message": "Artifact includes original mode."
+    },
+    {
+      "id": "artifact.semantic-parity.explicit",
+      "ok": true,
+      "message": "Semantic parity is explicit."
+    },
+    {
+      "id": "artifact.strict-parity.explicit",
+      "ok": true,
+      "message": "Strict parity fields are explicit."
+    },
+    {
+      "id": "artifact.pair-status-consistent",
+      "ok": true,
+      "message": "Pair status matches semantic and strict parity flags."
+    },
+    {
+      "id": "artifact.attachments.present",
+      "ok": true,
+      "message": "Summary declares attachment hashes."
+    },
+    {
+      "id": "artifact.acceptance-timing.summary",
+      "ok": true,
+      "message": "Summary pairs declare acceptance timing drift counts."
+    },
+    {
+      "id": "artifact.legacy-compatible",
+      "ok": true,
+      "message": "Summary declares legacy compatibility."
+    },
+    {
+      "id": "artifact.evidence.schema",
+      "ok": true,
+      "message": "Split evidence bundle uses task parity schema version 2."
+    },
+    {
+      "id": "artifact.manifest.schema",
+      "ok": true,
+      "message": "Split attachment manifest uses schema version 2."
+    },
+    {
+      "id": "artifact.evidence.linked",
+      "ok": true,
+      "message": "Evidence bundle covers every summarized report."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/branch-or-fork-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-opencode-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/branch-or-fork-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-opencode-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/branch-or-fork-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-opencode-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/branch-or-fork-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-opencode-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/branch-or-fork-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-opencode-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/branch-or-fork-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-opencode-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/branch-or-fork-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-opencode-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/branch-or-fork-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-opencode-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/branch-or-fork-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-pi-mono-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/branch-or-fork-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-pi-mono-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/branch-or-fork-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-pi-mono-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/branch-or-fork-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-pi-mono-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/branch-or-fork-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-pi-mono-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/branch-or-fork-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-pi-mono-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/branch-or-fork-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-pi-mono-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/branch-or-fork-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-pi-mono-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/branch-or-fork-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-nanobot-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/branch-or-fork-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-nanobot-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/branch-or-fork-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-nanobot-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/branch-or-fork-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-nanobot-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/branch-or-fork-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-nanobot-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/branch-or-fork-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-nanobot-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/branch-or-fork-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-nanobot-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/branch-or-fork-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-nanobot-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/branch-or-fork-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-hermes-agent-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/branch-or-fork-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-hermes-agent-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/branch-or-fork-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-hermes-agent-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/branch-or-fork-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-hermes-agent-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/branch-or-fork-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-hermes-agent-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/branch-or-fork-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-hermes-agent-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/branch-or-fork-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-hermes-agent-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/branch-or-fork-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/branch-or-fork-hermes-agent-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/context-compaction-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-opencode-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/context-compaction-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-opencode-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/context-compaction-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-opencode-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/context-compaction-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-opencode-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/context-compaction-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-opencode-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/context-compaction-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-opencode-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/context-compaction-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-opencode-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/context-compaction-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-opencode-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/context-compaction-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-pi-mono-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/context-compaction-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-pi-mono-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/context-compaction-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-pi-mono-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/context-compaction-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-pi-mono-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/context-compaction-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-pi-mono-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/context-compaction-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-pi-mono-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/context-compaction-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-pi-mono-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/context-compaction-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-pi-mono-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/context-compaction-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-nanobot-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/context-compaction-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-nanobot-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/context-compaction-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-nanobot-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/context-compaction-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-nanobot-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/context-compaction-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-nanobot-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/context-compaction-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-nanobot-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/context-compaction-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-nanobot-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/context-compaction-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-nanobot-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/context-compaction-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-hermes-agent-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/context-compaction-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-hermes-agent-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/context-compaction-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-hermes-agent-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/context-compaction-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-hermes-agent-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/context-compaction-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-hermes-agent-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/context-compaction-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-hermes-agent-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/context-compaction-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-hermes-agent-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/context-compaction-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/context-compaction-hermes-agent-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/extension-plugin-tool-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-opencode-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/extension-plugin-tool-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-opencode-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/extension-plugin-tool-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-opencode-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/extension-plugin-tool-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-opencode-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/extension-plugin-tool-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-opencode-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/extension-plugin-tool-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-opencode-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/extension-plugin-tool-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-opencode-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/extension-plugin-tool-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-opencode-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/extension-plugin-tool-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-pi-mono-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/extension-plugin-tool-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-pi-mono-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/extension-plugin-tool-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-pi-mono-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/extension-plugin-tool-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-pi-mono-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/extension-plugin-tool-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-pi-mono-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/extension-plugin-tool-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-pi-mono-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/extension-plugin-tool-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-pi-mono-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/extension-plugin-tool-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-pi-mono-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/extension-plugin-tool-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-nanobot-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/extension-plugin-tool-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-nanobot-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/extension-plugin-tool-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-nanobot-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/extension-plugin-tool-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-nanobot-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/extension-plugin-tool-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-nanobot-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/extension-plugin-tool-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-nanobot-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/extension-plugin-tool-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-nanobot-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/extension-plugin-tool-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-nanobot-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/extension-plugin-tool-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-hermes-agent-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/extension-plugin-tool-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-hermes-agent-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/extension-plugin-tool-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-hermes-agent-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/extension-plugin-tool-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-hermes-agent-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/extension-plugin-tool-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-hermes-agent-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/extension-plugin-tool-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-hermes-agent-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/extension-plugin-tool-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-hermes-agent-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/extension-plugin-tool-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/extension-plugin-tool-hermes-agent-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/multi-file-refactor-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/multi-file-refactor-opencode-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/multi-file-refactor-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-opencode-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/multi-file-refactor-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-opencode-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/multi-file-refactor-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/multi-file-refactor-opencode-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/multi-file-refactor-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/multi-file-refactor-opencode-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/multi-file-refactor-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-opencode-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/multi-file-refactor-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-opencode-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/multi-file-refactor-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/multi-file-refactor-opencode-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/multi-file-refactor-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/multi-file-refactor-pi-mono-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/multi-file-refactor-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-pi-mono-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/multi-file-refactor-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-pi-mono-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/multi-file-refactor-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/multi-file-refactor-pi-mono-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/multi-file-refactor-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/multi-file-refactor-pi-mono-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/multi-file-refactor-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-pi-mono-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/multi-file-refactor-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-pi-mono-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/multi-file-refactor-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/multi-file-refactor-pi-mono-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/multi-file-refactor-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/multi-file-refactor-nanobot-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/multi-file-refactor-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-nanobot-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/multi-file-refactor-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-nanobot-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/multi-file-refactor-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/multi-file-refactor-nanobot-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/multi-file-refactor-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/multi-file-refactor-nanobot-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/multi-file-refactor-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-nanobot-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/multi-file-refactor-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-nanobot-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/multi-file-refactor-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/multi-file-refactor-nanobot-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/multi-file-refactor-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/multi-file-refactor-hermes-agent-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/multi-file-refactor-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-hermes-agent-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/multi-file-refactor-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-hermes-agent-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/multi-file-refactor-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/multi-file-refactor-hermes-agent-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/multi-file-refactor-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/multi-file-refactor-hermes-agent-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/multi-file-refactor-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-hermes-agent-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/multi-file-refactor-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-hermes-agent-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/multi-file-refactor-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/multi-file-refactor-hermes-agent-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/permission-denied-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-opencode-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/permission-denied-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-opencode-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/permission-denied-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-opencode-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/permission-denied-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-opencode-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/permission-denied-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-opencode-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/permission-denied-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-opencode-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/permission-denied-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-opencode-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/permission-denied-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-opencode-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/permission-denied-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-pi-mono-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/permission-denied-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-pi-mono-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/permission-denied-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-pi-mono-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/permission-denied-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-pi-mono-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/permission-denied-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-pi-mono-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/permission-denied-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-pi-mono-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/permission-denied-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-pi-mono-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/permission-denied-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-pi-mono-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/permission-denied-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-nanobot-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/permission-denied-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-nanobot-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/permission-denied-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-nanobot-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/permission-denied-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-nanobot-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/permission-denied-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-nanobot-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/permission-denied-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-nanobot-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/permission-denied-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-nanobot-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/permission-denied-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-nanobot-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/permission-denied-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-hermes-agent-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/permission-denied-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-hermes-agent-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/permission-denied-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-hermes-agent-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/permission-denied-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-hermes-agent-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/permission-denied-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-hermes-agent-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/permission-denied-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-hermes-agent-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/permission-denied-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-hermes-agent-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/permission-denied-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/permission-denied-hermes-agent-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/provider-retry-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-opencode-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/provider-retry-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-opencode-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/provider-retry-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-opencode-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/provider-retry-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-opencode-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/provider-retry-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-opencode-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/provider-retry-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-opencode-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/provider-retry-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-opencode-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/provider-retry-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-opencode-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/provider-retry-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-pi-mono-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/provider-retry-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-pi-mono-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/provider-retry-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-pi-mono-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/provider-retry-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-pi-mono-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/provider-retry-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-pi-mono-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/provider-retry-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-pi-mono-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/provider-retry-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-pi-mono-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/provider-retry-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-pi-mono-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/provider-retry-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-nanobot-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/provider-retry-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-nanobot-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/provider-retry-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-nanobot-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/provider-retry-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-nanobot-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/provider-retry-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-nanobot-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/provider-retry-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-nanobot-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/provider-retry-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-nanobot-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/provider-retry-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-nanobot-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/provider-retry-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-hermes-agent-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/provider-retry-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-hermes-agent-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/provider-retry-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-hermes-agent-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/provider-retry-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-hermes-agent-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/provider-retry-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-hermes-agent-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/provider-retry-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-hermes-agent-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/provider-retry-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-hermes-agent-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/provider-retry-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/provider-retry-hermes-agent-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/read-only-answer-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/read-only-answer-opencode-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/read-only-answer-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-opencode-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/read-only-answer-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-opencode-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/read-only-answer-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/read-only-answer-opencode-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/read-only-answer-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/read-only-answer-opencode-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/read-only-answer-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-opencode-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/read-only-answer-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-opencode-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/read-only-answer-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/read-only-answer-opencode-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/read-only-answer-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/read-only-answer-pi-mono-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/read-only-answer-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-pi-mono-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/read-only-answer-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-pi-mono-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/read-only-answer-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/read-only-answer-pi-mono-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/read-only-answer-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/read-only-answer-pi-mono-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/read-only-answer-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-pi-mono-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/read-only-answer-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-pi-mono-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/read-only-answer-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/read-only-answer-pi-mono-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/read-only-answer-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/read-only-answer-nanobot-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/read-only-answer-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-nanobot-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/read-only-answer-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-nanobot-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/read-only-answer-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/read-only-answer-nanobot-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/read-only-answer-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/read-only-answer-nanobot-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/read-only-answer-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-nanobot-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/read-only-answer-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-nanobot-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/read-only-answer-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/read-only-answer-nanobot-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/read-only-answer-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/read-only-answer-hermes-agent-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/read-only-answer-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-hermes-agent-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/read-only-answer-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-hermes-agent-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/read-only-answer-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/read-only-answer-hermes-agent-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/read-only-answer-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/read-only-answer-hermes-agent-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/read-only-answer-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-hermes-agent-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/read-only-answer-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-hermes-agent-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/read-only-answer-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/read-only-answer-hermes-agent-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/shell-output-analysis-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-opencode-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/shell-output-analysis-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-opencode-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/shell-output-analysis-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-opencode-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/shell-output-analysis-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-opencode-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/shell-output-analysis-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-opencode-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/shell-output-analysis-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-opencode-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/shell-output-analysis-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-opencode-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/shell-output-analysis-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-opencode-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/shell-output-analysis-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-pi-mono-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/shell-output-analysis-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-pi-mono-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/shell-output-analysis-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-pi-mono-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/shell-output-analysis-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-pi-mono-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/shell-output-analysis-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-pi-mono-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/shell-output-analysis-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-pi-mono-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/shell-output-analysis-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-pi-mono-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/shell-output-analysis-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-pi-mono-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/shell-output-analysis-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-nanobot-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/shell-output-analysis-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-nanobot-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/shell-output-analysis-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-nanobot-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/shell-output-analysis-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-nanobot-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/shell-output-analysis-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-nanobot-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/shell-output-analysis-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-nanobot-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/shell-output-analysis-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-nanobot-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/shell-output-analysis-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-nanobot-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/shell-output-analysis-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-hermes-agent-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/shell-output-analysis-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-hermes-agent-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/shell-output-analysis-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-hermes-agent-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/shell-output-analysis-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-hermes-agent-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/shell-output-analysis-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-hermes-agent-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/shell-output-analysis-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-hermes-agent-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/shell-output-analysis-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-hermes-agent-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/shell-output-analysis-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/shell-output-analysis-hermes-agent-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/single-file-edit-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/single-file-edit-opencode-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/single-file-edit-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-opencode-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/single-file-edit-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-opencode-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/single-file-edit-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/single-file-edit-opencode-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/single-file-edit-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/single-file-edit-opencode-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/single-file-edit-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-opencode-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/single-file-edit-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-opencode-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/single-file-edit-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/single-file-edit-opencode-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/single-file-edit-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/single-file-edit-pi-mono-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/single-file-edit-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-pi-mono-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/single-file-edit-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-pi-mono-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/single-file-edit-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/single-file-edit-pi-mono-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/single-file-edit-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/single-file-edit-pi-mono-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/single-file-edit-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-pi-mono-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/single-file-edit-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-pi-mono-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/single-file-edit-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/single-file-edit-pi-mono-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/single-file-edit-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/single-file-edit-nanobot-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/single-file-edit-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-nanobot-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/single-file-edit-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-nanobot-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/single-file-edit-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/single-file-edit-nanobot-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/single-file-edit-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/single-file-edit-nanobot-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/single-file-edit-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-nanobot-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/single-file-edit-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-nanobot-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/single-file-edit-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/single-file-edit-nanobot-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/single-file-edit-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/single-file-edit-hermes-agent-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/single-file-edit-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-hermes-agent-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/single-file-edit-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-hermes-agent-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/single-file-edit-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/single-file-edit-hermes-agent-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/single-file-edit-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/single-file-edit-hermes-agent-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/single-file-edit-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-hermes-agent-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/single-file-edit-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-hermes-agent-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/single-file-edit-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/single-file-edit-hermes-agent-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/test-fix-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/test-fix-opencode-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/test-fix-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-opencode-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/test-fix-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-opencode-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/test-fix-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/test-fix-opencode-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/test-fix-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/test-fix-opencode-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/test-fix-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-opencode-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/test-fix-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-opencode-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/test-fix-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/test-fix-opencode-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/test-fix-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/test-fix-pi-mono-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/test-fix-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-pi-mono-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/test-fix-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-pi-mono-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/test-fix-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/test-fix-pi-mono-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/test-fix-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/test-fix-pi-mono-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/test-fix-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-pi-mono-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/test-fix-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-pi-mono-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/test-fix-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/test-fix-pi-mono-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/test-fix-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/test-fix-nanobot-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/test-fix-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-nanobot-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/test-fix-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-nanobot-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/test-fix-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/test-fix-nanobot-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/test-fix-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/test-fix-nanobot-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/test-fix-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-nanobot-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/test-fix-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-nanobot-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/test-fix-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/test-fix-nanobot-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/test-fix-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/test-fix-hermes-agent-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/test-fix-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-hermes-agent-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/test-fix-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-hermes-agent-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/test-fix-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/test-fix-hermes-agent-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/test-fix-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/test-fix-hermes-agent-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/test-fix-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-hermes-agent-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/test-fix-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-hermes-agent-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/test-fix-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/test-fix-hermes-agent-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/tool-error-retry-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/tool-error-retry-opencode-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/tool-error-retry-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-opencode-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/tool-error-retry-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-opencode-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/tool-error-retry-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/tool-error-retry-opencode-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/tool-error-retry-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/tool-error-retry-opencode-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/tool-error-retry-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-opencode-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/tool-error-retry-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-opencode-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/tool-error-retry-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/tool-error-retry-opencode-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/tool-error-retry-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/tool-error-retry-pi-mono-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/tool-error-retry-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-pi-mono-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/tool-error-retry-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-pi-mono-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/tool-error-retry-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/tool-error-retry-pi-mono-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/tool-error-retry-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/tool-error-retry-pi-mono-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/tool-error-retry-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-pi-mono-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/tool-error-retry-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-pi-mono-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/tool-error-retry-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/tool-error-retry-pi-mono-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/tool-error-retry-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/tool-error-retry-nanobot-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/tool-error-retry-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-nanobot-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/tool-error-retry-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-nanobot-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/tool-error-retry-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/tool-error-retry-nanobot-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/tool-error-retry-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/tool-error-retry-nanobot-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/tool-error-retry-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-nanobot-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/tool-error-retry-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-nanobot-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/tool-error-retry-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/tool-error-retry-nanobot-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/tool-error-retry-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/tool-error-retry-hermes-agent-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/tool-error-retry-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-hermes-agent-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/tool-error-retry-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-hermes-agent-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/tool-error-retry-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/tool-error-retry-hermes-agent-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/tool-error-retry-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/tool-error-retry-hermes-agent-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/tool-error-retry-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-hermes-agent-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/tool-error-retry-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-hermes-agent-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/tool-error-retry-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/tool-error-retry-hermes-agent-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/ui-or-cli-command-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-opencode-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/ui-or-cli-command-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-opencode-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/ui-or-cli-command-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-opencode-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/ui-or-cli-command-opencode-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-opencode-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/ui-or-cli-command-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-opencode-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/ui-or-cli-command-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-opencode-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/ui-or-cli-command-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-opencode-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/ui-or-cli-command-opencode-original.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-opencode-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/ui-or-cli-command-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-pi-mono-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/ui-or-cli-command-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-pi-mono-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/ui-or-cli-command-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-pi-mono-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/ui-or-cli-command-pi-mono-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-pi-mono-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/ui-or-cli-command-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-pi-mono-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/ui-or-cli-command-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-pi-mono-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/ui-or-cli-command-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-pi-mono-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/ui-or-cli-command-pi-mono-original.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-pi-mono-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/ui-or-cli-command-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-nanobot-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/ui-or-cli-command-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-nanobot-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/ui-or-cli-command-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-nanobot-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/ui-or-cli-command-nanobot-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-nanobot-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/ui-or-cli-command-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-nanobot-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/ui-or-cli-command-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-nanobot-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/ui-or-cli-command-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-nanobot-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/ui-or-cli-command-nanobot-original.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-nanobot-original.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/ui-or-cli-command-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-hermes-agent-assembled.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/ui-or-cli-command-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-hermes-agent-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/ui-or-cli-command-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-hermes-agent-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/ui-or-cli-command-hermes-agent-assembled.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-hermes-agent-assembled.json does not contain credential-shaped fields."
+    },
+    {
+      "id": "artifact.attachment.present.attachments/ui-or-cli-command-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-hermes-agent-original.json is present when required."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/ui-or-cli-command-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-hermes-agent-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/ui-or-cli-command-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-hermes-agent-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.no-secrets.attachments/ui-or-cli-command-hermes-agent-original.json",
+      "ok": true,
+      "message": "Attachment attachments/ui-or-cli-command-hermes-agent-original.json does not contain credential-shaped fields."
+    }
+  ],
+  "issues": [
+    {
+      "id": "artifact.attachment.hash.attachments/multi-file-refactor-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-opencode-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/multi-file-refactor-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-opencode-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/multi-file-refactor-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-opencode-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/multi-file-refactor-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-opencode-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/multi-file-refactor-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-pi-mono-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/multi-file-refactor-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-pi-mono-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/multi-file-refactor-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-pi-mono-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/multi-file-refactor-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-pi-mono-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/multi-file-refactor-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-nanobot-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/multi-file-refactor-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-nanobot-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/multi-file-refactor-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-nanobot-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/multi-file-refactor-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-nanobot-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/multi-file-refactor-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-hermes-agent-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/multi-file-refactor-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-hermes-agent-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/multi-file-refactor-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-hermes-agent-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/multi-file-refactor-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/multi-file-refactor-hermes-agent-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/read-only-answer-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-opencode-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/read-only-answer-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-opencode-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/read-only-answer-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-opencode-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/read-only-answer-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-opencode-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/read-only-answer-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-pi-mono-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/read-only-answer-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-pi-mono-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/read-only-answer-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-pi-mono-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/read-only-answer-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-pi-mono-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/read-only-answer-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-nanobot-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/read-only-answer-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-nanobot-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/read-only-answer-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-nanobot-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/read-only-answer-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-nanobot-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/read-only-answer-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-hermes-agent-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/read-only-answer-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-hermes-agent-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/read-only-answer-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-hermes-agent-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/read-only-answer-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/read-only-answer-hermes-agent-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/single-file-edit-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-opencode-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/single-file-edit-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-opencode-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/single-file-edit-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-opencode-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/single-file-edit-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-opencode-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/single-file-edit-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-pi-mono-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/single-file-edit-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-pi-mono-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/single-file-edit-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-pi-mono-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/single-file-edit-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-pi-mono-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/single-file-edit-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-nanobot-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/single-file-edit-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-nanobot-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/single-file-edit-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-nanobot-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/single-file-edit-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-nanobot-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/single-file-edit-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-hermes-agent-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/single-file-edit-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-hermes-agent-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/single-file-edit-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-hermes-agent-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/single-file-edit-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/single-file-edit-hermes-agent-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/test-fix-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-opencode-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/test-fix-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-opencode-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/test-fix-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-opencode-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/test-fix-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-opencode-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/test-fix-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-pi-mono-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/test-fix-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-pi-mono-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/test-fix-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-pi-mono-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/test-fix-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-pi-mono-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/test-fix-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-nanobot-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/test-fix-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-nanobot-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/test-fix-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-nanobot-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/test-fix-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-nanobot-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/test-fix-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-hermes-agent-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/test-fix-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-hermes-agent-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/test-fix-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-hermes-agent-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/test-fix-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/test-fix-hermes-agent-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/tool-error-retry-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-opencode-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/tool-error-retry-opencode-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-opencode-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/tool-error-retry-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-opencode-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/tool-error-retry-opencode-original.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-opencode-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/tool-error-retry-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-pi-mono-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/tool-error-retry-pi-mono-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-pi-mono-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/tool-error-retry-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-pi-mono-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/tool-error-retry-pi-mono-original.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-pi-mono-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/tool-error-retry-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-nanobot-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/tool-error-retry-nanobot-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-nanobot-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/tool-error-retry-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-nanobot-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/tool-error-retry-nanobot-original.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-nanobot-original.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/tool-error-retry-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-hermes-agent-assembled.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/tool-error-retry-hermes-agent-assembled.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-hermes-agent-assembled.json byte size matches manifest."
+    },
+    {
+      "id": "artifact.attachment.hash.attachments/tool-error-retry-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-hermes-agent-original.json hash matches manifest."
+    },
+    {
+      "id": "artifact.attachment.bytes.attachments/tool-error-retry-hermes-agent-original.json",
+      "ok": false,
+      "message": "Attachment attachments/tool-error-retry-hermes-agent-original.json byte size matches manifest."
+    }
+  ]
+}
+# EXIT_CODE: 1

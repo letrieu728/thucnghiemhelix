@@ -1,0 +1,1161 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "task-parity-manifest",
+  "generatedAt": "2026-06-10T13:20:11.717Z",
+  "summaryPath": "summary.json",
+  "evidencePath": "evidence.json",
+  "attachments": [
+    {
+      "path": "attachments/branch-or-fork-opencode-assembled.json",
+      "sha256": "949b6b0ff6c5548f3f1838e605395d786801595fae09ce985b874fa6628223de",
+      "byteSize": 1678,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/branch-or-fork-opencode-original.json",
+      "sha256": "fccb8e74e48c1163b150f58e6f13362ec6121aa4b802daa7564199224ea78483",
+      "byteSize": 1677,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/branch-or-fork-pi-mono-assembled.json",
+      "sha256": "120eef239cd53af9d300d52722162030c48ad6ff21737a4e471d5009439606c9",
+      "byteSize": 1707,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/branch-or-fork-pi-mono-original.json",
+      "sha256": "10f5015dafc571e0fc80a795c8380a1548834a4018e79fd19b8757544e63137f",
+      "byteSize": 1706,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/branch-or-fork-nanobot-assembled.json",
+      "sha256": "4ab849f9c74b28d236bc083a01e827288504ac2daa9b14338d0a5e470c0524be",
+      "byteSize": 1824,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/branch-or-fork-nanobot-original.json",
+      "sha256": "25ae77a11b7049db825444141e1713f0f73b0d667e7a9b75dadfb1db3dc69f9d",
+      "byteSize": 1823,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/branch-or-fork-hermes-agent-assembled.json",
+      "sha256": "932741cc9248716c0a18830517ab69b73593f10f2a4ab83d290627bae0bf5718",
+      "byteSize": 1712,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/branch-or-fork-hermes-agent-original.json",
+      "sha256": "89a3813486d0ca1ad31d028103bc02a84f18ca2e1e329bade8347072e9e9e02c",
+      "byteSize": 1711,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/context-compaction-opencode-assembled.json",
+      "sha256": "c7e10bfa69978157dabfbc793db6b6de5b6232813b95b848b9e6be07342b053d",
+      "byteSize": 2418,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/context-compaction-opencode-original.json",
+      "sha256": "9ad39deae860add6fe727a6862530eb851d8ebb9922fb8ab1c2473394c0e0bfb",
+      "byteSize": 2417,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/context-compaction-pi-mono-assembled.json",
+      "sha256": "c6030b6a2f4ecaeb51ad1add09558892ddd1afb75553fdd5fab4b4d4800f22af",
+      "byteSize": 2447,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/context-compaction-pi-mono-original.json",
+      "sha256": "3ec2a10ff2deba745a83fa0a1ae84d2aaf25207e2845adb014d710d841336c0d",
+      "byteSize": 2446,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/context-compaction-nanobot-assembled.json",
+      "sha256": "e8f30f473508a1085f27a051e36e24f22aa935ab1916aed3a85c68182a3146a7",
+      "byteSize": 2564,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/context-compaction-nanobot-original.json",
+      "sha256": "392472b79c2da2fb03ebb4f10131a374a1c8c06008b11f0078ceeb5fa23c5a1f",
+      "byteSize": 2563,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/context-compaction-hermes-agent-assembled.json",
+      "sha256": "4926801fb1ef6eb131819d5396dc039c5d3f791134cc0b04574db382f5c82886",
+      "byteSize": 2452,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/context-compaction-hermes-agent-original.json",
+      "sha256": "ab25af1091d1b964fa03967c9433eb2677ca667c55187111087333886a4b7f88",
+      "byteSize": 2451,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/extension-plugin-tool-opencode-assembled.json",
+      "sha256": "f65a884d2163371d314f61bd38474c79186dd8e794a794a7405d0fecb2103aa9",
+      "byteSize": 2440,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/extension-plugin-tool-opencode-original.json",
+      "sha256": "bb18153acac3921b37444669f10f316db7f83c27eb6963111c651598f2e888a1",
+      "byteSize": 2439,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/extension-plugin-tool-pi-mono-assembled.json",
+      "sha256": "64032123f343f8e2a6e7d500f578e3ff9a1ddd64cd63ce468667a119dc36a07d",
+      "byteSize": 2113,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/extension-plugin-tool-pi-mono-original.json",
+      "sha256": "eaccd5d7bb407d7fc21e8bb6f9514bb9f90d36ab4dd4ddd978872b05b21b5d96",
+      "byteSize": 2112,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/extension-plugin-tool-nanobot-assembled.json",
+      "sha256": "c3b0ec0ce33759eed186886819c430d3df3e9a226ffe7faca4dd4ac457ca09cf",
+      "byteSize": 2230,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/extension-plugin-tool-nanobot-original.json",
+      "sha256": "9cdfa89a912d994a27567e62f3d2b3c9b7c5b5338ef69083820b04c36d209e23",
+      "byteSize": 2229,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/extension-plugin-tool-hermes-agent-assembled.json",
+      "sha256": "74c09b4e809cc5c1356f3791217449e9fcfcbde325f0df5400c38fa79f8a6be7",
+      "byteSize": 2118,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/extension-plugin-tool-hermes-agent-original.json",
+      "sha256": "6d4e17378ed248e825d74977181e00df745ada50c7503601f1873e91c61753aa",
+      "byteSize": 2117,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/multi-file-refactor-opencode-assembled.json",
+      "sha256": "77e84a1655b7b6ef7995a5c7fb49c35ae67b5164931dac69e192818c4fd33fc0",
+      "byteSize": 4982,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/multi-file-refactor-opencode-original.json",
+      "sha256": "f8a3731038729ff974ea77055c0887c4df9b1036d864613d08d974b8990c5e5a",
+      "byteSize": 4977,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/multi-file-refactor-pi-mono-assembled.json",
+      "sha256": "7042b336c6555cd461286d2a88f97841dbc111dffabae8a4ea72cf6e338f4696",
+      "byteSize": 5007,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/multi-file-refactor-pi-mono-original.json",
+      "sha256": "e1741f50fef8f4b7f51198fda8824255ba774ec4147657bc7f926b422b58ff75",
+      "byteSize": 5002,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/multi-file-refactor-nanobot-assembled.json",
+      "sha256": "92f31e541d688a06ba3fb63bd00ee8a087a52249b05d792fe1cfc6f516a5b3d1",
+      "byteSize": 5124,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/multi-file-refactor-nanobot-original.json",
+      "sha256": "41ca6bc8b52bd21efeca9a1f56fcb1f15e3a498297eae2adb5833f47e65b1e94",
+      "byteSize": 5119,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/multi-file-refactor-hermes-agent-assembled.json",
+      "sha256": "a58bc75db3d48e98122b61bfb6540c4f1562113a804f83bf68a29ee38f6b8f02",
+      "byteSize": 5032,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/multi-file-refactor-hermes-agent-original.json",
+      "sha256": "21cbd310e74ff469e256706409d17919c309d06b0dc5a494d87e4d14aeb1268e",
+      "byteSize": 5027,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/permission-denied-opencode-assembled.json",
+      "sha256": "e8d688ea096c70499f0c051f9f2a27db7b9ba1605be69e8678b6d0868145afcb",
+      "byteSize": 3003,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/permission-denied-opencode-original.json",
+      "sha256": "482971ee6c06825ba32c3d2b2bbce99edbdce978dc9d395935d3fa96974dc20a",
+      "byteSize": 3002,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/permission-denied-pi-mono-assembled.json",
+      "sha256": "8bc11f1932c4eaee6a0ce41268ba17f6fe49c6477fda4b5aa76e4b11fcd7ece3",
+      "byteSize": 3032,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/permission-denied-pi-mono-original.json",
+      "sha256": "8b772dedd82051ed80074adce0da283b4c19a74522c1d832617e535eb467da37",
+      "byteSize": 3031,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/permission-denied-nanobot-assembled.json",
+      "sha256": "543f6a52830468ac186174c3d95dabf42836751f85ce72a5e6415880b8ec6006",
+      "byteSize": 3149,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/permission-denied-nanobot-original.json",
+      "sha256": "819554e76b7fd0744f91de5d67490d9adbe86c79e6014d6736525c1271d981ca",
+      "byteSize": 3148,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/permission-denied-hermes-agent-assembled.json",
+      "sha256": "9a561c30a47105b53594ba1bb8730455c15554fc64c5d6246c70153af5cb6b8b",
+      "byteSize": 3037,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/permission-denied-hermes-agent-original.json",
+      "sha256": "8c889ece4494551391306d3967c0a8224c5e1b009e632ffa43ccbe80d541dcd0",
+      "byteSize": 3036,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/provider-retry-opencode-assembled.json",
+      "sha256": "462f5879806aa6717837651fd1aea4f163c5252ba49bdfd9c1bc60c4fb692fbd",
+      "byteSize": 1700,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/provider-retry-opencode-original.json",
+      "sha256": "3a7620ce279495e1d5cc69aeb0fd4703251b71b7d5246d6c481ace2f57e645a5",
+      "byteSize": 1699,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/provider-retry-pi-mono-assembled.json",
+      "sha256": "72e89edbd1f2b0eb866d9e564df9b0ec6f6e34cbb9771ed651b813adc3365404",
+      "byteSize": 1729,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/provider-retry-pi-mono-original.json",
+      "sha256": "29a0c7878fb48019981a50a0f657199f8e5d929d6474b29b25679274a9f96052",
+      "byteSize": 1728,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/provider-retry-nanobot-assembled.json",
+      "sha256": "fab8040e5180d6945416621ebaa97265d3dc5d362460fe362b3a17c6abc42cee",
+      "byteSize": 1846,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/provider-retry-nanobot-original.json",
+      "sha256": "54e01885f090c87176e0c00833a07f7cd88701bb21efc9290c7b9ac82bd02017",
+      "byteSize": 1845,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/provider-retry-hermes-agent-assembled.json",
+      "sha256": "7c8e9c29d982c5bf7bd9035421ba82e549c6fdc5f6fb25c1acccf412b9bed093",
+      "byteSize": 1734,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/provider-retry-hermes-agent-original.json",
+      "sha256": "d89b90d8cb2ad844401655f0f21190797099cb134d3bb01b1a58142b350fc08f",
+      "byteSize": 1733,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/read-only-answer-opencode-assembled.json",
+      "sha256": "35b7dba19ce9fb72f5c0bc03a6ae5a3c2f29654f55ceafdfd551084af06f7182",
+      "byteSize": 3079,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/read-only-answer-opencode-original.json",
+      "sha256": "257e9e00817e4580a965bdef35758ee26b04e6cfcd0e857351ae388d5aabe4f8",
+      "byteSize": 3078,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/read-only-answer-pi-mono-assembled.json",
+      "sha256": "d69b980432459280894804b3aeee40044797a3375d36c99895a9a1adf6b40e7c",
+      "byteSize": 2709,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/read-only-answer-pi-mono-original.json",
+      "sha256": "913b0d8a77da6c71596faf0b669cabe3c1d3b0c97e8fc4d6a973229a550fc260",
+      "byteSize": 2708,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/read-only-answer-nanobot-assembled.json",
+      "sha256": "d49169033f06eef8aff44bc68e11cb0ad423b273cdb33aa3d75397605b7a58d3",
+      "byteSize": 2826,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/read-only-answer-nanobot-original.json",
+      "sha256": "e9002e317d6ef8f23c4061589157e0337239807bebf39d5b09611c4ec4062ca6",
+      "byteSize": 2825,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/read-only-answer-hermes-agent-assembled.json",
+      "sha256": "51a55787340d8f6f49fa984861ad80abfbe005914450d4f326370b36e77e90f9",
+      "byteSize": 2714,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/read-only-answer-hermes-agent-original.json",
+      "sha256": "c5270e8b46222d2a92af2f3c33f5f74aac89ba3065d248fca0960733a5662f90",
+      "byteSize": 2713,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/shell-output-analysis-opencode-assembled.json",
+      "sha256": "75a8baa91a25f40a32d6cf7113758547adeb73218e1880a2e471a8a5c7f476ab",
+      "byteSize": 2305,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/shell-output-analysis-opencode-original.json",
+      "sha256": "266ca5c5c301099631f61aca979bbab448b4e6bf15314071a7ccf8cddf751857",
+      "byteSize": 2304,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/shell-output-analysis-pi-mono-assembled.json",
+      "sha256": "46d05060e27712a665c96ef9cd19b50cd22bbf1b01f72430670dbcfdb2b93438",
+      "byteSize": 2334,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/shell-output-analysis-pi-mono-original.json",
+      "sha256": "a2c84c9e97e1d1c47db3f5470c5bbc2598f4a969bb645de8b8298543a00d292a",
+      "byteSize": 2333,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/shell-output-analysis-nanobot-assembled.json",
+      "sha256": "62c9712fc9a8f416fea4f9acb6ab33f32b79e2ce9b341293330d9c8732b0dd82",
+      "byteSize": 2451,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/shell-output-analysis-nanobot-original.json",
+      "sha256": "dae65e22ae3364abf3d1a05835a98129887ebf30ce92d91252871d7c9bd3e720",
+      "byteSize": 2450,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/shell-output-analysis-hermes-agent-assembled.json",
+      "sha256": "6c82c71c4e1287e2f235105e516478ff2c10bfd3bc1fab1e977b0695421e5994",
+      "byteSize": 2339,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/shell-output-analysis-hermes-agent-original.json",
+      "sha256": "67b4f6152e1f07aab3de3c1add890a8348ae56bdc7b55482e6f457b76e7787d8",
+      "byteSize": 2338,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/single-file-edit-opencode-assembled.json",
+      "sha256": "da7bc2421a7a8b6f05c676f6d87c0224396faab9f71038949a3016da5119297d",
+      "byteSize": 3131,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/single-file-edit-opencode-original.json",
+      "sha256": "98c3f45a4fe633eae53b024df9065bf994ffe5bdb891246a1ba1f0cfba4e5905",
+      "byteSize": 3128,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/single-file-edit-pi-mono-assembled.json",
+      "sha256": "7c11a04de553ecbf00a72b1296c694327d05ee95de6e72f4d00a30d35f26313c",
+      "byteSize": 3158,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/single-file-edit-pi-mono-original.json",
+      "sha256": "4b318b70c94f6bb71fee2c430a70e46499a74824e2d5c8118ed70b1440f565d8",
+      "byteSize": 3155,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/single-file-edit-nanobot-assembled.json",
+      "sha256": "d94df510203a440913a65090005933e6169ded8196894a36a8d5f5e33de9c9c0",
+      "byteSize": 3275,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/single-file-edit-nanobot-original.json",
+      "sha256": "49521799c9a469bc5379e4baca7e8aace9d11f63eb81ec43ddedbc36d5521431",
+      "byteSize": 3272,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/single-file-edit-hermes-agent-assembled.json",
+      "sha256": "22b172589327444962f3f65dcca8718978a4ac85807e55223744c331ae56cc73",
+      "byteSize": 3173,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/single-file-edit-hermes-agent-original.json",
+      "sha256": "0d9397d02b65796bd7ac9043e2bde5735722019cdb2f32cfe54e6f229fd728dc",
+      "byteSize": 3170,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/test-fix-opencode-assembled.json",
+      "sha256": "3b30e99beb664c82ff8eb750e000afe54beb70b87e701652354222087d23e38d",
+      "byteSize": 4759,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/test-fix-opencode-original.json",
+      "sha256": "a0128d3ad94c51de1a943cdbe5bca5ae7b8f42a9997c8a4abab0c2e2974ca4bb",
+      "byteSize": 4756,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/test-fix-pi-mono-assembled.json",
+      "sha256": "69e33f5ccff3872052a1dce4bde184d16a9d40ae14e1a68cacc32cfed42e391a",
+      "byteSize": 4432,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/test-fix-pi-mono-original.json",
+      "sha256": "e5d2817339de574b00f30a3a37ad5cb34fb9e257fac435275e6f90f08c613d38",
+      "byteSize": 4429,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/test-fix-nanobot-assembled.json",
+      "sha256": "912c4aa97740c13490dc0a54b199df54d037dcab1e17f6147776dbf07f18dc4f",
+      "byteSize": 4549,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/test-fix-nanobot-original.json",
+      "sha256": "e100fe8848aa0b189f6a39d749fcd31398649b70443b850aba758ff8a8db55c0",
+      "byteSize": 4546,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/test-fix-hermes-agent-assembled.json",
+      "sha256": "19631d6833003e48953fb7cd59a4236bdca91cd8662455c3d40a20bde75126ff",
+      "byteSize": 4447,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/test-fix-hermes-agent-original.json",
+      "sha256": "d151b3805029487034cf3518684412b4ace39f81af084b850485f567b47fe826",
+      "byteSize": 4444,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/tool-error-retry-opencode-assembled.json",
+      "sha256": "51e7123e308cd04530d9cff9476cb3df6bb0e9faba99e9038885e14a18629fbb",
+      "byteSize": 4103,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/tool-error-retry-opencode-original.json",
+      "sha256": "f9ebe37ce70586cac43bb6bdf70d755579ac7a4424d7350408a7b333f0421496",
+      "byteSize": 4098,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/tool-error-retry-pi-mono-assembled.json",
+      "sha256": "4d3bb6829e960762d2b5841d978ab66eb7e8d9acaecd92f6e3aad880d91579a3",
+      "byteSize": 4128,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/tool-error-retry-pi-mono-original.json",
+      "sha256": "6656eb1a52654b450c4471f4d489795448be4149bf830b96cb900515c98233d1",
+      "byteSize": 4123,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/tool-error-retry-nanobot-assembled.json",
+      "sha256": "88b5be060a2a6c2b6c0235066f3aaf2513015578affe85a72b1554ce23c85324",
+      "byteSize": 4245,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/tool-error-retry-nanobot-original.json",
+      "sha256": "7cd4db2c5158e52a6743acc9c0068fe472836bbc915724267f922afe434c50a4",
+      "byteSize": 4240,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/tool-error-retry-hermes-agent-assembled.json",
+      "sha256": "e06b2e4cbc097d39f3eda7b43f5a8361ed72706563373fa3648f9df765073e21",
+      "byteSize": 4153,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/tool-error-retry-hermes-agent-original.json",
+      "sha256": "75ed6e22c0b493f5ab560eeebabce7a94b352aff4bc2493187e99f11f7049580",
+      "byteSize": 4148,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/ui-or-cli-command-opencode-assembled.json",
+      "sha256": "4844ee57297bee26e3143360e0e653f619eb2a44732f8ba040e892ab29826d34",
+      "byteSize": 2792,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/ui-or-cli-command-opencode-original.json",
+      "sha256": "3bde760bb49f0d485569d9c212abf5d25ab6350b8a9181c497102b26ce8ee9bc",
+      "byteSize": 2791,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/ui-or-cli-command-pi-mono-assembled.json",
+      "sha256": "21ee2fd9db92db9e25b53fc9e810f5e2004d89bf2bb5a1d4b54137a432faad2c",
+      "byteSize": 2821,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/ui-or-cli-command-pi-mono-original.json",
+      "sha256": "56c0eb8f3453ba031b62a4856ab21324cf1ea0043f908b3a3914aeb28a265ff4",
+      "byteSize": 2820,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/ui-or-cli-command-nanobot-assembled.json",
+      "sha256": "32fa6c419278cf13f928957f3039d5397c1a10b6a6c2e49e0fb77aaee8233954",
+      "byteSize": 2938,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/ui-or-cli-command-nanobot-original.json",
+      "sha256": "799e3207386d5448094b63dbe0f9864f9eac2547a8172d4d1a63e4febb718b1d",
+      "byteSize": 2937,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/ui-or-cli-command-hermes-agent-assembled.json",
+      "sha256": "16943eef876f57f1af1ac397a2fe3c76718194ecdde97ee11338089879aeadc9",
+      "byteSize": 2826,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    },
+    {
+      "path": "attachments/ui-or-cli-command-hermes-agent-original.json",
+      "sha256": "f27175726046f4b0bb124c0337e2f35afd75fd0083db25fbe3e94954c3ee1015",
+      "byteSize": 2825,
+      "redactionStatus": "raw-sanitized",
+      "required": true,
+      "verifierCoverage": [
+        "artifact.attachments.present",
+        "artifact.attachments.no-secrets",
+        "artifact.manifest.hashes"
+      ]
+    }
+  ]
+}
