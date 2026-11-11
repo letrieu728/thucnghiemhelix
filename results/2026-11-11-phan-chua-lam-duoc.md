@@ -1,1 +1,75 @@
-IyBQaOG6p24gY2jGsGEgbMOgbSDEkcaw4bujYyB2w6AgbMO9IGRvIOKAlCAyMDI2LTExLTExCgpHaGkgY2jDuiBrw6htIDIgY29tbWl0IExpbnV4IG5nw6B5IDExLzExLzIwMjYgKGBjNWFjNGQ0YCB4w6FjIG1pbmgsCmAyOThiMGMwYCBu4buXIGzhu7FjIHPhu61hKS4gRmlsZSBuw6B5IGxp4buHdCBrw6ogbmjhu69uZyBnw6wgduG6q24gY2jGsGEgbMOgbSDEkcaw4bujYwpzYXUgY+G6oyAyIGzGsOG7o3QsIHbDoCBsw70gZG8gdOG7q25nIG3hu6VjLCDEkeG7gyBuZ8aw4budaSDEkeG7jWMga2jDtG5nIHTGsOG7n25nIGzDoCBuaMOzbQpxdcOqbiBoYXkgZ2nhuqV1LgoKIyMgMS4gVMOhaSBzaW5oIGNhc3NldHRlIGxpdmVjb2RlYmVuY2gxMDAg4oCUIGNoxrBhIGzDoG0gxJHGsOG7o2MKCkzDvSBkbzogMTAxIGZpeHR1cmUgdHJvbmcgYHBhY2thZ2VzL2NvbmZvcm1hbmNlL2ZpeHR1cmVzL3Rhc2tzYCBj4bunYQpIRUxJWCBsw6Agc3ltbGluayBjb21taXQgdHJvbmcgZ2l0LCB04bqldCBj4bqjIHRy4buPIHThu5tpIMSRxrDhu51uZyBk4bqrbiB0dXnhu4d0IMSR4buRaQp0csOqbiBtw6F5IHTDoWMgZ2nhuqMgKGAvaG9tZS9IYXJuZXNzTGVnby1waS1sY2ItZXZhbC8uLi5gKSwgMTAxLzEwMSBo4buPbmcKdHLDqm4gbeG7jWkgbcOheSBraMOhYy4gRmlsZSB0aOG6rXQgY2jGsGEgdOG7q25nIGPDsyB0cm9uZyByZXBvIGhheSB0cm9uZyBs4buLY2gKc+G7rSBnaXQgKHN5bWxpbmsgxJHDoyBjw7MgdOG7qyBjb21taXQgxJHhuqd1IHRpw6puIGAxZWIzNjBiYCksIHbDoCBu4buZaSBkdW5nIDEwMQp0YXNrIG7DoHkgY8Wpbmcga2jDtG5nIG7hurFtIOG7nyDEkcOidSBraMOhYyB0cm9uZyByZXBvIChjaOG7iSBjw7MgMSB0YXNrIExDQiB0aOG6rXQKbMOgIGBsaXZlY29kZWJlbmNoLTE4ODMtYi1wYWxpbmRyb21lLXJlbW92YWxgKS4KCk5ow7NtIMSRw6MgbMOgbSB0aGF5OiBjaOG6oXkgbOG6oWkgdGFzayBwYXJpdHkgdHLDqm4gxJHDum5nIDEyIHRhc2sgc21va2UgY8OzCmZpbGUgdGjhuq10LCBzaW5oIGFydGlmYWN0IG3hu5tpIHZlcmlmeSBQQVNTIDEzLzEzICh4ZW0KYDIwMjYtMTEtMTEtbGludXgtZml4LWF0dGVtcHQubWRgIMKnMykuIMSQw7MgbMOgIHRvw6BuIGLhu5kgc21va2Ugc3VpdGUsCmtow7RuZyBwaOG6o2kgbGl2ZWNvZGViZW5jaDEwMC4KCk114buRbiBsw6BtIHRp4bq/cCB0aMOsIGPhuqduIDEgdHJvbmcgMiB0aOG7qTogZmlsZSBmaXh0dXJlIGPhu6dhIHTDoWMgZ2nhuqMsIGhv4bq3Ywpt4buZdCBk4buxIMOhbiBk4buxbmcgbOG6oWkgMTAxIHRhc2sgdOG7qyBkYXRhc2V0IExpdmVDb2RlQmVuY2ggY8O0bmcga2hhaSB2w6AgZ2hpCnLDtSDEkcOzIGzDoCBmaXh0dXJlIG3hu5tpLCBraMO0bmcgcGjhuqNpIGZpeHR1cmUgZ+G7kWMg4oCUIHbDrCB24bqteSBjYXNzZXR0ZSBzaW5oCnJhIGPFqW5nIHPhur0gbMOgIGNhc3NldHRlIG3hu5tpLCBraMO0bmcgY2jhu6luZyBtaW5oIMSRxrDhu6NjIHBhcml0eSB24bubaSBhcnRpZmFjdApn4buRYyBj4bunYSB0w6FjIGdp4bqjLgoKIyMgMi4gMTMgdGVzdCBs4buXaSBhc3NlcnRpb24gdGjhuq10IHRyb25nIGZ1bGwgdGVzdCDigJQgY2jGsGEgbMOgbQoKTMO9IGRvOiDEkcOieSBsw6AgbOG7l2kgbuG7mWkgZHVuZyB0aOG6rXQgY+G7p2EgSEVMSVggdHLDqm4gY2hlY2tvdXQgYGEwOTBhYmFgCihgY2FwdHVyZS1kcnktcnVuYCAyLCBgY2xpYCAyLCBgdG9kbzI3LW1pc2xlYWRpbmctbmF0aXZlLWNvcHlgLApgYmxvY2stbGVkZ2VyYCwgYGNvbXBhdGlibGUtYnJpZGdlLXZpc2liaWxpdHlgLCBgbmFub2JvdC1sZWdvLWRlcHRoYCwKYHAxLW5hdGl2ZS1saWtlLXZpc2liaWxpdHlgLCBgcHJldmlldy1tZXRhZGF0YS1yZXRlbnRpb24tdmlzaWJpbGl0eWAsCmBwcm9kdWN0LXR1cm4tcHJvZmlsZS12aXNpYmlsaXR5YCwgYHJlY2lwZS10YXJnZXRzYCwKYHJldmVyc2UtYXNzZW1ibHlgIOKAlCBt4buXaSBjw6FpIDEgdGVzdCksIGtow7RuZyBwaOG6o2kgbOG7l2kgbcO0aSB0csaw4budbmcuClPhu61hIGNow7puZyBuZ2jEqWEgbMOgIHPhu61hIG3DoyBuZ3Xhu5NuIEhFTElYLCB0aHXhu5ljIHbhu4EgdXBzdHJlYW0vZm9yaywga2jDtG5nCnRodeG7mWMgduG7gSByZXBvIHTDoWkgbOG6rXAgbsOgeSAocmVwbyBuw6B5IGNo4buJIGtp4buDbSBjaOG7qW5nLCBraMO0bmcgc+G7rWEgSEVMSVgpLgpD4bqnbiDEkWnhu4F1IHRyYSB04burbmcgdGVzdCBt4buZdCB24bubaSB0w6FjIGdp4bqjIGhv4bq3YyB0cm9uZyBmb3JrIGPhu6dhIG5ow7NtLgoKIyMgMy4gNiB0ZXN0IHRpbWVvdXQg4oCUIGNoxrBhIGvhur90IGx14bqtbiDEkcaw4bujYwoKTMO9IGRvOiBjw6FjIHRlc3QgbsOgeSB0aW1lb3V0IOG7nyA1cyAvIDE1cyAvIDEyMHMgdHLDqm4gVk0gY2hpYSBz4bq7IGNo4buJIGPDswoxLDUgQ1BVIChgY2xpYCAyLCBgY29uZmlnLXByb21wdC11aWAgMSwKYGN1cnJlbnQtbW9kdWxlLXBsYWNlaG9sZGVyLWF1ZGl0YCAzKS4gQ2jGsGEgcGjDom4gYmnhu4d0IMSRxrDhu6NjIMSRw6J1IGzDoCBtw6F5CmNo4bqtbSwgxJHDonUgbMOgIGNvZGUgdGjhuq10IHPhu7EgY2jhuq1tLiBD4bqnbiBjaOG6oXkgbOG6oWkgdHLDqm4gbcOheSBuaGFuaCBoxqFuIGhv4bq3Ywpu4bubaSB0aW1lb3V0IHLhu5NpIG3hu5tpIGvhur90IGx14bqtbi4KCiMjIDQuIEJlbmNobWFyayBt4bqldCBwaMOtIOKAlCBj4buRIHTDrG5oIGtow7RuZyBjaOG6oXkKCkzDvSBkbzogTGl2ZUNvZGVCZW5jaCAxMDAsIFNXRS1iZW5jaCA1NSwgbGl2ZSBwcm92aWRlciwgbmF0aXZlIENMSSB2w6AKZnVsbCBzZWFyY2ggUGFzc0BOIMSR4buBdSBj4bqnbiBn4buNaSBtb2RlbCB0aOG6rXQgcXVhIEFQSSB0cuG6oyBwaMOtICh0w6FjIGdp4bqjCmTDuW5nIE1pbmlNYXgsIGtob+G6o25nIDYuNTAwIGzGsOG7o3QgZ+G7jWkgY2hvIG3hu5l0IGzGsOG7o3QgYmVuY2htYXJrIMSR4bqneSDEkeG7pyksCmPhu5luZyB0aMOqbSBk4buvIGxp4buHdSB2w6AgYuG7mSBjaOG6oXkgY2jDrW5oIHRo4bupYyAocmnDqm5nIFNXRS1iZW5jaCBjw7JuIGPhuqduCkRvY2tlciB2w6AgYuG7mSBjaOG6pW0pLiBSZXBvIG7DoHkgxJHGsOG7o2MgdGhp4bq/dCBr4bq/IGNo4buJIGNobyBraeG7g20gdHJhIG9mZmxpbmUsCm1p4buFbiBwaMOtLCBuw6puIGPDoWMgc+G7kSBiZW5jaG1hcmsgY+G7p2EgdMOhYyBnaeG6oyB24bqrbiDhu58gdHLhuqFuZyB0aMOhaSBjaMawYSB0w6FpCnThuqFvIOKAlCBraMO0bmcgcGjhuqNpIMSRw6MgeMOhYyBuaOG6rW4sIGPFqW5nIGtow7RuZyBwaOG6o2kgxJHDoyBiw6FjIGLhu48uCgojIyA1LiDEkMOhbmggZ2nDoSBoZWxkLW91dCBjaG8gTG9SQSB2w6AgYnVpbGQgxJHhuqd1IHRpw6puIHRyw6puIEJ1aWxkZXIg4oCUIGNoxrBhIGzDoG0sIG7hurFtIG5nb8OgaSByZXBvIG7DoHkKCkzDvSBkbzogMiB2aeG7h2MgbsOgeSB0aHXhu5ljIHbhu4EgbmjDoW5oIGNsb3NlZC1sb29wIC8gQnVpbGRlciB0cm9uZyBmb3JrCkhFTElYIGPhu6dhIG5ow7NtLCBraMO0bmcgdGh14buZYyByZXBvIHTDoWkgbOG6rXAgb2ZmbGluZSBuw6B5LiDEkMOhbmggZ2nDoQpoZWxkLW91dCBj4bqnbiBjaOG6oXkgdGjDqm0gdsOybmcgQlVJTETigJN0cmFpbuKAk1JFQlVJTEQgdHLDqm4gdGFzayBjaMawYSB04burbmcKZMO5bmcgxJHhu4MgdHJhaW4gKGPhuqduIEdQVSBNb2RhbCB2w6AgdGjhu51pIGdpYW4gY2jhuqF5KTsgYnVpbGQgxJHhuqd1IHRpw6puIHRyw6puCkJ1aWxkZXIgY+G6p24gY2jhuqF5IG3hu5l0IHTDoWMgduG7pSB0aOG6rXQgduG7m2kgbW9kZWwgKHPhu61hIDEgZmlsZSwgTWF4IHN0ZXBzID0gNSkuCkPhuqMgMiDEkeG7gXUgY2jGsGEgY8OzIGvhur90IHF14bqjLCBraMO0bmcgcGjhuqNpIHbDrCBxdcOqbiBtw6AgdsOsIG7hurFtIOG7nyBt4bqhY2ggY8O0bmcKdmnhu4djIGtow6FjLgoKIyMgNi4gUHVzaCB04burbmcgYuG7iyBjaOG6t24g4oCUIMSRw6MgcsO1IG5ndXnDqm4gbmjDom4sIGtow7RuZyBwaOG6o2kgbOG7l2kga+G6v3QgcXXhuqMKClRyxrDhu5tjIGzGsOG7o3QgbsOgeSwgcHVzaCBi4buLIGzhu5dpIDQwMyB2w6wgTXVzZSBHaXRIdWIgQXBwIGNoxrBhIMSRxrDhu6NjIGPDoGkgLwpjaMawYSBjw7MgcXV54buBbiBnaGkgdHLDqm4gcmVwbyBgbGV0cmlldTcyOC90aHVjbmdoaWVtaGVsaXhgICjEkeG7jWMgcXVhIEFQSQp24bqrbiDEkcaw4bujYywgY2jhu4kgZ2hpIGLhu4sgY2jhurduKS4gQ+G6p24gbmfGsOG7nWkgc+G7nyBo4buvdSByZXBvIG3hu58KaHR0cHM6Ly9naXRodWIuY29tL2FwcHMvbWV0YS1tdXNlLWFpL2luc3RhbGxhdGlvbnMvbmV3IHbDoCBjaOG7jW4gcmVwbwpuw6B5IGNobyBhcHAgdGjDrCBt4bubaSBwdXNoIMSRxrDhu6NjLgo=
+# Phần chưa làm được và lý do — 2026-11-11
+
+Ghi chú kèm 2 commit Linux ngày 11/11/2026 (`c5ac4d4` xác minh,
+`298b0c0` nỗ lực sửa). File này liệt kê những gì vẫn chưa làm được
+sau cả 2 lượt, và lý do từng mục, để người đọc không tưởng là nhóm
+quên hay giấu.
+
+## 1. Tái sinh cassette livecodebench100 — chưa làm được
+
+Lý do: 101 fixture trong `packages/conformance/fixtures/tasks` của
+HELIX là symlink commit trong git, tất cả trỏ tới đường dẫn tuyệt đối
+trên máy tác giả (`/home/HarnessLego-pi-lcb-eval/...`), 101/101 hỏng
+trên mọi máy khác. File thật chưa từng có trong repo hay trong lịch
+sử git (symlink đã có từ commit đầu tiên `1eb360b`), và nội dung 101
+task này cũng không nằm ở đâu khác trong repo (chỉ có 1 task LCB thật
+là `livecodebench-1883-b-palindrome-removal`).
+
+Nhóm đã làm thay: chạy lại task parity trên đúng 12 task smoke có
+file thật, sinh artifact mới verify PASS 13/13 (xem
+`2026-11-11-linux-fix-attempt.md` §3). Đó là toàn bộ smoke suite,
+không phải livecodebench100.
+
+Muốn làm tiếp thì cần 1 trong 2 thứ: file fixture của tác giả, hoặc
+một dự án dựng lại 101 task từ dataset LiveCodeBench công khai và ghi
+rõ đó là fixture mới, không phải fixture gốc — vì vậy cassette sinh
+ra cũng sẽ là cassette mới, không chứng minh được parity với artifact
+gốc của tác giả.
+
+## 2. 13 test lỗi assertion thật trong full test — chưa làm
+
+Lý do: đây là lỗi nội dung thật của HELIX trên checkout `a090aba`
+(`capture-dry-run` 2, `cli` 2, `todo27-misleading-native-copy`,
+`block-ledger`, `compatible-bridge-visibility`, `nanobot-lego-depth`,
+`p1-native-like-visibility`, `preview-metadata-retention-visibility`,
+`product-turn-profile-visibility`, `recipe-targets`,
+`reverse-assembly` — mỗi cái 1 test), không phải lỗi môi trường.
+Sửa chúng nghĩa là sửa mã nguồn HELIX, thuộc về upstream/fork, không
+thuộc về repo tái lập này (repo này chỉ kiểm chứng, không sửa HELIX).
+Cần điều tra từng test một với tác giả hoặc trong fork của nhóm.
+
+## 3. 6 test timeout — chưa kết luận được
+
+Lý do: các test này timeout ở 5s / 15s / 120s trên VM chia sẻ chỉ có
+1,5 CPU (`cli` 2, `config-prompt-ui` 1,
+`current-module-placeholder-audit` 3). Chưa phân biệt được đâu là máy
+chậm, đâu là code thật sự chậm. Cần chạy lại trên máy nhanh hơn hoặc
+nới timeout rồi mới kết luận.
+
+## 4. Benchmark mất phí — cố tình không chạy
+
+Lý do: LiveCodeBench 100, SWE-bench 55, live provider, native CLI và
+full search Pass@N đều cần gọi model thật qua API trả phí (tác giả
+dùng MiniMax, khoảng 6.500 lượt gọi cho một lượt benchmark đầy đủ),
+cộng thêm dữ liệu và bộ chạy chính thức (riêng SWE-bench còn cần
+Docker và bộ chấm). Repo này được thiết kế chỉ cho kiểm tra offline,
+miễn phí, nên các số benchmark của tác giả vẫn ở trạng thái chưa tái
+tạo — không phải đã xác nhận, cũng không phải đã bác bỏ.
+
+## 5. Đánh giá held-out cho LoRA và build đầu tiên trên Builder — chưa làm, nằm ngoài repo này
+
+Lý do: 2 việc này thuộc về nhánh closed-loop / Builder trong fork
+HELIX của nhóm, không thuộc repo tái lập offline này. Đánh giá
+held-out cần chạy thêm vòng BUILD–train–REBUILD trên task chưa từng
+dùng để train (cần GPU Modal và thời gian chạy); build đầu tiên trên
+Builder cần chạy một tác vụ thật với model (sửa 1 file, Max steps = 5).
+Cả 2 đều chưa có kết quả, không phải vì quên mà vì nằm ở mạch công
+việc khác.
+
+## 6. Push từng bị chặn — đã rõ nguyên nhân, không phải lỗi kết quả
+
+Trước lượt này, push bị lỗi 403 vì Muse GitHub App chưa được cài /
+chưa có quyền ghi trên repo `letrieu728/thucnghiemhelix` (đọc qua API
+vẫn được, chỉ ghi bị chặn). Cần người sở hữu repo mở
+https://github.com/apps/meta-muse-ai/installations/new và chọn repo
+này cho app thì mới push được.
