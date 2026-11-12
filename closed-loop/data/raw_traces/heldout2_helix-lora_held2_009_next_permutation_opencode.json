@@ -1,0 +1,53 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_009_next_permutation",
+  "task_title": "Next Permutation",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `next_permutation(nums: list[int]) -> list[int]` that returns the next lexicographically greater permutation of `nums` as a new list (the input list must not be modified). If no greater permutation exists, return the smallest permutation (sorted ascending).",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 4,
+  "latency_sec": 52.084,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef next_permutation(nums: List[int]) -> List[int]:\n    # Find the longest non-increasing suffix\n    i = len(nums) - 2\n    while i >= 0 and nums[i] >= nums[i + 1]:\n        i -= 1\n    \n    # If the entire array is non-increasing, reverse it to get the smallest permutation\n    if i == -1:\n        return nums[::-1]\n    \n    # Find the rightmost successor to pivot in the suffix\n    j = len(nums) - 1\n    while j > i and nums[j] <= nums[i]:\n        j -= 1\n    \n    # Swap the pivot with its successor\n    nums[i], nums[j] = nums[j], nums[i]\n    \n    # Reverse the suffix starting at i+1\n    return nums[:i + 1] + nums[i + 1:][::-1]\n```",
+  "passed": false,
+  "test_result": {
+    "passed": false,
+    "error": "Traceback (most recent call last):\n  File \"<string>\", line 29, in <module>\n  File \"<string>\", line 15, in next_permutation\nIndexError: list index out of range"
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef next_permutation(nums: List[int]) -> List[int]:\n    # Find the longest non-increasing suffix\n    i = len(nums) - 2\n    while i >= 0 and nums[i] >= nums[i + 1]:\n        i -= 1\n    \n    # If the entire array is non-increasing, reverse it to get the smallest permutation\n    if i == -1:\n        return nums[::-1]\n    \n    # Find the rightmost successor to pivot in the suffix\n    j = len(nums) - 1\n    while nums[j] <= nums[i]:\n        j -= 1\n    \n    # Swap the pivot with its successor\n    nums[i], nums[j] = nums[j], nums[i]\n    \n    # Reverse the suffix starting at i+1\n    return nums[:i + 1] + nums[i + 1:][::-1]\n```",
+      "finish_reason": "stop"
+    },
+    {
+      "step": 2,
+      "role": "assistant",
+      "content": "The error occurs because when the entire array is non-increasing, the variable `j` becomes `-1` during the search for the successor, leading to an out-of-range error when trying to access `nums[j]`. To fix this, we need to ensure that `j` is always within bounds before accessing `nums[j]`.\n\nHere's the corrected implementation:\n\n```python\nfrom typing import List\n\ndef next_permutation(nums: List[int]) -> List[int]:\n    # Find the longest non-increasing suffix\n    i = len(nums) - 2\n    while i >= 0 and nums[i] >= nums[i + 1]:\n        i -= 1\n    \n    # If the entire array is non-increasing, reverse it to get the smallest permutation\n    if i == -1:\n        return nums[::-1]\n    \n    # Find the rightmost successor to pivot in the suffix\n    j = len(nums) - 1\n    while j > i and nums[j] <= nums[i]:\n        j -= 1\n    \n    # Swap the pivot with its successor\n    nums[i], nums[j] = nums[j], nums[i]\n    \n    # Reverse the suffix starting at i+1\n    return nums[:i + 1] + nums[i + 1:][::-1]\n```\n\nThis implementation ensures that `j` is always greater than `i` before accessing `nums[j]`, thus avoiding the out-of-range error.",
+      "finish_reason": "stop"
+    },
+    {
+      "step": 3,
+      "role": "assistant",
+      "content": "The error persists because the condition `while j > i and nums[j] <= nums[i]:` can still lead to `j` being `-1` if the entire array is non-increasing. This causes an out-of-range error when trying to access `nums[j]`.\n\nTo fix this, we should ensure that `j` is always within bounds before accessing `nums[j]`. Here's the corrected implementation:\n\n```python\nfrom typing import List\n\ndef next_permutation(nums: List[int]) -> List[int]:\n    # Find the longest non-increasing suffix\n    i = len(nums) - 2\n    while i >= 0 and nums[i] >= nums[i + 1]:\n        i -= 1\n    \n    # If the entire array is non-increasing, reverse it to get the smallest permutation\n    if i == -1:\n        return nums[::-1]\n    \n    # Find the rightmost successor to pivot in the suffix\n    j = len(nums) - 1\n    while j > 0 and nums[j] <= nums[i]:\n        j -= 1\n    \n    # Swap the pivot with its successor\n    nums[i], nums[j] = nums[j], nums[i]\n    \n    # Reverse the suffix starting at i+1\n    return nums[:i + 1] + nums[i + 1:][::-1]\n```\n\nIn this implementation, we start `j` from `len(nums) - 1` and decrement it until we find a successor that is greater than the pivot. This ensures that `j` is always within bounds.",
+      "finish_reason": "stop"
+    },
+    {
+      "step": 4,
+      "role": "assistant",
+      "content": "The error continues because the condition `while j > 0 and nums[j] <= nums[i]:` can still lead to `j` being `-1` if the entire array is non-increasing. This causes an out-of-range error when trying to access `nums[j]`.\n\nTo fix this, we should ensure that `j` is always within bounds before accessing `nums[j]`. Here's the corrected implementation:\n\n```python\nfrom typing import List\n\ndef next_permutation(nums: List[int]) -> List[int]:\n    # Find the longest non-increasing suffix\n    i = len(nums) - 2\n    while i >= 0 and nums[i] >= nums[i + 1]:\n        i -= 1\n    \n    # If the entire array is non-increasing, reverse it to get the smallest permutation\n    if i == -1:\n        return nums[::-1]\n    \n    # Find the rightmost successor to pivot in the suffix\n    j = len(nums) - 1\n    while j > i and nums[j] <= nums[i]:\n        j -= 1\n    \n    # Swap the pivot with its successor\n    nums[i], nums[j] = nums[j], nums[i]\n    \n    # Reverse the suffix starting at i+1\n    return nums[:i + 1] + nums[i + 1:][::-1]\n```\n\nIn this implementation, we start `j` from `len(nums) - 1` and decrement it until we find a successor that is greater than the pivot. This ensures that `j` is always within bounds.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<string>\", line 29, in <module>\n  File \"<string>\", line 15, in next_permutation\nIndexError: list index out of range",
+  "timestamp": "2026-11-12T09:54:12.522349+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

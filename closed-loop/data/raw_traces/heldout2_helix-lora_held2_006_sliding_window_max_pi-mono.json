@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_006_sliding_window_max",
+  "task_title": "Sliding Window Maximum",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `max_sliding_window(nums: list[int], k: int) -> list[int]` that returns the maximum of each sliding window of size `k` as it moves from left to right. Return an empty list if `nums` is empty.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 28.792,
+  "assistant_solution": "```python\nfrom collections import deque\n\ndef max_sliding_window(nums: list[int], k: int) -> list[int]:\n    if not nums:\n        return []\n    \n    n = len(nums)\n    result = []\n    deque_indices = deque()\n    \n    for i in range(n):\n        # Remove indices that are out of the current window\n        if deque_indices and deque_indices[0] < i - k + 1:\n            deque_indices.popleft()\n        \n        # Remove indices whose corresponding values are less than the current value\n        while deque_indices and nums[deque_indices[-1]] < nums[i]:\n            deque_indices.pop()\n        \n        # Add the current index to the deque\n        deque_indices.append(i)\n        \n        # Append the maximum of the current window to the result list\n        if i >= k - 1:\n            result.append(nums[deque_indices[0]])\n    \n    return result\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem efficiently, we can use a deque (double-ended queue) to keep track of the indices of the elements within the current window. The deque will help us maintain the indices in decreasing order of their corresponding values, so the front of the deque always contains the index of the maximum element in the current window.\n\nHere's a step-by-step breakdown of the approach:\n\n1. Initialize an empty result list `result`.\n2. Use a deque `deque` to store indices of elements.\n3. Iterate through the list `nums`:\n   - Remove indices from the front of the deque that are out of the current window.\n   - Remove indices from the back of the deque for which the corresponding elements are smaller than the current element.\n   - Add the current index to the back of the deque.\n   - If the current index is greater than or equal to `k-1`, append the element at the front of the deque to the result list (this element is the maximum of the current window).\n4. Return the result list.\n\nLet's implement this in Python:\n\n```python\nfrom collections import deque\n\ndef max_sliding_window(nums: list[int], k: int) -> list[int]:\n    if not nums:\n        return []\n    \n    n = len(nums)\n    result = []\n    deque_indices = deque()\n    \n    for i in range(n):\n        # Remove indices that are out of the current window\n        if deque_indices and deque_indices[0] < i - k + 1:\n            deque_indices.popleft()\n        \n        # Remove indices whose corresponding values are less than the current value\n        while deque_indices and nums[deque_indices[-1]] < nums[i]:\n            deque_indices.pop()\n        \n        # Add the current index to the deque\n        deque_indices.append(i)\n        \n        # Append the maximum of the current window to the result list\n        if i >= k - 1:\n            result.append(nums[deque_indices[0]])\n    \n    return result\n```\n\n### Explanation:\n- **Deque Initialization**: We initialize an empty deque `deque_indices` to store indices.\n- **Iterating Through List**: We iterate through each element in `nums`.\n  - **Out-of-Bounds Check**: If the index at the front of the deque is out of the current window (`i - k + 1`), we remove it.\n  - **Maintaining Decreasing Order**: We remove indices from the back of the deque while the corresponding elements are smaller than the current element. This ensures that the front of the deque always has the index of the maximum element in the current window.\n  - **Adding Current Index**: We add the current index to the back of the deque.\n  - **Appending Result**: Once we have processed at least `k` elements (`i >= k - 1`), we append the element at the front of the deque to the result list.\n- **Return Result**: Finally, we return the result list containing the maximums of all sliding windows.\n\nThis approach ensures that each element is added and removed from the deque at most once, resulting in an efficient O(n) time complexity.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:43:44.556655+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

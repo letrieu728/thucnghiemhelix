@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_002_regex_match",
+  "task_title": "Regular Expression Matching",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `is_match(s: str, p: str) -> bool` that implements regular expression matching with support for '.' (matches any single character) and '*' (matches zero or more of the preceding element). The matching must cover the entire input string `s`.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 15.663,
+  "assistant_solution": "```python\ndef is_match(s: str, p: str) -> bool:\n    # Helper function to check if s[i:] matches p[j:]\n    def dp(i, j):\n        # If both strings are exhausted, they match\n        if i == len(s) and j == len(p):\n            return True\n        # If pattern is exhausted but string is not, they don't match\n        if j == len(p):\n            return False\n        \n        # Check if the current characters match or if the pattern has '.'\n        first_match = i < len(s) and (s[i] == p[j] or p[j] == '.')\n        \n        # If there's a '*', it can either ignore the preceding element or use it one or more times\n        if j + 1 < len(p) and p[j+1] == '*':\n            return dp(i, j+2) or (first_match and dp(i+1, j))\n        \n        # Move to the next character if there's no '*'\n        return first_match and dp(i+1, j+1)\n    \n    # Start the recursion from the beginning of both strings\n    return dp(0, 0)\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef is_match(s: str, p: str) -> bool:\n    # Helper function to check if s[i:] matches p[j:]\n    def dp(i, j):\n        # If both strings are exhausted, they match\n        if i == len(s) and j == len(p):\n            return True\n        # If pattern is exhausted but string is not, they don't match\n        if j == len(p):\n            return False\n        \n        # Check if the current characters match or if the pattern has '.'\n        first_match = i < len(s) and (s[i] == p[j] or p[j] == '.')\n        \n        # If there's a '*', it can either ignore the preceding element or use it one or more times\n        if j + 1 < len(p) and p[j+1] == '*':\n            return dp(i, j+2) or (first_match and dp(i+1, j))\n        \n        # Move to the next character if there's no '*'\n        return first_match and dp(i+1, j+1)\n    \n    # Start the recursion from the beginning of both strings\n    return dp(0, 0)\n```\n\nThis solution uses dynamic programming with memoization to solve the problem. The helper function `dp(i, j)` checks if the substring `s[i:]` matches the substring `p[j:]`. It handles the special characters '.' and '*' as described. The function returns `True` if the entire string `s` matches the pattern `p`, otherwise `False`.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:38:56.966515+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

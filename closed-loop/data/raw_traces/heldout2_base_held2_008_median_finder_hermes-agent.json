@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_008_median_finder",
+  "task_title": "Find Median from Data Stream",
+  "difficulty": "hard",
+  "prompt": "Implement a class `MedianFinder` in Python with methods `add_num(num: int) -> None` (adds a number to the data stream) and `find_median() -> float` (returns the median of all numbers added so far). `find_median` is only called when at least one number has been added.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 22.404,
+  "assistant_solution": "```python\nimport heapq\n\nclass MedianFinder:\n    def __init__(self):\n        # Max-heap to store the smaller half of the numbers\n        self.max_heap = []\n        # Min-heap to store the larger half of the numbers\n        self.min_heap = []\n\n    def add_num(self, num: int) -> None:\n        # Add the new number to the appropriate heap\n        if not self.max_heap or num <= -self.max_heap[0]:\n            heapq.heappush(self.max_heap, -num)\n        else:\n            heapq.heappush(self.min_heap, num)\n        \n        # Balance the heaps if necessary\n        if len(self.max_heap) > len(self.min_heap) + 1:\n            heapq.heappush(self.min_heap, -heapq.heappop(self.max_heap))\n        elif len(self.min_heap) > len(self.max_heap):\n            heapq.heappush(self.max_heap, -heapq.heappop(self.min_heap))\n\n    def find_median(self) -> float:\n        # If the heaps are balanced, the median is the average of the roots\n        if len(self.max_heap) == len(self.min_heap):\n            return (-self.max_heap[0] + self.min_heap[0]) / 2.0\n        # If the max-heap has more elements, the median is the root of the max-heap\n        else:\n            return -self.max_heap[0]\n\n# Example usage:\nmedian_finder = MedianFinder()\nmedian_finder.add_num(1)\nmedian_finder.add_num(2)\nprint(median_finder.find_median())  # Output: 1.5\nmedian_finder.add_num(3)\nprint(median_finder.find_median())  # Output: 2\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To implement the `MedianFinder` class, we can use two heaps: a max-heap for the lower half of the numbers and a min-heap for the upper half. This allows us to efficiently find the median in constant time.\n\nHere's the implementation:\n\n```python\nimport heapq\n\nclass MedianFinder:\n    def __init__(self):\n        # Max-heap to store the smaller half of the numbers\n        self.max_heap = []\n        # Min-heap to store the larger half of the numbers\n        self.min_heap = []\n\n    def add_num(self, num: int) -> None:\n        # Add the new number to the appropriate heap\n        if not self.max_heap or num <= -self.max_heap[0]:\n            heapq.heappush(self.max_heap, -num)\n        else:\n            heapq.heappush(self.min_heap, num)\n        \n        # Balance the heaps if necessary\n        if len(self.max_heap) > len(self.min_heap) + 1:\n            heapq.heappush(self.min_heap, -heapq.heappop(self.max_heap))\n        elif len(self.min_heap) > len(self.max_heap):\n            heapq.heappush(self.max_heap, -heapq.heappop(self.min_heap))\n\n    def find_median(self) -> float:\n        # If the heaps are balanced, the median is the average of the roots\n        if len(self.max_heap) == len(self.min_heap):\n            return (-self.max_heap[0] + self.min_heap[0]) / 2.0\n        # If the max-heap has more elements, the median is the root of the max-heap\n        else:\n            return -self.max_heap[0]\n\n# Example usage:\nmedian_finder = MedianFinder()\nmedian_finder.add_num(1)\nmedian_finder.add_num(2)\nprint(median_finder.find_median())  # Output: 1.5\nmedian_finder.add_num(3)\nprint(median_finder.find_median())  # Output: 2\n```\n\n### Explanation:\n1. **Initialization**:\n   - `max_heap`: Stores the smaller half of the numbers using negative values to simulate a max-heap with Python's `heapq` (which is a min-heap by default).\n   - `min_heap`: Stores the larger half of the numbers.\n\n2. **Adding a Number (`add_num` method)**:\n   - The new number is added to the appropriate heap based on its value relative to the current median.\n   - After adding, the heaps are balanced to ensure that the difference in their sizes is at most 1.\n\n3. **Finding the Median (`find_median` method)**:\n   - If the heaps are balanced, the median is the average of the roots of both heaps.\n   - If the `max_heap` has more elements, the median is the root of the `max_heap`.\n\nThis approach ensures that both operations (`add_num` and `find_median`) are efficient, with `add_num` having a time complexity of O(log n) due to the heap operations, and `find_median` having a time complexity of O(1).",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:21:21.559555+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

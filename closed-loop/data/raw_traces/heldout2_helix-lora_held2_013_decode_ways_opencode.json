@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_013_decode_ways",
+  "task_title": "Decode Ways",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `num_decodings(s: str) -> int` that returns the number of ways to decode a non-empty string of digits `s`, where '1' to '26' map to letters 'A' to 'Z'. A '0' cannot be decoded on its own; it is only valid as part of '10' or '20'.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 8.371,
+  "assistant_solution": "```python\nfrom typing import *\n\ndef num_decodings(s: str) -> int:\n    if not s or s[0] == '0':\n        return 0\n    \n    dp = [0] * (len(s) + 1)\n    dp[0], dp[1] = 1, 1\n    \n    for i in range(2, len(s) + 1):\n        one_digit = int(s[i - 1])\n        two_digits = int(s[i - 2:i])\n        \n        if one_digit != 0:\n            dp[i] += dp[i - 1]\n        if 10 <= two_digits <= 26:\n            dp[i] += dp[i - 2]\n    \n    return dp[-1]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import *\n\ndef num_decodings(s: str) -> int:\n    if not s or s[0] == '0':\n        return 0\n    \n    dp = [0] * (len(s) + 1)\n    dp[0], dp[1] = 1, 1\n    \n    for i in range(2, len(s) + 1):\n        one_digit = int(s[i - 1])\n        two_digits = int(s[i - 2:i])\n        \n        if one_digit != 0:\n            dp[i] += dp[i - 1]\n        if 10 <= two_digits <= 26:\n            dp[i] += dp[i - 2]\n    \n    return dp[-1]\n```",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:58:56.340195+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_012_gas_station",
+  "task_title": "Gas Station Circuit",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `can_complete_circuit(gas: list[int], cost: list[int]) -> int` that returns the starting gas station index from which a car can complete the full circuit, or -1 if it is impossible. The car starts with an empty tank; at station `i` it gains `gas[i]` fuel and spends `cost[i]` fuel to reach station `i+1` (circularly). If a solution exists it is unique.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 14.075,
+  "assistant_solution": "```python\ndef can_complete_circuit(gas: list[int], cost: list[int]) -> int:\n    total_tank = 0\n    current_tank = 0\n    start_station = 0\n    \n    for i in range(len(gas)):\n        total_tank += gas[i] - cost[i]\n        current_tank += gas[i] - cost[i]\n        \n        # If current_tank is negative, we cannot start from this station\n        if current_tank < 0:\n            start_station = i + 1\n            current_tank = 0\n    \n    # If total_tank is negative, it's impossible to complete the circuit\n    return start_station if total_tank >= 0 else -1\n\n# Example usage:\nprint(can_complete_circuit([1,2,3,4,5], [3,4,5,1,2]))  # Output: 3\nprint(can_complete_circuit([2,3,4], [3,4,3]))          # Output: -1\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef can_complete_circuit(gas: list[int], cost: list[int]) -> int:\n    total_tank = 0\n    current_tank = 0\n    start_station = 0\n    \n    for i in range(len(gas)):\n        total_tank += gas[i] - cost[i]\n        current_tank += gas[i] - cost[i]\n        \n        # If current_tank is negative, we cannot start from this station\n        if current_tank < 0:\n            start_station = i + 1\n            current_tank = 0\n    \n    # If total_tank is negative, it's impossible to complete the circuit\n    return start_station if total_tank >= 0 else -1\n\n# Example usage:\nprint(can_complete_circuit([1,2,3,4,5], [3,4,5,1,2]))  # Output: 3\nprint(can_complete_circuit([2,3,4], [3,4,3]))          # Output: -1\n```\nThis function iterates through each gas station, updating the total and current tank levels. If the current tank level drops below zero, it means the car cannot continue from the current start station, so the start is moved to the next station. Finally, if the total tank level is non-negative, the starting station is returned; otherwise, -1 is returned indicating it's impossible to complete the circuit.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:56:52.317211+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_014_rotten_oranges",
+  "task_title": "Rotting Oranges",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `oranges_rotting(grid: list[list[int]]) -> int` that returns the minimum number of minutes until no cell has a fresh orange. Cells are 0 (empty), 1 (fresh), or 2 (rotten). Every minute, each fresh orange adjacent (4-directional) to a rotten orange becomes rotten. Return -1 if some fresh orange can never rot, and 0 if there are no fresh oranges initially.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 16.971,
+  "assistant_solution": "```python\nfrom collections import deque\n\ndef oranges_rotting(grid):\n    rows, cols = len(grid), len(grid[0])\n    queue = deque()\n    fresh_count = 0\n    \n    # Initialize the queue with all rotten oranges and count fresh oranges\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == 2:\n                queue.append((r, c))\n            elif grid[r][c] == 1:\n                fresh_count += 1\n    \n    # If there are no fresh oranges, return 0\n    if fresh_count == 0:\n        return 0\n    \n    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]\n    minutes_passed = 0\n    \n    while queue:\n        for _ in range(len(queue)):\n            r, c = queue.popleft()\n            for dr, dc in directions:\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == 1:\n                    grid[nr][nc] = 2\n                    queue.append((nr, nc))\n                    fresh_count -= 1\n        minutes_passed += 1\n    \n    # If there are still fresh oranges left, return -1\n    return minutes_passed - 1 if fresh_count == 0 else -1\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom collections import deque\n\ndef oranges_rotting(grid):\n    rows, cols = len(grid), len(grid[0])\n    queue = deque()\n    fresh_count = 0\n    \n    # Initialize the queue with all rotten oranges and count fresh oranges\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == 2:\n                queue.append((r, c))\n            elif grid[r][c] == 1:\n                fresh_count += 1\n    \n    # If there are no fresh oranges, return 0\n    if fresh_count == 0:\n        return 0\n    \n    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]\n    minutes_passed = 0\n    \n    while queue:\n        for _ in range(len(queue)):\n            r, c = queue.popleft()\n            for dr, dc in directions:\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == 1:\n                    grid[nr][nc] = 2\n                    queue.append((nr, nc))\n                    fresh_count -= 1\n        minutes_passed += 1\n    \n    # If there are still fresh oranges left, return -1\n    return minutes_passed - 1 if fresh_count == 0 else -1\n```\nThis Python function uses a breadth-first search approach to simulate the rotting process, ensuring that all possible rotting occurs simultaneously at each minute. It keeps track of the number of fresh oranges and updates their state as they become rotten. The function returns the total time taken for all oranges to rot or -1 if it's not possible.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:59:14.032166+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

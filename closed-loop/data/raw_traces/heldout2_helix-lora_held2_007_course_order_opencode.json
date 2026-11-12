@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_007_course_order",
+  "task_title": "Course Schedule II (Valid Order)",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `find_order(num_courses: int, prerequisites: list[list[int]]) -> list[int]` that returns any valid order in which all courses can be taken. Each prerequisite `[a, b]` means course `b` must be taken before course `a`. Return an empty list if no valid order exists (a cycle).",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 9.079,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef find_order(num_courses: int, prerequisites: List[List[int]]) -> List[int]:\n    graph = [[] for _ in range(num_courses)]\n    indegree = [0] * num_courses\n    \n    # Build the graph and calculate indegrees\n    for course, prereq in prerequisites:\n        graph[prereq].append(course)\n        indegree[course] += 1\n    \n    queue = [i for i in range(num_courses) if indegree[i] == 0]\n    result = []\n    \n    while queue:\n        node = queue.pop(0)\n        result.append(node)\n        \n        for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)\n    \n    return result if len(result) == num_courses else []\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef find_order(num_courses: int, prerequisites: List[List[int]]) -> List[int]:\n    graph = [[] for _ in range(num_courses)]\n    indegree = [0] * num_courses\n    \n    # Build the graph and calculate indegrees\n    for course, prereq in prerequisites:\n        graph[prereq].append(course)\n        indegree[course] += 1\n    \n    queue = [i for i in range(num_courses) if indegree[i] == 0]\n    result = []\n    \n    while queue:\n        node = queue.pop(0)\n        result.append(node)\n        \n        for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)\n    \n    return result if len(result) == num_courses else []\n```",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:45:34.334028+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

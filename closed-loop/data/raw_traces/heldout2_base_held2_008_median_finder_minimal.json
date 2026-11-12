@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_008_median_finder",
+  "task_title": "Find Median from Data Stream",
+  "difficulty": "hard",
+  "prompt": "Implement a class `MedianFinder` in Python with methods `add_num(num: int) -> None` (adds a number to the data stream) and `find_median() -> float` (returns the median of all numbers added so far). `find_median` is only called when at least one number has been added.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 15.573,
+  "assistant_solution": "```python\nimport heapq\n\nclass MedianFinder:\n    def __init__(self):\n        # Max-heap for the lower half of the numbers\n        self.lower = []\n        # Min-heap for the upper half of the numbers\n        self.upper = []\n\n    def add_num(self, num: int) -> None:\n        # Add to max-heap by pushing negative value\n        heapq.heappush(self.lower, -num)\n        \n        # Balance heaps if necessary\n        if len(self.lower) > len(self.upper) + 1:\n            heapq.heappush(self.upper, -heapq.heappop(self.lower))\n        \n        # Ensure min-heap is not larger than max-heap\n        if self.upper and -self.lower[0] > self.upper[0]:\n            heapq.heappush(self.lower, -heapq.heappop(self.upper))\n\n    def find_median(self) -> float:\n        # If even number of elements, average the two middle values\n        if len(self.lower) == len(self.upper):\n            return (-self.lower[0] + self.upper[0]) / 2.0\n        else:\n            # If odd, the root of the max-heap is the median\n            return -self.lower[0]\n\n# Example usage:\nmedian_finder = MedianFinder()\nmedian_finder.add_num(3)\nmedian_finder.add_num(1)\nprint(median_finder.find_median())  # Output: 2.0\nmedian_finder.add_num(4)\nprint(median_finder.find_median())  # Output: 3.0\n```",
+  "passed": false,
+  "test_result": {
+    "passed": false,
+    "error": "Traceback (most recent call last):\n  File \"<string>\", line 40, in <module>\nAssertionError"
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nimport heapq\n\nclass MedianFinder:\n    def __init__(self):\n        # Max-heap for the lower half of the numbers\n        self.lower = []\n        # Min-heap for the upper half of the numbers\n        self.upper = []\n\n    def add_num(self, num: int) -> None:\n        # Add to max-heap by pushing negative value\n        heapq.heappush(self.lower, -num)\n        \n        # Balance heaps if necessary\n        if len(self.lower) > len(self.upper) + 1:\n            heapq.heappush(self.upper, -heapq.heappop(self.lower))\n        \n        # Ensure min-heap is not larger than max-heap\n        if self.upper and -self.lower[0] > self.upper[0]:\n            heapq.heappush(self.lower, -heapq.heappop(self.upper))\n\n    def find_median(self) -> float:\n        # If even number of elements, average the two middle values\n        if len(self.lower) == len(self.upper):\n            return (-self.lower[0] + self.upper[0]) / 2.0\n        else:\n            # If odd, the root of the max-heap is the median\n            return -self.lower[0]\n\n# Example usage:\nmedian_finder = MedianFinder()\nmedian_finder.add_num(3)\nmedian_finder.add_num(1)\nprint(median_finder.find_median())  # Output: 2.0\nmedian_finder.add_num(4)\nprint(median_finder.find_median())  # Output: 3.0\n```\n\nThis Python solution uses two heaps to maintain the two halves of the sorted list of numbers efficiently. The `lower` heap is a max-heap (using negative values to simulate), and the `upper` heap is a min-heap. This allows us to quickly access the median, which is either the root of the `lower` heap or the average of the roots of both heaps depending on whether the total count of numbers is odd or even. The `add_num` method ensures that the heaps remain balanced after each insertion, maintaining the property that the median can be found directly from the roots of these heaps.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<string>\", line 40, in <module>\nAssertionError",
+  "timestamp": "2026-11-12T09:20:35.338927+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

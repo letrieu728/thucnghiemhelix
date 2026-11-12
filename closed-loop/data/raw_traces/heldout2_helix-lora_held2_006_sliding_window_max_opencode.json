@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_006_sliding_window_max",
+  "task_title": "Sliding Window Maximum",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `max_sliding_window(nums: list[int], k: int) -> list[int]` that returns the maximum of each sliding window of size `k` as it moves from left to right. Return an empty list if `nums` is empty.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 8.917,
+  "assistant_solution": "```python\nfrom collections import deque\nfrom typing import List\n\ndef max_sliding_window(nums: List[int], k: int) -> List[int]:\n    if not nums:\n        return []\n    \n    result = []\n    deq = deque()\n    \n    for i, num in enumerate(nums):\n        # Remove elements not within the sliding window\n        while deq and deq[0] < i - k + 1:\n            deq.popleft()\n        \n        # Remove smaller elements from the deque\n        while deq and nums[deq[-1]] < num:\n            deq.pop()\n        \n        # Add current element index to the deque\n        deq.append(i)\n        \n        # The first element in the deque is the largest in the current window\n        if i >= k - 1:\n            result.append(nums[deq[0]])\n    \n    return result\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom collections import deque\nfrom typing import List\n\ndef max_sliding_window(nums: List[int], k: int) -> List[int]:\n    if not nums:\n        return []\n    \n    result = []\n    deq = deque()\n    \n    for i, num in enumerate(nums):\n        # Remove elements not within the sliding window\n        while deq and deq[0] < i - k + 1:\n            deq.popleft()\n        \n        # Remove smaller elements from the deque\n        while deq and nums[deq[-1]] < num:\n            deq.pop()\n        \n        # Add current element index to the deque\n        deq.append(i)\n        \n        # The first element in the deque is the largest in the current window\n        if i >= k - 1:\n            result.append(nums[deq[0]])\n    \n    return result\n```",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:44:10.358349+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

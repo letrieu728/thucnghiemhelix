@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_007_course_order",
+  "task_title": "Course Schedule II (Valid Order)",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `find_order(num_courses: int, prerequisites: list[list[int]]) -> list[int]` that returns any valid order in which all courses can be taken. Each prerequisite `[a, b]` means course `b` must be taken before course `a`. Return an empty list if no valid order exists (a cycle).",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 11.425,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef find_order(num_courses: int, prerequisites: List[List[int]]) -> List[int]:\n    graph = [[] for _ in range(num_courses)]\n    indegree = [0] * num_courses\n    \n    # Build the graph and calculate indegrees\n    for course, prereq in prerequisites:\n        graph[prereq].append(course)\n        indegree[course] += 1\n    \n    # Initialize the queue with courses having zero indegree\n    queue = [i for i in range(num_courses) if indegree[i] == 0]\n    result = []\n    \n    while queue:\n        current_course = queue.pop(0)\n        result.append(current_course)\n        \n        for neighbor in graph[current_course]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)\n    \n    # If the result contains all courses, return it; otherwise, return an empty list\n    return result if len(result) == num_courses else []\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef find_order(num_courses: int, prerequisites: List[List[int]]) -> List[int]:\n    graph = [[] for _ in range(num_courses)]\n    indegree = [0] * num_courses\n    \n    # Build the graph and calculate indegrees\n    for course, prereq in prerequisites:\n        graph[prereq].append(course)\n        indegree[course] += 1\n    \n    # Initialize the queue with courses having zero indegree\n    queue = [i for i in range(num_courses) if indegree[i] == 0]\n    result = []\n    \n    while queue:\n        current_course = queue.pop(0)\n        result.append(current_course)\n        \n        for neighbor in graph[current_course]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)\n    \n    # If the result contains all courses, return it; otherwise, return an empty list\n    return result if len(result) == num_courses else []\n```\n\nThis solution uses topological sorting to determine a valid order of courses. It first builds a graph and calculates the indegree of each node. Then, it initializes a queue with nodes having zero indegree. The algorithm processes each node in the queue, reducing the indegree of its neighbors, and adding them to the queue if their indegree becomes zero. Finally, it checks if the result contains all courses; if so, it returns the result; otherwise, it returns an empty list indicating a cycle.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:20:19.058270+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

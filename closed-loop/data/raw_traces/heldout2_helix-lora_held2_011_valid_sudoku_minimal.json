@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_011_valid_sudoku",
+  "task_title": "Valid Sudoku",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `is_valid_sudoku(board: list[list[str]]) -> bool` that returns True if a 9x9 Sudoku board is valid: each row, each column, and each of the nine 3x3 sub-boxes must contain the digits '1'-'9' without repetition. Empty cells are '.' and are ignored. A partially filled board can be valid.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 15.578,
+  "assistant_solution": "```python\ndef is_valid_sudoku(board):\n    # Check rows for duplicates\n    for row in board:\n        if not check_row(row):\n            return False\n    \n    # Check columns for duplicates\n    for col in range(9):\n        if not check_column(board, col):\n            return False\n    \n    # Check 3x3 sub-boxes for duplicates\n    for start_row in range(0, 9, 3):\n        for start_col in range(0, 9, 3):\n            if not check_subbox(board, start_row, start_col):\n                return False\n    \n    return True\n\ndef check_row(row):\n    seen = set()\n    for cell in row:\n        if cell != '.' and cell in seen:\n            return False\n        seen.add(cell)\n    return True\n\ndef check_column(board, col):\n    seen = set()\n    for row in board:\n        cell = row[col]\n        if cell != '.' and cell in seen:\n            return False\n        seen.add(cell)\n    return True\n\ndef check_subbox(board, start_row, start_col):\n    seen = set()\n    for i in range(3):\n        for j in range(3):\n            cell = board[start_row + i][start_col + j]\n            if cell != '.' and cell in seen:\n                return False\n            seen.add(cell)\n    return True\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef is_valid_sudoku(board):\n    # Check rows for duplicates\n    for row in board:\n        if not check_row(row):\n            return False\n    \n    # Check columns for duplicates\n    for col in range(9):\n        if not check_column(board, col):\n            return False\n    \n    # Check 3x3 sub-boxes for duplicates\n    for start_row in range(0, 9, 3):\n        for start_col in range(0, 9, 3):\n            if not check_subbox(board, start_row, start_col):\n                return False\n    \n    return True\n\ndef check_row(row):\n    seen = set()\n    for cell in row:\n        if cell != '.' and cell in seen:\n            return False\n        seen.add(cell)\n    return True\n\ndef check_column(board, col):\n    seen = set()\n    for row in board:\n        cell = row[col]\n        if cell != '.' and cell in seen:\n            return False\n        seen.add(cell)\n    return True\n\ndef check_subbox(board, start_row, start_col):\n    seen = set()\n    for i in range(3):\n        for j in range(3):\n            cell = board[start_row + i][start_col + j]\n            if cell != '.' and cell in seen:\n                return False\n            seen.add(cell)\n    return True\n```\nThis Python function checks the validity of a Sudoku board by ensuring no duplicate numbers (excluding '.') appear in any row, column, or 3x3 sub-box. It uses helper functions to validate each row, column, and sub-box individually.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:55:39.035917+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

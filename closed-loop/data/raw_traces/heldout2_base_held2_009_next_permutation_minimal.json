@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_009_next_permutation",
+  "task_title": "Next Permutation",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `next_permutation(nums: list[int]) -> list[int]` that returns the next lexicographically greater permutation of `nums` as a new list (the input list must not be modified). If no greater permutation exists, return the smallest permutation (sorted ascending).",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 17.085,
+  "assistant_solution": "```python\ndef next_permutation(nums: list[int]) -> list[int]:\n    # Step 1: Find the longest non-increasing suffix\n    i = len(nums) - 2\n    while i >= 0 and nums[i] >= nums[i + 1]:\n        i -= 1\n    \n    # If the entire array is non-increasing, reverse it to get the smallest permutation\n    if i == -1:\n        return nums[::-1]\n    \n    # Step 2: Find the rightmost successor to the pivot\n    j = len(nums) - 1\n    while nums[j] <= nums[i]:\n        j -= 1\n    \n    # Step 3: Swap the pivot with its successor\n    nums[i], nums[j] = nums[j], nums[i]\n    \n    # Step 4: Reverse the suffix\n    nums[i + 1:] = reversed(nums[i + 1:])\n    \n    return nums\n\n# Example usage:\nnums = [1, 2, 3]\nprint(next_permutation(nums))  # Output: [1, 3, 2]\n\nnums = [3, 2, 1]\nprint(next_permutation(nums))  # Output: [1, 2, 3]\n```",
+  "passed": false,
+  "test_result": {
+    "passed": false,
+    "error": "Traceback (most recent call last):\n  File \"<string>\", line 36, in <module>\n  File \"<string>\", line 13, in next_permutation\nIndexError: list index out of range"
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can follow these steps:\n\n1. **Identify the longest non-increasing suffix**: Starting from the end of the list, find the first element that is smaller than the element immediately after it. This element is called the 'pivot'.\n2. **Find the rightmost successor to the pivot in the suffix**: From the end of the list up to the position of the pivot, find the smallest element that is larger than the pivot.\n3. **Swap the pivot with its successor**: Swap these two elements.\n4. **Reverse the suffix**: Reverse the order of the elements after the original position of the pivot to get the next lexicographical permutation.\n\nIf no such pivot is found, it means the list is sorted in descending order, and thus, there is no greater permutation possible. In this case, we reverse the entire list to get the smallest permutation.\n\nHere's the implementation of the above logic in Python:\n\n```python\ndef next_permutation(nums: list[int]) -> list[int]:\n    # Step 1: Find the longest non-increasing suffix\n    i = len(nums) - 2\n    while i >= 0 and nums[i] >= nums[i + 1]:\n        i -= 1\n    \n    # If the entire array is non-increasing, reverse it to get the smallest permutation\n    if i == -1:\n        return nums[::-1]\n    \n    # Step 2: Find the rightmost successor to the pivot\n    j = len(nums) - 1\n    while nums[j] <= nums[i]:\n        j -= 1\n    \n    # Step 3: Swap the pivot with its successor\n    nums[i], nums[j] = nums[j], nums[i]\n    \n    # Step 4: Reverse the suffix\n    nums[i + 1:] = reversed(nums[i + 1:])\n    \n    return nums\n\n# Example usage:\nnums = [1, 2, 3]\nprint(next_permutation(nums))  # Output: [1, 3, 2]\n\nnums = [3, 2, 1]\nprint(next_permutation(nums))  # Output: [1, 2, 3]\n```\n\nThis function modifies the input list in-place to find the next permutation and then returns the result. The example usage demonstrates how the function works with different inputs.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<string>\", line 36, in <module>\n  File \"<string>\", line 13, in next_permutation\nIndexError: list index out of range",
+  "timestamp": "2026-11-12T09:22:11.043842+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

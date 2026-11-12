@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_015_longest_consecutive",
+  "task_title": "Longest Consecutive Sequence",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `longest_consecutive(nums: list[int]) -> int` that returns the length of the longest consecutive integer sequence in `nums`. Return 0 if `nums` is empty.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 12.192,
+  "assistant_solution": "```python\ndef longest_consecutive(nums):\n    if not nums:\n        return 0\n\n    num_set = set(nums)\n    max_length = 0\n\n    for num in num_set:\n        # Check if it's the start of a sequence\n        if num - 1 not in num_set:\n            current_num = num\n            current_length = 1\n\n            # Count the length of the sequence\n            while current_num + 1 in num_set:\n                current_num += 1\n                current_length += 1\n\n            # Update the maximum length found\n            max_length = max(max_length, current_length)\n\n    return max_length\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef longest_consecutive(nums):\n    if not nums:\n        return 0\n\n    num_set = set(nums)\n    max_length = 0\n\n    for num in num_set:\n        # Check if it's the start of a sequence\n        if num - 1 not in num_set:\n            current_num = num\n            current_length = 1\n\n            # Count the length of the sequence\n            while current_num + 1 in num_set:\n                current_num += 1\n                current_length += 1\n\n            # Update the maximum length found\n            max_length = max(max_length, current_length)\n\n    return max_length\n```\nThis Python function first checks if the input list `nums` is empty and returns 0 if true. It then converts the list into a set to allow O(1) average-time complexity for lookups. The function iterates through each number in the set, checking if it is the start of a sequence (i.e., the previous number is not in the set). If it is, it counts the length of the sequence by incrementing the number and updating the length until the end of the sequence is reached. Finally, it updates the maximum length found during the iteration and returns it.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T10:02:13.422743+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

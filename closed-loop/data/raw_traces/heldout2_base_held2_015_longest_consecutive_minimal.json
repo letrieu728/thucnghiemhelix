@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_015_longest_consecutive",
+  "task_title": "Longest Consecutive Sequence",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `longest_consecutive(nums: list[int]) -> int` that returns the length of the longest consecutive integer sequence in `nums`. Return 0 if `nums` is empty.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 16.876,
+  "assistant_solution": "```python\ndef longest_consecutive(nums: list[int]) -> int:\n    num_set = set(nums)\n    max_length = 0\n\n    for num in num_set:\n        # Check if it's the start of a sequence\n        if num - 1 not in num_set:\n            current_num = num\n            current_length = 1\n\n            # Count the length of the sequence\n            while current_num + 1 in num_set:\n                current_num += 1\n                current_length += 1\n\n            # Update the maximum length found so far\n            max_length = max(max_length, current_length)\n\n    return max_length\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "Here's a possible implementation of the `longest_consecutive` function using a set to store the numbers and then iterating through them to find the longest consecutive sequence:\n\n```python\ndef longest_consecutive(nums: list[int]) -> int:\n    num_set = set(nums)\n    max_length = 0\n\n    for num in num_set:\n        # Check if it's the start of a sequence\n        if num - 1 not in num_set:\n            current_num = num\n            current_length = 1\n\n            # Count the length of the sequence\n            while current_num + 1 in num_set:\n                current_num += 1\n                current_length += 1\n\n            # Update the maximum length found so far\n            max_length = max(max_length, current_length)\n\n    return max_length\n```\n\nThis function works as follows:\n\n1. Convert the input list `nums` into a set `num_set` to allow O(1) average-time complexity for membership checks.\n\n2. Initialize `max_length` to 0 to keep track of the longest consecutive sequence found.\n\n3. Iterate through each number `num` in the set `num_set`.\n\n4. For each number, check if it is the start of a sequence by verifying that `num - 1` is not in the set. If it is not, then `num` is the start of a new sequence.\n\n5. If `num` is the start of a sequence, initialize `current_num` to `num` and `current_length` to 1 to count the length of the current sequence.\n\n6. Use a while loop to count the length of the sequence by incrementing `current_num` and `current_length` until `current_num + 1` is no longer in the set.\n\n7. After counting the length of the sequence, update `max_length` with the maximum value between `max_length` and `current_length`.\n\n8. Finally, return `max_length`, which will be the length of the longest consecutive sequence found in the input list.\n\nThis implementation has a time complexity of O(n), where n is the number of elements in the input list, because each element is processed at most twice (once when checking if it's the start of a sequence and once when counting the length of the sequence). The space complexity is also O(n) due to the use of the set.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:35:20.728848+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

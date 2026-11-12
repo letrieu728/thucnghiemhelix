@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_015_longest_consecutive",
+  "task_title": "Longest Consecutive Sequence",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `longest_consecutive(nums: list[int]) -> int` that returns the length of the longest consecutive integer sequence in `nums`. Return 0 if `nums` is empty.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 12.988,
+  "assistant_solution": "```python\ndef longest_consecutive(nums: list[int]) -> int:\n    # Convert the list to a set for O(1) lookups\n    num_set = set(nums)\n    max_length = 0\n\n    for num in num_set:\n        # Check if it's the start of a sequence\n        if num - 1 not in num_set:\n            current_num = num\n            current_length = 1\n\n            # Count the length of the sequence\n            while current_num + 1 in num_set:\n                current_num += 1\n                current_length += 1\n\n            # Update the maximum length found\n            max_length = max(max_length, current_length)\n\n    return max_length\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef longest_consecutive(nums: list[int]) -> int:\n    # Convert the list to a set for O(1) lookups\n    num_set = set(nums)\n    max_length = 0\n\n    for num in num_set:\n        # Check if it's the start of a sequence\n        if num - 1 not in num_set:\n            current_num = num\n            current_length = 1\n\n            # Count the length of the sequence\n            while current_num + 1 in num_set:\n                current_num += 1\n                current_length += 1\n\n            # Update the maximum length found\n            max_length = max(max_length, current_length)\n\n    return max_length\n```\n\nThis function works by first converting the input list into a set for efficient lookups. It then iterates through each number in the set, checking if it is the start of a sequence (i.e., the previous number is not in the set). If it is, it counts the length of the sequence starting from that number and updates the maximum length found. Finally, it returns the maximum length. This approach ensures that each number is processed in constant time on average, resulting in an overall time complexity of O(n), where n is the number of elements in the input list.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T10:02:47.133443+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

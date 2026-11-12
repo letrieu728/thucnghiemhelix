@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_011_valid_sudoku",
+  "task_title": "Valid Sudoku",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `is_valid_sudoku(board: list[list[str]]) -> bool` that returns True if a 9x9 Sudoku board is valid: each row, each column, and each of the nine 3x3 sub-boxes must contain the digits '1'-'9' without repetition. Empty cells are '.' and are ignored. A partially filled board can be valid.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 25.585,
+  "assistant_solution": "```python\ndef is_valid_sudoku(board: list[list[str]]) -> bool:\n    # Initialize sets to keep track of seen numbers in rows, columns, and sub-boxes\n    rows = [set() for _ in range(9)]\n    cols = [set() for _ in range(9)]\n    boxes = [[set() for _ in range(3)] for _ in range(3)]\n    \n    for i in range(9):\n        for j in range(9):\n            num = board[i][j]\n            if num == '.':\n                continue\n            \n            # Check row\n            if num in rows[i]:\n                return False\n            rows[i].add(num)\n            \n            # Check column\n            if num in cols[j]:\n                return False\n            cols[j].add(num)\n            \n            # Check sub-box\n            box_index_i = i // 3\n            box_index_j = j // 3\n            if num in boxes[box_index_i][box_index_j]:\n                return False\n            boxes[box_index_i][box_index_j].add(num)\n    \n    return True\n\n# Example usage:\nboard = [\n    [\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"],\n    [\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"],\n    [\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"],\n    [\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"],\n    [\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"],\n    [\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"],\n    [\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"],\n    [\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"],\n    [\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]\n]\n\nprint(is_valid_sudoku(board))  # Output: True\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To determine if a given 9x9 Sudoku board is valid, we need to ensure that:\n1. Each row contains the digits '1'-'9' at most once.\n2. Each column contains the digits '1'-'9' at most once.\n3. Each of the nine 3x3 sub-boxes contains the digits '1'-'9' at most once.\n4. Empty cells (represented by '.') are ignored.\n\nHere's a step-by-step approach to implement this:\n\n1. Iterate through each row and check for duplicates.\n2. Iterate through each column and check for duplicates.\n3. Iterate through each 3x3 sub-box and check for duplicates.\n4. Ignore empty cells ('.') during these checks.\n\nWe'll use sets to keep track of the numbers encountered in each row, column, and sub-box. If we encounter a number that is already in the set for its respective row, column, or sub-box, then the board is invalid.\n\nHere's the complete implementation:\n\n```python\ndef is_valid_sudoku(board: list[list[str]]) -> bool:\n    # Initialize sets to keep track of seen numbers in rows, columns, and sub-boxes\n    rows = [set() for _ in range(9)]\n    cols = [set() for _ in range(9)]\n    boxes = [[set() for _ in range(3)] for _ in range(3)]\n    \n    for i in range(9):\n        for j in range(9):\n            num = board[i][j]\n            if num == '.':\n                continue\n            \n            # Check row\n            if num in rows[i]:\n                return False\n            rows[i].add(num)\n            \n            # Check column\n            if num in cols[j]:\n                return False\n            cols[j].add(num)\n            \n            # Check sub-box\n            box_index_i = i // 3\n            box_index_j = j // 3\n            if num in boxes[box_index_i][box_index_j]:\n                return False\n            boxes[box_index_i][box_index_j].add(num)\n    \n    return True\n\n# Example usage:\nboard = [\n    [\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"],\n    [\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"],\n    [\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"],\n    [\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"],\n    [\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"],\n    [\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"],\n    [\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"],\n    [\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"],\n    [\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]\n]\n\nprint(is_valid_sudoku(board))  # Output: True\n```\n\n### Explanation:\n- We initialize three lists of sets: `rows`, `cols`, and `boxes`. Each set corresponds to a row, column, or sub-box respectively.\n- We iterate through each cell in the board using nested loops.\n- For each non-empty cell (`num != '.'`), we check if it has already been seen in the current row, column, or sub-box.\n- If it has, the board is invalid, and we return `False`.\n- If it hasn't, we add the number to the corresponding set.\n- If we finish iterating through all cells without finding any duplicates, the board is valid, and we return `True`.\n\nThis implementation ensures that the Sudoku board meets all the required conditions efficiently.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:28:18.047449+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

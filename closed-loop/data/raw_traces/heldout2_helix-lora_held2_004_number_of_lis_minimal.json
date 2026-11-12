@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_004_number_of_lis",
+  "task_title": "Number of Longest Increasing Subsequences",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `find_number_of_lis(nums: list[int]) -> int` that returns the number of longest increasing subsequences in `nums`. Return 0 if `nums` is empty.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 14.466,
+  "assistant_solution": "```python\nfrom typing import *\nfrom collections import *\n\ndef find_number_of_lis(nums: List[int]) -> int:\n    n = len(nums)\n    if n == 0:\n        return 0\n    \n    # Initialize lengths and counts arrays\n    lengths = [1] * n\n    counts = [1] * n\n    \n    for i in range(1, n):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                if lengths[j] + 1 > lengths[i]:\n                    lengths[i] = lengths[j] + 1\n                    counts[i] = counts[j]\n                elif lengths[j] + 1 == lengths[i]:\n                    counts[i] += counts[j]\n    \n    # Find the maximum length of LIS\n    max_length = max(lengths)\n    \n    # Sum up all counts where the length equals to the maximum length\n    result = sum(count for count, length in zip(counts, lengths) if length == max_length)\n    \n    return result\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import *\nfrom collections import *\n\ndef find_number_of_lis(nums: List[int]) -> int:\n    n = len(nums)\n    if n == 0:\n        return 0\n    \n    # Initialize lengths and counts arrays\n    lengths = [1] * n\n    counts = [1] * n\n    \n    for i in range(1, n):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                if lengths[j] + 1 > lengths[i]:\n                    lengths[i] = lengths[j] + 1\n                    counts[i] = counts[j]\n                elif lengths[j] + 1 == lengths[i]:\n                    counts[i] += counts[j]\n    \n    # Find the maximum length of LIS\n    max_length = max(lengths)\n    \n    # Sum up all counts where the length equals to the maximum length\n    result = sum(count for count, length in zip(counts, lengths) if length == max_length)\n    \n    return result\n```\nThis Python function implements dynamic programming to find the number of longest increasing subsequences in a given list of integers. It initializes two lists, `lengths` and `counts`, to keep track of the length of the longest increasing subsequence ending at each index and the number of such subsequences, respectively. The function iterates through the list, updating these values based on the conditions provided. Finally, it calculates the total number of longest increasing subsequences by summing up the counts corresponding to the maximum length found.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:40:43.536150+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

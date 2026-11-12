@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_007_course_order",
+  "task_title": "Course Schedule II (Valid Order)",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `find_order(num_courses: int, prerequisites: list[list[int]]) -> list[int]` that returns any valid order in which all courses can be taken. Each prerequisite `[a, b]` means course `b` must be taken before course `a`. Return an empty list if no valid order exists (a cycle).",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 24.482,
+  "assistant_solution": "```python\nfrom collections import defaultdict, deque\n\ndef find_order(num_courses: int, prerequisites: list[list[int]]) -> list[int]:\n    # Step 1: Build the graph and calculate in-degrees\n    graph = defaultdict(list)\n    in_degree = [0] * num_courses\n    \n    for course, prereq in prerequisites:\n        graph[prereq].append(course)\n        in_degree[course] += 1\n    \n    # Step 2: Initialize the queue with nodes having zero in-degree\n    queue = deque([i for i in range(num_courses) if in_degree[i] == 0])\n    \n    # Step 3: Perform topological sorting\n    topo_order = []\n    while queue:\n        node = queue.popleft()\n        topo_order.append(node)\n        \n        for neighbor in graph[node]:\n            in_degree[neighbor] -= 1\n            if in_degree[neighbor] == 0:\n                queue.append(neighbor)\n    \n    # Step 4: Check if a valid topological order was found\n    if len(topo_order) == num_courses:\n        return topo_order\n    else:\n        return []\n\n# Example usage:\nnum_courses = 4\nprerequisites = [[1, 0], [2, 0], [3, 1], [3, 2]]\nprint(find_order(num_courses, prerequisites))  # Output: [0, 1, 2, 3]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we need to determine if there is a topological sort of the given directed graph. A topological sort is possible if and only if the graph has no cycles. If it does have cycles, then no valid order exists.\n\nHere's a step-by-step approach to implement the function:\n\n1. **Graph Representation**: Use an adjacency list to represent the graph.\n2. **In-degree Calculation**: Calculate the in-degree (number of incoming edges) for each node.\n3. **Topological Sorting**:\n   - Initialize a queue with all nodes having zero in-degree.\n   - Process each node in the queue, reducing the in-degree of its neighbors by one.\n   - If a neighbor's in-degree becomes zero, add it to the queue.\n4. **Cycle Detection**: If the number of nodes processed equals the total number of nodes, a valid topological order exists. Otherwise, there is a cycle.\n\nHere's the complete implementation:\n\n```python\nfrom collections import defaultdict, deque\n\ndef find_order(num_courses: int, prerequisites: list[list[int]]) -> list[int]:\n    # Step 1: Build the graph and calculate in-degrees\n    graph = defaultdict(list)\n    in_degree = [0] * num_courses\n    \n    for course, prereq in prerequisites:\n        graph[prereq].append(course)\n        in_degree[course] += 1\n    \n    # Step 2: Initialize the queue with nodes having zero in-degree\n    queue = deque([i for i in range(num_courses) if in_degree[i] == 0])\n    \n    # Step 3: Perform topological sorting\n    topo_order = []\n    while queue:\n        node = queue.popleft()\n        topo_order.append(node)\n        \n        for neighbor in graph[node]:\n            in_degree[neighbor] -= 1\n            if in_degree[neighbor] == 0:\n                queue.append(neighbor)\n    \n    # Step 4: Check if a valid topological order was found\n    if len(topo_order) == num_courses:\n        return topo_order\n    else:\n        return []\n\n# Example usage:\nnum_courses = 4\nprerequisites = [[1, 0], [2, 0], [3, 1], [3, 2]]\nprint(find_order(num_courses, prerequisites))  # Output: [0, 1, 2, 3]\n```\n\n### Explanation:\n- **Graph Construction**: We use a dictionary where each key is a course and the value is a list of courses that depend on it.\n- **In-degree Calculation**: We maintain an array `in_degree` where `in_degree[i]` represents the number of prerequisites for course `i`.\n- **Queue Initialization**: We start with a queue containing all courses that have no prerequisites (`in_degree[i] == 0`).\n- **Topological Sorting**: We process each node in the queue, add it to the result list, and decrease the in-degree of its neighbors. If a neighbor's in-degree becomes zero, it is added to the queue.\n- **Cycle Detection**: If the length of the topological order list is equal to the number of courses, it means there is no cycle, and we return the topological order. Otherwise, we return an empty list indicating a cycle exists.\n\nThis implementation ensures that we correctly handle both cases: when a valid order exists and when it does not.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:19:42.054028+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

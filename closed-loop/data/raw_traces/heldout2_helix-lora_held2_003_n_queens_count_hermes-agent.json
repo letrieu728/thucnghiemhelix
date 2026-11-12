@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_003_n_queens_count",
+  "task_title": "N-Queens Count",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `total_n_queens(n: int) -> int` that returns the number of distinct solutions to the n-queens puzzle: place `n` queens on an `n x n` chessboard so that no two queens attack each other.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 20.78,
+  "assistant_solution": "```python\ndef total_n_queens(n: int) -> int:\n    def is_safe(board, row, col):\n        # Check this row on left side\n        for i in range(col):\n            if board[row][i] == 1:\n                return False\n\n        # Check upper diagonal on left side\n        for i, j in zip(range(row, -1, -1), range(col, -1, -1)):\n            if board[i][j] == 1:\n                return False\n\n        # Check lower diagonal on left side\n        for i, j in zip(range(row, n, 1), range(col, -1, -1)):\n            if board[i][j] == 1:\n                return False\n\n        return True\n\n    def solve_n_queens_util(board, col):\n        # base case: If all queens are placed then return true\n        if col >= n:\n            return 1\n\n        # Consider this column and try placing this queen in all rows one by one\n        res = 0\n        for i in range(n):\n            if is_safe(board, i, col):\n                # Place this queen in board[i][col]\n                board[i][col] = 1\n\n                # recur to place rest of the queens\n                res += solve_n_queens_util(board, col + 1)\n\n                # If placing queen in board[i][col] doesn't lead to a solution then remove queen from board[i][col]\n                board[i][col] = 0\n\n        return res\n\n    # Create an empty board\n    board = [[0 for _ in range(n)] for _ in range(n)]\n\n    # Call the recursive utility function to solve N Queens problem\n    return solve_n_queens_util(board, 0)\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef total_n_queens(n: int) -> int:\n    def is_safe(board, row, col):\n        # Check this row on left side\n        for i in range(col):\n            if board[row][i] == 1:\n                return False\n\n        # Check upper diagonal on left side\n        for i, j in zip(range(row, -1, -1), range(col, -1, -1)):\n            if board[i][j] == 1:\n                return False\n\n        # Check lower diagonal on left side\n        for i, j in zip(range(row, n, 1), range(col, -1, -1)):\n            if board[i][j] == 1:\n                return False\n\n        return True\n\n    def solve_n_queens_util(board, col):\n        # base case: If all queens are placed then return true\n        if col >= n:\n            return 1\n\n        # Consider this column and try placing this queen in all rows one by one\n        res = 0\n        for i in range(n):\n            if is_safe(board, i, col):\n                # Place this queen in board[i][col]\n                board[i][col] = 1\n\n                # recur to place rest of the queens\n                res += solve_n_queens_util(board, col + 1)\n\n                # If placing queen in board[i][col] doesn't lead to a solution then remove queen from board[i][col]\n                board[i][col] = 0\n\n        return res\n\n    # Create an empty board\n    board = [[0 for _ in range(n)] for _ in range(n)]\n\n    # Call the recursive utility function to solve N Queens problem\n    return solve_n_queens_util(board, 0)\n```\n\nThis function uses backtracking to explore all possible placements of queens on the board while ensuring no two queens threaten each other. The `is_safe` function checks if it's safe to place a queen at a given position, and `solve_n_queens_util` recursively tries to place queens column by column. The main function initializes the board and starts the recursion.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:40:13.952282+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

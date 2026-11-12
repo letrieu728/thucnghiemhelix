@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_008_median_finder",
+  "task_title": "Find Median from Data Stream",
+  "difficulty": "hard",
+  "prompt": "Implement a class `MedianFinder` in Python with methods `add_num(num: int) -> None` (adds a number to the data stream) and `find_median() -> float` (returns the median of all numbers added so far). `find_median` is only called when at least one number has been added.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 12.764,
+  "assistant_solution": "```python\nfrom heapq import heappush, heappop\n\nclass MedianFinder:\n    def __init__(self):\n        # Max-heap for the lower half of the numbers\n        self.lower = []\n        # Min-heap for the upper half of the numbers\n        self.upper = []\n\n    def add_num(self, num: int) -> None:\n        # Add to max-heap by pushing negative value\n        heappush(self.lower, -heappushpop(self.upper, num))\n        # Balance heaps if necessary\n        if len(self.lower) > len(self.upper):\n            heappush(self.upper, -heappop(self.lower))\n\n    def find_median(self) -> float:\n        # If even number of elements, average the two middle values\n        if len(self.lower) == len(self.upper):\n            return (-self.lower[0] + self.upper[0]) / 2.0\n        else:\n            # If odd, the root of the min-heap is the median\n            return self.upper[0]\n```",
+  "passed": false,
+  "test_result": {
+    "passed": false,
+    "error": "Traceback (most recent call last):\n  File \"<string>\", line 26, in <module>\n  File \"<string>\", line 12, in add_num\nNameError: name 'heappushpop' is not defined. Did you mean: 'heappush'?"
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom heapq import heappush, heappop\n\nclass MedianFinder:\n    def __init__(self):\n        # Max-heap for the lower half of the numbers\n        self.lower = []\n        # Min-heap for the upper half of the numbers\n        self.upper = []\n\n    def add_num(self, num: int) -> None:\n        # Add to max-heap by pushing negative value\n        heappush(self.lower, -heappushpop(self.upper, num))\n        # Balance heaps if necessary\n        if len(self.lower) > len(self.upper):\n            heappush(self.upper, -heappop(self.lower))\n\n    def find_median(self) -> float:\n        # If even number of elements, average the two middle values\n        if len(self.lower) == len(self.upper):\n            return (-self.lower[0] + self.upper[0]) / 2.0\n        else:\n            # If odd, the root of the min-heap is the median\n            return self.upper[0]\n```\nThis solution uses two heaps to maintain the two halves of the sorted list. The `lower` heap is a max-heap (using negative values to simulate), and the `upper` heap is a min-heap. This allows efficient insertion and retrieval of the median.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<string>\", line 26, in <module>\n  File \"<string>\", line 12, in add_num\nNameError: name 'heappushpop' is not defined. Did you mean: 'heappush'?",
+  "timestamp": "2026-11-12T09:45:47.740176+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

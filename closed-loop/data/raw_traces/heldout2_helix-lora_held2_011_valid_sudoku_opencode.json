@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_011_valid_sudoku",
+  "task_title": "Valid Sudoku",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `is_valid_sudoku(board: list[list[str]]) -> bool` that returns True if a 9x9 Sudoku board is valid: each row, each column, and each of the nine 3x3 sub-boxes must contain the digits '1'-'9' without repetition. Empty cells are '.' and are ignored. A partially filled board can be valid.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 8.21,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef is_valid_sudoku(board: List[List[str]]) -> bool:\n    rows = [set() for _ in range(9)]\n    cols = [set() for _ in range(9)]\n    boxes = [[set() for _ in range(3)] for _ in range(3)]\n\n    for i in range(9):\n        for j in range(9):\n            num = board[i][j]\n            if num == '.':\n                continue\n            if num in rows[i] or num in cols[j] or num in boxes[i//3][j//3]:\n                return False\n            rows[i].add(num)\n            cols[j].add(num)\n            boxes[i//3][j//3].add(num)\n\n    return True\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef is_valid_sudoku(board: List[List[str]]) -> bool:\n    rows = [set() for _ in range(9)]\n    cols = [set() for _ in range(9)]\n    boxes = [[set() for _ in range(3)] for _ in range(3)]\n\n    for i in range(9):\n        for j in range(9):\n            num = board[i][j]\n            if num == '.':\n                continue\n            if num in rows[i] or num in cols[j] or num in boxes[i//3][j//3]:\n                return False\n            rows[i].add(num)\n            cols[j].add(num)\n            boxes[i//3][j//3].add(num)\n\n    return True\n```",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:56:37.411422+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_005_word_ladder",
+  "task_title": "Word Ladder Length",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `ladder_length(begin_word: str, end_word: str, word_list: list[str]) -> int` that returns the number of words in the shortest transformation sequence from `begin_word` to `end_word`, changing exactly one letter at a time, where every intermediate word must be in `word_list`. Return 0 if no such sequence exists. The count includes both `begin_word` and `end_word`.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 14.37,
+  "assistant_solution": "```python\nfrom collections import deque\n\ndef ladder_length(begin_word: str, end_word: str, word_list: list[str]) -> int:\n    # Convert word_list to set for O(1) lookups\n    word_set = set(word_list)\n    \n    # If end_word is not in word_set, return 0 as it's impossible to transform\n    if end_word not in word_set:\n        return 0\n    \n    # Initialize queue with (begin_word, 1) where 1 is the length of the current path\n    queue = deque([(begin_word, 1)])\n    \n    # Set to keep track of visited words to avoid cycles\n    visited = set()\n    \n    while queue:\n        current_word, length = queue.popleft()\n        \n        # If we reach the end_word, return the length of the path\n        if current_word == end_word:\n            return length\n        \n        # Try all possible one-letter transformations\n        for i in range(len(current_word)):\n            for char in 'abcdefghijklmnopqrstuvwxyz':\n                next_word = current_word[:i] + char + current_word[i+1:]\n                \n                # Check if the new word is valid and not visited\n                if next_word in word_set and next_word not in visited:\n                    visited.add(next_word)\n                    queue.append((next_word, length + 1))\n                    \n    # If we exhaust the queue without finding the end_word, return 0\n    return 0\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom collections import deque\n\ndef ladder_length(begin_word: str, end_word: str, word_list: list[str]) -> int:\n    # Convert word_list to set for O(1) lookups\n    word_set = set(word_list)\n    \n    # If end_word is not in word_set, return 0 as it's impossible to transform\n    if end_word not in word_set:\n        return 0\n    \n    # Initialize queue with (begin_word, 1) where 1 is the length of the current path\n    queue = deque([(begin_word, 1)])\n    \n    # Set to keep track of visited words to avoid cycles\n    visited = set()\n    \n    while queue:\n        current_word, length = queue.popleft()\n        \n        # If we reach the end_word, return the length of the path\n        if current_word == end_word:\n            return length\n        \n        # Try all possible one-letter transformations\n        for i in range(len(current_word)):\n            for char in 'abcdefghijklmnopqrstuvwxyz':\n                next_word = current_word[:i] + char + current_word[i+1:]\n                \n                # Check if the new word is valid and not visited\n                if next_word in word_set and next_word not in visited:\n                    visited.add(next_word)\n                    queue.append((next_word, length + 1))\n                    \n    # If we exhaust the queue without finding the end_word, return 0\n    return 0\n```\n\nThis Python function uses a breadth-first search (BFS) approach to find the shortest transformation sequence from `begin_word` to `end_word`. It maintains a queue to explore all possible transformations level by level, ensuring that each transformation changes exactly one letter. The function checks if the transformed word is in the provided `word_list` and has not been visited before to avoid cycles. If the `end_word` is reached, the function returns the length of the transformation sequence. If no sequence is found, it returns 0.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:16:30.855440+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

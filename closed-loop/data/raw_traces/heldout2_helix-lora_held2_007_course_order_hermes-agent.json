@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_007_course_order",
+  "task_title": "Course Schedule II (Valid Order)",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `find_order(num_courses: int, prerequisites: list[list[int]]) -> list[int]` that returns any valid order in which all courses can be taken. Each prerequisite `[a, b]` means course `b` must be taken before course `a`. Return an empty list if no valid order exists (a cycle).",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 24.092,
+  "assistant_solution": "```python\nfrom collections import defaultdict\n\ndef find_order(num_courses: int, prerequisites: list[list[int]]) -> list[int]:\n    # Build the graph and count prerequisites for each course\n    graph = defaultdict(list)\n    in_degree = [0] * num_courses\n    \n    for course, prereq in prerequisites:\n        graph[prereq].append(course)\n        in_degree[course] += 1\n    \n    # Initialize queue with courses having zero prerequisites\n    queue = [i for i in range(num_courses) if in_degree[i] == 0]\n    result = []\n    \n    while queue:\n        current_course = queue.pop(0)\n        result.append(current_course)\n        \n        # Decrease the in-degree of dependent courses\n        for neighbor in graph[current_course]:\n            in_degree[neighbor] -= 1\n            \n            # If a dependent course has no more prerequisites, add to queue\n            if in_degree[neighbor] == 0:\n                queue.append(neighbor)\n    \n    # If we processed all courses, return the result; otherwise, there's a cycle\n    return result if len(result) == num_courses else []\n\n# Example usage:\nnum_courses = 4\nprerequisites = [[1, 0], [2, 0], [3, 1], [3, 2]]\nprint(find_order(num_courses, prerequisites))  # Output: [0, 1, 2, 3] or [0, 2, 1, 3]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom collections import defaultdict\n\ndef find_order(num_courses: int, prerequisites: list[list[int]]) -> list[int]:\n    # Build the graph and count prerequisites for each course\n    graph = defaultdict(list)\n    in_degree = [0] * num_courses\n    \n    for course, prereq in prerequisites:\n        graph[prereq].append(course)\n        in_degree[course] += 1\n    \n    # Initialize queue with courses having zero prerequisites\n    queue = [i for i in range(num_courses) if in_degree[i] == 0]\n    result = []\n    \n    while queue:\n        current_course = queue.pop(0)\n        result.append(current_course)\n        \n        # Decrease the in-degree of dependent courses\n        for neighbor in graph[current_course]:\n            in_degree[neighbor] -= 1\n            \n            # If a dependent course has no more prerequisites, add to queue\n            if in_degree[neighbor] == 0:\n                queue.append(neighbor)\n    \n    # If we processed all courses, return the result; otherwise, there's a cycle\n    return result if len(result) == num_courses else []\n\n# Example usage:\nnum_courses = 4\nprerequisites = [[1, 0], [2, 0], [3, 1], [3, 2]]\nprint(find_order(num_courses, prerequisites))  # Output: [0, 1, 2, 3] or [0, 2, 1, 3]\n```\n\n### Explanation:\n1. **Graph Construction**: We use a dictionary `graph` where each key is a course and its value is a list of courses that depend on it. We also maintain an `in_degree` list to keep track of how many prerequisites each course has.\n\n2. **Initialization**: We initialize a queue with all courses that have zero prerequisites (i.e., they can be taken immediately).\n\n3. **Topological Sorting**:\n   - While the queue is not empty, we pop a course from the front.\n   - Add this course to the result list.\n   - For each course that depends on the popped course, decrease its in-degree by one.\n   - If a dependent course now has zero prerequisites, add it to the queue.\n\n4. **Cycle Detection**: If the length of the result list equals the number of courses, it means we have successfully sorted all courses without encountering a cycle. Otherwise, there is a cycle, and we return an empty list.\n\nThis approach ensures that we find a valid topological ordering if one exists, using Kahn's algorithm for topological sorting.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:45:24.541716+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

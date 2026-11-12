@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_012_gas_station",
+  "task_title": "Gas Station Circuit",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `can_complete_circuit(gas: list[int], cost: list[int]) -> int` that returns the starting gas station index from which a car can complete the full circuit, or -1 if it is impossible. The car starts with an empty tank; at station `i` it gains `gas[i]` fuel and spends `cost[i]` fuel to reach station `i+1` (circularly). If a solution exists it is unique.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 15.424,
+  "assistant_solution": "```python\ndef can_complete_circuit(gas: list[int], cost: list[int]) -> int:\n    # Initialize total_gas to track the net gain/loss of gas throughout the journey\n    # Initialize start_index to mark the potential starting point\n    # Initialize current_gas to track the gas balance at the current position\n    total_gas = start_index = current_gas = 0\n    \n    for i in range(len(gas)):\n        # Update the total gas by adding the difference between gas gained and cost incurred at station i\n        total_gas += gas[i] - cost[i]\n        \n        # Update the current gas balance\n        current_gas += gas[i] - cost[i]\n        \n        # If current gas balance goes negative, reset it and update the start index\n        if current_gas < 0:\n            current_gas = 0\n            start_index = i + 1\n    \n    # If total gas is non-negative, return the start index, otherwise return -1 indicating no solution\n    return start_index if total_gas >= 0 else -1\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef can_complete_circuit(gas: list[int], cost: list[int]) -> int:\n    # Initialize total_gas to track the net gain/loss of gas throughout the journey\n    # Initialize start_index to mark the potential starting point\n    # Initialize current_gas to track the gas balance at the current position\n    total_gas = start_index = current_gas = 0\n    \n    for i in range(len(gas)):\n        # Update the total gas by adding the difference between gas gained and cost incurred at station i\n        total_gas += gas[i] - cost[i]\n        \n        # Update the current gas balance\n        current_gas += gas[i] - cost[i]\n        \n        # If current gas balance goes negative, reset it and update the start index\n        if current_gas < 0:\n            current_gas = 0\n            start_index = i + 1\n    \n    # If total gas is non-negative, return the start index, otherwise return -1 indicating no solution\n    return start_index if total_gas >= 0 else -1\n```\n\nThis solution iterates through each gas station once, maintaining a running total of the gas balance (`current_gas`) and checking if it ever becomes negative. If it does, the starting point is updated to the next station. Finally, if the total gas is non-negative, the starting index is returned as the solution; otherwise, -1 is returned indicating that completing the circuit is not possible. This approach ensures that the solution is found efficiently with a time complexity of O(n), where n is the number of gas stations.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:57:36.456115+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

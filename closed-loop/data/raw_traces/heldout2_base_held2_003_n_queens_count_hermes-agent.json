@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_003_n_queens_count",
+  "task_title": "N-Queens Count",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `total_n_queens(n: int) -> int` that returns the number of distinct solutions to the n-queens puzzle: place `n` queens on an `n x n` chessboard so that no two queens attack each other.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 25.695,
+  "assistant_solution": "```python\ndef total_n_queens(n: int) -> int:\n    def is_safe(row, col):\n        # Check if there is a queen in the same column\n        if col in cols:\n            return False\n        \n        # Check if there is a queen in the same positive diagonal\n        if row - col in pos_diags:\n            return False\n        \n        # Check if there is a queen in the same negative diagonal\n        if row + col in neg_diags:\n            return False\n        \n        return True\n    \n    def backtrack(row=0):\n        # If we've reached the last row, we found a valid solution\n        if row == n:\n            nonlocal count\n            count += 1\n            return\n        \n        # Try placing a queen in each column of the current row\n        for col in range(n):\n            if is_safe(row, col):\n                # Place the queen\n                cols.add(col)\n                pos_diags.add(row - col)\n                neg_diags.add(row + col)\n                \n                # Move to the next row\n                backtrack(row + 1)\n                \n                # Backtrack\n                cols.remove(col)\n                pos_diags.remove(row - col)\n                neg_diags.remove(row + col)\n    \n    # Initialize sets to keep track of used columns and diagonals\n    cols = set()\n    pos_diags = set()\n    neg_diags = set()\n    \n    # Count of valid solutions\n    count = 0\n    \n    # Start the backtracking process\n    backtrack()\n    \n    return count\n\n# Example usage:\nprint(total_n_queens(4))  # Output: 2\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve the n-Queens puzzle, we need to place `n` queens on an `n x n` chessboard such that no two queens threaten each other. This means no two queens can be in the same row, column, or diagonal.\n\nHere's a step-by-step approach to solving this problem:\n\n1. **Backtracking**: We will use a backtracking algorithm to explore all possible placements of queens on the board.\n2. **Tracking Columns and Diagonals**: We will use three sets to keep track of columns and both diagonals (one for the main diagonals and one for the anti-diagonals) that already have a queen placed.\n3. **Recursive Placement**: We will recursively try to place a queen in each row, moving from left to right. If placing a queen is valid, we move to the next row; otherwise, we backtrack and try another position.\n4. **Counting Solutions**: We will count all valid configurations where all `n` queens are placed successfully.\n\nHere's the implementation of the `total_n_queens` function:\n\n```python\ndef total_n_queens(n: int) -> int:\n    def is_safe(row, col):\n        # Check if there is a queen in the same column\n        if col in cols:\n            return False\n        \n        # Check if there is a queen in the same positive diagonal\n        if row - col in pos_diags:\n            return False\n        \n        # Check if there is a queen in the same negative diagonal\n        if row + col in neg_diags:\n            return False\n        \n        return True\n    \n    def backtrack(row=0):\n        # If we've reached the last row, we found a valid solution\n        if row == n:\n            nonlocal count\n            count += 1\n            return\n        \n        # Try placing a queen in each column of the current row\n        for col in range(n):\n            if is_safe(row, col):\n                # Place the queen\n                cols.add(col)\n                pos_diags.add(row - col)\n                neg_diags.add(row + col)\n                \n                # Move to the next row\n                backtrack(row + 1)\n                \n                # Backtrack\n                cols.remove(col)\n                pos_diags.remove(row - col)\n                neg_diags.remove(row + col)\n    \n    # Initialize sets to keep track of used columns and diagonals\n    cols = set()\n    pos_diags = set()\n    neg_diags = set()\n    \n    # Count of valid solutions\n    count = 0\n    \n    # Start the backtracking process\n    backtrack()\n    \n    return count\n\n# Example usage:\nprint(total_n_queens(4))  # Output: 2\n```\n\n### Explanation:\n- **is_safe(row, col)**: This helper function checks if it's safe to place a queen at position `(row, col)` by ensuring no other queen is in the same column or either of the diagonals.\n- **backtrack(row)**: This recursive function tries to place a queen in each column of the current row. If placing a queen is valid, it moves to the next row. If it reaches the last row, it increments the count of valid solutions. After exploring all possibilities for the current row, it backtracks by removing the queen and trying the next column.\n- **cols**, **pos_diags**, and **neg_diags**: These sets keep track of the columns and diagonals that already have a queen placed, ensuring that no two queens threaten each other.\n\nThis approach ensures that we efficiently explore all possible configurations and count only those that satisfy the n-Queens condition.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:14:45.334514+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

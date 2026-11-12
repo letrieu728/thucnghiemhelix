@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_008_median_finder",
+  "task_title": "Find Median from Data Stream",
+  "difficulty": "hard",
+  "prompt": "Implement a class `MedianFinder` in Python with methods `add_num(num: int) -> None` (adds a number to the data stream) and `find_median() -> float` (returns the median of all numbers added so far). `find_median` is only called when at least one number has been added.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 14.575,
+  "assistant_solution": "```python\nimport heapq\n\nclass MedianFinder:\n    def __init__(self):\n        # Max heap for lower half of numbers\n        self.max_heap = []\n        # Min heap for upper half of numbers\n        self.min_heap = []\n\n    def add_num(self, num: int) -> None:\n        # Add to max heap by pushing negative value\n        heapq.heappush(self.max_heap, -heapq.heappushpop(self.min_heap, num))\n        \n        # Balance heaps if necessary\n        if len(self.max_heap) > len(self.min_heap):\n            heapq.heappush(self.min_heap, -heapq.heappop(self.max_heap))\n\n    def find_median(self) -> float:\n        # If even number of elements, average the two middle values\n        if len(self.max_heap) == len(self.min_heap):\n            return (-self.max_heap[0] + self.min_heap[0]) / 2.0\n        else:\n            # If odd, the root of min heap is the median\n            return self.min_heap[0]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nimport heapq\n\nclass MedianFinder:\n    def __init__(self):\n        # Max heap for lower half of numbers\n        self.max_heap = []\n        # Min heap for upper half of numbers\n        self.min_heap = []\n\n    def add_num(self, num: int) -> None:\n        # Add to max heap by pushing negative value\n        heapq.heappush(self.max_heap, -heapq.heappushpop(self.min_heap, num))\n        \n        # Balance heaps if necessary\n        if len(self.max_heap) > len(self.min_heap):\n            heapq.heappush(self.min_heap, -heapq.heappop(self.max_heap))\n\n    def find_median(self) -> float:\n        # If even number of elements, average the two middle values\n        if len(self.max_heap) == len(self.min_heap):\n            return (-self.max_heap[0] + self.min_heap[0]) / 2.0\n        else:\n            # If odd, the root of min heap is the median\n            return self.min_heap[0]\n```\n\nThis implementation uses two heaps to maintain the two halves of the sorted list of numbers. The `max_heap` stores the smaller half of the numbers using negative values to simulate a max heap with Python's `heapq`, which is a min heap by default. The `min_heap` stores the larger half. This ensures that the median can be found efficiently as either the top of the `min_heap` or the average of the tops of both heaps.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:47:29.938817+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

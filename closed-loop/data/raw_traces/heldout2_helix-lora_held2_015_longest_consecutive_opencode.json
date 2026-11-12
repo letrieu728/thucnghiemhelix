@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_015_longest_consecutive",
+  "task_title": "Longest Consecutive Sequence",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `longest_consecutive(nums: list[int]) -> int` that returns the length of the longest consecutive integer sequence in `nums`. Return 0 if `nums` is empty.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 6.683,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef longest_consecutive(nums: List[int]) -> int:\n    num_set = set(nums)\n    longest_streak = 0\n\n    for num in num_set:\n        if num - 1 not in num_set:\n            current_num = num\n            current_streak = 1\n\n            while current_num + 1 in num_set:\n                current_num += 1\n                current_streak += 1\n\n            longest_streak = max(longest_streak, current_streak)\n\n    return longest_streak\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef longest_consecutive(nums: List[int]) -> int:\n    num_set = set(nums)\n    longest_streak = 0\n\n    for num in num_set:\n        if num - 1 not in num_set:\n            current_num = num\n            current_streak = 1\n\n            while current_num + 1 in num_set:\n                current_num += 1\n                current_streak += 1\n\n            longest_streak = max(longest_streak, current_streak)\n\n    return longest_streak\n```",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T10:02:54.722244+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

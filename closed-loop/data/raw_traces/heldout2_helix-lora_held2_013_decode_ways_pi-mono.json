@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_013_decode_ways",
+  "task_title": "Decode Ways",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `num_decodings(s: str) -> int` that returns the number of ways to decode a non-empty string of digits `s`, where '1' to '26' map to letters 'A' to 'Z'. A '0' cannot be decoded on its own; it is only valid as part of '10' or '20'.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 29.614,
+  "assistant_solution": "```python\ndef num_decodings(s: str) -> int:\n    if not s or s[0] == '0':\n        return 0\n    \n    n = len(s)\n    dp = [0] * n\n    dp[0] = 1\n    \n    for i in range(1, n):\n        # Single digit check\n        if s[i] != '0':\n            dp[i] += dp[i-1]\n        \n        # Two digits check\n        two_digit = int(s[i-1:i+1])\n        if 10 <= two_digit <= 26:\n            dp[i] += dp[i-2] if i >= 2 else 1\n    \n    return dp[n-1]\n\n# Example usage:\nprint(num_decodings(\"12\"))  # Output: 2\nprint(num_decodings(\"226\"))  # Output: 3\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use dynamic programming. The idea is to maintain an array `dp` where `dp[i]` represents the number of ways to decode the substring `s[0:i+1]`. We will iterate through the string and fill this array based on the rules provided.\n\nHere's a step-by-step breakdown of the approach:\n\n1. **Initialization**:\n   - If the first character is '0', return 0 because '0' cannot be decoded on its own.\n   - Initialize `dp[0]` to 1 because there's one way to decode a single digit if it's not '0'.\n\n2. **Filling the DP Array**:\n   - Iterate through the string starting from the second character.\n   - For each character at position `i`:\n     - Check if the single-digit substring `s[i-1:i+1]` (from `i-1` to `i`) is a valid decoding ('1' to '26'). If so, add `dp[i-1]` to `dp[i]`.\n     - Check if the two-digit substring `s[i-2:i+1]` (from `i-2` to `i`) is a valid decoding ('10' to '20'). If so, add `dp[i-2]` to `dp[i]`.\n\n3. **Result**:\n   - The value at `dp[len(s)-1]` will give the number of ways to decode the entire string.\n\nHere's the complete implementation:\n\n```python\ndef num_decodings(s: str) -> int:\n    if not s or s[0] == '0':\n        return 0\n    \n    n = len(s)\n    dp = [0] * n\n    dp[0] = 1\n    \n    for i in range(1, n):\n        # Single digit check\n        if s[i] != '0':\n            dp[i] += dp[i-1]\n        \n        # Two digits check\n        two_digit = int(s[i-1:i+1])\n        if 10 <= two_digit <= 26:\n            dp[i] += dp[i-2] if i >= 2 else 1\n    \n    return dp[n-1]\n\n# Example usage:\nprint(num_decodings(\"12\"))  # Output: 2\nprint(num_decodings(\"226\"))  # Output: 3\n```\n\n### Explanation:\n- **Single Digit Check**: If the current character is not '0', it can be decoded alone, so we add `dp[i-1]` to `dp[i]`.\n- **Two Digits Check**: If the two characters form a number between 10 and 26, it can be decoded together, so we add `dp[i-2]` to `dp[i]`. Note that if `i` is less than 2, we need to handle the base case separately by adding 1.\n\nThis approach ensures that we efficiently compute the number of decodings using dynamic programming with a time complexity of O(n), where n is the length of the string.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:58:29.745637+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

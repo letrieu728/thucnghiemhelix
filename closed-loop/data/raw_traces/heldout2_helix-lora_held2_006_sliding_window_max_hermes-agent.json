@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_006_sliding_window_max",
+  "task_title": "Sliding Window Maximum",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `max_sliding_window(nums: list[int], k: int) -> list[int]` that returns the maximum of each sliding window of size `k` as it moves from left to right. Return an empty list if `nums` is empty.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 15.194,
+  "assistant_solution": "```python\nfrom collections import deque\n\ndef max_sliding_window(nums: list[int], k: int) -> list[int]:\n    # Edge case: if nums is empty or k is 0, return an empty list\n    if not nums or k == 0:\n        return []\n    \n    result = []\n    # Use a deque to store indices of elements in the current window\n    deq = deque()\n    \n    for i, num in enumerate(nums):\n        # Remove indices that are out of the current window's range\n        if deq and deq[0] < i - k + 1:\n            deq.popleft()\n        \n        # Remove elements smaller than the current number from the deque\n        while deq and nums[deq[-1]] < num:\n            deq.pop()\n        \n        # Add the current index to the deque\n        deq.append(i)\n        \n        # The first element in the deque is the maximum of the current window\n        if i >= k - 1:\n            result.append(nums[deq[0]])\n    \n    return result\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom collections import deque\n\ndef max_sliding_window(nums: list[int], k: int) -> list[int]:\n    # Edge case: if nums is empty or k is 0, return an empty list\n    if not nums or k == 0:\n        return []\n    \n    result = []\n    # Use a deque to store indices of elements in the current window\n    deq = deque()\n    \n    for i, num in enumerate(nums):\n        # Remove indices that are out of the current window's range\n        if deq and deq[0] < i - k + 1:\n            deq.popleft()\n        \n        # Remove elements smaller than the current number from the deque\n        while deq and nums[deq[-1]] < num:\n            deq.pop()\n        \n        # Add the current index to the deque\n        deq.append(i)\n        \n        # The first element in the deque is the maximum of the current window\n        if i >= k - 1:\n            result.append(nums[deq[0]])\n    \n    return result\n```\n\nThis solution uses a deque to efficiently keep track of the indices of the elements within the current sliding window. By maintaining the deque in decreasing order of the elements' values, we can always access the maximum element of the current window in constant time. The time complexity is O(n), where n is the length of the input list, because each element is added and removed from the deque at most once. The space complexity is O(k) due to the storage required by the deque.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:44:00.444015+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

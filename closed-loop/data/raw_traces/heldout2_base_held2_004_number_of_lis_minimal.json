@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_004_number_of_lis",
+  "task_title": "Number of Longest Increasing Subsequences",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `find_number_of_lis(nums: list[int]) -> int` that returns the number of longest increasing subsequences in `nums`. Return 0 if `nums` is empty.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 21.261,
+  "assistant_solution": "```python\ndef find_number_of_lis(nums: list[int]) -> int:\n    if not nums:\n        return 0\n    \n    n = len(nums)\n    lengths = [1] * n\n    counts = [1] * n\n    \n    for i in range(1, n):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                if lengths[i] < lengths[j] + 1:\n                    lengths[i] = lengths[j] + 1\n                    counts[i] = counts[j]\n                elif lengths[i] == lengths[j] + 1:\n                    counts[i] += counts[j]\n    \n    max_length = max(lengths)\n    result = sum(counts[i] for i in range(n) if lengths[i] == max_length)\n    \n    return result\n\n# Example usage:\nnums = [1, 3, 5, 4, 7]\nprint(find_number_of_lis(nums))  # Output: 2\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use dynamic programming to keep track of both the length of the longest increasing subsequence (LIS) ending at each index and the count of such subsequences.\n\nHere's a step-by-step approach:\n\n1. **Initialization**:\n   - Create two lists, `lengths` and `counts`, where `lengths[i]` represents the length of the LIS ending at index `i`, and `counts[i]` represents the number of such LISs.\n   - Initialize both lists with 1 because the minimum LIS ending at any element is the element itself.\n\n2. **Dynamic Programming Transition**:\n   - Iterate through each pair of indices `(i, j)` where `i > j`.\n   - If `nums[i] > nums[j]`, it means `nums[i]` can extend the LIS ending at `nums[j]`.\n   - Update `lengths[i]` to be the maximum of its current value and `lengths[j] + 1`.\n   - If `lengths[i] == lengths[j] + 1`, it means there is another way to form an LIS of the same length, so increment `counts[i]` by `counts[j]`.\n\n3. **Result Calculation**:\n   - Find the maximum length of the LIS (`max_length`) from the `lengths` list.\n   - Sum up all counts corresponding to sequences of this maximum length to get the total number of LISs.\n\nHere's the implementation of the above logic:\n\n```python\ndef find_number_of_lis(nums: list[int]) -> int:\n    if not nums:\n        return 0\n    \n    n = len(nums)\n    lengths = [1] * n\n    counts = [1] * n\n    \n    for i in range(1, n):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                if lengths[i] < lengths[j] + 1:\n                    lengths[i] = lengths[j] + 1\n                    counts[i] = counts[j]\n                elif lengths[i] == lengths[j] + 1:\n                    counts[i] += counts[j]\n    \n    max_length = max(lengths)\n    result = sum(counts[i] for i in range(n) if lengths[i] == max_length)\n    \n    return result\n\n# Example usage:\nnums = [1, 3, 5, 4, 7]\nprint(find_number_of_lis(nums))  # Output: 2\n```\n\n### Explanation:\n- For the input `[1, 3, 5, 4, 7]`, the function correctly identifies that there are two longest increasing subsequences: `[1, 3, 5, 7]` and `[1, 3, 4, 7]`.\n- The function returns `2` as expected.\n\nThis solution has a time complexity of \\(O(n^2)\\), which is efficient enough for moderate-sized arrays.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:15:19.131208+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_010_three_sum",
+  "task_title": "3Sum",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `three_sum(nums: list[int]) -> list[list[int]]` that returns all unique triplets `[a, b, c]` with `a + b + c == 0`. Each triplet must be in ascending order, and the returned list must be sorted in lexicographical order.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 23.468,
+  "assistant_solution": "```python\ndef three_sum(nums: list[int]) -> list[list[int]]:\n    nums.sort()  # Step 1: Sort the list\n    result = []\n    \n    for i in range(len(nums) - 2):  # Step 2: Iterate through the list\n        if i > 0 and nums[i] == nums[i - 1]:\n            continue  # Skip duplicate elements\n        \n        left, right = i + 1, len(nums) - 1  # Initialize two pointers\n        \n        while left < right:\n            total = nums[i] + nums[left] + nums[right]\n            \n            if total == 0:\n                result.append([nums[i], nums[left], nums[right]])\n                \n                # Move both pointers and skip duplicates\n                while left < right and nums[left] == nums[left + 1]:\n                    left += 1\n                while left < right and nums[right] == nums[right - 1]:\n                    right -= 1\n                \n                left += 1\n                right -= 1\n            \n            elif total < 0:\n                left += 1  # Need a larger number\n            else:\n                right -= 1  # Need a smaller number\n    \n    return result\n\n# Example usage:\nnums = [-1, 0, 1, 2, -1, -4]\nprint(three_sum(nums))  # Output: [[-1, -1, 2], [-1, 0, 1]]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve the problem of finding all unique triplets in a list that sum up to zero, we can follow these steps:\n\n1. **Sort the List**: Sorting helps in easily avoiding duplicates and efficiently finding the triplets using the two-pointer technique.\n2. **Iterate through the List**: Use a loop to fix one element of the triplet.\n3. **Two-Pointer Technique**: For each fixed element, use two pointers to find pairs that sum up to the negative of the fixed element.\n4. **Avoid Duplicates**: Skip duplicate elements to ensure the uniqueness of the triplets.\n\nHere's the complete Python implementation:\n\n```python\ndef three_sum(nums: list[int]) -> list[list[int]]:\n    nums.sort()  # Step 1: Sort the list\n    result = []\n    \n    for i in range(len(nums) - 2):  # Step 2: Iterate through the list\n        if i > 0 and nums[i] == nums[i - 1]:\n            continue  # Skip duplicate elements\n        \n        left, right = i + 1, len(nums) - 1  # Initialize two pointers\n        \n        while left < right:\n            total = nums[i] + nums[left] + nums[right]\n            \n            if total == 0:\n                result.append([nums[i], nums[left], nums[right]])\n                \n                # Move both pointers and skip duplicates\n                while left < right and nums[left] == nums[left + 1]:\n                    left += 1\n                while left < right and nums[right] == nums[right - 1]:\n                    right -= 1\n                \n                left += 1\n                right -= 1\n            \n            elif total < 0:\n                left += 1  # Need a larger number\n            else:\n                right -= 1  # Need a smaller number\n    \n    return result\n\n# Example usage:\nnums = [-1, 0, 1, 2, -1, -4]\nprint(three_sum(nums))  # Output: [[-1, -1, 2], [-1, 0, 1]]\n```\n\n### Explanation:\n1. **Sorting**: The list is sorted to facilitate the two-pointer approach and to handle duplicates easily.\n2. **Outer Loop**: The outer loop iterates through each element, treating it as the first element of the triplet.\n3. **Skipping Duplicates**: If the current element is the same as the previous one, it is skipped to avoid duplicate triplets.\n4. **Two-Pointer Technique**:\n   - Initialize two pointers, `left` starting just after the current element and `right` starting at the end of the list.\n   - Adjust the pointers based on the sum of the triplet:\n     - If the sum is zero, add the triplet to the result and move both pointers while skipping duplicates.\n     - If the sum is less than zero, move the `left` pointer to the right to increase the sum.\n     - If the sum is greater than zero, move the `right` pointer to the left to decrease the sum.\n5. **Result**: The function returns the list of unique triplets.\n\nThis approach ensures that the solution is efficient with a time complexity of \\(O(n^2)\\), where \\(n\\) is the length of the input list.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:27:05.128912+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

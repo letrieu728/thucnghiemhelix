@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_006_sliding_window_max",
+  "task_title": "Sliding Window Maximum",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `max_sliding_window(nums: list[int], k: int) -> list[int]` that returns the maximum of each sliding window of size `k` as it moves from left to right. Return an empty list if `nums` is empty.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 11.115,
+  "assistant_solution": "```python\nfrom collections import deque\n\ndef max_sliding_window(nums: list[int], k: int) -> list[int]:\n    if not nums:\n        return []\n    \n    result = []\n    window = deque()\n    \n    for i, num in enumerate(nums):\n        # Remove elements not within the sliding window\n        while window and window[0] < i - k + 1:\n            window.popleft()\n        \n        # Remove smaller values from the end of the deque\n        while window and nums[window[-1]] < num:\n            window.pop()\n        \n        # Add current element's index to the deque\n        window.append(i)\n        \n        # The first element in the deque is the largest in the current window\n        if i >= k - 1:\n            result.append(nums[window[0]])\n    \n    return result\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom collections import deque\n\ndef max_sliding_window(nums: list[int], k: int) -> list[int]:\n    if not nums:\n        return []\n    \n    result = []\n    window = deque()\n    \n    for i, num in enumerate(nums):\n        # Remove elements not within the sliding window\n        while window and window[0] < i - k + 1:\n            window.popleft()\n        \n        # Remove smaller values from the end of the deque\n        while window and nums[window[-1]] < num:\n            window.pop()\n        \n        # Add current element's index to the deque\n        window.append(i)\n        \n        # The first element in the deque is the largest in the current window\n        if i >= k - 1:\n            result.append(nums[window[0]])\n    \n    return result\n```\nThis Python function uses a deque to keep track of the indices of the elements in the current window. It ensures that the deque contains only indices of elements that are greater than or equal to the current element being processed, maintaining the order of elements from largest to smallest. This allows efficient retrieval of the maximum value in the current window.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:43:15.128701+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

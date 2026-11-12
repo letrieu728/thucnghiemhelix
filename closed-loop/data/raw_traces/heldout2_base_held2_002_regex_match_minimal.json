@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_002_regex_match",
+  "task_title": "Regular Expression Matching",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `is_match(s: str, p: str) -> bool` that implements regular expression matching with support for '.' (matches any single character) and '*' (matches zero or more of the preceding element). The matching must cover the entire input string `s`.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 17.8,
+  "assistant_solution": "```python\ndef is_match(s: str, p: str) -> bool:\n    # Initialize a 2D DP table where dp[i][j] will be True if s[:i] matches p[:j]\n    dp = [[False] * (len(p) + 1) for _ in range(len(s) + 1)]\n    \n    # Base case: empty pattern matches empty string\n    dp[0][0] = True\n    \n    # Handle patterns like a*, a*b* etc.\n    for j in range(2, len(p) + 1):\n        if p[j - 1] == '*':\n            dp[0][j] = dp[0][j - 2]\n    \n    # Fill the DP table\n    for i in range(1, len(s) + 1):\n        for j in range(1, len(p) + 1):\n            if p[j - 1] == '.' or p[j - 1] == s[i - 1]:\n                dp[i][j] = dp[i - 1][j - 1]\n            elif p[j - 1] == '*':\n                dp[i][j] = dp[i][j - 2]  # Zero occurrence of the preceding element\n                if p[j - 2] == '.' or p[j - 2] == s[i - 1]:\n                    dp[i][j] |= dp[i - 1][j]  # One or more occurrences of the preceding element\n    \n    return dp[len(s)][len(p)]\n\n# Example usage:\nprint(is_match(\"aa\", \"a\"))  # Output: False\nprint(is_match(\"aa\", \"a*\"))  # Output: True\nprint(is_match(\"ab\", \".*\"))  # Output: True\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef is_match(s: str, p: str) -> bool:\n    # Initialize a 2D DP table where dp[i][j] will be True if s[:i] matches p[:j]\n    dp = [[False] * (len(p) + 1) for _ in range(len(s) + 1)]\n    \n    # Base case: empty pattern matches empty string\n    dp[0][0] = True\n    \n    # Handle patterns like a*, a*b* etc.\n    for j in range(2, len(p) + 1):\n        if p[j - 1] == '*':\n            dp[0][j] = dp[0][j - 2]\n    \n    # Fill the DP table\n    for i in range(1, len(s) + 1):\n        for j in range(1, len(p) + 1):\n            if p[j - 1] == '.' or p[j - 1] == s[i - 1]:\n                dp[i][j] = dp[i - 1][j - 1]\n            elif p[j - 1] == '*':\n                dp[i][j] = dp[i][j - 2]  # Zero occurrence of the preceding element\n                if p[j - 2] == '.' or p[j - 2] == s[i - 1]:\n                    dp[i][j] |= dp[i - 1][j]  # One or more occurrences of the preceding element\n    \n    return dp[len(s)][len(p)]\n\n# Example usage:\nprint(is_match(\"aa\", \"a\"))  # Output: False\nprint(is_match(\"aa\", \"a*\"))  # Output: True\nprint(is_match(\"ab\", \".*\"))  # Output: True\n```\n\nThis Python function uses dynamic programming to solve the problem. It initializes a 2D list `dp` where `dp[i][j]` indicates whether the first `i` characters of `s` match the first `j` characters of `p`. The function handles the base cases where an empty pattern matches an empty string and patterns ending with `*`. It then iterates through each character of both strings, updating the `dp` table based on whether the current characters match and considering the special handling of `.` and `*`. Finally, it returns the value in `dp[len(s)][len(p)]`, which indicates whether the entire string `s` matches the entire pattern `p`.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:11:27.232723+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_004_number_of_lis",
+  "task_title": "Number of Longest Increasing Subsequences",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `find_number_of_lis(nums: list[int]) -> int` that returns the number of longest increasing subsequences in `nums`. Return 0 if `nums` is empty.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 10.401,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef find_number_of_lis(nums: List[int]) -> int:\n    if not nums:\n        return 0\n    \n    n = len(nums)\n    lengths = [1] * n\n    counts = [1] * n\n    \n    for i in range(1, n):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                if lengths[j] + 1 > lengths[i]:\n                    lengths[i] = lengths[j] + 1\n                    counts[i] = counts[j]\n                elif lengths[j] + 1 == lengths[i]:\n                    counts[i] += counts[j]\n    \n    max_length = max(lengths)\n    result = sum(count for length, count in zip(lengths, counts) if length == max_length)\n    \n    return result\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef find_number_of_lis(nums: List[int]) -> int:\n    if not nums:\n        return 0\n    \n    n = len(nums)\n    lengths = [1] * n\n    counts = [1] * n\n    \n    for i in range(1, n):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                if lengths[j] + 1 > lengths[i]:\n                    lengths[i] = lengths[j] + 1\n                    counts[i] = counts[j]\n                elif lengths[j] + 1 == lengths[i]:\n                    counts[i] += counts[j]\n    \n    max_length = max(lengths)\n    result = sum(count for length, count in zip(lengths, counts) if length == max_length)\n    \n    return result\n```\n\nThis function first checks if the input list `nums` is empty and returns 0 if it is. It then initializes two lists, `lengths` and `counts`, to keep track of the length of the longest increasing subsequence ending at each index and the number of such subsequences, respectively. The function iterates through the list, updating these values based on the conditions specified. Finally, it calculates the total number of longest increasing subsequences by summing up the counts where the length matches the maximum length found.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:16:15.836508+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

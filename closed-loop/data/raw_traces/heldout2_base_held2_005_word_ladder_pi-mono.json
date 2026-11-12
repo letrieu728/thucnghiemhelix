@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_005_word_ladder",
+  "task_title": "Word Ladder Length",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `ladder_length(begin_word: str, end_word: str, word_list: list[str]) -> int` that returns the number of words in the shortest transformation sequence from `begin_word` to `end_word`, changing exactly one letter at a time, where every intermediate word must be in `word_list`. Return 0 if no such sequence exists. The count includes both `begin_word` and `end_word`.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 27.095,
+  "assistant_solution": "```python\nfrom collections import deque\n\ndef ladder_length(begin_word: str, end_word: str, word_list: list[str]) -> int:\n    # Convert word_list to a set for O(1) lookups\n    word_set = set(word_list)\n    \n    # If end_word is not in the word_set, return 0\n    if end_word not in word_set:\n        return 0\n    \n    # Initialize the queue with the begin_word and step count 1\n    queue = deque([(begin_word, 1)])\n    # Initialize the set to keep track of visited words\n    visited = set([begin_word])\n    \n    while queue:\n        current_word, steps = queue.popleft()\n        \n        # If we have reached the end_word, return the number of steps\n        if current_word == end_word:\n            return steps\n        \n        # Generate all possible words by replacing each character\n        for i in range(len(current_word)):\n            for char in 'abcdefghijklmnopqrstuvwxyz':\n                new_word = current_word[:i] + char + current_word[i+1:]\n                \n                # Check if the new_word is in the word_set and not visited\n                if new_word in word_set and new_word not in visited:\n                    visited.add(new_word)\n                    queue.append((new_word, steps + 1))\n    \n    # If we exhaust the queue without finding the end_word, return 0\n    return 0\n\n# Example usage:\nbegin_word = \"hit\"\nend_word = \"cog\"\nword_list = [\"hot\", \"dot\", \"dog\", \"lot\", \"log\", \"cog\"]\nprint(ladder_length(begin_word, end_word, word_list))  # Output: 5\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use a breadth-first search (BFS) approach. BFS is suitable for finding the shortest path in an unweighted graph, which in this case represents the word ladder problem.\n\nHere's a step-by-step breakdown of the solution:\n\n1. **Graph Representation**: Each word in the dictionary can be considered as a node in a graph. An edge exists between two nodes if they differ by exactly one character.\n\n2. **Breadth-First Search (BFS)**: We start from the `begin_word` and explore all possible transformations level by level. The first time we reach the `end_word`, we know it's the shortest path because BFS explores all nodes at the current depth before moving on to nodes at the next depth.\n\n3. **Queue and Visited Set**: Use a queue to keep track of the current word and the number of steps taken to reach it. Use a set to keep track of visited words to avoid processing the same word multiple times.\n\n4. **Character Replacement**: For each word, generate all possible words by replacing each character with every other character from 'a' to 'z'. Check if these generated words are in the dictionary and not already visited.\n\n5. **Edge Cases**: If the `end_word` is not in the dictionary or if there are no valid transformations, return 0.\n\nHere's the complete implementation:\n\n```python\nfrom collections import deque\n\ndef ladder_length(begin_word: str, end_word: str, word_list: list[str]) -> int:\n    # Convert word_list to a set for O(1) lookups\n    word_set = set(word_list)\n    \n    # If end_word is not in the word_set, return 0\n    if end_word not in word_set:\n        return 0\n    \n    # Initialize the queue with the begin_word and step count 1\n    queue = deque([(begin_word, 1)])\n    # Initialize the set to keep track of visited words\n    visited = set([begin_word])\n    \n    while queue:\n        current_word, steps = queue.popleft()\n        \n        # If we have reached the end_word, return the number of steps\n        if current_word == end_word:\n            return steps\n        \n        # Generate all possible words by replacing each character\n        for i in range(len(current_word)):\n            for char in 'abcdefghijklmnopqrstuvwxyz':\n                new_word = current_word[:i] + char + current_word[i+1:]\n                \n                # Check if the new_word is in the word_set and not visited\n                if new_word in word_set and new_word not in visited:\n                    visited.add(new_word)\n                    queue.append((new_word, steps + 1))\n    \n    # If we exhaust the queue without finding the end_word, return 0\n    return 0\n\n# Example usage:\nbegin_word = \"hit\"\nend_word = \"cog\"\nword_list = [\"hot\", \"dot\", \"dog\", \"lot\", \"log\", \"cog\"]\nprint(ladder_length(begin_word, end_word, word_list))  # Output: 5\n```\n\n### Explanation:\n- **Initialization**: We initialize a queue with the `begin_word` and a step count of 1. We also initialize a set to keep track of visited words.\n- **BFS Loop**: We process each word in the queue. For each word, we generate all possible words by replacing each character with every other character from 'a' to 'z'.\n- **Validation and Processing**: If a generated word is in the dictionary and not visited, we add it to the queue and mark it as visited.\n- **Termination**: If we find the `end_word`, we return the number of steps taken. If the queue is exhausted without finding the `end_word`, we return 0.\n\nThis approach ensures that we find the shortest transformation sequence efficiently using BFS.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:16:58.728819+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

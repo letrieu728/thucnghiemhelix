@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_013_decode_ways",
+  "task_title": "Decode Ways",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `num_decodings(s: str) -> int` that returns the number of ways to decode a non-empty string of digits `s`, where '1' to '26' map to letters 'A' to 'Z'. A '0' cannot be decoded on its own; it is only valid as part of '10' or '20'.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 16.131,
+  "assistant_solution": "```python\ndef num_decodings(s: str) -> int:\n    # Edge case: empty string has no decodings\n    if not s:\n        return 0\n    \n    # Initialize dp array where dp[i] represents the number of ways to decode the substring s[:i+1]\n    dp = [0] * (len(s) + 1)\n    dp[0] = 1  # Base case: one way to decode an empty string\n    \n    for i in range(1, len(s) + 1):\n        # Check if single digit decoding is possible\n        if s[i-1] != '0':\n            dp[i] += dp[i-1]\n        \n        # Check if two-digit decoding is possible\n        if i > 1 and '10' <= s[i-2:i] <= '26':\n            dp[i] += dp[i-2]\n    \n    return dp[-1]\n\n# Test cases\nprint(num_decodings(\"12\"))  # Output: 2\nprint(num_decodings(\"226\"))  # Output: 3\nprint(num_decodings(\"0\"))  # Output: 0\nprint(num_decodings(\"06\"))  # Output: 0\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef num_decodings(s: str) -> int:\n    # Edge case: empty string has no decodings\n    if not s:\n        return 0\n    \n    # Initialize dp array where dp[i] represents the number of ways to decode the substring s[:i+1]\n    dp = [0] * (len(s) + 1)\n    dp[0] = 1  # Base case: one way to decode an empty string\n    \n    for i in range(1, len(s) + 1):\n        # Check if single digit decoding is possible\n        if s[i-1] != '0':\n            dp[i] += dp[i-1]\n        \n        # Check if two-digit decoding is possible\n        if i > 1 and '10' <= s[i-2:i] <= '26':\n            dp[i] += dp[i-2]\n    \n    return dp[-1]\n\n# Test cases\nprint(num_decodings(\"12\"))  # Output: 2\nprint(num_decodings(\"226\"))  # Output: 3\nprint(num_decodings(\"0\"))  # Output: 0\nprint(num_decodings(\"06\"))  # Output: 0\n```\n\nThis solution uses dynamic programming to efficiently compute the number of ways to decode the string. The `dp` array is used to store the number of decodings up to each position in the string. The function iterates through the string, updating the `dp` array based on whether a single or double digit can be decoded at each step. The final result is stored in `dp[len(s)]`.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:58:46.743984+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

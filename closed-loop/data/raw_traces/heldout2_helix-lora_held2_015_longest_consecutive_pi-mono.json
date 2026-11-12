@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_015_longest_consecutive",
+  "task_title": "Longest Consecutive Sequence",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `longest_consecutive(nums: list[int]) -> int` that returns the length of the longest consecutive integer sequence in `nums`. Return 0 if `nums` is empty.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 18.586,
+  "assistant_solution": "```python\ndef longest_consecutive(nums: list[int]) -> int:\n    if not nums:\n        return 0\n    \n    num_set = set(nums)\n    max_length = 0\n    \n    for num in num_set:\n        # Check if it's the start of a sequence\n        if num - 1 not in num_set:\n            current_num = num\n            current_length = 1\n            \n            # Count the length of the sequence\n            while current_num + 1 in num_set:\n                current_num += 1\n                current_length += 1\n            \n            # Update the maximum sequence length\n            max_length = max(max_length, current_length)\n    \n    return max_length\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use a set to store the numbers from the list for O(1) average-time complexity lookups. Then, we iterate through each number and check if it's the start of a sequence (i.e., the previous number is not in the set). If it is, we count the length of the sequence by checking consecutive numbers until we reach the end.\n\nHere's the step-by-step approach:\n\n1. Convert the list to a set to allow O(1) lookups.\n2. Initialize a variable to keep track of the maximum sequence length.\n3. Iterate through each number in the set.\n4. For each number, check if it's the start of a sequence (i.e., the previous number is not in the set).\n5. If it is, count the length of the sequence by checking consecutive numbers.\n6. Update the maximum sequence length if the current sequence is longer.\n7. Return the maximum sequence length.\n\n```python\ndef longest_consecutive(nums: list[int]) -> int:\n    if not nums:\n        return 0\n    \n    num_set = set(nums)\n    max_length = 0\n    \n    for num in num_set:\n        # Check if it's the start of a sequence\n        if num - 1 not in num_set:\n            current_num = num\n            current_length = 1\n            \n            # Count the length of the sequence\n            while current_num + 1 in num_set:\n                current_num += 1\n                current_length += 1\n            \n            # Update the maximum sequence length\n            max_length = max(max_length, current_length)\n    \n    return max_length\n```\n\nThis implementation ensures that each number is processed at most twice (once when checking if it's the start of a sequence and once during the sequence counting), resulting in an overall time complexity of O(n). The space complexity is also O(n) due to the additional set used for storage.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T10:02:32.938254+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_004_number_of_lis",
+  "task_title": "Number of Longest Increasing Subsequences",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `find_number_of_lis(nums: list[int]) -> int` that returns the number of longest increasing subsequences in `nums`. Return 0 if `nums` is empty.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 22.691,
+  "assistant_solution": "```python\ndef find_number_of_lis(nums: list[int]) -> int:\n    if not nums:\n        return 0\n    \n    n = len(nums)\n    lengths = [1] * n  # Length of the LIS ending at each index\n    counts = [1] * n   # Number of LIS ending at each index\n    \n    max_length = 1\n    \n    for i in range(1, n):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                if lengths[j] + 1 > lengths[i]:\n                    lengths[i] = lengths[j] + 1\n                    counts[i] = counts[j]\n                elif lengths[j] + 1 == lengths[i]:\n                    counts[i] += counts[j]\n        \n        max_length = max(max_length, lengths[i])\n    \n    result = 0\n    for i in range(n):\n        if lengths[i] == max_length:\n            result += counts[i]\n    \n    return result\n\n# Example usage:\nnums = [1, 3, 5, 4, 7]\nprint(find_number_of_lis(nums))  # Output: 2\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we need to find the number of longest increasing subsequences (LIS) in a given list of integers. Here's a step-by-step approach to achieve this:\n\n1. **Dynamic Programming for LIS Length**: First, we'll use dynamic programming to determine the length of the longest increasing subsequence ending at each index.\n\n2. **Tracking Counts**: We'll also keep track of how many ways we can form these subsequences.\n\n3. **Combining Results**: Finally, we'll sum up the counts of all subsequences that have the maximum length.\n\nHere's the complete implementation:\n\n```python\ndef find_number_of_lis(nums: list[int]) -> int:\n    if not nums:\n        return 0\n    \n    n = len(nums)\n    lengths = [1] * n  # Length of the LIS ending at each index\n    counts = [1] * n   # Number of LIS ending at each index\n    \n    max_length = 1\n    \n    for i in range(1, n):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                if lengths[j] + 1 > lengths[i]:\n                    lengths[i] = lengths[j] + 1\n                    counts[i] = counts[j]\n                elif lengths[j] + 1 == lengths[i]:\n                    counts[i] += counts[j]\n        \n        max_length = max(max_length, lengths[i])\n    \n    result = 0\n    for i in range(n):\n        if lengths[i] == max_length:\n            result += counts[i]\n    \n    return result\n\n# Example usage:\nnums = [1, 3, 5, 4, 7]\nprint(find_number_of_lis(nums))  # Output: 2\n```\n\n### Explanation:\n\n1. **Initialization**:\n   - `lengths`: An array where `lengths[i]` represents the length of the longest increasing subsequence ending at index `i`.\n   - `counts`: An array where `counts[i]` represents the number of such subsequences ending at index `i`.\n\n2. **Nested Loops**:\n   - The outer loop iterates over each element `i` starting from the second element.\n   - The inner loop iterates over all previous elements `j` to check if they can form an increasing subsequence with `nums[i]`.\n   - If `nums[i] > nums[j]`, it means `nums[i]` can extend the subsequence ending at `nums[j]`.\n     - If extending the subsequence increases its length, update `lengths[i]` and set `counts[i]` to `counts[j]`.\n     - If extending the subsequence does not change its length, add `counts[j]` to `counts[i]`.\n\n3. **Finding the Result**:\n   - After filling the `lengths` and `counts` arrays, find the maximum length of any LIS (`max_length`).\n   - Sum up the counts of all subsequences that have this maximum length.\n\nThis approach ensures that we efficiently compute both the length and count of the longest increasing subsequences in linear time complexity relative to the square of the number of elements in the input list.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:15:42.433410+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

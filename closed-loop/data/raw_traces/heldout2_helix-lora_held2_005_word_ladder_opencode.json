@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_005_word_ladder",
+  "task_title": "Word Ladder Length",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `ladder_length(begin_word: str, end_word: str, word_list: list[str]) -> int` that returns the number of words in the shortest transformation sequence from `begin_word` to `end_word`, changing exactly one letter at a time, where every intermediate word must be in `word_list`. Return 0 if no such sequence exists. The count includes both `begin_word` and `end_word`.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 8.883,
+  "assistant_solution": "```python\nfrom collections import deque\n\ndef ladder_length(begin_word: str, end_word: str, word_list: list[str]) -> int:\n    word_set = set(word_list)\n    if end_word not in word_set:\n        return 0\n    \n    queue = deque([(begin_word, 1)])\n    visited = {begin_word}\n    \n    while queue:\n        current_word, length = queue.popleft()\n        \n        for i in range(len(current_word)):\n            for char in 'abcdefghijklmnopqrstuvwxyz':\n                next_word = current_word[:i] + char + current_word[i+1:]\n                \n                if next_word == end_word:\n                    return length + 1\n                \n                if next_word in word_set and next_word not in visited:\n                    visited.add(next_word)\n                    queue.append((next_word, length + 1))\n                    \n    return 0\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom collections import deque\n\ndef ladder_length(begin_word: str, end_word: str, word_list: list[str]) -> int:\n    word_set = set(word_list)\n    if end_word not in word_set:\n        return 0\n    \n    queue = deque([(begin_word, 1)])\n    visited = {begin_word}\n    \n    while queue:\n        current_word, length = queue.popleft()\n        \n        for i in range(len(current_word)):\n            for char in 'abcdefghijklmnopqrstuvwxyz':\n                next_word = current_word[:i] + char + current_word[i+1:]\n                \n                if next_word == end_word:\n                    return length + 1\n                \n                if next_word in word_set and next_word not in visited:\n                    visited.add(next_word)\n                    queue.append((next_word, length + 1))\n                    \n    return 0\n```",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:43:03.251323+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

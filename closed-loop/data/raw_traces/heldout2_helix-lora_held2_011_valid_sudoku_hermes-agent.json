@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_011_valid_sudoku",
+  "task_title": "Valid Sudoku",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `is_valid_sudoku(board: list[list[str]]) -> bool` that returns True if a 9x9 Sudoku board is valid: each row, each column, and each of the nine 3x3 sub-boxes must contain the digits '1'-'9' without repetition. Empty cells are '.' and are ignored. A partially filled board can be valid.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 14.294,
+  "assistant_solution": "```python\ndef is_valid_sudoku(board: list[list[str]]) -> bool:\n    # Initialize sets to keep track of seen numbers in rows, columns, and boxes\n    rows = [set() for _ in range(9)]\n    cols = [set() for _ in range(9)]\n    boxes = [[set() for _ in range(3)] for _ in range(3)]\n\n    # Iterate over each cell in the board\n    for i in range(9):\n        for j in range(9):\n            num = board[i][j]\n            if num == '.':\n                continue  # Skip empty cells\n\n            # Check if the number is already in the corresponding row, column, or box\n            if num in rows[i] or num in cols[j] or num in boxes[i // 3][j // 3]:\n                return False\n\n            # Add the number to the respective row, column, and box sets\n            rows[i].add(num)\n            cols[j].add(num)\n            boxes[i // 3][j // 3].add(num)\n\n    # If no duplicates were found, the board is valid\n    return True\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef is_valid_sudoku(board: list[list[str]]) -> bool:\n    # Initialize sets to keep track of seen numbers in rows, columns, and boxes\n    rows = [set() for _ in range(9)]\n    cols = [set() for _ in range(9)]\n    boxes = [[set() for _ in range(3)] for _ in range(3)]\n\n    # Iterate over each cell in the board\n    for i in range(9):\n        for j in range(9):\n            num = board[i][j]\n            if num == '.':\n                continue  # Skip empty cells\n\n            # Check if the number is already in the corresponding row, column, or box\n            if num in rows[i] or num in cols[j] or num in boxes[i // 3][j // 3]:\n                return False\n\n            # Add the number to the respective row, column, and box sets\n            rows[i].add(num)\n            cols[j].add(num)\n            boxes[i // 3][j // 3].add(num)\n\n    # If no duplicates were found, the board is valid\n    return True\n```\n\nThis function checks each row, column, and 3x3 sub-box for duplicate numbers using sets. It skips empty cells ('.') and returns False immediately upon finding any duplicates. If it completes the iteration without finding duplicates, it returns True, indicating the board is valid.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:56:28.042402+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

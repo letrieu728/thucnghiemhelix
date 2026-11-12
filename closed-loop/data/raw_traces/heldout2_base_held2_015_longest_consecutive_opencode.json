@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_015_longest_consecutive",
+  "task_title": "Longest Consecutive Sequence",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `longest_consecutive(nums: list[int]) -> int` that returns the length of the longest consecutive integer sequence in `nums`. Return 0 if `nums` is empty.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 9.765,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef longest_consecutive(nums: List[int]) -> int:\n    num_set = set(nums)\n    longest_streak = 0\n\n    for num in num_set:\n        if num - 1 not in num_set:  # Check if it's the start of a sequence\n            current_num = num\n            current_streak = 1\n\n            while current_num + 1 in num_set:\n                current_num += 1\n                current_streak += 1\n\n            longest_streak = max(longest_streak, current_streak)\n\n    return longest_streak\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef longest_consecutive(nums: List[int]) -> int:\n    num_set = set(nums)\n    longest_streak = 0\n\n    for num in num_set:\n        if num - 1 not in num_set:  # Check if it's the start of a sequence\n            current_num = num\n            current_streak = 1\n\n            while current_num + 1 in num_set:\n                current_num += 1\n                current_streak += 1\n\n            longest_streak = max(longest_streak, current_streak)\n\n    return longest_streak\n```\n\nThis solution works as follows:\n\n1. Convert the list to a set to allow O(1) average-time complexity for lookups.\n2. Initialize `longest_streak` to 0.\n3. Iterate through each number in the set.\n4. For each number, check if it is the start of a sequence (i.e., `num - 1` is not in the set).\n5. If it is the start, count the length of the sequence by incrementing the number and checking the next consecutive numbers.\n6. Update `longest_streak` with the maximum streak found.\n7. Return the length of the longest consecutive sequence.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:36:11.459199+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_002_regex_match",
+  "task_title": "Regular Expression Matching",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `is_match(s: str, p: str) -> bool` that implements regular expression matching with support for '.' (matches any single character) and '*' (matches zero or more of the preceding element). The matching must cover the entire input string `s`.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 9.324,
+  "assistant_solution": "```python\nfrom typing import *\n\ndef is_match(s: str, p: str) -> bool:\n    dp = [[False] * (len(p) + 1) for _ in range(len(s) + 1)]\n    dp[-1][-1] = True\n    \n    for i in range(len(s), -1, -1):\n        for j in range(len(p) - 1, -1, -1):\n            match = i < len(s) and (s[i] == p[j] or p[j] == '.')\n            if j+1 < len(p) and p[j+1] == '*':\n                dp[i][j] = dp[i][j+2] or (match and dp[i+1][j])\n            else:\n                dp[i][j] = match and dp[i+1][j+1]\n    \n    return dp[0][0]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import *\n\ndef is_match(s: str, p: str) -> bool:\n    dp = [[False] * (len(p) + 1) for _ in range(len(s) + 1)]\n    dp[-1][-1] = True\n    \n    for i in range(len(s), -1, -1):\n        for j in range(len(p) - 1, -1, -1):\n            match = i < len(s) and (s[i] == p[j] or p[j] == '.')\n            if j+1 < len(p) and p[j+1] == '*':\n                dp[i][j] = dp[i][j+2] or (match and dp[i+1][j])\n            else:\n                dp[i][j] = match and dp[i+1][j+1]\n    \n    return dp[0][0]\n```",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:39:07.051048+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_003_n_queens_count",
+  "task_title": "N-Queens Count",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `total_n_queens(n: int) -> int` that returns the number of distinct solutions to the n-queens puzzle: place `n` queens on an `n x n` chessboard so that no two queens attack each other.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 28.29,
+  "assistant_solution": "```python\ndef total_n_queens(n: int) -> int:\n    def is_safe(row, col):\n        # Check if there is a queen in the same column\n        if col in cols:\n            return False\n        \n        # Check upper left diagonal\n        if (row - col) in diag1:\n            return False\n        \n        # Check lower left diagonal\n        if (row + col) in diag2:\n            return False\n        \n        return True\n    \n    def backtrack(row=0):\n        if row == n:\n            nonlocal count\n            count += 1\n            return\n        \n        for col in range(n):\n            if is_safe(row, col):\n                cols.add(col)\n                diag1.add(row - col)\n                diag2.add(row + col)\n                \n                backtrack(row + 1)\n                \n                cols.remove(col)\n                diag1.remove(row - col)\n                diag2.remove(row + col)\n    \n    cols = set()\n    diag1 = set()  # Upper left diagonal\n    diag2 = set()  # Lower left diagonal\n    count = 0\n    \n    backtrack()\n    return count\n\n# Example usage:\nprint(total_n_queens(4))  # Output: 2\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve the n-queens puzzle, we need to place `n` queens on an `n x n` chessboard such that no two queens threaten each other. This means no two queens can be in the same row, column, or diagonal.\n\nHere's a step-by-step approach to implement the `total_n_queens` function:\n\n1. **Backtracking**: Use backtracking to explore all possible placements of queens.\n2. **Tracking Columns and Diagonals**: Use sets to keep track of columns and diagonals that already have a queen.\n3. **Recursive Placement**: Place a queen in each row one by one and recursively try to place the next queen.\n4. **Count Valid Configurations**: Count all valid configurations where all queens are placed without any threats.\n\nHere's the complete implementation:\n\n```python\ndef total_n_queens(n: int) -> int:\n    def is_safe(row, col):\n        # Check if there is a queen in the same column\n        if col in cols:\n            return False\n        \n        # Check upper left diagonal\n        if (row - col) in diag1:\n            return False\n        \n        # Check lower left diagonal\n        if (row + col) in diag2:\n            return False\n        \n        return True\n    \n    def backtrack(row=0):\n        if row == n:\n            nonlocal count\n            count += 1\n            return\n        \n        for col in range(n):\n            if is_safe(row, col):\n                cols.add(col)\n                diag1.add(row - col)\n                diag2.add(row + col)\n                \n                backtrack(row + 1)\n                \n                cols.remove(col)\n                diag1.remove(row - col)\n                diag2.remove(row + col)\n    \n    cols = set()\n    diag1 = set()  # Upper left diagonal\n    diag2 = set()  # Lower left diagonal\n    count = 0\n    \n    backtrack()\n    return count\n\n# Example usage:\nprint(total_n_queens(4))  # Output: 2\n```\n\n### Explanation:\n\n1. **is_safe Function**:\n   - Checks if placing a queen at `(row, col)` is safe by ensuring no queen is in the same column or either of the diagonals (`diag1` and `diag2`).\n\n2. **backtrack Function**:\n   - Recursively tries to place a queen in each row.\n   - If a valid position is found, it marks the column and diagonals as occupied and proceeds to the next row.\n   - After exploring further rows, it backtracks by removing the queen from the current position and unmarking the column and diagonals.\n\n3. **Main Logic**:\n   - Initializes sets to keep track of occupied columns and diagonals.\n   - Calls the `backtrack` function starting from the first row.\n   - Counts all valid configurations where all queens are placed without any threats.\n\nThis approach ensures that all possible configurations are explored efficiently using backtracking, and the constraints are respected throughout the process.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:39:52.161373+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

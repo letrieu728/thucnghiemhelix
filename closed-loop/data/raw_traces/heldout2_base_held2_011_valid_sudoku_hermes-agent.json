@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_011_valid_sudoku",
+  "task_title": "Valid Sudoku",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `is_valid_sudoku(board: list[list[str]]) -> bool` that returns True if a 9x9 Sudoku board is valid: each row, each column, and each of the nine 3x3 sub-boxes must contain the digits '1'-'9' without repetition. Empty cells are '.' and are ignored. A partially filled board can be valid.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 25.089,
+  "assistant_solution": "```python\ndef is_valid_sudoku(board: list[list[str]]) -> bool:\n    # Helper function to check if a list has any duplicate values excluding '.'\n    def has_duplicates(lst):\n        seen = set()\n        for item in lst:\n            if item != '.' and item in seen:\n                return True\n            seen.add(item)\n        return False\n    \n    # Check rows\n    for row in board:\n        if has_duplicates(row):\n            return False\n    \n    # Check columns\n    for col in range(9):\n        column = [board[row][col] for row in range(9)]\n        if has_duplicates(column):\n            return False\n    \n    # Check 3x3 sub-boxes\n    for start_row in range(0, 9, 3):\n        for start_col in range(0, 9, 3):\n            sub_box = []\n            for i in range(3):\n                for j in range(3):\n                    sub_box.append(board[start_row + i][start_col + j])\n            if has_duplicates(sub_box):\n                return False\n    \n    return True\n\n# Example usage:\nboard = [\n    [\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"],\n    [\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"],\n    [\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"],\n    [\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"],\n    [\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"],\n    [\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"],\n    [\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"],\n    [\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"],\n    [\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]\n]\n\nprint(is_valid_sudoku(board))  # Output: True\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To determine if a given 9x9 Sudoku board is valid, we need to ensure that:\n\n1. Each row contains the digits '1'-'9' at most once.\n2. Each column contains the digits '1'-'9' at most once.\n3. Each of the nine 3x3 sub-boxes (also known as \"regions\") contains the digits '1'-'9' at most once.\n4. Empty cells represented by '.' should be ignored.\n\nHere's a step-by-step approach to implement this:\n\n1. Iterate through each row and check for duplicates.\n2. Iterate through each column and check for duplicates.\n3. Iterate through each 3x3 sub-box and check for duplicates.\n4. Ignore empty cells ('.') during these checks.\n\nLet's write the Python function to achieve this:\n\n```python\ndef is_valid_sudoku(board: list[list[str]]) -> bool:\n    # Helper function to check if a list has any duplicate values excluding '.'\n    def has_duplicates(lst):\n        seen = set()\n        for item in lst:\n            if item != '.' and item in seen:\n                return True\n            seen.add(item)\n        return False\n    \n    # Check rows\n    for row in board:\n        if has_duplicates(row):\n            return False\n    \n    # Check columns\n    for col in range(9):\n        column = [board[row][col] for row in range(9)]\n        if has_duplicates(column):\n            return False\n    \n    # Check 3x3 sub-boxes\n    for start_row in range(0, 9, 3):\n        for start_col in range(0, 9, 3):\n            sub_box = []\n            for i in range(3):\n                for j in range(3):\n                    sub_box.append(board[start_row + i][start_col + j])\n            if has_duplicates(sub_box):\n                return False\n    \n    return True\n\n# Example usage:\nboard = [\n    [\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"],\n    [\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"],\n    [\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"],\n    [\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"],\n    [\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"],\n    [\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"],\n    [\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"],\n    [\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"],\n    [\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]\n]\n\nprint(is_valid_sudoku(board))  # Output: True\n```\n\n### Explanation:\n1. **has_duplicates Function**: This helper function checks if there are any duplicate values in a given list, ignoring the '.' characters.\n2. **Row Validation**: We iterate through each row and use the `has_duplicates` function to check for any duplicates.\n3. **Column Validation**: We iterate through each column by extracting the elements at the same index from each row and using the `has_duplicates` function.\n4. **Sub-box Validation**: We iterate through each 3x3 sub-box by calculating the starting indices and then extract the elements within that sub-box, checking for duplicates using the `has_duplicates` function.\n\nThis approach ensures that all the rules of Sudoku are checked efficiently. The time complexity is O(1) since the board size is fixed at 9x9, making it very efficient.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:28:43.750782+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "heldout2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}
