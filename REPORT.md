@@ -34,10 +34,10 @@ minh; các số liệu LiveCodeBench và SWE-bench của tác giả chưa đư�
 | Executable audit | Artifact audit | **PASS**, fingerprint `44370eff3ea1ca3a` | Không có compile blocker theo rule audit. |
 | TODO-27 inventory | Inventory transition atom | **PASS**, fingerprint `e12a2bb0941ac9c7` | Nhất quán theo verifier, không phải native parity hoàn chỉnh. |
 | OpenCode acceptance | Acceptance artifact | **PASS**, `ready-for-review` | 108/124 native, 16 metadata retained; chưa phải TODO hoàn tất. |
-| Task parity/cadence | 12 task × 4 harness | **FAIL** | Thiếu metadata bắt buộc của acceptance-timing drift. |
-| Split task parity | Summary và attachment | **FAIL** | Nhiều attachment lệch hash/kích thước manifest. |
-| Current-module audit | Audit fingerprint | **FAIL** | Artifact `ce386…` khác fingerprint tính lại `413e…`. |
-| Tái sinh task parity | Script cassette không cần LLM | **BLOCKED** | Clean checkout gặp `EPERM` khi tạo workspace tạm. |
+| Task parity/cadence | 12 task × 4 harness | **FAIL (artifact gốc) / PASS (artifact tái sinh 2026-11-11)** | Artifact gốc thiếu metadata acceptance-timing drift; artifact tái sinh trên 12 task smoke verify PASS 13/13 (xem `results/2026-11-11-linux-fix-attempt.md` §3). |
+| Split task parity | Summary và attachment | **FAIL (manifest gốc) / PASS (manifest tái sinh 2026-11-11)** | Manifest gốc lệch hash/kích thước nhiều attachment; manifest tái sinh verify PASS 403/403 (§2b). |
+| Current-module audit | Audit fingerprint | **FAIL (artifact gốc) / PASS (artifact tái sinh 2026-11-11)** | Artifact gốc `ce386…` khác fingerprint tính lại `413e…`; artifact tái sinh (fingerprint `d18d…`) verify PASS (§2a). |
+| Tái sinh task parity | Script cassette không cần LLM | **BLOCKED** | 101 fixture symlink trỏ tới đường dẫn tuyệt đối trên máy tác giả, 101/101 hỏng (Linux: `ENOENT`); nội dung 101 task không có trong repo. |
 | Unit/conformance suite | Tác giả nói có 108 file Vitest | **Có failure quan sát được** | Clean-run bắt gặp 4 failure ở tools và 1 ở hooks trước khi môi trường không trả tổng kết suite; chưa có tổng số cuối cùng. |
 | Live provider/native CLI | Live parity/capture | **Không thực hiện** | Cần credential, provider thật, internet và inference. |
 | LiveCodeBench 100 | pi-mono 76, tổ hợp 79, full search 87 | **Không tái lập** | Thiếu 100 task/runner; summary còn đánh dấu tổ hợp tốt nhất là contaminated. |

@@ -123,12 +123,18 @@ class VLLMServer:
         self.lora_enabled = os.path.isfile(adapter_config)
 
         # Standard modern vLLM serve flags with eager mode to bypass slow CUDA graph compilation
+        # --max-model-len 8192 (raised from 4096 on 2026-11-12, Round 2):
+        # the 4096 window caused an HTTP 400 context overflow on one
+        # held-out multi-turn cell in Round 1 (3073 input + 1024 output
+        # tokens). 8192 leaves headroom for the longest multi-turn
+        # transcripts; the runner (02) additionally caps the prompt it
+        # sends, so the server limit is a backstop, not the only guard.
         cmd = [
             "vllm", "serve", MODEL_NAME,
             "--host", "0.0.0.0",
             "--port", str(VLLM_PORT),
             "--tensor-parallel-size", "1",
-            "--max-model-len", "4096",
+            "--max-model-len", "8192",
             "--gpu-memory-utilization", "0.90",
             "--enforce-eager",
             "--trust-remote-code",

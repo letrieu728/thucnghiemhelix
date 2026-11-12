@@ -1,0 +1,234 @@
+[
+  {
+    "id": "held2_001_edit_distance",
+    "title": "Edit Distance",
+    "difficulty": "hard",
+    "prompt": "Write a Python function `min_distance(word1: str, word2: str) -> int` that returns the minimum number of operations (insert, delete, or replace one character) required to convert `word1` into `word2`.",
+    "test_cases": [
+      "assert min_distance('horse', 'ros') == 3",
+      "assert min_distance('intention', 'execution') == 5",
+      "assert min_distance('', 'abc') == 3",
+      "assert min_distance('abc', '') == 3",
+      "assert min_distance('', '') == 0",
+      "assert min_distance('a', 'a') == 0",
+      "assert min_distance('kitten', 'sitting') == 3",
+      "assert min_distance('flaw', 'lawn') == 2"
+    ]
+  },
+  {
+    "id": "held2_002_regex_match",
+    "title": "Regular Expression Matching",
+    "difficulty": "hard",
+    "prompt": "Write a Python function `is_match(s: str, p: str) -> bool` that implements regular expression matching with support for '.' (matches any single character) and '*' (matches zero or more of the preceding element). The matching must cover the entire input string `s`.",
+    "test_cases": [
+      "assert is_match('aa', 'a') == False",
+      "assert is_match('aa', 'a*') == True",
+      "assert is_match('ab', '.*') == True",
+      "assert is_match('aab', 'c*a*b') == True",
+      "assert is_match('mississippi', 'mis*is*p*.') == False",
+      "assert is_match('', '.*') == True",
+      "assert is_match('ab', '.*c') == False",
+      "assert is_match('aaa', 'a*a') == True",
+      "assert is_match('ab', 'a*b') == True",
+      "assert is_match('a', 'ab*') == True"
+    ]
+  },
+  {
+    "id": "held2_003_n_queens_count",
+    "title": "N-Queens Count",
+    "difficulty": "hard",
+    "prompt": "Write a Python function `total_n_queens(n: int) -> int` that returns the number of distinct solutions to the n-queens puzzle: place `n` queens on an `n x n` chessboard so that no two queens attack each other.",
+    "test_cases": [
+      "assert total_n_queens(1) == 1",
+      "assert total_n_queens(2) == 0",
+      "assert total_n_queens(3) == 0",
+      "assert total_n_queens(4) == 2",
+      "assert total_n_queens(5) == 10",
+      "assert total_n_queens(8) == 92",
+      "assert total_n_queens(9) == 352"
+    ]
+  },
+  {
+    "id": "held2_004_number_of_lis",
+    "title": "Number of Longest Increasing Subsequences",
+    "difficulty": "hard",
+    "prompt": "Write a Python function `find_number_of_lis(nums: list[int]) -> int` that returns the number of longest increasing subsequences in `nums`. Return 0 if `nums` is empty.",
+    "test_cases": [
+      "assert find_number_of_lis([1, 3, 5, 4, 7]) == 2",
+      "assert find_number_of_lis([2, 2, 2]) == 3",
+      "assert find_number_of_lis([1, 2, 4, 3, 5, 4, 7, 2]) == 3",
+      "assert find_number_of_lis([]) == 0",
+      "assert find_number_of_lis([1]) == 1",
+      "assert find_number_of_lis([1, 2, 3]) == 1",
+      "assert find_number_of_lis([3, 2, 1]) == 3"
+    ]
+  },
+  {
+    "id": "held2_005_word_ladder",
+    "title": "Word Ladder Length",
+    "difficulty": "hard",
+    "prompt": "Write a Python function `ladder_length(begin_word: str, end_word: str, word_list: list[str]) -> int` that returns the number of words in the shortest transformation sequence from `begin_word` to `end_word`, changing exactly one letter at a time, where every intermediate word must be in `word_list`. Return 0 if no such sequence exists. The count includes both `begin_word` and `end_word`.",
+    "test_cases": [
+      "assert ladder_length('hit', 'cog', ['hot', 'dot', 'dog', 'lot', 'log', 'cog']) == 5",
+      "assert ladder_length('hit', 'cog', ['hot', 'dot', 'dog', 'lot', 'log']) == 0",
+      "assert ladder_length('a', 'c', ['a', 'b', 'c']) == 2",
+      "assert ladder_length('hot', 'dog', ['hot', 'dog']) == 0",
+      "assert ladder_length('hot', 'dog', ['hot', 'dog', 'dot']) == 3",
+      "assert ladder_length('red', 'tax', ['ted', 'tex', 'red', 'tax', 'tad', 'den', 'rex', 'pee']) == 4"
+    ]
+  },
+  {
+    "id": "held2_006_sliding_window_max",
+    "title": "Sliding Window Maximum",
+    "difficulty": "hard",
+    "prompt": "Write a Python function `max_sliding_window(nums: list[int], k: int) -> list[int]` that returns the maximum of each sliding window of size `k` as it moves from left to right. Return an empty list if `nums` is empty.",
+    "test_cases": [
+      "assert max_sliding_window([1, 3, -1, -3, 5, 3, 6, 7], 3) == [3, 3, 5, 5, 6, 7]",
+      "assert max_sliding_window([1], 1) == [1]",
+      "assert max_sliding_window([1, -1], 1) == [1, -1]",
+      "assert max_sliding_window([9, 11], 2) == [11]",
+      "assert max_sliding_window([4, -2], 2) == [4]",
+      "assert max_sliding_window([1, 3, 1, 2, 0, 5], 3) == [3, 3, 2, 5]",
+      "assert max_sliding_window([], 1) == []",
+      "assert max_sliding_window([7, 2, 4], 3) == [7]"
+    ]
+  },
+  {
+    "id": "held2_007_course_order",
+    "title": "Course Schedule II (Valid Order)",
+    "difficulty": "hard",
+    "prompt": "Write a Python function `find_order(num_courses: int, prerequisites: list[list[int]]) -> list[int]` that returns any valid order in which all courses can be taken. Each prerequisite `[a, b]` means course `b` must be taken before course `a`. Return an empty list if no valid order exists (a cycle).",
+    "test_cases": [
+      "def _valid(order, n, pre):",
+      "    if sorted(order) != list(range(n)): return False",
+      "    pos = {c: i for i, c in enumerate(order)}",
+      "    return all(pos[b] < pos[a] for a, b in pre)",
+      "assert _valid(find_order(2, [[1, 0]]), 2, [[1, 0]])",
+      "assert find_order(2, [[1, 0], [0, 1]]) == []",
+      "assert _valid(find_order(4, [[1, 0], [2, 0], [3, 1], [3, 2]]), 4, [[1, 0], [2, 0], [3, 1], [3, 2]])",
+      "assert find_order(1, []) == [0]",
+      "assert _valid(find_order(3, []), 3, [])",
+      "assert find_order(3, [[0, 1], [1, 2], [2, 0]]) == []"
+    ]
+  },
+  {
+    "id": "held2_008_median_finder",
+    "title": "Find Median from Data Stream",
+    "difficulty": "hard",
+    "prompt": "Implement a class `MedianFinder` in Python with methods `add_num(num: int) -> None` (adds a number to the data stream) and `find_median() -> float` (returns the median of all numbers added so far). `find_median` is only called when at least one number has been added.",
+    "test_cases": [
+      "m = MedianFinder(); m.add_num(1); m.add_num(2); assert m.find_median() == 1.5",
+      "m = MedianFinder(); m.add_num(1); m.add_num(2); m.add_num(3); assert m.find_median() == 2.0",
+      "m = MedianFinder(); m.add_num(-1); m.add_num(-2); assert m.find_median() == -1.5",
+      "m = MedianFinder(); [m.add_num(x) for x in [1, 2, 3, 4, 5]]; assert m.find_median() == 3.0",
+      "m = MedianFinder(); m.add_num(5); assert m.find_median() == 5.0; m.add_num(5); assert m.find_median() == 5.0",
+      "m = MedianFinder(); [m.add_num(x) for x in [10, 0, 5, 5]]; assert m.find_median() == 5.0"
+    ]
+  },
+  {
+    "id": "held2_009_next_permutation",
+    "title": "Next Permutation",
+    "difficulty": "hard",
+    "prompt": "Write a Python function `next_permutation(nums: list[int]) -> list[int]` that returns the next lexicographically greater permutation of `nums` as a new list (the input list must not be modified). If no greater permutation exists, return the smallest permutation (sorted ascending).",
+    "test_cases": [
+      "assert next_permutation([1, 2, 3]) == [1, 3, 2]",
+      "assert next_permutation([3, 2, 1]) == [1, 2, 3]",
+      "assert next_permutation([1, 1, 5]) == [1, 5, 1]",
+      "assert next_permutation([1]) == [1]",
+      "assert next_permutation([]) == []",
+      "assert next_permutation([1, 3, 2]) == [2, 1, 3]",
+      "assert next_permutation([2, 1, 3]) == [2, 3, 1]",
+      "a = [1, 2, 3]; next_permutation(a); assert a == [1, 2, 3]"
+    ]
+  },
+  {
+    "id": "held2_010_three_sum",
+    "title": "3Sum",
+    "difficulty": "hard",
+    "prompt": "Write a Python function `three_sum(nums: list[int]) -> list[list[int]]` that returns all unique triplets `[a, b, c]` with `a + b + c == 0`. Each triplet must be in ascending order, and the returned list must be sorted in lexicographical order.",
+    "test_cases": [
+      "assert three_sum([-1, 0, 1, 2, -1, -4]) == [[-1, -1, 2], [-1, 0, 1]]",
+      "assert three_sum([0, 0, 0]) == [[0, 0, 0]]",
+      "assert three_sum([]) == []",
+      "assert three_sum([0, 1, 1]) == []",
+      "assert three_sum([-2, 0, 1, 1, 2]) == [[-2, 0, 2], [-2, 1, 1]]",
+      "assert three_sum([-1, 0, 1, 0]) == [[-1, 0, 1]]"
+    ]
+  },
+  {
+    "id": "held2_011_valid_sudoku",
+    "title": "Valid Sudoku",
+    "difficulty": "hard",
+    "prompt": "Write a Python function `is_valid_sudoku(board: list[list[str]]) -> bool` that returns True if a 9x9 Sudoku board is valid: each row, each column, and each of the nine 3x3 sub-boxes must contain the digits '1'-'9' without repetition. Empty cells are '.' and are ignored. A partially filled board can be valid.",
+    "test_cases": [
+      "valid_board = [['5', '3', '.', '.', '7', '.', '.', '.', '.'], ['6', '.', '.', '1', '9', '5', '.', '.', '.'], ['.', '9', '8', '.', '.', '.', '.', '6', '.'], ['8', '.', '.', '.', '6', '.', '.', '.', '3'], ['4', '.', '.', '8', '.', '3', '.', '.', '1'], ['7', '.', '.', '.', '2', '.', '.', '.', '6'], ['.', '6', '.', '.', '.', '.', '2', '8', '.'], ['.', '.', '.', '4', '1', '9', '.', '.', '5'], ['.', '.', '.', '.', '8', '.', '.', '7', '9']]",
+      "assert is_valid_sudoku(valid_board) == True",
+      "b2 = [r[:] for r in valid_board]; b2[0][2] = '5'; assert is_valid_sudoku(b2) == False",
+      "b3 = [r[:] for r in valid_board]; b3[1][0] = '5'; assert is_valid_sudoku(b3) == False",
+      "b4 = [r[:] for r in valid_board]; b4[1][1] = '5'; assert is_valid_sudoku(b4) == False",
+      "assert is_valid_sudoku([['.'] * 9 for _ in range(9)]) == True",
+      "b6 = [['.'] * 9 for _ in range(9)]; b6[0][0] = '9'; b6[8][8] = '9'; assert is_valid_sudoku(b6) == True"
+    ]
+  },
+  {
+    "id": "held2_012_gas_station",
+    "title": "Gas Station Circuit",
+    "difficulty": "hard",
+    "prompt": "Write a Python function `can_complete_circuit(gas: list[int], cost: list[int]) -> int` that returns the starting gas station index from which a car can complete the full circuit, or -1 if it is impossible. The car starts with an empty tank; at station `i` it gains `gas[i]` fuel and spends `cost[i]` fuel to reach station `i+1` (circularly). If a solution exists it is unique.",
+    "test_cases": [
+      "assert can_complete_circuit([1, 2, 3, 4, 5], [3, 4, 5, 1, 2]) == 3",
+      "assert can_complete_circuit([2, 3, 4], [3, 4, 3]) == -1",
+      "assert can_complete_circuit([5], [4]) == 0",
+      "assert can_complete_circuit([4], [5]) == -1",
+      "assert can_complete_circuit([3, 1, 1], [1, 2, 2]) == 0",
+      "assert can_complete_circuit([1, 2], [2, 1]) == 1"
+    ]
+  },
+  {
+    "id": "held2_013_decode_ways",
+    "title": "Decode Ways",
+    "difficulty": "hard",
+    "prompt": "Write a Python function `num_decodings(s: str) -> int` that returns the number of ways to decode a non-empty string of digits `s`, where '1' to '26' map to letters 'A' to 'Z'. A '0' cannot be decoded on its own; it is only valid as part of '10' or '20'.",
+    "test_cases": [
+      "assert num_decodings('12') == 2",
+      "assert num_decodings('226') == 3",
+      "assert num_decodings('06') == 0",
+      "assert num_decodings('0') == 0",
+      "assert num_decodings('10') == 1",
+      "assert num_decodings('11106') == 2",
+      "assert num_decodings('27') == 1",
+      "assert num_decodings('101') == 1",
+      "assert num_decodings('100') == 0",
+      "assert num_decodings('110') == 1"
+    ]
+  },
+  {
+    "id": "held2_014_rotten_oranges",
+    "title": "Rotting Oranges",
+    "difficulty": "hard",
+    "prompt": "Write a Python function `oranges_rotting(grid: list[list[int]]) -> int` that returns the minimum number of minutes until no cell has a fresh orange. Cells are 0 (empty), 1 (fresh), or 2 (rotten). Every minute, each fresh orange adjacent (4-directional) to a rotten orange becomes rotten. Return -1 if some fresh orange can never rot, and 0 if there are no fresh oranges initially.",
+    "test_cases": [
+      "assert oranges_rotting([[2, 1, 1], [1, 1, 0], [0, 1, 1]]) == 4",
+      "assert oranges_rotting([[2, 1, 1], [0, 1, 1], [1, 0, 1]]) == -1",
+      "assert oranges_rotting([[0, 2]]) == 0",
+      "assert oranges_rotting([[1]]) == -1",
+      "assert oranges_rotting([[0, 0], [0, 0]]) == 0",
+      "assert oranges_rotting([[2, 2], [1, 1], [0, 0], [2, 0]]) == 1"
+    ]
+  },
+  {
+    "id": "held2_015_longest_consecutive",
+    "title": "Longest Consecutive Sequence",
+    "difficulty": "hard",
+    "prompt": "Write a Python function `longest_consecutive(nums: list[int]) -> int` that returns the length of the longest consecutive integer sequence in `nums`. Return 0 if `nums` is empty.",
+    "test_cases": [
+      "assert longest_consecutive([100, 4, 200, 1, 3, 2]) == 4",
+      "assert longest_consecutive([0, 3, 7, 2, 5, 8, 4, 6, 0, 1]) == 9",
+      "assert longest_consecutive([]) == 0",
+      "assert longest_consecutive([1, 2, 0, 1]) == 3",
+      "assert longest_consecutive([9, 1, 4, 7, 3, -1, 0, 5, 8, -1, 6]) == 7",
+      "assert longest_consecutive([5]) == 1",
+      "assert longest_consecutive([1, 1, 1]) == 1"
+    ]
+  }
+]

@@ -37,8 +37,17 @@ Provenance guard (added 2026-11-12, see closed-loop/PROVENANCE_AUDIT.md):
 
 Usage:
   python closed-loop/scripts/03_extract_pairs.py
+  python closed-loop/scripts/03_extract_pairs.py --run-tag build2  # Round 2 BUILD traces only
   python closed-loop/scripts/03_extract_pairs.py --allow-dry-run  # smoke test only, do NOT train on output
   python closed-loop/scripts/03_extract_pairs.py --seed-demo  # generate baseline mock traces if raw_traces is empty (demo only)
+
+Round selection (--run-tag, added Round 2): traces carry a "run_tag"
+(empty for Round 1, e.g. "build2" for Round 2). By default only untagged
+(Round 1) BUILD traces are extracted, so the default command reproduces
+the Round 1 datasets exactly. Pass --run-tag build2 (comma-separated for
+several tags) to extract one round only; rounds are never mixed
+silently. Held-out traces (phase == "heldout", any tag) are never read:
+the loader only accepts phase == "build", and a unit test pins that.
 """
 
 import argparse
@@ -82,8 +91,25 @@ def is_dry_run_trace(trace: Dict[str, Any]) -> bool:
     return not trace.get("raw_helix_transcript")
 
 
+def _heldout_task_ids() -> set:
+    """Task IDs that must never enter training, from both held-out sets.
+
+    Missing/unreadable files yield an empty set (the runner's disjoint-ID
+    check is the primary guard); the extractor's block is defence in depth.
+    """
+    ids: set = set()
+    for filename in ("heldout_problems.json", "heldout2_problems.json"):
+        path = CLOSED_LOOP_ROOT / "data" / filename
+        try:
+            problems = json.loads(path.read_text(encoding="utf-8"))
+            ids.update(p["id"] for p in problems if isinstance(p, dict) and "id" in p)
+        except Exception:
+            continue
+    return ids
+
+
 def load_all_traces(
-    traces_dir: Path, allow_dry_run: bool = False
+    traces_dir: Path, allow_dry_run: bool = False, run_tags: Optional[set] = None
 ) -> Dict[str, List[Dict[str, Any]]]:
     """Loads BUILD-phase traces from directory and groups them by task_id.
 
@@ -91,9 +117,18 @@ def load_all_traces(
     are reported, never silently dropped. Each kept trace gains a
     "_source_file" key (the trace filename) so extracted records stay
     traceable to their source run.
+
+    Round selection: run_tags=None (default) keeps only untagged traces
+    (Round 1, "run_tag" empty or absent). A set keeps only traces whose
+    run_tag is in the set (e.g. {"build2"}). Held-out traces are never
+    kept: only phase == "build" is accepted, whatever the tag, and any
+    trace whose task_id belongs to a held-out set is blocked outright
+    (defence in depth against a mislabelled file).
     """
     grouped_traces = defaultdict(list)
     skipped: List[str] = []
+    blocked_heldout: List[str] = []
+    heldout_ids = _heldout_task_ids()
     if not traces_dir.exists():
         return grouped_traces
 
@@ -103,6 +138,15 @@ def load_all_traces(
                 trace = json.load(f)
 
             if trace.get("phase") != "build":
+                continue
+            if trace.get("task_id") in heldout_ids:
+                blocked_heldout.append(file_path.name)
+                continue
+            tag = trace.get("run_tag") or ""
+            if run_tags is None:
+                if tag != "":
+                    continue
+            elif tag not in run_tags:
                 continue
             if not allow_dry_run and is_dry_run_trace(trace):
                 skipped.append(file_path.name)
@@ -115,7 +159,15 @@ def load_all_traces(
             print(f"[WARN] Failed to read {file_path.name}: {e}")
 
     kept = sum(len(v) for v in grouped_traces.values())
-    print(f"[PROVENANCE] Kept {kept} live BUILD traces across {len(grouped_traces)} tasks.")
+    tag_label = "untagged (Round 1)" if run_tags is None else ",".join(sorted(run_tags))
+    print(f"[PROVENANCE] Kept {kept} live BUILD traces across {len(grouped_traces)} tasks (run_tag: {tag_label}).")
+    if blocked_heldout:
+        print(
+            f"[PROVENANCE] Blocked {len(blocked_heldout)} build-phase trace(s) carrying "
+            "held-out task IDs (leakage guard):"
+        )
+        for name in sorted(blocked_heldout):
+            print(f"  - {name}")
     if skipped:
         print(
             f"[PROVENANCE] Skipped {len(skipped)} dry-run BUILD traces "
@@ -154,6 +206,9 @@ def extract_sft_records(grouped_traces: Dict[str, List[Dict[str, Any]]]) -> List
             "harness_source": best_trace.get("harness_id"),
             "steps": best_trace.get("steps"),
             "source_trace": best_trace.get("_source_file"),
+            "run_tag": best_trace.get("run_tag") or "",
+            "temperature": best_trace.get("temperature", 0.0),
+            "sample_index": best_trace.get("sample_index", 0),
             "messages": [
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_content},
@@ -184,6 +239,13 @@ def extract_dpo_pairs(grouped_traces: Dict[str, List[Dict[str, Any]]]) -> List[D
         if passed_traces and failed_traces:
             best_chosen = min(passed_traces, key=lambda t: t.get("steps", 999))
             worst_rejected = max(failed_traces, key=lambda t: t.get("steps", 0))
+            # A preference pair with identical chosen/rejected text teaches
+            # nothing and is rejected by 04's validator; skip it rather
+            # than emitting a degenerate pair.
+            if (best_chosen.get("assistant_solution") or "").strip() == (
+                worst_rejected.get("assistant_solution") or ""
+            ).strip():
+                continue
 
             dpo_pairs.append({
                 "task_id": task_id,
@@ -198,6 +260,11 @@ def extract_dpo_pairs(grouped_traces: Dict[str, List[Dict[str, Any]]]) -> List[D
                 "rejected_steps": worst_rejected.get("steps"),
                 "chosen_source_trace": best_chosen.get("_source_file"),
                 "rejected_source_trace": worst_rejected.get("_source_file"),
+                "chosen_temperature": best_chosen.get("temperature", 0.0),
+                "chosen_sample_index": best_chosen.get("sample_index", 0),
+                "rejected_temperature": worst_rejected.get("temperature", 0.0),
+                "rejected_sample_index": worst_rejected.get("sample_index", 0),
+                "run_tag": best_chosen.get("run_tag") or "",
             })
 
         # Case 2: Efficiency contrast (Both passed, but one took >= 2x more steps or had retries)
@@ -206,7 +273,9 @@ def extract_dpo_pairs(grouped_traces: Dict[str, List[Dict[str, Any]]]) -> List[D
             fastest = sorted_by_steps[0]
             slowest = sorted_by_steps[-1]
 
-            if (slowest.get("steps", 1) - fastest.get("steps", 1)) >= 2:
+            if (slowest.get("steps", 1) - fastest.get("steps", 1)) >= 2 and (
+                fastest.get("assistant_solution") or ""
+            ).strip() != (slowest.get("assistant_solution") or "").strip():
                 dpo_pairs.append({
                     "task_id": task_id,
                     "preference_type": "efficiency_contrast",
@@ -220,6 +289,11 @@ def extract_dpo_pairs(grouped_traces: Dict[str, List[Dict[str, Any]]]) -> List[D
                     "rejected_steps": slowest.get("steps"),
                     "chosen_source_trace": fastest.get("_source_file"),
                     "rejected_source_trace": slowest.get("_source_file"),
+                    "chosen_temperature": fastest.get("temperature", 0.0),
+                    "chosen_sample_index": fastest.get("sample_index", 0),
+                    "rejected_temperature": slowest.get("temperature", 0.0),
+                    "rejected_sample_index": slowest.get("sample_index", 0),
+                    "run_tag": fastest.get("run_tag") or "",
                 })
 
     return dpo_pairs
@@ -328,8 +402,12 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
-def count_dry_run_build_traces(traces_dir: Path) -> int:
-    """Count BUILD-phase traces classified as dry-run, without loading groups."""
+def count_dry_run_build_traces(traces_dir: Path, run_tags: Optional[set] = None) -> int:
+    """Count BUILD-phase traces classified as dry-run, without loading groups.
+
+    With the default (run_tags=None) only untagged traces are counted, so a
+    Round 2 dry-run smoke file cannot inflate a Round 1 manifest.
+    """
     count = 0
     if not traces_dir.exists():
         return count
@@ -339,7 +417,15 @@ def count_dry_run_build_traces(traces_dir: Path) -> int:
                 trace = json.load(f)
         except Exception:
             continue
-        if trace.get("phase") == "build" and is_dry_run_trace(trace):
+        if trace.get("phase") != "build":
+            continue
+        tag = trace.get("run_tag") or ""
+        if run_tags is None:
+            if tag != "":
+                continue
+        elif tag not in run_tags:
+            continue
+        if is_dry_run_trace(trace):
             count += 1
     return count
 
@@ -351,14 +437,18 @@ def write_provenance_manifest(
     dpo_out_path: Path,
     sft_count: int,
     dpo_count: int,
+    run_tags: Optional[set] = None,
 ) -> Path:
     """Write provenance.json next to the datasets for 04_train_lora.py."""
-    dry_run_present = count_dry_run_build_traces(RAW_TRACES_DIR)
+    dry_run_present = count_dry_run_build_traces(RAW_TRACES_DIR, run_tags)
     kept = sum(len(v) for v in grouped.values())
+    observed_tags = sorted({(t.get("run_tag") or "") for traces in grouped.values() for t in traces})
     manifest = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "extractor": "03_extract_pairs.py (live-only guard, 2026-11-12)",
+        "extractor": "03_extract_pairs.py (live-only guard, 2026-11-12; run-tag filter, Round 2)",
         "allow_dry_run": allow_dry_run,
+        "run_tag_filter": sorted(run_tags) if run_tags is not None else [""],
+        "run_tags_observed": observed_tags,
         "live_traces_kept": kept,
         "dry_run_build_traces_present": dry_run_present,
         "dry_run_traces_skipped": 0 if allow_dry_run else dry_run_present,
@@ -388,7 +478,15 @@ def main():
         action="store_true",
         help="Include dry-run (mock) traces. SMOKE TESTS ONLY -- never train on the output.",
     )
+    parser.add_argument(
+        "--run-tag",
+        default=None,
+        help="Comma-separated run tag(s) to extract (e.g. 'build2'). Default: untagged (Round 1) traces only. Rounds are never mixed.",
+    )
     args = parser.parse_args()
+    run_tags = None
+    if args.run_tag:
+        run_tags = {tag.strip() for tag in args.run_tag.split(",") if tag.strip()}
 
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -398,10 +496,10 @@ def main():
     if args.seed_demo:
         print("[WARN] --seed-demo generates SYNTHETIC traces; output is demo-only, do not train on it.")
 
-    grouped = load_all_traces(RAW_TRACES_DIR, allow_dry_run=allow_dry_run)
+    grouped = load_all_traces(RAW_TRACES_DIR, allow_dry_run=allow_dry_run, run_tags=run_tags)
     if args.seed_demo:
         seed_demo_traces()
-        grouped = load_all_traces(RAW_TRACES_DIR, allow_dry_run=allow_dry_run)
+        grouped = load_all_traces(RAW_TRACES_DIR, allow_dry_run=allow_dry_run, run_tags=run_tags)
 
     if not grouped:
         raise SystemExit(
@@ -429,7 +527,8 @@ def main():
 
     # 3. Provenance manifest (04_train_lora.py verifies it before training)
     manifest_path = write_provenance_manifest(
-        grouped, allow_dry_run, sft_out_path, dpo_out_path, len(sft_records), len(dpo_pairs)
+        grouped, allow_dry_run, sft_out_path, dpo_out_path, len(sft_records), len(dpo_pairs),
+        run_tags=run_tags,
     )
     print(f"[OK] Wrote provenance manifest -> {manifest_path}")
 

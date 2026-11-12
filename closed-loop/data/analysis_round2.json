@@ -1,0 +1,452 @@
+{
+  "round": 2,
+  "date": "2026-11-12",
+  "n_traces_total": 360,
+  "n_baseline_traces": 280,
+  "n_by_run_tag": {
+    "build2": 160,
+    "rebuild2": 80,
+    "heldout2": 120
+  },
+  "reverify_mismatches": 0,
+  "reverify_mismatch_files": [],
+  "total_latency_sec_all": 9266.7,
+  "total_latency_sec_baseline": 7729.7,
+  "prompt_truncations_total": 0,
+  "infra_error_traces": [],
+  "build2": {
+    "minimal": {
+      "passed": 14,
+      "n": 20,
+      "pass_rate": 0.7,
+      "wilson95": [
+        0.481,
+        0.8545
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 17.9,
+      "total_latency_sec": 358.0
+    },
+    "pi-mono": {
+      "passed": 15,
+      "n": 20,
+      "pass_rate": 0.75,
+      "wilson95": [
+        0.5313,
+        0.8881
+      ],
+      "avg_steps": 1.75,
+      "avg_latency_sec": 42.14,
+      "total_latency_sec": 842.8
+    },
+    "hermes-agent": {
+      "passed": 14,
+      "n": 20,
+      "pass_rate": 0.7,
+      "wilson95": [
+        0.481,
+        0.8545
+      ],
+      "avg_steps": 1.9,
+      "avg_latency_sec": 46.21,
+      "total_latency_sec": 924.1
+    },
+    "opencode": {
+      "passed": 17,
+      "n": 20,
+      "pass_rate": 0.85,
+      "wilson95": [
+        0.6396,
+        0.9476
+      ],
+      "avg_steps": 1.5,
+      "avg_latency_sec": 19.08,
+      "total_latency_sec": 381.6
+    },
+    "_total": {
+      "passed": 60,
+      "n": 80,
+      "pass_rate": 0.75,
+      "wilson95": [
+        0.6452,
+        0.8319
+      ],
+      "total_latency_sec": 2506.5
+    }
+  },
+  "rebuild2": {
+    "minimal": {
+      "passed": 17,
+      "n": 20,
+      "pass_rate": 0.85,
+      "wilson95": [
+        0.6396,
+        0.9476
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 13.48,
+      "total_latency_sec": 269.7
+    },
+    "pi-mono": {
+      "passed": 16,
+      "n": 20,
+      "pass_rate": 0.8,
+      "wilson95": [
+        0.584,
+        0.9193
+      ],
+      "avg_steps": 1.6,
+      "avg_latency_sec": 48.1,
+      "total_latency_sec": 962.0
+    },
+    "hermes-agent": {
+      "passed": 15,
+      "n": 20,
+      "pass_rate": 0.75,
+      "wilson95": [
+        0.5313,
+        0.8881
+      ],
+      "avg_steps": 1.75,
+      "avg_latency_sec": 36.29,
+      "total_latency_sec": 725.8
+    },
+    "opencode": {
+      "passed": 18,
+      "n": 20,
+      "pass_rate": 0.9,
+      "wilson95": [
+        0.699,
+        0.9721
+      ],
+      "avg_steps": 1.3,
+      "avg_latency_sec": 10.12,
+      "total_latency_sec": 202.4
+    },
+    "_total": {
+      "passed": 66,
+      "n": 80,
+      "pass_rate": 0.825,
+      "wilson95": [
+        0.7274,
+        0.8928
+      ],
+      "total_latency_sec": 2159.9
+    }
+  },
+  "heldout2_base": {
+    "minimal": {
+      "passed": 12,
+      "n": 15,
+      "pass_rate": 0.8,
+      "wilson95": [
+        0.5481,
+        0.9295
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 15.68,
+      "total_latency_sec": 235.2
+    },
+    "pi-mono": {
+      "passed": 13,
+      "n": 15,
+      "pass_rate": 0.8667,
+      "wilson95": [
+        0.6212,
+        0.9626
+      ],
+      "avg_steps": 1.4,
+      "avg_latency_sec": 31.25,
+      "total_latency_sec": 468.8
+    },
+    "hermes-agent": {
+      "passed": 13,
+      "n": 15,
+      "pass_rate": 0.8667,
+      "wilson95": [
+        0.6212,
+        0.9626
+      ],
+      "avg_steps": 1.6,
+      "avg_latency_sec": 37.85,
+      "total_latency_sec": 567.7
+    },
+    "opencode": {
+      "passed": 12,
+      "n": 15,
+      "pass_rate": 0.8,
+      "wilson95": [
+        0.5481,
+        0.9295
+      ],
+      "avg_steps": 1.6,
+      "avg_latency_sec": 22.15,
+      "total_latency_sec": 332.2
+    },
+    "_total": {
+      "passed": 50,
+      "n": 60,
+      "pass_rate": 0.8333,
+      "wilson95": [
+        0.7197,
+        0.9069
+      ],
+      "total_latency_sec": 1603.9
+    }
+  },
+  "heldout2_lora": {
+    "minimal": {
+      "passed": 13,
+      "n": 15,
+      "pass_rate": 0.8667,
+      "wilson95": [
+        0.6212,
+        0.9626
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 15.21,
+      "total_latency_sec": 228.1
+    },
+    "pi-mono": {
+      "passed": 13,
+      "n": 15,
+      "pass_rate": 0.8667,
+      "wilson95": [
+        0.6212,
+        0.9626
+      ],
+      "avg_steps": 1.4,
+      "avg_latency_sec": 39.45,
+      "total_latency_sec": 591.7
+    },
+    "hermes-agent": {
+      "passed": 13,
+      "n": 15,
+      "pass_rate": 0.8667,
+      "wilson95": [
+        0.6212,
+        0.9626
+      ],
+      "avg_steps": 1.4,
+      "avg_latency_sec": 26.81,
+      "total_latency_sec": 402.1
+    },
+    "opencode": {
+      "passed": 14,
+      "n": 15,
+      "pass_rate": 0.9333,
+      "wilson95": [
+        0.7018,
+        0.9881
+      ],
+      "avg_steps": 1.47,
+      "avg_latency_sec": 15.83,
+      "total_latency_sec": 237.4
+    },
+    "_total": {
+      "passed": 53,
+      "n": 60,
+      "pass_rate": 0.8833,
+      "wilson95": [
+        0.7782,
+        0.9423
+      ],
+      "total_latency_sec": 1459.3
+    }
+  },
+  "union": {
+    "build2": {
+      "solved_by_at_least_one_harness": 17,
+      "tasks": 20,
+      "wilson95": [
+        0.6396,
+        0.9476
+      ],
+      "unsolved_tasks": [
+        "lcb_002_valid_parentheses",
+        "lcb_003_lru_cache",
+        "lcb_013_longest_palindromic_substring"
+      ]
+    },
+    "rebuild2": {
+      "solved_by_at_least_one_harness": 19,
+      "tasks": 20,
+      "wilson95": [
+        0.7639,
+        0.9911
+      ],
+      "unsolved_tasks": [
+        "lcb_009_word_break"
+      ]
+    },
+    "heldout2_base": {
+      "solved_by_at_least_one_harness": 14,
+      "tasks": 15,
+      "wilson95": [
+        0.7018,
+        0.9881
+      ],
+      "unsolved_tasks": [
+        "held2_009_next_permutation"
+      ]
+    },
+    "heldout2_lora": {
+      "solved_by_at_least_one_harness": 14,
+      "tasks": 15,
+      "wilson95": [
+        0.7018,
+        0.9881
+      ],
+      "unsolved_tasks": [
+        "held2_009_next_permutation"
+      ]
+    }
+  },
+  "mcnemar_build2_vs_rebuild2": {
+    "paired_cells": 80,
+    "gains_fail_to_pass": 7,
+    "losses_pass_to_fail": 1,
+    "same_pass": 59,
+    "same_fail": 13,
+    "exact_p_two_sided": 0.0703,
+    "chi2_continuity_corrected": 3.125,
+    "flips": [
+      {
+        "task_id": "lcb_002_valid_parentheses",
+        "harness_id": "pi-mono",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "lcb_003_lru_cache",
+        "harness_id": "minimal",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "lcb_003_lru_cache",
+        "harness_id": "opencode",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "lcb_009_word_break",
+        "harness_id": "opencode",
+        "before": true,
+        "after": false
+      },
+      {
+        "task_id": "lcb_013_longest_palindromic_substring",
+        "harness_id": "minimal",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "lcb_013_longest_palindromic_substring",
+        "harness_id": "opencode",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "lcb_017_merge_k_sorted_lists",
+        "harness_id": "hermes-agent",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "lcb_019_permutations_unique",
+        "harness_id": "minimal",
+        "before": false,
+        "after": true
+      }
+    ]
+  },
+  "mcnemar_heldout2_base_vs_lora": {
+    "paired_cells": 60,
+    "gains_fail_to_pass": 5,
+    "losses_pass_to_fail": 2,
+    "same_pass": 48,
+    "same_fail": 5,
+    "exact_p_two_sided": 0.4531,
+    "chi2_continuity_corrected": 0.571,
+    "flips": [
+      {
+        "task_id": "held2_001_edit_distance",
+        "harness_id": "hermes-agent",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "held2_002_regex_match",
+        "harness_id": "opencode",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "held2_008_median_finder",
+        "harness_id": "pi-mono",
+        "before": true,
+        "after": false
+      },
+      {
+        "task_id": "held2_014_rotten_oranges",
+        "harness_id": "hermes-agent",
+        "before": true,
+        "after": false
+      },
+      {
+        "task_id": "held2_014_rotten_oranges",
+        "harness_id": "minimal",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "held2_014_rotten_oranges",
+        "harness_id": "opencode",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "held2_014_rotten_oranges",
+        "harness_id": "pi-mono",
+        "before": false,
+        "after": true
+      }
+    ]
+  },
+  "sampling": {
+    "n_sampling_traces": 80,
+    "n_tasks_sampled": 20,
+    "sampling_passed": 63,
+    "temperatures": [
+      0.7
+    ],
+    "tasks_with_sampling_contrast": [
+      "lcb_003_lru_cache",
+      "lcb_008_merge_intervals",
+      "lcb_013_longest_palindromic_substring",
+      "lcb_017_merge_k_sorted_lists",
+      "lcb_019_permutations_unique"
+    ],
+    "contrast_only_via_sampling": [
+      "lcb_003_lru_cache",
+      "lcb_013_longest_palindromic_substring",
+      "lcb_017_merge_k_sorted_lists",
+      "lcb_019_permutations_unique"
+    ]
+  },
+  "leakage_check": {
+    "manifest_exists": true,
+    "run_tag_filter": [
+      "build2"
+    ],
+    "counts": {
+      "sft": 19,
+      "dpo": 6
+    },
+    "n_tasks": 20,
+    "leaked_ids": [],
+    "source_traces": 160
+  },
+  "method": "Baseline cells only (temperature 0.0, sample 0) for all rates, unions and McNemar tests. Wilson score intervals (z=1.96); McNemar exact two-sided binomial on discordant paired cells."
+}

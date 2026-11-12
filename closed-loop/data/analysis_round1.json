@@ -1,0 +1,308 @@
+{
+  "round": 1,
+  "date": "2026-11-12",
+  "n_traces": 160,
+  "reverify_mismatches": 0,
+  "reverify_mismatch_files": [],
+  "build": {
+    "minimal": {
+      "passed": 6,
+      "n": 10,
+      "pass_rate": 0.6,
+      "wilson95": [
+        0.3127,
+        0.8318
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 17.2,
+      "total_latency_sec": 172.0
+    },
+    "pi-mono": {
+      "passed": 7,
+      "n": 10,
+      "pass_rate": 0.7,
+      "wilson95": [
+        0.3968,
+        0.8922
+      ],
+      "avg_steps": 2.3,
+      "avg_latency_sec": 49.41,
+      "total_latency_sec": 494.1
+    },
+    "hermes-agent": {
+      "passed": 7,
+      "n": 10,
+      "pass_rate": 0.7,
+      "wilson95": [
+        0.3968,
+        0.8922
+      ],
+      "avg_steps": 2.2,
+      "avg_latency_sec": 47.46,
+      "total_latency_sec": 474.6
+    },
+    "opencode": {
+      "passed": 8,
+      "n": 10,
+      "pass_rate": 0.8,
+      "wilson95": [
+        0.4902,
+        0.9433
+      ],
+      "avg_steps": 2.1,
+      "avg_latency_sec": 27.75,
+      "total_latency_sec": 277.5
+    },
+    "_total": {
+      "passed": 28,
+      "n": 40,
+      "pass_rate": 0.7,
+      "wilson95": [
+        0.5457,
+        0.8193
+      ],
+      "total_latency_sec": 1418.2
+    }
+  },
+  "rebuild": {
+    "minimal": {
+      "passed": 7,
+      "n": 10,
+      "pass_rate": 0.7,
+      "wilson95": [
+        0.3968,
+        0.8922
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 27.04,
+      "total_latency_sec": 270.4
+    },
+    "pi-mono": {
+      "passed": 8,
+      "n": 10,
+      "pass_rate": 0.8,
+      "wilson95": [
+        0.4902,
+        0.9433
+      ],
+      "avg_steps": 1.8,
+      "avg_latency_sec": 61.9,
+      "total_latency_sec": 619.0
+    },
+    "hermes-agent": {
+      "passed": 7,
+      "n": 10,
+      "pass_rate": 0.7,
+      "wilson95": [
+        0.3968,
+        0.8922
+      ],
+      "avg_steps": 2.3,
+      "avg_latency_sec": 74.58,
+      "total_latency_sec": 745.8
+    },
+    "opencode": {
+      "passed": 9,
+      "n": 10,
+      "pass_rate": 0.9,
+      "wilson95": [
+        0.5958,
+        0.9821
+      ],
+      "avg_steps": 2.2,
+      "avg_latency_sec": 28.74,
+      "total_latency_sec": 287.4
+    },
+    "_total": {
+      "passed": 31,
+      "n": 40,
+      "pass_rate": 0.775,
+      "wilson95": [
+        0.625,
+        0.8768
+      ],
+      "total_latency_sec": 1922.6
+    }
+  },
+  "heldout_base": {
+    "minimal": {
+      "passed": 10,
+      "n": 10,
+      "pass_rate": 1.0,
+      "wilson95": [
+        0.7225,
+        1.0
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 13.28,
+      "total_latency_sec": 132.8
+    },
+    "pi-mono": {
+      "passed": 9,
+      "n": 10,
+      "pass_rate": 0.9,
+      "wilson95": [
+        0.5958,
+        0.9821
+      ],
+      "avg_steps": 1.5,
+      "avg_latency_sec": 27.26,
+      "total_latency_sec": 272.6
+    },
+    "hermes-agent": {
+      "passed": 10,
+      "n": 10,
+      "pass_rate": 1.0,
+      "wilson95": [
+        0.7225,
+        1.0
+      ],
+      "avg_steps": 1.2,
+      "avg_latency_sec": 23.22,
+      "total_latency_sec": 232.2
+    },
+    "opencode": {
+      "passed": 10,
+      "n": 10,
+      "pass_rate": 1.0,
+      "wilson95": [
+        0.7225,
+        1.0
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 9.56,
+      "total_latency_sec": 95.6
+    },
+    "_total": {
+      "passed": 39,
+      "n": 40,
+      "pass_rate": 0.975,
+      "wilson95": [
+        0.8712,
+        0.9956
+      ],
+      "total_latency_sec": 733.2
+    }
+  },
+  "heldout_lora": {
+    "minimal": {
+      "passed": 10,
+      "n": 10,
+      "pass_rate": 1.0,
+      "wilson95": [
+        0.7225,
+        1.0
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 22.0,
+      "total_latency_sec": 220.0
+    },
+    "pi-mono": {
+      "passed": 10,
+      "n": 10,
+      "pass_rate": 1.0,
+      "wilson95": [
+        0.7225,
+        1.0
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 30.55,
+      "total_latency_sec": 305.5
+    },
+    "hermes-agent": {
+      "passed": 10,
+      "n": 10,
+      "pass_rate": 1.0,
+      "wilson95": [
+        0.7225,
+        1.0
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 29.64,
+      "total_latency_sec": 296.4
+    },
+    "opencode": {
+      "passed": 10,
+      "n": 10,
+      "pass_rate": 1.0,
+      "wilson95": [
+        0.7225,
+        1.0
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 10.78,
+      "total_latency_sec": 107.8
+    },
+    "_total": {
+      "passed": 40,
+      "n": 40,
+      "pass_rate": 1.0,
+      "wilson95": [
+        0.9124,
+        1.0
+      ],
+      "total_latency_sec": 929.7
+    }
+  },
+  "union": {
+    "build": {
+      "solved_by_at_least_one_harness": 8,
+      "tasks": 10,
+      "wilson95": [
+        0.4902,
+        0.9433
+      ],
+      "unsolved_tasks": [
+        "lcb_002_valid_parentheses",
+        "lcb_003_lru_cache"
+      ]
+    },
+    "rebuild": {
+      "solved_by_at_least_one_harness": 10,
+      "tasks": 10,
+      "wilson95": [
+        0.7225,
+        1.0
+      ],
+      "unsolved_tasks": []
+    },
+    "heldout_base": {
+      "solved_by_at_least_one_harness": 10,
+      "tasks": 10,
+      "wilson95": [
+        0.7225,
+        1.0
+      ],
+      "unsolved_tasks": []
+    },
+    "heldout_lora": {
+      "solved_by_at_least_one_harness": 10,
+      "tasks": 10,
+      "wilson95": [
+        0.7225,
+        1.0
+      ],
+      "unsolved_tasks": []
+    }
+  },
+  "mcnemar_build_vs_rebuild": {
+    "paired_cells": 40,
+    "gains_fail_to_pass": 4,
+    "losses_pass_to_fail": 1,
+    "same_pass": 27,
+    "same_fail": 8,
+    "exact_p_two_sided": 0.375,
+    "chi2_continuity_corrected": 0.8
+  },
+  "mcnemar_heldout_base_vs_lora": {
+    "paired_cells": 40,
+    "gains_fail_to_pass": 1,
+    "losses_pass_to_fail": 0,
+    "same_pass": 39,
+    "same_fail": 0,
+    "exact_p_two_sided": 1.0,
+    "chi2_continuity_corrected": 0.0
+  },
+  "total_latency_sec": 5003.8,
+  "method": "Wilson score intervals (z=1.96); McNemar exact two-sided binomial on discordant paired cells; union counts tasks solved by >=1 harness. Intervals are wide because n=10 per harness; overlap means the BUILD->REBUILD deltas are not distinguishable from sampling noise."
+}

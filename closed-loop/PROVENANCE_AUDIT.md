@@ -131,3 +131,47 @@ vLLM multi-LoRA routes by the request's model id, and `02` passes the
 model explicitly per phase. The fork still contains the rule — port this
 fix back before any further base-model evaluation against the fork's
 deployment.
+
+## Addendum 2026-11-12 (Round 2) — context overflow fix + round tagging
+
+- **Context window**: `01_modal_vllm.py` `--max-model-len` raised 4096 →
+  8192. The 4096 window caused the single Round 1 held-out infrastructure
+  error (HTTP 400, 3073 input + 1024 output tokens on `held_006` pi-mono).
+- **Prompt guard**: `02_run_helix_eval.py` now truncates multi-turn
+  transcripts before sending (oldest middle turns dropped; system prompt,
+  original task prompt and latest turns kept) whenever the estimated
+  prompt would exceed 8192 − 1024 − 256 tokens. Truncations are counted
+  per trace (`prompt_truncations`); normal runs trigger zero.
+- **Round tagging**: Round 2 traces carry `run_tag` (`build2`,
+  `rebuild2`, `heldout2`) in JSON and filename, so no Round 2 run can
+  overwrite a Round 1 file. `03_extract_pairs.py` selects one round at
+  a time (`--run-tag`); the default still extracts untagged Round 1
+  traces only. The extractor additionally blocks any build-phase trace
+  whose task ID belongs to either held-out set.
+- **Sampling**: `02` accepts `--temperature` / `--n-samples` (defaults
+  0.0 / 1, the Round 1 protocol). Sampling traces record temperature,
+  sample index and seed, and exist only to create sibling contrast for
+  training; baseline comparisons stay at temperature 0.0, n=1.
+- Round 2 design, trace budget and cost checkpoints:
+  [`ROUND2_DESIGN.md`](ROUND2_DESIGN.md).
+
+## Addendum 2026-11-12 (Round 2 outcomes)
+
+- **Traces:** 360 Round 2 traces, all live, all `passed` flags
+  re-verified (0 mismatches): BUILD2 160 (80 temp-0.0 + 80 sampling),
+  REBUILD2 80, held-out v2 120. 0 prompt truncations, 0 infra errors.
+- **Extraction:** `--run-tag build2` over 160 traces → SFT 19, DPO 6
+  (hashes `4f4d6ad8…` / `a40fa5b1…`). Training run
+  `20261112T082610-f368cbfe` verified the manifest (160 live traces,
+  `allow_dry_run: false`) before training; data hashes in its
+  `metadata.json` match the committed datasets. Leakage check: no
+  held-out ID (`held_*` or `held2_*`) in any training record.
+- **Adapter lineage:** `helix-lora-final` now holds the Round 2 adapter;
+  the Round 1 adapter is preserved as
+  `helix-lora-final-backup-20261112` (12/12 files, sizes verified);
+  `helix-lora-final-backup-20261104` untouched.
+- **Results:** BUILD2 60/80 → REBUILD2 66/80 (McNemar p = 0.0703);
+  held-out v2 base 50/60 → LoRA 53/60 (p = 0.4531). Full tables in
+  `REBUILD_REPORT.md` §9. Estimated Round 2 GPU cost ≈ $4.30 (inside
+  the $6 cap). Modal app stopped and endpoint verified 404 after the
+  run.

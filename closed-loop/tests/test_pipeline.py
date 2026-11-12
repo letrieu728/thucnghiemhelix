@@ -23,6 +23,7 @@ def load(name, relative):
 extract = load("extract", "scripts/03_extract_pairs.py")
 train = load("train", "scripts/04_train_lora.py")
 evaluate = load("evaluate", "notebooks/evaluate_rebuild.py")
+runner = load("runner", "scripts/02_run_helix_eval.py")
 
 
 class PipelineTests(unittest.TestCase):
@@ -182,11 +183,13 @@ class PipelineTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 evaluate.load_metrics_from_raw_traces()
         # Aggregated rates must equal a fresh count over the committed traces
-        # (no hard-coded values in the evaluator itself).
+        # (no hard-coded values in the evaluator itself). The evaluator only
+        # counts untagged Round 1 traces, so the fresh count applies the
+        # same filter (Round 2 traces carry run_tag build2/rebuild2/heldout2).
         metrics = evaluate.load_metrics_from_raw_traces()
         all_traces = [json.loads(p.read_text(encoding="utf-8")) for p in (ROOT / "data/raw_traces").glob("*.json")]
         for phase in ("build", "rebuild"):
-            traces = [t for t in all_traces if t.get("phase") == phase and t.get("harness_id") == "minimal"]
+            traces = [t for t in all_traces if t.get("phase") == phase and t.get("harness_id") == "minimal" and not t.get("run_tag")]
             expected = round(100.0 * sum(1 for t in traces if t["passed"]) / len(traces), 1)
             self.assertEqual(metrics[phase]["minimal"]["pass_rate"], expected)
 
@@ -205,6 +208,164 @@ class PipelineTests(unittest.TestCase):
             path.write_text(json.dumps({"phase": "build", "harness_id": "minimal", "task_id": "one", "passed": True, "steps": 1, "latency_sec": 1}), encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "Unpaired"):
                 evaluate.load_metrics_from_raw_traces()
+
+
+class Round2Tests(unittest.TestCase):
+    def test_problem_sets_counts_and_disjoint(self):
+        train = runner.get_problems("train")
+        train20 = runner.get_problems("train20")
+        heldout = runner.get_problems("heldout")
+        heldout2 = runner.get_problems("heldout2")
+        self.assertEqual(len(train), 10)
+        self.assertEqual(len(train20), 20)
+        self.assertEqual(len(heldout), 10)
+        self.assertEqual(len(heldout2), 15)
+        self.assertEqual([p["id"] for p in train20[:10]], [p["id"] for p in train])
+        all_ids = [p["id"] for p in train20 + heldout + heldout2]
+        self.assertEqual(len(all_ids), len(set(all_ids)))
+        for problem in train20 + heldout + heldout2:
+            self.assertTrue(problem["test_cases"])
+            self.assertTrue(problem["prompt"].strip())
+
+    def test_trace_filenames_legacy_and_tagged(self):
+        base = runner.BASE_MODEL_NAME
+        self.assertEqual(
+            runner.trace_filename("build", "lcb_001_two_sum", "minimal", base),
+            "build_lcb_001_two_sum_minimal.json",
+        )
+        self.assertEqual(
+            runner.trace_filename("heldout", "held_001_roman_to_int", "minimal", base),
+            "heldout_base_held_001_roman_to_int_minimal.json",
+        )
+        self.assertEqual(
+            runner.trace_filename("build", "lcb_011_trap_rain_water", "opencode", base, "build2", 1, 2),
+            "build2_lcb_011_trap_rain_water_opencode_s1.json",
+        )
+        self.assertEqual(
+            runner.trace_filename("heldout", "held2_001_edit_distance", "pi-mono", "helix-lora", "heldout2"),
+            "heldout2_helix-lora_held2_001_edit_distance_pi-mono.json",
+        )
+        # Single-sample tagged runs keep no suffix; sampled runs are distinct.
+        self.assertEqual(
+            runner.trace_filename("build", "t", "minimal", base, "build2", 0, 1),
+            "build2_t_minimal.json",
+        )
+        self.assertNotEqual(
+            runner.trace_filename("build", "t", "minimal", base, "build2", 0, 2),
+            runner.trace_filename("build", "t", "minimal", base, "build2", 1, 2),
+        )
+
+    def test_truncation_guard_keeps_system_prompt_and_tail(self):
+        msgs = [{"role": "system", "content": "sys"}, {"role": "user", "content": "prompt"}]
+        for i in range(6):
+            msgs.append({"role": "assistant", "content": "x" * 8000})
+            msgs.append({"role": "user", "content": f"feedback-{i}"})
+        kept, dropped = runner._truncate_messages(msgs)
+        self.assertGreater(dropped, 0)
+        self.assertLessEqual(runner._estimate_input_tokens(kept), runner.MAX_INPUT_TOKENS_EST)
+        self.assertEqual(kept[0]["content"], "sys")
+        self.assertEqual(kept[1]["content"], "prompt")
+        self.assertEqual(kept[-1]["content"], "feedback-5")
+        short = [{"role": "system", "content": "sys"}, {"role": "user", "content": "short"}]
+        kept_short, dropped_short = runner._truncate_messages(short)
+        self.assertEqual(dropped_short, 0)
+        self.assertEqual(kept_short, short)
+
+    def test_extractor_run_tag_filter_and_heldout_never_leaks(self):
+        def trace(task, phase, tag, passed=True):
+            return {"task_id": task, "phase": phase, "mode": "live", "passed": passed,
+                    "assistant_solution": "def f():\n    return 1", "harness_id": "minimal",
+                    "steps": 1, "latency_sec": 1.0, "prompt": "p",
+                    "raw_helix_transcript": [{"step": 1}], "run_tag": tag}
+        with tempfile.TemporaryDirectory() as tmp:
+            files = {
+                "r1.json": trace("t1", "build", ""),
+                "r2.json": trace("t1", "build", "build2"),
+                "r2b.json": trace("t2", "build", "build2"),
+                "held.json": trace("held2_001_edit_distance", "heldout", "heldout2"),
+                "held_build.json": trace("held2_001_edit_distance", "build", "heldout2"),
+            }
+            # held_build.json is a synthetic mislabel: a held-out task id in a
+            # build trace with a held-out tag. The extractor's held-out-ID
+            # block must refuse it even when the tag matches.
+            for name, content in files.items():
+                (Path(tmp) / name).write_text(json.dumps(content), encoding="utf-8")
+            default = extract.load_all_traces(Path(tmp))
+            self.assertEqual(sum(map(len, default.values())), 1)
+            self.assertEqual(set(default), {"t1"})
+            round2 = extract.load_all_traces(Path(tmp), run_tags={"build2"})
+            self.assertEqual(sum(map(len, round2.values())), 2)
+            self.assertEqual(set(round2), {"t1", "t2"})
+            held = extract.load_all_traces(Path(tmp), run_tags={"heldout2"})
+            # The genuine heldout-phase trace is never loaded, and the
+            # mislabelled build-phase held-out trace is blocked by ID.
+            self.assertEqual(sum(map(len, held.values())), 0)
+            self.assertNotIn("held2_001_edit_distance", set(round2))
+
+    def test_extractor_skips_identical_dpo_pair(self):
+        def trace(harness, passed, code):
+            return {"task_id": "t1", "phase": "build", "mode": "live", "passed": passed,
+                    "assistant_solution": code, "harness_id": harness, "steps": 1,
+                    "latency_sec": 1.0, "prompt": "p",
+                    "raw_helix_transcript": [{"step": 1}], "run_tag": ""}
+        grouped = {"t1": [
+            trace("opencode", True, "def f():\n    return 1"),
+            trace("minimal", False, "def f():\n    return 1"),
+        ]}
+        self.assertEqual(extract.extract_dpo_pairs(grouped), [])
+        grouped["t1"][1]["assistant_solution"] = "def f():\n    return 2"
+        self.assertEqual(len(extract.extract_dpo_pairs(grouped)), 1)
+
+    def test_evaluator_ignores_tagged_traces(self):
+        with tempfile.TemporaryDirectory() as tmp, patch.object(evaluate, "RAW_TRACES_DIR", Path(tmp)):
+            for phase in ("build", "rebuild"):
+                for harness in runner.HARNESS_IDS:
+                    content = {"phase": phase, "harness_id": harness, "task_id": "one",
+                               "passed": True, "steps": 1, "latency_sec": 1.0, "run_tag": ""}
+                    (Path(tmp) / f"{phase}_one_{harness}.json").write_text(json.dumps(content), encoding="utf-8")
+            # A Round 2 duplicate of one cell must not break pairing.
+            dup = {"phase": "build", "harness_id": "minimal", "task_id": "one",
+                   "passed": False, "steps": 1, "latency_sec": 1.0, "run_tag": "build2"}
+            (Path(tmp) / "build2_one_minimal.json").write_text(json.dumps(dup), encoding="utf-8")
+            metrics = evaluate.load_metrics_from_raw_traces()
+            self.assertEqual(metrics["build"]["minimal"]["pass_rate"], 100.0)
+
+    def test_advanced_loop_capped_at_four_steps(self):
+        # A harness that always fails must stop after MAX_ADVANCED_STEPS
+        # generations, not after the config value (8/12/15). Mock the
+        # OpenAI client so no network/GPU is involved.
+        from unittest.mock import MagicMock, patch
+
+        problem = runner.BENCHMARK_PROBLEMS[0]  # two_sum
+        calls = {"n": 0}
+
+        def fake_create(**kwargs):
+            calls["n"] += 1
+            choice = MagicMock()
+            choice.message.content = "```python\ndef two_sum(nums, target):\n    return []\n```"
+            choice.finish_reason = "stop"
+            response = MagicMock()
+            response.choices = [choice]
+            return response
+
+        fake_client = MagicMock()
+        fake_client.chat.completions.create.side_effect = fake_create
+        with patch("openai.OpenAI", return_value=fake_client):
+            raw, steps, _lat, transcript, error, trunc = runner._live_solution(
+                "opencode", problem, "http://localhost:1/v1", runner.BASE_MODEL_NAME, "key"
+            )
+        self.assertEqual(calls["n"], runner.MAX_ADVANCED_STEPS)
+        self.assertEqual(steps, runner.MAX_ADVANCED_STEPS)
+        self.assertEqual(len(transcript), runner.MAX_ADVANCED_STEPS)
+        self.assertEqual(error, "")
+        # Minimal still makes exactly one call.
+        calls["n"] = 0
+        with patch("openai.OpenAI", return_value=fake_client):
+            _raw, steps_min, _lat, _tr, _err, _tc = runner._live_solution(
+                "minimal", problem, "http://localhost:1/v1", runner.BASE_MODEL_NAME, "key"
+            )
+        self.assertEqual(calls["n"], 1)
+        self.assertEqual(steps_min, 1)
 
 
 if __name__ == "__main__":

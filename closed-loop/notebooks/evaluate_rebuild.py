@@ -46,7 +46,12 @@ HARNESS_LABELS = {
 }
 
 def load_metrics_from_raw_traces() -> Dict[str, Dict[str, Dict[str, float]]]:
-    """Scans RAW_TRACES_DIR for build_*.json and rebuild_*.json files."""
+    """Scans RAW_TRACES_DIR for build_*.json and rebuild_*.json files.
+
+    Round 1 only: traces carrying a non-empty run_tag (Round 2) are
+    ignored here, so Round 2 runs never break the Round 1 pairing.
+    Round 2 metrics are computed by notebooks/round2_stats.py.
+    """
     results: Dict[str, Dict[str, List[Dict[str, Any]]]] = {
         "build": {h: [] for h in HARNESS_ORDER},
         "rebuild": {h: [] for h in HARNESS_ORDER},
@@ -59,6 +64,8 @@ def load_metrics_from_raw_traces() -> Dict[str, Dict[str, Dict[str, float]]]:
         try:
             with open(p, "r", encoding="utf-8") as f:
                 trace = json.load(f)
+            if trace.get("run_tag"):
+                continue
             phase = trace.get("phase")
             h_id = trace.get("harness_id", "")
             if phase in results and h_id in results[phase]:

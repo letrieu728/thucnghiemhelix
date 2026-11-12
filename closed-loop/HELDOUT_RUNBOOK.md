@@ -1,5 +1,15 @@
 # Held-out runbook: live re-run, retrain, held-out evaluation
 
+> Round 1 runbook (below) is preserved as executed on 2026-11-12. For
+> Round 2 (20 training tasks, sampling, harder held-out v2, run tags,
+> cost checkpoints), follow
+> [`ROUND2_DESIGN.md`](ROUND2_DESIGN.md) §4 instead. Round 2 commands
+> always use `--run-tag` + `--skip-existing` and never overwrite
+> Round 1 files. Round 2 was executed 2026-11-12: held-out v2 (15 hard
+> tasks, `held2_001`–`held2_015`) ran 120/120 live cells, base 50/60,
+> LoRA 53/60, McNemar p = 0.4531, 0 infra errors; see
+> `REBUILD_REPORT.md` §9.3. Held-out v1 was NOT re-run.
+
 Goal: replace the mixed live/dry-run BUILD baseline with a fully live one,
 retrain on live-only sibling data, and measure the adapter on 10 tasks it
 never trained on. Run the steps in order. Nothing here needs new code — the

@@ -21,11 +21,37 @@ Two execution modes
   Two problem sets (--problem-set):
   train     The 10 original problems (lcb_001..lcb_010). Training data may
             only be extracted from live BUILD traces on this set.
+  train20   The 10 original problems plus 10 extra training problems
+            (lcb_011..lcb_020) in closed-loop/data/train_extra_problems.json.
+            Round 2 training set (20 tasks). Never includes held-out IDs.
   heldout   10 fresh problems (held_001..held_010) in
             closed-loop/data/heldout_problems.json, never used for training.
             Run with --phase heldout and an explicit --model (base or
             helix-lora) to measure generalisation. Held-out traces are never
             read by 03_extract_pairs.py (it only reads phase == "build").
+  heldout2  15 harder fresh problems (held2_001..held2_015) in
+            closed-loop/data/heldout2_problems.json, never used for
+            training. Round 2 discriminating held-out set (v1 saturated).
+
+  Round tagging (--run-tag): Round 2 traces carry a run tag (e.g. "build2",
+  "rebuild2", "heldout2") that becomes the filename prefix and is recorded
+  in the trace JSON, so Round 2 runs never overwrite Round 1 files and the
+  extractor can select one round at a time. Untagged runs keep the
+  historical filenames. --skip-existing resumes an interrupted run by
+  reusing complete live trace files already on disk.
+
+  Sampling (--temperature, --n-samples): defaults temperature=0.0, n=1,
+  which reproduces the Round 1 protocol exactly. With n>1 each cell runs
+  n times; filenames gain a _s0/_s1/... suffix and traces record
+  temperature, sample_index and seed. Sampling runs exist only to create
+  sibling contrast for training; baseline comparisons use temp 0.0, n=1.
+
+  Prompt guard: multi-turn transcripts are truncated (oldest middle turns
+  dropped, system + original prompt + latest turns kept) before any API
+  call whose estimated prompt would exceed the context budget, so a
+  growing transcript can no longer overflow the server context window
+  (the Round 1 held_006 HTTP 400). Truncations are counted in the trace
+  ("prompt_truncations"); normal runs trigger zero truncations.
 
 Output
 ------
@@ -62,6 +88,7 @@ from __future__ import annotations
 import argparse
 import ast
 import json
+import math
 import os
 import re
 import subprocess
@@ -95,6 +122,34 @@ CODE_EXTRACTION_PATTERNS = [
     re.compile(r"```python\s*\n(.*?)```", re.DOTALL | re.IGNORECASE),
     re.compile(r"```\s*\n(.*?)```", re.DOTALL),
 ]
+
+# ---------------------------------------------------------------------------
+# Prompt / context budget (Round 2 guard)
+# ---------------------------------------------------------------------------
+# Server context window is 8192 tokens (01_modal_vllm.py); each call
+# requests up to 1024 output tokens. Keep estimated input tokens below
+# 8192 - 1024 - 256 (safety margin) by truncating old middle turns.
+MAX_INPUT_TOKENS_EST = 8192 - 1024 - 256
+MAX_OUTPUT_TOKENS = 1024
+# Rough token estimate: ~4 characters per token for code-heavy English
+# text. Deliberately conservative: it over-truncates rather than
+# under-truncates, and truncation is recorded in the trace.
+_CHARS_PER_TOKEN_EST = 4.0
+SAMPLING_SEED_BASE = 42000
+
+# Maximum feedback-loop steps for advanced harnesses (Round 2 cap).
+# Evidence from the 160 Round 1 traces: all 105 passing advanced cells
+# finished within 3 steps, and every longer loop ended in an HTTP 400
+# context error at the old 4096-token window — no Round 1 pass ever
+# needed a 4th+ retry. The recipe configs still say 8/12/15, but with
+# the window raised to 8192 + truncation, failing cells would otherwise
+# burn 8–15 generations (~230–400 s) each without changing the outcome
+# (observed on lcb_002 in the first Round 2 attempt: 8/12/15 steps, all
+# FAIL). The cap of 4 (3 observed + 1 spare retry) preserves all
+# observed passing behaviour, bounds retry cost inside the $6 Round 2
+# budget, and applies uniformly to both models and all phases, so
+# within-Round-2 comparisons stay fair. Minimal stays at 1 step.
+MAX_ADVANCED_STEPS = 4
 
 # =============================================================================
 # 1. Built-in Benchmark Problems
@@ -308,33 +363,85 @@ BENCHMARK_PROBLEMS: List[Dict[str, Any]] = [
 # BENCHMARK_PROBLEMS: any overlap would silently re-test training tasks.
 
 HELDOUT_PROBLEMS_PATH = CLOSED_LOOP_ROOT / "data" / "heldout_problems.json"
+TRAIN_EXTRA_PROBLEMS_PATH = CLOSED_LOOP_ROOT / "data" / "train_extra_problems.json"
+HELDOUT2_PROBLEMS_PATH = CLOSED_LOOP_ROOT / "data" / "heldout2_problems.json"
 
 
-def _load_heldout_problems() -> List[Dict[str, Any]]:
-    """Load and validate the held-out problem set from JSON."""
-    if not HELDOUT_PROBLEMS_PATH.exists():
-        raise SystemExit(f"Held-out problem file not found: {HELDOUT_PROBLEMS_PATH}")
-    with open(HELDOUT_PROBLEMS_PATH, encoding="utf-8") as f:
+def _load_problems_json(path: Path, label: str) -> List[Dict[str, Any]]:
+    """Load and validate a JSON problem set (list of problem dicts)."""
+    if not path.exists():
+        raise SystemExit(f"{label} problem file not found: {path}")
+    with open(path, encoding="utf-8") as f:
         problems = json.load(f)
     if not isinstance(problems, list) or not problems:
-        raise SystemExit("Held-out problem file must contain a non-empty JSON list")
-    train_ids = {p["id"] for p in BENCHMARK_PROBLEMS}
+        raise SystemExit(f"{label} problem file must contain a non-empty JSON list")
     seen = set()
     for problem in problems:
         for field in ("id", "title", "difficulty", "prompt", "test_cases"):
             if field not in problem:
-                raise SystemExit(f"Held-out problem missing field {field!r}: {problem}")
+                raise SystemExit(f"{label} problem missing field {field!r}: {problem}")
         if not isinstance(problem["test_cases"], list) or not problem["test_cases"]:
-            raise SystemExit(f"Held-out problem {problem['id']} has no test cases")
-        if problem["id"] in train_ids:
-            raise SystemExit(
-                f"Held-out problem id {problem['id']!r} collides with a training problem; "
-                "held-out IDs must be disjoint from BENCHMARK_PROBLEMS."
-            )
+            raise SystemExit(f"{label} problem {problem['id']} has no test cases")
         if problem["id"] in seen:
-            raise SystemExit(f"Duplicate held-out problem id: {problem['id']!r}")
+            raise SystemExit(f"Duplicate {label} problem id: {problem['id']!r}")
         seen.add(problem["id"])
     return problems
+
+
+def _check_disjoint(*sets: Tuple[str, List[Dict[str, Any]]]) -> None:
+    """Fail if any problem id appears in more than one named set."""
+    seen: Dict[str, str] = {}
+    for label, problems in sets:
+        for problem in problems:
+            owner = seen.get(problem["id"])
+            if owner is not None:
+                raise SystemExit(
+                    f"Problem id {problem['id']!r} appears in both {owner} and {label}; "
+                    "training and held-out sets must be disjoint."
+                )
+            seen[problem["id"]] = label
+
+
+def _load_heldout_problems() -> List[Dict[str, Any]]:
+    """Load and validate the held-out problem set from JSON."""
+    problems = _load_problems_json(HELDOUT_PROBLEMS_PATH, "heldout")
+    _check_disjoint(("train", BENCHMARK_PROBLEMS), ("heldout", problems))
+    return problems
+
+
+def _load_train_extra_problems() -> List[Dict[str, Any]]:
+    """Load the Round 2 extra training problems (lcb_011..lcb_020)."""
+    problems = _load_problems_json(TRAIN_EXTRA_PROBLEMS_PATH, "train-extra")
+    _check_disjoint(("train", BENCHMARK_PROBLEMS), ("train-extra", problems))
+    return problems
+
+
+def _load_heldout2_problems() -> List[Dict[str, Any]]:
+    """Load the Round 2 harder held-out set (held2_001..held2_015)."""
+    problems = _load_problems_json(HELDOUT2_PROBLEMS_PATH, "heldout2")
+    sets: List[Tuple[str, List[Dict[str, Any]]]] = [
+        ("train", BENCHMARK_PROBLEMS),
+        ("heldout2", problems),
+    ]
+    if TRAIN_EXTRA_PROBLEMS_PATH.exists():
+        sets.append(("train-extra", _load_problems_json(TRAIN_EXTRA_PROBLEMS_PATH, "train-extra")))
+    if HELDOUT_PROBLEMS_PATH.exists():
+        sets.append(("heldout", _load_problems_json(HELDOUT_PROBLEMS_PATH, "heldout")))
+    _check_disjoint(*sets)
+    return problems
+
+
+def get_problems(problem_set: str) -> List[Dict[str, Any]]:
+    """Return the problem list for a --problem-set value."""
+    if problem_set == "train":
+        return list(BENCHMARK_PROBLEMS)
+    if problem_set == "train20":
+        return list(BENCHMARK_PROBLEMS) + _load_train_extra_problems()
+    if problem_set == "heldout":
+        return _load_heldout_problems()
+    if problem_set == "heldout2":
+        return _load_heldout2_problems()
+    raise SystemExit(f"Unknown problem set: {problem_set!r}")
 
 
 def _build_system_prompt(harness_id: str) -> str:
@@ -967,21 +1074,50 @@ def wait_for_server_ready(base_url: str, timeout_sec: int = 180, poll_interval_s
     return False
 
 
+def _estimate_input_tokens(messages: List[Dict[str, str]]) -> int:
+    """Conservative token estimate for a chat message list (~4 chars/token)."""
+    chars = sum(len(m.get("content", "")) for m in messages)
+    return math.ceil(chars / _CHARS_PER_TOKEN_EST)
+
+
+def _truncate_messages(
+    messages: List[Dict[str, str]],
+    max_input_tokens: int = MAX_INPUT_TOKENS_EST,
+) -> Tuple[List[Dict[str, str]], int]:
+    """Drop oldest middle turns until the estimated prompt fits the budget.
+
+    Always keeps the system prompt, the original user prompt, and the two
+    most recent messages. Returns (kept_messages, dropped_turn_pairs).
+    A normal run never exceeds the budget and gets 0 truncations.
+    """
+    kept = list(messages)
+    dropped = 0
+    while len(kept) > 4 and _estimate_input_tokens(kept) > max_input_tokens:
+        # Drop the oldest assistant reply + the following user feedback
+        # (indices 2 and 3), preserving system + original prompt + tail.
+        del kept[2:4]
+        dropped += 1
+    return kept, dropped
+
+
 def _live_solution(
     harness_id: str,
     problem: Dict[str, Any],
     base_url: str,
     model: str,
     api_key: str,
-) -> Tuple[str, int, float, List[Dict[str, Any]], str]:
+    temperature: float = 0.0,
+    seed: int | None = None,
+) -> Tuple[str, int, float, List[Dict[str, Any]], str, int]:
     """
     Call the OpenAI-compatible vLLM endpoint with the harness-appropriate
-    system prompt and return (raw_response, steps, latency_sec, transcript, error).
+    system prompt and return (raw_response, steps, latency_sec, transcript,
+    error, prompt_truncations).
     """
     try:
         from openai import OpenAI  # type: ignore[import-untyped]
     except ImportError:
-        return "", 0, 0.0, [], "ImportError: pip install openai"
+        return "", 0, 0.0, [], "ImportError: pip install openai", 0
 
     # Enforce 90-second timeout on network requests
     client = OpenAI(base_url=base_url, api_key=api_key, timeout=90.0)
@@ -992,6 +1128,11 @@ def _live_solution(
     else:
         harness_cfg = _load_harness_config(harness_id)
         max_steps = (harness_cfg or {}).get("max_steps", 8)
+        # Round 2 cap: see MAX_ADVANCED_STEPS. The config values (8/12/15)
+        # describe the recipes; the effective loop is capped so a failing
+        # cell cannot burn unbounded GPU retrying a solution that the
+        # Round 1 evidence says will not pass on later retries.
+        max_steps = min(max_steps, MAX_ADVANCED_STEPS)
 
     messages: List[Dict[str, str]] = [
         {"role": "system", "content": system_prompt},
@@ -1000,20 +1141,31 @@ def _live_solution(
     transcript: List[Dict[str, Any]] = []
     step = 0
     t0 = time.monotonic()
+    prompt_truncations = 0
 
     # Agentic loop: runs up to max_steps with execution feedback for advanced harnesses
     while step < max_steps:
         step += 1
+        # Context guard: never send a prompt estimated to overflow the
+        # server window. Truncation drops old middle turns only; the
+        # transcript still records every assistant reply received.
+        send_messages, dropped = _truncate_messages(messages)
+        prompt_truncations += dropped
+        if dropped:
+            messages = send_messages
         try:
-            response = client.chat.completions.create(
-                model=model,
-                messages=messages,
-                temperature=0.0,
-                max_tokens=1024,
-                timeout=90.0,
-            )
+            create_kwargs: Dict[str, Any] = {
+                "model": model,
+                "messages": messages,
+                "temperature": temperature,
+                "max_tokens": MAX_OUTPUT_TOKENS,
+                "timeout": 90.0,
+            }
+            if seed is not None:
+                create_kwargs["seed"] = seed
+            response = client.chat.completions.create(**create_kwargs)
         except Exception as exc:
-            return "", step, time.monotonic() - t0, transcript, str(exc)
+            return "", step, time.monotonic() - t0, transcript, str(exc), prompt_truncations
 
         reply = response.choices[0].message.content or ""
         transcript.append({
@@ -1053,7 +1205,7 @@ def _live_solution(
         })
 
     raw_response = transcript[-1]["content"] if transcript else ""
-    return raw_response, step, time.monotonic() - t0, transcript, ""
+    return raw_response, step, time.monotonic() - t0, transcript, "", prompt_truncations
 
 
 def _load_harness_config(harness_id: str) -> Optional[Dict[str, Any]]:
@@ -1076,6 +1228,34 @@ def _load_harness_config(harness_id: str) -> Optional[Dict[str, Any]]:
 # 6. Trace Writer
 # =============================================================================
 
+def trace_filename(
+    phase: str,
+    problem_id: str,
+    harness_id: str,
+    model: str,
+    run_tag: str = "",
+    sample_index: int = 0,
+    n_samples: int = 1,
+) -> str:
+    """Deterministic trace filename.
+
+    Historical form (no run tag, single sample) is unchanged:
+    ``{phase}_{task}_{harness}.json`` (held-out inserts a model slug).
+    A run tag replaces the phase prefix (e.g. ``build2_...``), and
+    multi-sample runs gain a ``_s{index}`` suffix before ``.json``.
+    """
+    prefix = run_tag or phase
+    if phase == "heldout":
+        slug = {"Qwen/Qwen2.5-Coder-7B-Instruct": "base"}.get(model, model)
+        slug = re.sub(r"[^A-Za-z0-9_.-]+", "_", slug).strip("_")
+        stem = f"{prefix}_{slug}_{problem_id}_{harness_id}"
+    else:
+        stem = f"{prefix}_{problem_id}_{harness_id}"
+    if n_samples > 1:
+        stem += f"_s{sample_index}"
+    return stem + ".json"
+
+
 def save_trace(
     phase: str,
     problem: Dict[str, Any],
@@ -1090,9 +1270,17 @@ def save_trace(
     raw_helix_transcript: List[Dict[str, Any]],
     error: str,
     output_dir: Path,
+    temperature: float = 0.0,
+    sample_index: int = 0,
+    n_samples: int = 1,
+    run_tag: str = "",
+    prompt_truncations: int = 0,
+    seed: Optional[int] = None,
 ) -> Path:
     """
     Persist one trace file.  Schema is 100% compatible with 03_extract_pairs.py.
+    Round 2 fields (temperature, sample_index, run_tag, prompt_truncations,
+    seed) are additive; older readers ignore them.
     """
     assistant_solution = ""
     code = extract_python_code(raw_response)
@@ -1120,19 +1308,17 @@ def save_trace(
         "raw_helix_transcript": raw_helix_transcript,
         "error": error,
         "timestamp": datetime.now(timezone.utc).isoformat(),
+        "temperature": temperature,
+        "sample_index": sample_index,
+        "run_tag": run_tag,
+        "prompt_truncations": prompt_truncations,
+        "seed": seed,
     }
 
     output_dir.mkdir(parents=True, exist_ok=True)
-    # Held-out runs evaluate several models on the same problems, so the
-    # model slug must be part of the filename — otherwise the second
-    # model's run silently overwrites the first model's 40 traces.
-    # Build/rebuild keep their historical names (one model per phase).
-    if phase == "heldout":
-        slug = {"Qwen/Qwen2.5-Coder-7B-Instruct": "base"}.get(model, model)
-        slug = re.sub(r"[^A-Za-z0-9_.-]+", "_", slug).strip("_")
-        fname = f"{phase}_{slug}_{problem['id']}_{harness_id}.json"
-    else:
-        fname = f"{phase}_{problem['id']}_{harness_id}.json"
+    fname = trace_filename(
+        phase, problem["id"], harness_id, model, run_tag, sample_index, n_samples
+    )
     out_path = output_dir / fname
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(trace, f, indent=2, ensure_ascii=False)
@@ -1182,89 +1368,152 @@ def run_evaluation(args: argparse.Namespace) -> None:
             print("[FAIL-FAST] Aborting evaluation loop: Modal vLLM server is not reachable or healthy.")
             sys.exit(1)
 
-    if args.problem_set == "heldout":
-        all_problems = _load_heldout_problems()
+    all_problems = get_problems(args.problem_set)
+    harness_ids = list(getattr(args, "harnesses", None) or HARNESS_IDS)
+    for harness_id in harness_ids:
+        if harness_id not in HARNESS_IDS:
+            print(f"[ERROR] Unknown harness: {harness_id!r} (valid: {', '.join(HARNESS_IDS)})")
+            sys.exit(1)
+    temperature = float(getattr(args, "temperature", 0.0))
+    n_samples = int(getattr(args, "n_samples", 1))
+    run_tag = getattr(args, "run_tag", "") or ""
+    start_index = int(getattr(args, "start_index", 0) or 0)
+    limit = getattr(args, "limit", None)
+    if temperature < 0.0 or temperature > 2.0:
+        print("[ERROR] --temperature must be between 0.0 and 2.0.")
+        sys.exit(1)
+    if n_samples < 1:
+        print("[ERROR] --n-samples must be >= 1.")
+        sys.exit(1)
+    if start_index < 0 or start_index >= len(all_problems):
+        print(f"[ERROR] --start-index {start_index} out of range for {len(all_problems)} problems.")
+        sys.exit(1)
+    if limit is None:
+        problems = all_problems[start_index:]
     else:
-        all_problems = BENCHMARK_PROBLEMS
-    problems = all_problems[: max(1, min(args.limit, len(all_problems)))]
-    total = len(problems) * len(HARNESS_IDS)
+        if limit < 1:
+            print("[ERROR] --limit must be >= 1.")
+            sys.exit(1)
+        problems = all_problems[start_index:start_index + limit]
+    skip_existing = bool(getattr(args, "skip_existing", False))
+    total = len(problems) * len(harness_ids) * n_samples
 
     print("=" * 65)
     print("  HELIX Closed-Loop Evaluation Runner")
     print(f"  Phase    : {args.phase.upper()}")
-    print(f"  Problems : {args.problem_set} ({len(problems)} tasks)")
+    print(f"  Problems : {args.problem_set} ({len(problems)} tasks, start={start_index}, of {len(all_problems)})")
     print(f"  Mode     : {args.mode}")
     print(f"  Model    : {model}")
-    print(f"  Harnesses: {len(HARNESS_IDS)}")
+    print(f"  Harnesses: {', '.join(harness_ids)}")
+    print(f"  Sampling : temperature={temperature}, n_samples={n_samples}, run_tag={run_tag or '(none)'}")
     print(f"  Total    : {total} runs")
     print(f"  Output   : {RAW_TRACES_DIR}")
     print("=" * 65)
 
     success_count = 0
+    skipped_count = 0
     run_index = 0
 
     for problem in problems:
         print(f"\n[Problem {problem['id']}] {problem['title']} ({problem['difficulty']})")
 
-        for harness_id in HARNESS_IDS:
-            run_index += 1
+        for harness_id in harness_ids:
             harness_cfg = _load_harness_config(harness_id) or {}
             harness_category = harness_cfg.get("category", harness_id)
 
-            label = f"  [{run_index}/{total}] harness={harness_id}"
-            print(f"{label} ...", end="", flush=True)
-
-            # ---- Generate solution ----
-            raw_response = ""
-            steps = 0
-            latency_sec = 0.0
-            transcript: List[Dict[str, Any]] = []
-            error = ""
-
-            if args.mode == "dry-run":
-                raw_response, steps, latency_sec, error = _dry_run_solution(
-                    harness_id, problem["id"]
+            for sample_index in range(n_samples):
+                run_index += 1
+                fname = trace_filename(
+                    args.phase, problem["id"], harness_id, model,
+                    run_tag, sample_index, n_samples,
                 )
-            else:
-                raw_response, steps, latency_sec, transcript, error = _live_solution(
-                    harness_id, problem, base_url, model, api_key
+                label = f"  [{run_index}/{total}] harness={harness_id} sample={sample_index}"
+                if skip_existing:
+                    existing = RAW_TRACES_DIR / fname
+                    if existing.exists():
+                        try:
+                            prior = json.loads(existing.read_text(encoding="utf-8"))
+                        except Exception:
+                            prior = None
+                        if (
+                            prior is not None
+                            and prior.get("mode") == args.mode
+                            and prior.get("phase") == args.phase
+                            and prior.get("task_id") == problem["id"]
+                            and prior.get("harness_id") == harness_id
+                            and prior.get("model") == model
+                            and prior.get("run_tag", "") == run_tag
+                            and prior.get("sample_index", 0) == sample_index
+                            and type(prior.get("passed")) is bool
+                        ):
+                            print(f"{label} [SKIP-EXISTING] {'[PASS]' if prior['passed'] else '[FAIL]'} -> {fname}")
+                            skipped_count += 1
+                            if prior["passed"]:
+                                success_count += 1
+                            continue
+                print(f"{label} ...", end="", flush=True)
+
+                # ---- Generate solution ----
+                raw_response = ""
+                steps = 0
+                latency_sec = 0.0
+                transcript: List[Dict[str, Any]] = []
+                error = ""
+                prompt_truncations = 0
+                seed = SAMPLING_SEED_BASE + sample_index
+
+                if args.mode == "dry-run":
+                    raw_response, steps, latency_sec, error = _dry_run_solution(
+                        harness_id, problem["id"]
+                    )
+                else:
+                    (raw_response, steps, latency_sec, transcript, error,
+                     prompt_truncations) = _live_solution(
+                        harness_id, problem, base_url, model, api_key,
+                        temperature=temperature, seed=seed,
+                    )
+
+                # ---- Sandbox verification ----
+                code = extract_python_code(raw_response)
+                if code and not error:
+                    passed, exec_error = run_test_cases(code, problem["test_cases"])
+                    if exec_error and not error:
+                        error = exec_error
+                else:
+                    passed = False
+                    if not error:
+                        error = "No Python code block found in response"
+
+                # ---- Persist trace ----
+                out_path = save_trace(
+                    phase=args.phase,
+                    problem=problem,
+                    harness_id=harness_id,
+                    harness_category=harness_category,
+                    model=model,
+                    mode=args.mode,
+                    raw_response=raw_response,
+                    steps=steps,
+                    latency_sec=latency_sec,
+                    passed=passed,
+                    raw_helix_transcript=transcript,
+                    error=error,
+                    output_dir=RAW_TRACES_DIR,
+                    temperature=temperature,
+                    sample_index=sample_index,
+                    n_samples=n_samples,
+                    run_tag=run_tag,
+                    prompt_truncations=prompt_truncations,
+                    seed=seed,
                 )
 
-            # ---- Sandbox verification ----
-            code = extract_python_code(raw_response)
-            if code and not error:
-                passed, exec_error = run_test_cases(code, problem["test_cases"])
-                if exec_error and not error:
-                    error = exec_error
-            else:
-                passed = False
-                if not error:
-                    error = "No Python code block found in response"
-
-            # ---- Persist trace ----
-            out_path = save_trace(
-                phase=args.phase,
-                problem=problem,
-                harness_id=harness_id,
-                harness_category=harness_category,
-                model=model,
-                mode=args.mode,
-                raw_response=raw_response,
-                steps=steps,
-                latency_sec=latency_sec,
-                passed=passed,
-                raw_helix_transcript=transcript,
-                error=error,
-                output_dir=RAW_TRACES_DIR,
-            )
-
-            status = "[PASS]" if passed else "[FAIL]"
-            print(f" {status} steps={steps} lat={latency_sec:.1f}s -> {out_path.name}")
-            if passed:
-                success_count += 1
+                status = "[PASS]" if passed else "[FAIL]"
+                print(f" {status} steps={steps} lat={latency_sec:.1f}s trunc={prompt_truncations} -> {out_path.name}")
+                if passed:
+                    success_count += 1
 
     print("\n" + "=" * 65)
-    print(f"  Evaluation complete: {success_count}/{total} passed")
+    print(f"  Evaluation complete: {success_count}/{total} passed ({skipped_count} reused via --skip-existing)")
     print(f"  Traces saved to: {RAW_TRACES_DIR}")
     print("=" * 65)
 
@@ -1291,6 +1540,11 @@ def parse_args() -> argparse.Namespace:
               # Held-out evaluation (fresh tasks, explicit model required):
               python closed-loop/scripts/02_run_helix_eval.py --phase heldout --mode live --problem-set heldout --model Qwen/Qwen2.5-Coder-7B-Instruct
               python closed-loop/scripts/02_run_helix_eval.py --phase heldout --mode live --problem-set heldout --model helix-lora
+
+              # Round 2 (tagged, resumable; never overwrites Round 1 files):
+              python closed-loop/scripts/02_run_helix_eval.py --phase build --mode live --problem-set train20 --run-tag build2 --skip-existing
+              python closed-loop/scripts/02_run_helix_eval.py --phase build --mode live --problem-set train20 --run-tag build2 --temperature 0.7 --n-samples 2 --harnesses minimal,opencode --skip-existing
+              python closed-loop/scripts/02_run_helix_eval.py --phase heldout --mode live --problem-set heldout2 --run-tag heldout2 --model helix-lora --skip-existing
         """),
     )
     parser.add_argument(
@@ -1302,11 +1556,13 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--problem-set",
-        choices=["train", "heldout"],
+        choices=["train", "train20", "heldout", "heldout2"],
         default="train",
-        help="Problem set: 'train' is the 10 original problems (lcb_*); 'heldout' loads the "
-        "10 fresh problems from closed-loop/data/heldout_problems.json (held_*). "
-        "Held-out IDs are disjoint from training IDs by construction.",
+        help="Problem set: 'train' is the 10 original problems (lcb_001..010); "
+        "'train20' adds 10 extra training problems (lcb_011..020); 'heldout' loads "
+        "the 10 fresh problems from heldout_problems.json (held_*); 'heldout2' loads "
+        "15 harder fresh problems from heldout2_problems.json (held2_*). "
+        "All sets are disjoint by construction (checked on load).",
     )
     parser.add_argument(
         "--base-url",
@@ -1338,16 +1594,53 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--limit",
         type=int,
-        default=10,
-        help="Limit the number of benchmark problems to run (1-10). Default: 10.",
+        default=None,
+        help="Maximum number of problems to run from --start-index (default: all remaining).",
     )
-    return parser.parse_args()
+    parser.add_argument(
+        "--start-index",
+        type=int,
+        default=0,
+        help="0-based index of the first problem to run (default: 0). Use with --limit to split a run into resumable chunks.",
+    )
+    parser.add_argument(
+        "--temperature",
+        type=float,
+        default=0.0,
+        help="Sampling temperature passed to the model (default: 0.0, the Round 1 protocol). Sampling runs use 0.7.",
+    )
+    parser.add_argument(
+        "--n-samples",
+        type=int,
+        default=1,
+        help="Samples per (problem, harness) cell (default: 1). With n>1, filenames gain _s0/_s1/... suffixes.",
+    )
+    parser.add_argument(
+        "--run-tag",
+        default="",
+        help="Round tag recorded in traces and used as the filename prefix (e.g. 'build2'). Empty keeps historical filenames.",
+    )
+    parser.add_argument(
+        "--harnesses",
+        default=None,
+        help="Comma-separated harness subset (default: all 4). Example: --harnesses minimal,opencode",
+    )
+    parser.add_argument(
+        "--skip-existing",
+        action="store_true",
+        help="Reuse complete live trace files already on disk instead of re-running those cells (resume after interruption).",
+    )
+    args = parser.parse_args()
+    # Normalise --harnesses to a list (or None for all).
+    if args.harnesses:
+        args.harnesses = [h.strip() for h in args.harnesses.split(",") if h.strip()]
+    else:
+        args.harnesses = None
+    return args
 
 
 def main() -> None:
-    args = parse_args()
-    args.limit = max(1, min(args.limit, len(BENCHMARK_PROBLEMS)))
-    run_evaluation(args)
+    run_evaluation(parse_args())
 
 
 if __name__ == "__main__":

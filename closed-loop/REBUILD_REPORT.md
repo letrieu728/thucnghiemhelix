@@ -138,4 +138,169 @@ Design: 10 fresh problems (`held_001`–`held_010`, 4 easy / 6 medium) in `data/
 
 ## 7. Visualization
 
-The comparison plot from the October run is stale (it charts the mock-contaminated numbers) and was not regenerated for the live re-run; the tables above are authoritative. Regenerate with `notebooks/evaluate_rebuild.py` (requires matplotlib/numpy) if a figure is needed for slides.
+The comparison plot was regenerated from the 160 live Round 1 traces with
+Wilson 95% intervals (script: `notebooks/round1_stats.py`; figure:
+`data/rebuild_comparison_plot.svg`, PNG alongside it). The October plot
+charting the mock-contaminated numbers is superseded; the tables above
+remain authoritative. The wide, overlapping intervals are the point: at
+n=10 per harness, a one-task delta cannot be distinguished from noise.
+
+## 8. Supplementary statistics (Round 1, offline analysis)
+
+Computed 2026-11-12 from the trace files only
+(`notebooks/round1_stats.py` → `data/analysis_round1.json`); no new model
+calls, no change to any Round 1 number above. All 160 `passed` flags were
+re-verified a second time by re-running the sandbox tests: **0 mismatches**.
+
+### 8.1 Portfolio union (tasks solved by at least one harness)
+
+The paper's headline portfolio quantity is a post-hoc union (79/100 on
+AtCoder). The same quantity here, per model on the 10 training tasks:
+
+| Model | Union | Wilson 95% | Tasks solved by no harness |
+| :--- | :---: | :---: | :--- |
+| Base (BUILD) | 8/10 | 49.0%–94.3% | `lcb_002`, `lcb_003` |
+| LoRA (REBUILD) | 10/10 | 72.2%–100% | — |
+
+Held-out v1 union is 10/10 for both models. The union gain on training
+tasks comes from the same two OpenCode flips discussed in §5 (tasks with
+no training data); it is reported as a descriptive portfolio quantity,
+not as evidence of learning.
+
+### 8.2 Wilson 95% intervals for Pass@1
+
+| Harness | BUILD | Wilson 95% | REBUILD | Wilson 95% |
+| :--- | :---: | :---: | :---: | :---: |
+| Minimal | 60.0% (6/10) | 31.3%–83.2% | 70.0% (7/10) | 39.7%–89.2% |
+| Pi Mono | 70.0% (7/10) | 39.7%–89.2% | 80.0% (8/10) | 49.0%–94.3% |
+| Hermes Agent | 70.0% (7/10) | 39.7%–89.2% | 70.0% (7/10) | 39.7%–89.2% |
+| OpenCode | 80.0% (8/10) | 49.0%–94.3% | 90.0% (9/10) | 59.6%–98.2% |
+| **Total** | **70.0% (28/40)** | **54.6%–81.9%** | **77.5% (31/40)** | **62.5%–87.7%** |
+
+Held-out v1 totals: base 97.5% (39/40, Wilson 87.1%–99.6%), LoRA 100%
+(40/40, Wilson 91.2%–100%). Every interval overlaps its counterpart.
+
+### 8.3 McNemar tests on paired cells
+
+Paired by (task, harness), 40 cells each. BUILD → REBUILD: 4 gains,
+1 loss, 27 same-pass, 8 same-fail; exact two-sided p = **0.375**
+(continuity-corrected χ² = 0.80). Held-out base → LoRA: 1 gain, 0 losses,
+39 same-pass; exact p = **1.0**. Neither change is statistically
+distinguishable from no change at this scale; the single held-out gain is
+the infrastructure-error cell (§6), not a capability difference. These
+tests formalise the §1 reading: the Round 1 gain is consistent with
+sampling noise.
+
+## 9. Round 2 (2026-11-12) — 20 training tasks, sampling, held-out v2
+
+Round 2 re-ran the full loop on an expanded, disjoint training set with a
+larger training dataset and a harder held-out set, under the design in
+[`ROUND2_DESIGN.md`](ROUND2_DESIGN.md). Round 1 sections above are kept
+verbatim; nothing in Round 1 was re-run. All Round 2 numbers below come
+from `notebooks/round2_stats.py` → `data/analysis_round2.json` and the
+training-run metadata; baseline cells only (temperature 0.0, sample 0)
+for all rates, unions and McNemar tests.
+
+### 9.1 What changed vs Round 1
+
+- **Training set:** 20 tasks (`lcb_001`–`lcb_020`); the 10 new tasks
+  (`lcb_011`–`lcb_020`) live in `data/train_extra_problems.json`.
+  Reference solutions for all 25 new problems (train-extra + held-out v2)
+  were verified offline 25/25 before any live run.
+- **Sampling:** after the temp-0.0 BUILD2, 80 extra cells (minimal +
+  opencode, temperature 0.7, n=2) were run for training extraction only;
+  they never enter baseline comparisons. Sampling produced 63/80 passes
+  and added the only SFT/DPO records for `lcb_003` and `lcb_013`.
+- **Context fix:** `--max-model-len` 4096 → 8192 plus a prompt-truncation
+  guard in `02_run_helix_eval.py`. Result: **0 prompt truncations and 0
+  infrastructure-error traces in all 360 Round 2 traces** (Round 1 had 1
+  HTTP 400 context-overflow cell).
+- **Feedback-loop cap:** advanced harnesses capped at 4 steps (evidence:
+  all 105 passing advanced Round 1 cells finished in ≤3 steps; every
+  Round 1 cell reaching 6+ steps ended in HTTP 400). The cap applies
+  uniformly to both models and all phases; recipe configs unchanged.
+- **Run tags:** every Round 2 trace carries `run_tag`
+  (`build2`/`rebuild2`/`heldout2`) in JSON and filename; no Round 1 file
+  was overwritten (Round 1 checksums re-verified before the run).
+- **Training data:** live-only extraction from 160 BUILD2 traces
+  (80 baseline + 80 sampling) → **SFT 19, DPO 6** (Round 1: SFT 8,
+  DPO 2). Provenance manifest: `run_tag_filter: [build2]`, 0 dry-run
+  traces, leakage check clean (no held-out ID in any training record).
+  `lcb_002` was never solved in any BUILD2 trace, so it has no training
+  record. SFT hash `4f4d6ad8…`, DPO hash `a40fa5b1…`.
+- **Training:** run `20261112T082610-f368cbfe`, same hyperparameters as
+  Round 1 (r=16, alpha=32, lr 2e-4, DPO lr 5e-6, seed 42, epochs 3).
+  SFT 9 steps, loss 1.00 → 0.49; DPO 3 steps, loss 0.693 → 0.660.
+  The Round 1 adapter was backed up as
+  `helix-lora-final-backup-20261112` before this adapter overwrote
+  `helix-lora-final`. Endpoint redeployed and routing re-verified (both
+  model IDs return their own id; `max_model_len` 8192).
+
+### 9.2 BUILD2 vs REBUILD2 (20 tasks × 4 harnesses, temp 0.0)
+
+| Harness | BUILD2 (base) | Wilson 95% | REBUILD2 (LoRA) | Wilson 95% |
+| :--- | :---: | :---: | :---: | :---: |
+| Minimal | 70.0% (14/20) | 48.1%–85.5% | 85.0% (17/20) | 64.0%–94.8% |
+| Pi Mono | 75.0% (15/20) | 53.1%–88.8% | 80.0% (16/20) | 58.4%–91.9% |
+| Hermes Agent | 70.0% (14/20) | 48.1%–85.5% | 75.0% (15/20) | 53.1%–88.8% |
+| OpenCode | 85.0% (17/20) | 64.0%–94.8% | 90.0% (18/20) | 69.9%–97.2% |
+| **Total** | **75.0% (60/80)** | **64.5%–83.2%** | **82.5% (66/80)** | **72.7%–89.3%** |
+
+Paired McNemar (80 cells): **7 gains, 1 loss**, 59 same-pass, 13
+same-fail; exact two-sided p = **0.0703** (continuity-corrected
+χ² = 3.125). Gains: `lcb_002` pi-mono; `lcb_003` minimal + opencode;
+`lcb_013` minimal + opencode; `lcb_017` hermes; `lcb_019` minimal.
+The single loss is `lcb_009` opencode — a DPO chosen cell, which cuts
+against a clean learning story. The `lcb_002` gain is on a task with no
+training record at all. p = 0.07 is suggestive but not significant at
+0.05; the pattern is more favourable than Round 1 (p = 0.375) but still
+consistent with sampling noise at this scale.
+
+Portfolio union: BUILD2 17/20 (unsolved `lcb_002`, `lcb_003`, `lcb_013`;
+Wilson 64.0%–94.8%) → REBUILD2 19/20 (unsolved only `lcb_009`; Wilson
+76.4%–99.1%). The union gain comes from the same flip cells above.
+
+### 9.3 Held-out v2 (15 hard tasks × 4 harnesses × 2 models, temp 0.0)
+
+Held-out v2 (`held2_001`–`held2_015`, `data/heldout2_problems.json`) is
+disjoint from all training and from held-out v1, and was never used in
+training. Base total 83.3% is below the 85% ceiling target set in the
+design, so the set discriminates — unlike held-out v1 (97.5%/100%).
+
+| Harness | Base | Wilson 95% | LoRA | Wilson 95% |
+| :--- | :---: | :---: | :---: | :---: |
+| Minimal | 80.0% (12/15) | 54.8%–93.0% | 86.7% (13/15) | 62.1%–96.3% |
+| Pi Mono | 86.7% (13/15) | 62.1%–96.3% | 86.7% (13/15) | 62.1%–96.3% |
+| Hermes Agent | 86.7% (13/15) | 62.1%–96.3% | 86.7% (13/15) | 62.1%–96.3% |
+| OpenCode | 80.0% (12/15) | 54.8%–93.0% | 93.3% (14/15) | 70.2%–98.8% |
+| **Total** | **83.3% (50/60)** | **72.0%–90.7%** | **88.3% (53/60)** | **77.8%–94.2%** |
+
+Paired McNemar (60 cells): **5 gains, 2 losses**, 48 same-pass, 5
+same-fail; exact two-sided p = **0.4531** (χ² = 0.571). Gains:
+`held2_001` hermes, `held2_002` opencode, `held2_014` minimal/opencode/
+pi-mono. Losses: `held2_008` pi-mono, `held2_014` hermes. Union is 14/15
+for both models (unsolved: `held2_009` next permutation, 0/8 cells).
+**No generalisation is demonstrated**: the +3 held-out delta is well
+within noise (p = 0.45), and the same task (`held2_014`) flips both ways
+across harnesses.
+
+### 9.4 Verification and cost
+
+- **Re-verification:** all 360 Round 2 `passed` flags re-verified by
+  re-running the sandbox tests: **0 mismatches**. Trace counts: BUILD2
+  160 (80 baseline + 80 sampling), REBUILD2 80, held-out v2 120.
+  Total recorded live latency 9,266.7 s (baseline 7,729.7 s).
+- **Figure:** `data/round2_comparison_plot.svg` (PNG alongside), Wilson
+  error bars, from the same script.
+- **GPU cost (estimate):** ≈ **$4.30** for Round 2 — recorded serving
+  latency 10,279.7 s including the discarded uncapped attempt (~$3.14 at
+  $1.10/hr A10G), training run ~$0.70 (A100), cold-start/idle overhead
+  ~$0.50. Inside the $6 cap. Modal balance is not readable via CLI, so
+  this is an estimate from recorded GPU time, not a billing statement.
+- **Honest reading:** Round 2 improves the evidence base (2× training
+  tasks, 3× DPO pairs, a discriminating held-out set, zero infra errors)
+  but does not change the conclusion: the training-task gain (p = 0.07)
+  is suggestive, the held-out gain (p = 0.45) is noise, and no claim of
+  real learning or generalisation is warranted. The remaining gaps —
+  emulated harnesses, hand-written tasks, one co-evolution round — are
+  Group 3 work, not started.

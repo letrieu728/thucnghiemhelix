@@ -1,0 +1,49 @@
+{
+  "run_id": "20261112T082610-f368cbfe",
+  "stage": "sft_then_dpo",
+  "epochs": 3,
+  "max_steps": -1,
+  "learning_rate": 0.0002,
+  "dpo_learning_rate": 5e-06,
+  "lora_r": 16,
+  "lora_alpha": 32,
+  "lora_dropout": 0.05,
+  "seed": 42,
+  "max_seq_length": 4096,
+  "sample_counts": {
+    "sft": 19,
+    "dpo": 6
+  },
+  "base_model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "data_sha256": {
+    "sft": "4f4d6ad8b63c9407d0ac2a2409a05130622e01dc6dc181187ab5b802f71aec11",
+    "dpo": "a40fa5b1f1b3d4712975c1bd5d6bb122fe5c87d164cc6fcf7381fd07659b37af"
+  },
+  "provenance": {
+    "generated_at": "2026-11-12T08:24:48.662430+00:00",
+    "allow_dry_run": false,
+    "live_traces_kept": 160
+  },
+  "allow_unverified_data": false,
+  "stage_summaries": {
+    "sft": {
+      "global_step": 9,
+      "final_loss": 0.494,
+      "logged_rows": 10
+    },
+    "dpo": {
+      "global_step": 3,
+      "final_loss": 0.6595,
+      "logged_rows": 4
+    }
+  },
+  "versions": {
+    "torch": "2.8.0",
+    "transformers": "4.56.2",
+    "trl": "0.23.0",
+    "unsloth": "2025.10.12",
+    "unsloth_zoo": "2025.10.13",
+    "peft": "0.17.1",
+    "datasets": "3.6.0"
+  }
+}

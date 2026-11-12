@@ -55,14 +55,14 @@ artifact có sẵn trong HELIX thành một lần tái lập mới.
 | --- | --- | --- |
 | Typecheck | PASS (2026-11-07) | Xem `results/2026-11-07-typecheck.md`; chạy tại commit `a090aba`. |
 | Full unit/conformance tests | Không kết luận | Đã chạy trên working tree có thay đổi cục bộ; log thô không được dùng làm kết quả xác nhận. |
-| Sinh cassette task parity | BLOCKED (2026-11-10) | Clean checkout vẫn bị `EPERM` khi tạo workspace tạm của task; xem kết quả chi tiết. |
+| Sinh cassette task parity | BLOCKED (2026-11-11) | 101 fixture symlink trỏ tới đường dẫn tuyệt đối trên máy tác giả, 101/101 hỏng (`ENOENT` trên Linux); nội dung 101 task không có trong repo, không tạo fixture giả. |
 | Assembly contract | PASS (2026-11-10) | Strict verification hoàn thành trên cả 5 product. |
 | Flow graphs | PASS (2026-11-10) | Cả 9 artifact blueprint/comparison hiện có đều verify được. |
 | Executable audit | PASS (2026-11-10) | Fingerprint `44370eff3ea1ca3a`; không có compile blocker. |
 | TODO-27 inventory & OpenCode acceptance | PASS (2026-11-10) | Hai verifier PASS; acceptance vẫn chỉ là `ready-for-review`, không phải TODO hoàn tất. |
-| Task parity & cadence | FAIL (2026-11-10) | Thiếu metadata bắt buộc cho acceptance-timing drift trong artifact. |
-| Split task parity | FAIL (2026-11-10) | Manifest không khớp hash/kích thước của nhiều attachment. |
-| Current-module audit | FAIL (2026-11-10) | Fingerprint trong artifact (`ce386…`) không khớp fingerprint tính lại (`413e…`). |
+| Task parity & cadence | FAIL gốc / PASS tái sinh (2026-11-11) | Artifact gốc thiếu metadata acceptance-timing drift; artifact tái sinh trên 12 task smoke verify PASS 13/13. |
+| Split task parity | FAIL gốc / PASS tái sinh (2026-11-11) | Manifest gốc lệch hash/kích thước; manifest tái sinh verify PASS 403/403. |
+| Current-module audit | FAIL gốc / PASS tái sinh (2026-11-11) | Artifact gốc `ce386…` ≠ tính lại `413e…`; artifact tái sinh verify PASS. |
 | Live provider/native CLI/LCB/SWE-bench | Không thực hiện | Cần model/credential hoặc dữ liệu và runner không có trong checkout. |
 
 ## Kiểm tra chéo closed-loop (2026-11-12)
