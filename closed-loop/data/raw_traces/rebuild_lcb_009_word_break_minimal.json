@@ -8,8 +8,9 @@
   "harness_category": "minimal",
   "model": "helix-lora",
   "provider": "openai-compatible",
+  "mode": "live",
   "steps": 1,
-  "latency_sec": 11.11,
+  "latency_sec": 12.644,
   "assistant_solution": "```python\ndef word_break(s: str, word_dict: list[str]) -> list[str]:\n    def backtrack(start):\n        if start == len(s):\n            result.append(' '.join(path))\n            return\n        for end in range(start + 1, len(s) + 1):\n            prefix = s[start:end]\n            if prefix in word_set:\n                path.append(prefix)\n                backtrack(end)\n                path.pop()\n\n    word_set = set(word_dict)\n    result = []\n    path = []\n    backtrack(0)\n    return sorted(result)\n\n# Example usage:\nprint(word_break(\"catsanddog\", [\"cat\",\"cats\",\"and\",\"sand\",\"dog\"]))  # Output: ['cat sand dog', 'cats and dog']\n```",
   "passed": false,
   "test_result": {
@@ -25,5 +26,5 @@
     }
   ],
   "error": "Traceback (most recent call last):\n  File \"<string>\", line 26, in <module>\nAssertionError",
-  "timestamp": "2026-10-29T10:49:57.926237+00:00"
+  "timestamp": "2026-11-12T04:50:27.770463+00:00"
 }

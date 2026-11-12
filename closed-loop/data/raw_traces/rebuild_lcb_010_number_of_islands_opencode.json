@@ -8,9 +8,10 @@
   "harness_category": "complex",
   "model": "helix-lora",
   "provider": "openai-compatible",
+  "mode": "live",
   "steps": 1,
-  "latency_sec": 8.641,
-  "assistant_solution": "```python\nfrom typing import List\n\ndef num_islands(grid: List[List[str]]) -> int:\n    def dfs(i: int, j: int):\n        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] == '0':\n            return\n        grid[i][j] = '0'\n        dfs(i + 1, j)\n        dfs(i - 1, j)\n        dfs(i, j + 1)\n        dfs(i, j - 1)\n\n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == '1':\n                dfs(i, j)\n                count += 1\n    return count\n```",
+  "latency_sec": 14.35,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef num_islands(grid: List[List[str]]) -> int:\n    if not grid:\n        return 0\n    \n    rows, cols = len(grid), len(grid[0])\n    count = 0\n    \n    def dfs(r: int, c: int):\n        if r < 0 or r >= rows or c < 0 or c >= cols or grid[r][c] == '0':\n            return\n        grid[r][c] = '0'\n        dfs(r + 1, c)\n        dfs(r - 1, c)\n        dfs(r, c + 1)\n        dfs(r, c - 1)\n    \n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == '1':\n                count += 1\n                dfs(r, c)\n    \n    return count\n```",
   "passed": true,
   "test_result": {
     "passed": true,
@@ -20,10 +21,10 @@
     {
       "step": 1,
       "role": "assistant",
-      "content": "```python\nfrom typing import List\n\ndef num_islands(grid: List[List[str]]) -> int:\n    def dfs(i: int, j: int):\n        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] == '0':\n            return\n        grid[i][j] = '0'\n        dfs(i + 1, j)\n        dfs(i - 1, j)\n        dfs(i, j + 1)\n        dfs(i, j - 1)\n\n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == '1':\n                dfs(i, j)\n                count += 1\n    return count\n```",
+      "content": "```python\nfrom typing import List\n\ndef num_islands(grid: List[List[str]]) -> int:\n    if not grid:\n        return 0\n    \n    rows, cols = len(grid), len(grid[0])\n    count = 0\n    \n    def dfs(r: int, c: int):\n        if r < 0 or r >= rows or c < 0 or c >= cols or grid[r][c] == '0':\n            return\n        grid[r][c] = '0'\n        dfs(r + 1, c)\n        dfs(r - 1, c)\n        dfs(r, c + 1)\n        dfs(r, c - 1)\n    \n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == '1':\n                count += 1\n                dfs(r, c)\n    \n    return count\n```\n\nThis solution uses Depth-First Search (DFS) to explore each island and mark its cells as visited by setting them to '0'. The main loop iterates over each cell in the grid, and whenever it finds a '1', it increments the island count and performs a DFS to mark all connected land cells. This ensures that each island is counted only once.",
       "finish_reason": "stop"
     }
   ],
   "error": "",
-  "timestamp": "2026-10-29T10:57:43.571197+00:00"
+  "timestamp": "2026-11-12T04:57:46.565548+00:00"
 }

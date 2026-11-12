@@ -8,11 +8,23 @@
   "harness_category": "complex",
   "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
   "provider": "openai-compatible",
+  "mode": "live",
   "steps": 1,
-  "latency_sec": 1.2,
-  "assistant_solution": "```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\ndef reverse_list(head):\n    prev = None\n    curr = head\n    while curr:\n        nxt = curr.next\n        curr.next = prev\n        prev = curr\n        curr = nxt\n    return prev\n```",
+  "latency_sec": 3.749,
+  "assistant_solution": "```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverse_list(head: ListNode | None) -> ListNode | None:\n    prev = None\n    current = head\n    while current:\n        next_node = current.next\n        current.next = prev\n        prev = current\n        current = next_node\n    return prev\n```",
   "passed": true,
-  "raw_helix_transcript": [],
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverse_list(head: ListNode | None) -> ListNode | None:\n    prev = None\n    current = head\n    while current:\n        next_node = current.next\n        current.next = prev\n        prev = current\n        current = next_node\n    return prev\n```",
+      "finish_reason": "stop"
+    }
+  ],
   "error": "",
-  "timestamp": "2026-10-28T18:30:49.407027+00:00"
+  "timestamp": "2026-11-12T04:08:01.217202+00:00"
 }

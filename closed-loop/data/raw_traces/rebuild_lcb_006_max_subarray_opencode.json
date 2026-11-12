@@ -8,8 +8,9 @@
   "harness_category": "complex",
   "model": "helix-lora",
   "provider": "openai-compatible",
+  "mode": "live",
   "steps": 1,
-  "latency_sec": 7.437,
+  "latency_sec": 10.846,
   "assistant_solution": "```python\nfrom typing import List, Tuple\n\ndef max_sub_array(nums: List[int]) -> Tuple[int, List[int]]:\n    if not nums:\n        return 0, []\n    \n    max_current = max_global = nums[0]\n    start = end = s = 0\n    \n    for i in range(1, len(nums)):\n        if nums[i] > max_current + nums[i]:\n            max_current = nums[i]\n            s = i\n        else:\n            max_current += nums[i]\n        \n        if max_current > max_global:\n            max_global = max_current\n            start = s\n            end = i\n    \n    return max_global, nums[start:end+1]\n```",
   "passed": true,
   "test_result": {
@@ -20,10 +21,10 @@
     {
       "step": 1,
       "role": "assistant",
-      "content": "```python\nfrom typing import List, Tuple\n\ndef max_sub_array(nums: List[int]) -> Tuple[int, List[int]]:\n    if not nums:\n        return 0, []\n    \n    max_current = max_global = nums[0]\n    start = end = s = 0\n    \n    for i in range(1, len(nums)):\n        if nums[i] > max_current + nums[i]:\n            max_current = nums[i]\n            s = i\n        else:\n            max_current += nums[i]\n        \n        if max_current > max_global:\n            max_global = max_current\n            start = s\n            end = i\n    \n    return max_global, nums[start:end+1]\n```",
+      "content": "```python\nfrom typing import List, Tuple\n\ndef max_sub_array(nums: List[int]) -> Tuple[int, List[int]]:\n    if not nums:\n        return 0, []\n    \n    max_current = max_global = nums[0]\n    start = end = s = 0\n    \n    for i in range(1, len(nums)):\n        if nums[i] > max_current + nums[i]:\n            max_current = nums[i]\n            s = i\n        else:\n            max_current += nums[i]\n        \n        if max_current > max_global:\n            max_global = max_current\n            start = s\n            end = i\n    \n    return max_global, nums[start:end+1]\n```\n\nThis function implements Kadane's algorithm to find the maximum sum of a contiguous subarray in linear time. It also keeps track of the start and end indices of this subarray to return it along with the maximum sum.",
       "finish_reason": "stop"
     }
   ],
   "error": "",
-  "timestamp": "2026-10-29T10:47:18.967719+00:00"
+  "timestamp": "2026-11-12T04:46:45.190257+00:00"
 }

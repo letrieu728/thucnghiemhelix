@@ -8,8 +8,9 @@
   "harness_category": "complex",
   "model": "helix-lora",
   "provider": "openai-compatible",
+  "mode": "live",
   "steps": 1,
-  "latency_sec": 4.313,
+  "latency_sec": 5.168,
   "assistant_solution": "```python\ndef two_sum(nums: list[int], target: int) -> list[int]:\n    num_to_index = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in num_to_index:\n            return sorted([num_to_index[complement], i])\n        num_to_index[num] = i\n```",
   "passed": true,
   "test_result": {
@@ -25,5 +26,5 @@
     }
   ],
   "error": "",
-  "timestamp": "2026-10-29T10:29:38.973793+00:00"
+  "timestamp": "2026-11-12T04:27:18.465182+00:00"
 }
