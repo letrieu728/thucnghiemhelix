@@ -1,0 +1,53 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_019_permutations_unique",
+  "task_title": "Unique Permutations",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `permute_unique(nums: list[int]) -> list[list[int]]` that returns all unique permutations of `nums` (which may contain duplicates), sorted in lexicographical order. For an empty input, return `[[]]`.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 4,
+  "latency_sec": 85.617,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef permute_unique(nums: List[int]) -> List[List[int]]:\n    def backtrack(start, end):\n        if start == end:\n            result.append(nums[:])\n            return\n        \n        used = set()\n        for i in range(start, end):\n            if nums[i] not in used:\n                used.add(nums[i])\n                nums[start], nums[i] = nums[i], nums[start]\n                backtrack(start + 1, end)\n                nums[start], nums[i] = nums[i], nums[start]  # Backtrack\n\n    nums.sort()  # Sort to handle duplicates easily\n    result = []\n    backtrack(0, len(nums))\n    return result\n\n# Example usage and testing\nif __name__ == \"__main__\":\n    test_cases = [\n        ([1, 2, 3], [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]),\n        ([1, 1, 2], [[1, 1, 2], [1, 2, 1], [2, 1, 1]]),\n        ([], [[]]),\n    ]\n\n    for i, (input_list, expected_output) in enumerate(test_cases):\n        assert permute_unique(input_list) == expected_output, f\"Test case {i+1} failed\"\n        print(f\"Test case {i+1} passed\")\n```",
+  "passed": false,
+  "test_result": {
+    "passed": false,
+    "error": "Traceback (most recent call last):\n  File \"<string>\", line 31, in <module>\nAssertionError: Test case 1 failed"
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef permute_unique(nums: List[int]) -> List[List[int]]:\n    def backtrack(path):\n        if len(path) == len(nums):\n            result.append(path[:])\n            return\n        used = set()\n        for i in range(len(nums)):\n            if nums[i] not in used:\n                path.append(nums[i])\n                used.add(nums[i])\n                backtrack(path)\n                path.pop()\n\n    nums.sort()  # Sort to handle duplicates easily\n    result = []\n    backtrack([])\n    return result\n```\n\nThis solution uses backtracking to generate all permutations while ensuring uniqueness by skipping duplicate elements within the same recursive call. The input list is first sorted to make it easier to skip duplicates. The `backtrack` function builds permutations recursively, adding each valid permutation to the result list.",
+      "finish_reason": "stop"
+    },
+    {
+      "step": 2,
+      "role": "assistant",
+      "content": "The error message indicates that there was an assertion error during the test execution. However, without additional context or the specific test case that caused the error, it's challenging to pinpoint the exact cause. \n\nTo address potential issues, let's ensure that the function handles various edge cases correctly, including an empty input list and lists with duplicate elements. We'll also add some debug prints to help identify where the problem might be occurring.\n\nHere's a revised version of the function with added debug prints:\n\n```python\nfrom typing import List\n\ndef permute_unique(nums: List[int]) -> List[List[int]]:\n    def backtrack(path):\n        if len(path) == len(nums):\n            print(f\"Adding path: {path}\")  # Debug print\n            result.append(path[:])\n            return\n        used = set()\n        for i in range(len(nums)):\n            if nums[i] not in used:\n                path.append(nums[i])\n                used.add(nums[i])\n                backtrack(path)\n                path.pop()\n                print(f\"Popped {nums[i]} from path\")  # Debug print\n\n    nums.sort()  # Sort to handle duplicates easily\n    result = []\n    backtrack([])\n    return result\n\n# Example usage and testing\nif __name__ == \"__main__\":\n    test_cases = [\n        ([1, 2, 3], [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]),\n        ([1, 1, 2], [[1, 1, 2], [1, 2, 1], [2, 1, 1]]),\n        ([], [[]]),\n    ]\n\n    for i, (input_list, expected_output) in enumerate(test_cases):\n        assert permute_unique(input_list) == expected_output, f\"Test case {i+1} failed\"\n        print(f\"Test case {i+1} passed\")\n```\n\nIn this updated version, I've added debug prints inside the `backtrack` function to show when paths are being added and popped. This can help trace the execution and identify any unexpected behavior. Additionally, I've included a simple test suite at the bottom to verify the correctness of the function. If you provide more details about the specific test case that caused the error, I can further refine the solution accordingly.",
+      "finish_reason": "stop"
+    },
+    {
+      "step": 3,
+      "role": "assistant",
+      "content": "Given that the test case failed, it suggests that the output of `permute_unique([1, 2, 3])` did not match the expected output. Let's review the function and ensure it handles the sorting and backtracking correctly.\n\nThe function should sort the input list to handle duplicates properly and then use backtracking to generate all unique permutations. Here's a refined version of the function with detailed comments and debugging prints:\n\n```python\nfrom typing import List\n\ndef permute_unique(nums: List[int]) -> List[List[int]]:\n    def backtrack(start, end):\n        if start == end:\n            result.append(nums[:])\n            return\n        \n        used = set()\n        for i in range(start, end):\n            if nums[i] not in used:\n                used.add(nums[i])\n                nums[start], nums[i] = nums[i], nums[start]\n                backtrack(start + 1, end)\n                nums[start], nums[i] = nums[i], nums[start]  # Backtrack\n\n    nums.sort()  # Sort to handle duplicates easily\n    result = []\n    backtrack(0, len(nums))\n    return result\n\n# Example usage and testing\nif __name__ == \"__main__\":\n    test_cases = [\n        ([1, 2, 3], [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]),\n        ([1, 1, 2], [[1, 1, 2], [1, 2, 1], [2, 1, 1]]),\n        ([], [[]]),\n    ]\n\n    for i, (input_list, expected_output) in enumerate(test_cases):\n        assert permute_unique(input_list) == expected_output, f\"Test case {i+1} failed\"\n        print(f\"Test case {i+1} passed\")\n```\n\n### Explanation:\n1. **Sorting**: The input list `nums` is sorted to ensure that duplicates are adjacent, making it easier to skip them during the backtracking process.\n2. **Backtracking Function**: The `backtrack` function generates permutations by swapping elements and using recursion. It ensures that each element is only used once per level of recursion by maintaining a `used` set.\n3. **Swapping Elements**: During the recursive call, elements are swapped to explore different permutations. After the recursive call, the swap is undone to backtrack and explore other possibilities.\n\n### Testing:\nThe provided test cases include:\n- A list with distinct elements (`[1, 2, 3]`)\n- A list with duplicate elements (`[1, 1, 2]`)\n- An empty list (`[]`)\n\nThese tests should cover typical scenarios and help ensure the function works as expected. If the test still fails, please provide more details about the specific failure.",
+      "finish_reason": "stop"
+    },
+    {
+      "step": 4,
+      "role": "assistant",
+      "content": "Given that the test case failed, it suggests that the output of `permute_unique([1, 2, 3])` did not match the expected output. Let's review the function and ensure it handles the sorting and backtracking correctly.\n\nThe function should sort the input list to handle duplicates properly and then use backtracking to generate all unique permutations. Here's a refined version of the function with detailed comments and debugging prints:\n\n```python\nfrom typing import List\n\ndef permute_unique(nums: List[int]) -> List[List[int]]:\n    def backtrack(start, end):\n        if start == end:\n            result.append(nums[:])\n            return\n        \n        used = set()\n        for i in range(start, end):\n            if nums[i] not in used:\n                used.add(nums[i])\n                nums[start], nums[i] = nums[i], nums[start]\n                backtrack(start + 1, end)\n                nums[start], nums[i] = nums[i], nums[start]  # Backtrack\n\n    nums.sort()  # Sort to handle duplicates easily\n    result = []\n    backtrack(0, len(nums))\n    return result\n\n# Example usage and testing\nif __name__ == \"__main__\":\n    test_cases = [\n        ([1, 2, 3], [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]),\n        ([1, 1, 2], [[1, 1, 2], [1, 2, 1], [2, 1, 1]]),\n        ([], [[]]),\n    ]\n\n    for i, (input_list, expected_output) in enumerate(test_cases):\n        assert permute_unique(input_list) == expected_output, f\"Test case {i+1} failed\"\n        print(f\"Test case {i+1} passed\")\n```\n\n### Explanation:\n1. **Sorting**: The input list `nums` is sorted to ensure that duplicates are adjacent, making it easier to skip them during the backtracking process.\n2. **Backtracking Function**: The `backtrack` function generates permutations by swapping elements and using recursion. It ensures that each element is only used once per level of recursion by maintaining a `used` set.\n3. **Swapping Elements**: During the recursive call, elements are swapped to explore different permutations. After the recursive call, the swap is undone to backtrack and explore other possibilities.\n\n### Testing:\nThe provided test cases include:\n- A list with distinct elements (`[1, 2, 3]`)\n- A list with duplicate elements (`[1, 1, 2]`)\n- An empty list (`[]`)\n\nThese tests should cover typical scenarios and help ensure the function works as expected. If the test still fails, please provide more details about the specific failure.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<string>\", line 31, in <module>\nAssertionError: Test case 1 failed",
+  "timestamp": "2026-11-12T09:07:01.954189+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

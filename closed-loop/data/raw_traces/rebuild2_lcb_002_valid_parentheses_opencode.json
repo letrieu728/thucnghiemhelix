@@ -1,0 +1,53 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_002_valid_parentheses",
+  "task_title": "Valid Parentheses String with Wildcard",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `is_valid(s: str) -> bool` that checks if brackets are valid. The string can contain `()`, `[]`, `{}`, AND the wildcard character `'*'` which can be treated as a single `'('`, `')'`, or an empty string `\"\"`.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 4,
+  "latency_sec": 30.842,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef is_valid(s: str) -> bool:\n    stack = []\n    mapping = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    \n    for char in s:\n        if char in mapping.values():\n            stack.append(char)\n        elif char == '*':\n            stack.append('*')\n        else:\n            if not stack:\n                return False\n            top = stack.pop()\n            if char != top and (top != '*' or char not in mapping):\n                return False\n    \n    while stack:\n        top = stack.pop()\n        if top == '*':\n            continue\n        if not stack or stack[-1] != mapping[top]:\n            return False\n        stack.pop()\n    \n    return len(stack) == 0\n```",
+  "passed": false,
+  "test_result": {
+    "passed": false,
+    "error": "Traceback (most recent call last):\n  File \"<string>\", line 30, in <module>\nAssertionError"
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef is_valid(s: str) -> bool:\n    stack = []\n    mapping = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    \n    for char in s:\n        if char in mapping.values():\n            stack.append(char)\n        elif char == '*':\n            stack.append('*')\n        else:\n            if not stack:\n                return False\n            top = stack.pop()\n            if char != top and (top != '*' or char not in mapping):\n                return False\n    \n    while stack:\n        top = stack.pop()\n        if top == '*':\n            continue\n        if not stack or stack[-1] != mapping[top]:\n            return False\n        stack.pop()\n    \n    return len(stack) == 0\n```",
+      "finish_reason": "stop"
+    },
+    {
+      "step": 2,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef is_valid(s: str) -> bool:\n    stack = []\n    mapping = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    \n    for char in s:\n        if char in mapping.values():\n            stack.append(char)\n        elif char == '*':\n            stack.append('*')\n        else:\n            if not stack:\n                return False\n            top = stack.pop()\n            if char != top and (top != '*' or char not in mapping):\n                return False\n    \n    while stack:\n        top = stack.pop()\n        if top == '*':\n            continue\n        if not stack or stack[-1] != mapping[top]:\n            return False\n        stack.pop()\n    \n    return len(stack) == 0\n```",
+      "finish_reason": "stop"
+    },
+    {
+      "step": 3,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef is_valid(s: str) -> bool:\n    stack = []\n    mapping = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    \n    for char in s:\n        if char in mapping.values():\n            stack.append(char)\n        elif char == '*':\n            stack.append('*')\n        else:\n            if not stack:\n                return False\n            top = stack.pop()\n            if char != top and (top != '*' or char not in mapping):\n                return False\n    \n    while stack:\n        top = stack.pop()\n        if top == '*':\n            continue\n        if not stack or stack[-1] != mapping[top]:\n            return False\n        stack.pop()\n    \n    return len(stack) == 0\n```",
+      "finish_reason": "stop"
+    },
+    {
+      "step": 4,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef is_valid(s: str) -> bool:\n    stack = []\n    mapping = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    \n    for char in s:\n        if char in mapping.values():\n            stack.append(char)\n        elif char == '*':\n            stack.append('*')\n        else:\n            if not stack:\n                return False\n            top = stack.pop()\n            if char != top and (top != '*' or char not in mapping):\n                return False\n    \n    while stack:\n        top = stack.pop()\n        if top == '*':\n            continue\n        if not stack or stack[-1] != mapping[top]:\n            return False\n        stack.pop()\n    \n    return len(stack) == 0\n```",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<string>\", line 30, in <module>\nAssertionError",
+  "timestamp": "2026-11-12T08:35:42.010490+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

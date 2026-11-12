@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_014_daily_temperatures",
+  "task_title": "Daily Temperatures",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `daily_temperatures(temperatures: list[int]) -> list[int]` that returns a list `answer` where `answer[i]` is the number of days to wait after day `i` for a warmer temperature. If there is no warmer day in the future, `answer[i]` is 0.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 16.928,
+  "assistant_solution": "```python\ndef daily_temperatures(temperatures: list[int]) -> list[int]:\n    stack = []\n    answer = [0] * len(temperatures)\n    \n    for i, temp in enumerate(temperatures):\n        while stack and temp > temperatures[stack[-1]]:\n            prev_index = stack.pop()\n            answer[prev_index] = i - prev_index\n        stack.append(i)\n    \n    return answer\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem efficiently, we can use a stack to keep track of the indices of the temperatures as we iterate through the list. This approach allows us to determine the number of days to wait for a warmer temperature in constant time for each element.\n\nHere's a step-by-step breakdown of the algorithm:\n\n1. Initialize an empty stack and an output list `answer` filled with zeros.\n2. Iterate through the list of temperatures using an index `i`.\n3. For each temperature, while the stack is not empty and the current temperature is greater than the temperature at the index stored at the top of the stack:\n   - Pop the index from the stack.\n   - Calculate the difference between the current index `i` and the popped index, which gives the number of days to wait for a warmer temperature.\n   - Update the corresponding position in the `answer` list with this difference.\n4. Push the current index `i` onto the stack.\n5. Return the `answer` list.\n\nThis approach ensures that each index is pushed and popped from the stack at most once, resulting in an overall time complexity of O(n), where n is the length of the input list.\n\n```python\ndef daily_temperatures(temperatures: list[int]) -> list[int]:\n    stack = []\n    answer = [0] * len(temperatures)\n    \n    for i, temp in enumerate(temperatures):\n        while stack and temp > temperatures[stack[-1]]:\n            prev_index = stack.pop()\n            answer[prev_index] = i - prev_index\n        stack.append(i)\n    \n    return answer\n```\n\nThis function correctly implements the logic described above and efficiently calculates the number of days to wait for a warmer temperature for each day.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:58:00.637962+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

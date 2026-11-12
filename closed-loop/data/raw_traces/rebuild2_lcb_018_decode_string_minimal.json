@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_018_decode_string",
+  "task_title": "Decode Nested String",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `decode_string(s: str) -> str` that decodes an encoded string. The encoding rule is `k[encoded_string]`, where `encoded_string` is repeated exactly `k` times; `k` is a positive integer that may have multiple digits, and encodings may be nested. Plain letters outside brackets are kept as-is.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 9.963,
+  "assistant_solution": "```python\ndef decode_string(s: str) -> str:\n    stack = []\n    current_num = 0\n    current_str = ''\n    \n    for char in s:\n        if char.isdigit():\n            current_num = current_num * 10 + int(char)\n        elif char == '[':\n            stack.append((current_num, current_str))\n            current_num = 0\n            current_str = ''\n        elif char == ']':\n            prev_num, prev_str = stack.pop()\n            current_str = prev_str + current_str * prev_num\n        else:\n            current_str += char\n    \n    return current_str\n\n# Test the function\nprint(decode_string(\"3[a2[c]]\"))  # Output: \"accaccacc\"\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef decode_string(s: str) -> str:\n    stack = []\n    current_num = 0\n    current_str = ''\n    \n    for char in s:\n        if char.isdigit():\n            current_num = current_num * 10 + int(char)\n        elif char == '[':\n            stack.append((current_num, current_str))\n            current_num = 0\n            current_str = ''\n        elif char == ']':\n            prev_num, prev_str = stack.pop()\n            current_str = prev_str + current_str * prev_num\n        else:\n            current_str += char\n    \n    return current_str\n\n# Test the function\nprint(decode_string(\"3[a2[c]]\"))  # Output: \"accaccacc\"\n```\nIn this solution, we use a stack to keep track of numbers and strings when encountering `[`. When we encounter `]`, we pop from the stack, repeat the current string by the number popped, and append it back to the previous string. This handles nested encodings correctly.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:02:31.136177+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

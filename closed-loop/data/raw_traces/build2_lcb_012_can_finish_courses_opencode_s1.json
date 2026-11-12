@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_012_can_finish_courses",
+  "task_title": "Course Schedule (Cycle Detection)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool` that returns True if all courses can be finished. Each prerequisite `[a, b]` means course `b` must be taken before course `a`. Return False if the prerequisites contain a cycle that makes completion impossible.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 10.738,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef can_finish(num_courses: int, prerequisites: List[List[int]]) -> bool:\n    from collections import defaultdict, deque\n    \n    # Build graph\n    graph = defaultdict(list)\n    for course, prereq in prerequisites:\n        graph[course].append(prereq)\n    \n    # Initialize in-degree count\n    in_degree = [0] * num_courses\n    for course in range(num_courses):\n        for prereq in graph[course]:\n            in_degree[prereq] += 1\n    \n    # Queue for nodes with zero in-degree\n    queue = deque([course for course in range(num_courses) if in_degree[course] == 0])\n    visited = 0\n    \n    while queue:\n        course = queue.popleft()\n        visited += 1\n        for next_course in graph[course]:\n            in_degree[next_course] -= 1\n            if in_degree[next_course] == 0:\n                queue.append(next_course)\n    \n    return visited == num_courses\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef can_finish(num_courses: int, prerequisites: List[List[int]]) -> bool:\n    from collections import defaultdict, deque\n    \n    # Build graph\n    graph = defaultdict(list)\n    for course, prereq in prerequisites:\n        graph[course].append(prereq)\n    \n    # Initialize in-degree count\n    in_degree = [0] * num_courses\n    for course in range(num_courses):\n        for prereq in graph[course]:\n            in_degree[prereq] += 1\n    \n    # Queue for nodes with zero in-degree\n    queue = deque([course for course in range(num_courses) if in_degree[course] == 0])\n    visited = 0\n    \n    while queue:\n        course = queue.popleft()\n        visited += 1\n        for next_course in graph[course]:\n            in_degree[next_course] -= 1\n            if in_degree[next_course] == 0:\n                queue.append(next_course)\n    \n    return visited == num_courses\n```\n\nThis function uses topological sorting to determine if there is a cycle in the graph. If all courses can be completed without forming a cycle, it returns True; otherwise, it returns False. The time complexity is O(V + E), where V is the number of vertices (courses) and E is the number of edges (prerequisites). The space complexity is O(V + E) for storing the graph and in-degrees.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:15:40.053019+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_016_partition_equal_subset",
+  "task_title": "Partition Equal Subset Sum",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `can_partition(nums: list[int]) -> bool` that returns True if `nums` can be partitioned into two subsets with equal sums. Return True if `nums` is empty (both subsets are empty).",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 25.383,
+  "assistant_solution": "```python\ndef can_partition(nums: list[int]) -> bool:\n    total_sum = sum(nums)\n    \n    # If the total sum is odd, it's not possible to partition it into two equal subsets\n    if total_sum % 2 != 0:\n        return False\n    \n    target = total_sum // 2\n    n = len(nums)\n    \n    # Create a DP array where dp[i][j] indicates whether a subset with sum j can be formed from the first i elements\n    dp = [[False] * (target + 1) for _ in range(n + 1)]\n    \n    # Base case: A subset with sum 0 can always be formed by choosing no elements\n    for i in range(n + 1):\n        dp[i][0] = True\n    \n    # Fill the DP table\n    for i in range(1, n + 1):\n        for j in range(1, target + 1):\n            if nums[i - 1] <= j:\n                dp[i][j] = dp[i - 1][j] or dp[i - 1][j - nums[i - 1]]\n            else:\n                dp[i][j] = dp[i - 1][j]\n    \n    # The answer is whether a subset with sum target can be formed from all n elements\n    return dp[n][target]\n\n# Example usage:\nnums = [1, 5, 11, 5]\nprint(can_partition(nums))  # Output: True\n\nnums = [1, 2, 3, 5]\nprint(can_partition(nums))  # Output: False\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve the problem of partitioning an array into two subsets with equal sums, we can use dynamic programming. The idea is to determine if there exists a subset of the given array whose sum is exactly half of the total sum of the array. If such a subset exists, then the remaining elements will also form another subset with the same sum.\n\nHere's a step-by-step approach to implement this:\n\n1. Calculate the total sum of the array.\n2. If the total sum is odd, it's impossible to partition the array into two subsets with equal sums, so return False.\n3. If the total sum is even, check if there exists a subset with a sum equal to half of the total sum using dynamic programming.\n\nLet's implement this in Python:\n\n```python\ndef can_partition(nums: list[int]) -> bool:\n    total_sum = sum(nums)\n    \n    # If the total sum is odd, it's not possible to partition it into two equal subsets\n    if total_sum % 2 != 0:\n        return False\n    \n    target = total_sum // 2\n    n = len(nums)\n    \n    # Create a DP array where dp[i][j] indicates whether a subset with sum j can be formed from the first i elements\n    dp = [[False] * (target + 1) for _ in range(n + 1)]\n    \n    # Base case: A subset with sum 0 can always be formed by choosing no elements\n    for i in range(n + 1):\n        dp[i][0] = True\n    \n    # Fill the DP table\n    for i in range(1, n + 1):\n        for j in range(1, target + 1):\n            if nums[i - 1] <= j:\n                dp[i][j] = dp[i - 1][j] or dp[i - 1][j - nums[i - 1]]\n            else:\n                dp[i][j] = dp[i - 1][j]\n    \n    # The answer is whether a subset with sum target can be formed from all n elements\n    return dp[n][target]\n\n# Example usage:\nnums = [1, 5, 11, 5]\nprint(can_partition(nums))  # Output: True\n\nnums = [1, 2, 3, 5]\nprint(can_partition(nums))  # Output: False\n```\n\n### Explanation:\n- We initialize a 2D boolean array `dp` where `dp[i][j]` is `True` if a subset with sum `j` can be formed from the first `i` elements of the array.\n- We set the base case `dp[i][0]` to `True` because a subset with sum 0 can always be formed by choosing no elements.\n- For each element in the array, we update the DP table:\n  - If the current element `nums[i-1]` is less than or equal to `j`, we have two choices: include the element in the subset or exclude it.\n  - If we include the element, we check if a subset with sum `j - nums[i-1]` can be formed from the previous elements.\n  - If we exclude the element, we simply take the result from the previous elements without including the current one.\n- Finally, we return `dp[n][target]`, which tells us if a subset with sum `target` (half of the total sum) can be formed from all `n` elements.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:20:33.628769+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

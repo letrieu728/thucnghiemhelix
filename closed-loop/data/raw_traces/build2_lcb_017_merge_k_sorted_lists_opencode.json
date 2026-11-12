@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_017_merge_k_sorted_lists",
+  "task_title": "Merge K Sorted Linked Lists",
+  "difficulty": "medium",
+  "prompt": "Define a `ListNode` class with `val` and `next` attributes. Write a Python function `merge_k_lists(lists: list) -> object` that merges `k` sorted linked lists into one sorted linked list and returns its head. An empty input list, or a list containing only `None`, must return `None`.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 13.178,
+  "assistant_solution": "```python\nfrom typing import List, Optional\n\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef merge_k_lists(lists: List[Optional[ListNode]]) -> Optional[ListNode]:\n    if not lists:\n        return None\n    \n    # Helper function to merge two lists\n    def merge_two(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:\n        dummy = ListNode()\n        current = dummy\n        \n        while l1 and l2:\n            if l1.val < l2.val:\n                current.next = l1\n                l1 = l1.next\n            else:\n                current.next = l2\n                l2 = l2.next\n            current = current.next\n        \n        if l1:\n            current.next = l1\n        elif l2:\n            current.next = l2\n        \n        return dummy.next\n    \n    # Merge lists pairwise until we have one merged list\n    while len(lists) > 1:\n        merged = []\n        for i in range(0, len(lists), 2):\n            l1 = lists[i]\n            l2 = lists[i + 1] if i + 1 < len(lists) else None\n            merged.append(merge_two(l1, l2))\n        lists = merged\n    \n    return lists[0]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List, Optional\n\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef merge_k_lists(lists: List[Optional[ListNode]]) -> Optional[ListNode]:\n    if not lists:\n        return None\n    \n    # Helper function to merge two lists\n    def merge_two(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:\n        dummy = ListNode()\n        current = dummy\n        \n        while l1 and l2:\n            if l1.val < l2.val:\n                current.next = l1\n                l1 = l1.next\n            else:\n                current.next = l2\n                l2 = l2.next\n            current = current.next\n        \n        if l1:\n            current.next = l1\n        elif l2:\n            current.next = l2\n        \n        return dummy.next\n    \n    # Merge lists pairwise until we have one merged list\n    while len(lists) > 1:\n        merged = []\n        for i in range(0, len(lists), 2):\n            l1 = lists[i]\n            l2 = lists[i + 1] if i + 1 < len(lists) else None\n            merged.append(merge_two(l1, l2))\n        lists = merged\n    \n    return lists[0]\n```\n\nThis solution uses a helper function `merge_two` to merge two sorted linked lists. The main function `merge_k_lists` repeatedly merges pairs of lists until only one list remains, which is the merged result. This approach ensures that the merging process is efficient and leverages the properties of sorted linked lists.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:48:04.347009+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

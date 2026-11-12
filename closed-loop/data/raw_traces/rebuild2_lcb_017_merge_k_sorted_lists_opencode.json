@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_017_merge_k_sorted_lists",
+  "task_title": "Merge K Sorted Linked Lists",
+  "difficulty": "medium",
+  "prompt": "Define a `ListNode` class with `val` and `next` attributes. Write a Python function `merge_k_lists(lists: list) -> object` that merges `k` sorted linked lists into one sorted linked list and returns its head. An empty input list, or a list containing only `None`, must return `None`.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 8.704,
+  "assistant_solution": "```python\nfrom typing import Optional\n\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef merge_k_lists(lists: list[Optional[ListNode]]) -> Optional[ListNode]:\n    if not lists:\n        return None\n    \n    dummy = ListNode()\n    current = dummy\n    \n    while any(node is not None for node in lists):\n        min_val = float('inf')\n        min_index = -1\n        \n        for i, node in enumerate(lists):\n            if node is not None and node.val < min_val:\n                min_val = node.val\n                min_index = i\n        \n        if min_index != -1:\n            current.next = ListNode(min_val)\n            current = current.next\n            lists[min_index] = lists[min_index].next\n    \n    return dummy.next\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import Optional\n\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef merge_k_lists(lists: list[Optional[ListNode]]) -> Optional[ListNode]:\n    if not lists:\n        return None\n    \n    dummy = ListNode()\n    current = dummy\n    \n    while any(node is not None for node in lists):\n        min_val = float('inf')\n        min_index = -1\n        \n        for i, node in enumerate(lists):\n            if node is not None and node.val < min_val:\n                min_val = node.val\n                min_index = i\n        \n        if min_index != -1:\n            current.next = ListNode(min_val)\n            current = current.next\n            lists[min_index] = lists[min_index].next\n    \n    return dummy.next\n```",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:02:20.461220+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

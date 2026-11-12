@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_015_word_search",
+  "task_title": "Word Search in Grid",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `exist(board: list[list[str]], word: str) -> bool` that returns True if `word` can be constructed from sequentially adjacent cells (up, down, left, right) of `board`, where each cell may be used at most once. The word is non-empty.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 24.231,
+  "assistant_solution": "```python\ndef exist(board: list[list[str]], word: str) -> bool:\n    rows, cols = len(board), len(board[0])\n    \n    def dfs(x, y, index):\n        if index == len(word):\n            return True\n        if x < 0 or x >= rows or y < 0 or y >= cols or board[x][y] != word[index]:\n            return False\n        \n        # Mark the cell as visited\n        temp = board[x][y]\n        board[x][y] = ''\n        \n        # Explore all four directions\n        found = (dfs(x + 1, y, index + 1) or\n                 dfs(x - 1, y, index + 1) or\n                 dfs(x, y + 1, index + 1) or\n                 dfs(x, y - 1, index + 1))\n        \n        # Backtrack\n        board[x][y] = temp\n        \n        return found\n    \n    # Try to find the word starting from each cell\n    for i in range(rows):\n        for j in range(cols):\n            if dfs(i, j, 0):\n                return True\n    \n    return False\n\n# Example usage:\nboard = [\n    ['A', 'B', 'C', 'E'],\n    ['S', 'F', 'C', 'S'],\n    ['A', 'D', 'E', 'E']\n]\nword = \"ABCCED\"\nprint(exist(board, word))  # Output: True\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use Depth-First Search (DFS). We will iterate through each cell in the board and try to match the first character of the word. If it matches, we will recursively check all four possible directions (up, down, left, right) to see if we can form the rest of the word.\n\nHere's a step-by-step implementation:\n\n1. Define a helper function `dfs(x, y, index)` that checks if we can form the word starting from position `(x, y)` with the current index.\n2. In the `dfs` function, check if the current index is equal to the length of the word. If so, return `True`.\n3. Check if the current position `(x, y)` is out of bounds or if the current cell does not match the character at the current index. If either condition is true, return `False`.\n4. Mark the current cell as visited by setting it to an empty string (or any other placeholder).\n5. Recursively call `dfs` for all four possible directions (up, down, left, right).\n6. After exploring all directions, backtrack by restoring the original value of the current cell.\n7. Iterate through each cell in the board and call the `dfs` function starting from that cell.\n8. If `dfs` returns `True` for any starting cell, return `True`. Otherwise, return `False`.\n\nHere's the complete code:\n\n```python\ndef exist(board: list[list[str]], word: str) -> bool:\n    rows, cols = len(board), len(board[0])\n    \n    def dfs(x, y, index):\n        if index == len(word):\n            return True\n        if x < 0 or x >= rows or y < 0 or y >= cols or board[x][y] != word[index]:\n            return False\n        \n        # Mark the cell as visited\n        temp = board[x][y]\n        board[x][y] = ''\n        \n        # Explore all four directions\n        found = (dfs(x + 1, y, index + 1) or\n                 dfs(x - 1, y, index + 1) or\n                 dfs(x, y + 1, index + 1) or\n                 dfs(x, y - 1, index + 1))\n        \n        # Backtrack\n        board[x][y] = temp\n        \n        return found\n    \n    # Try to find the word starting from each cell\n    for i in range(rows):\n        for j in range(cols):\n            if dfs(i, j, 0):\n                return True\n    \n    return False\n\n# Example usage:\nboard = [\n    ['A', 'B', 'C', 'E'],\n    ['S', 'F', 'C', 'S'],\n    ['A', 'D', 'E', 'E']\n]\nword = \"ABCCED\"\nprint(exist(board, word))  # Output: True\n```\n\nThis solution uses DFS to explore all possible paths on the board and checks if the given word can be formed by moving to adjacent cells. The time complexity is O(N * M * 4^L), where N and M are the dimensions of the board, and L is the length of the word. The space complexity is O(L) due to the recursion stack.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:42:59.056433+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

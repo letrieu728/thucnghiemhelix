@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_012_can_finish_courses",
+  "task_title": "Course Schedule (Cycle Detection)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool` that returns True if all courses can be finished. Each prerequisite `[a, b]` means course `b` must be taken before course `a`. Return False if the prerequisites contain a cycle that makes completion impossible.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 17.275,
+  "assistant_solution": "```python\nfrom collections import defaultdict\n\ndef can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool:\n    # Create a graph using adjacency list representation\n    graph = defaultdict(list)\n    for course, prereq in prerequisites:\n        graph[course].append(prereq)\n\n    # Initialize visited and recursion stack to detect cycles\n    visited = [False] * num_courses\n    rec_stack = [False] * num_courses\n\n    def dfs(course):\n        # If the node is already in the recursion stack, we found a cycle\n        if rec_stack[course]:\n            return False\n        # If the node has been visited, no need to visit again\n        if visited[course]:\n            return True\n        \n        # Mark the current node as visited and add to recursion stack\n        visited[course] = True\n        rec_stack[course] = True\n        \n        # Recur for all vertices adjacent to this vertex\n        for neighbor in graph[course]:\n            if not dfs(neighbor):\n                return False\n        \n        # Remove the vertex from recursion stack\n        rec_stack[course] = False\n        return True\n\n    # Call the recursive helper function to detect cycle in different DFS trees\n    for i in range(num_courses):\n        if not visited[i]:\n            if not dfs(i):\n                return False\n    \n    return True\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom collections import defaultdict\n\ndef can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool:\n    # Create a graph using adjacency list representation\n    graph = defaultdict(list)\n    for course, prereq in prerequisites:\n        graph[course].append(prereq)\n\n    # Initialize visited and recursion stack to detect cycles\n    visited = [False] * num_courses\n    rec_stack = [False] * num_courses\n\n    def dfs(course):\n        # If the node is already in the recursion stack, we found a cycle\n        if rec_stack[course]:\n            return False\n        # If the node has been visited, no need to visit again\n        if visited[course]:\n            return True\n        \n        # Mark the current node as visited and add to recursion stack\n        visited[course] = True\n        rec_stack[course] = True\n        \n        # Recur for all vertices adjacent to this vertex\n        for neighbor in graph[course]:\n            if not dfs(neighbor):\n                return False\n        \n        # Remove the vertex from recursion stack\n        rec_stack[course] = False\n        return True\n\n    # Call the recursive helper function to detect cycle in different DFS trees\n    for i in range(num_courses):\n        if not visited[i]:\n            if not dfs(i):\n                return False\n    \n    return True\n```\nThis solution uses Depth-First Search (DFS) with a stack to detect cycles in the directed graph representing the courses and their prerequisites. It initializes two lists, `visited` and `rec_stack`, to keep track of visited nodes and nodes currently in the recursion stack, respectively. The `dfs` function checks for cycles by marking nodes as visited and adding them to the recursion stack before exploring their neighbors. If it encounters a node already in the recursion stack, it indicates a cycle, making it impossible to finish all courses.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:53:18.721838+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

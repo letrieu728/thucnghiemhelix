@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_012_can_finish_courses",
+  "task_title": "Course Schedule (Cycle Detection)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool` that returns True if all courses can be finished. Each prerequisite `[a, b]` means course `b` must be taken before course `a`. Return False if the prerequisites contain a cycle that makes completion impossible.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 9.393,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef can_finish(num_courses: int, prerequisites: List[List[int]]) -> bool:\n    graph = [[] for _ in range(num_courses)]\n    indegree = [0] * num_courses\n    \n    # Build the graph and calculate indegree\n    for course, prereq in prerequisites:\n        graph[prereq].append(course)\n        indegree[course] += 1\n    \n    # Queue for nodes with zero indegree\n    queue = [i for i in range(num_courses) if indegree[i] == 0]\n    \n    count = 0\n    \n    while queue:\n        node = queue.pop(0)\n        count += 1\n        \n        for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)\n    \n    return count == num_courses\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef can_finish(num_courses: int, prerequisites: List[List[int]]) -> bool:\n    graph = [[] for _ in range(num_courses)]\n    indegree = [0] * num_courses\n    \n    # Build the graph and calculate indegree\n    for course, prereq in prerequisites:\n        graph[prereq].append(course)\n        indegree[course] += 1\n    \n    # Queue for nodes with zero indegree\n    queue = [i for i in range(num_courses) if indegree[i] == 0]\n    \n    count = 0\n    \n    while queue:\n        node = queue.pop(0)\n        count += 1\n        \n        for neighbor in graph[node]:\n            indegree[neighbor] -= 1\n            if indegree[neighbor] == 0:\n                queue.append(neighbor)\n    \n    return count == num_courses\n```\n\nThis function first builds a directed graph from the given prerequisites and calculates the indegree of each node. It then uses Kahn's algorithm to perform topological sorting. If the number of visited nodes equals the total number of courses, it means there is no cycle, and all courses can be finished. Otherwise, there is a cycle.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:15:29.181984+00:00",
+  "temperature": 0.7,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

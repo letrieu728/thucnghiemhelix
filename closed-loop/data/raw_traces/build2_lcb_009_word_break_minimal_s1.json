@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_009_word_break",
+  "task_title": "Word Break Sentences (DP/Backtracking)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `word_break(s: str, word_dict: list[str]) -> list[str]` that segments `s` into all possible valid space-separated sentences using words from `word_dict`. Return the list of sentences sorted in lexicographical order. If no valid sentence can be formed, return `[]`.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 22.928,
+  "assistant_solution": "```python\ndef word_break(s: str, word_dict: list[str]) -> list[str]:\n    n = len(s)\n    dp = [False] * (n + 1)\n    paths = [[] for _ in range(n + 1)]\n    \n    # Initialize dp[0] as True because an empty string can always be segmented\n    dp[0] = True\n    \n    # Fill the dp table\n    for i in range(1, n + 1):\n        for j in range(i):\n            if dp[j] and s[j:i] in word_dict:\n                dp[i] = True\n                paths[i].append(j)\n    \n    # Backtrack to find all valid sentences\n    def backtrack(start):\n        if start == 0:\n            return ['']\n        result = []\n        for end in paths[start]:\n            for suffix in backtrack(end):\n                result.append(suffix + ' ' + s[end:start])\n        return result\n    \n    # Get all valid sentences\n    sentences = backtrack(n)\n    \n    # Sort the sentences lexicographically\n    sentences.sort()\n    \n    return sentences\n\n# Example usage:\ns = \"catsanddog\"\nword_dict = [\"cat\", \"cats\", \"and\", \"sand\", \"dog\"]\nprint(word_break(s, word_dict))\n```",
+  "passed": false,
+  "test_result": {
+    "passed": false,
+    "error": "Traceback (most recent call last):\n  File \"<string>\", line 40, in <module>\nAssertionError"
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use dynamic programming to find all possible ways to break the string and then sort them lexicographically. Here's a step-by-step approach:\n\n1. **Dynamic Programming (DP) Setup**:\n   - Use a boolean DP array `dp` where `dp[i]` indicates whether the substring `s[0:i]` can be segmented into words from the dictionary.\n   - Also, maintain a 2D list `paths` to store the indices where each segment ends.\n\n2. **Filling the DP Table**:\n   - Iterate through the string `s` and for each position `i`, check all possible substrings ending at `i`.\n   - If a substring is found in the dictionary and the preceding part (`s[:j]`) can also be segmented, update `dp[i]` and add `i` to `paths[j]`.\n\n3. **Backtracking to Find All Segments**:\n   - If `dp[len(s)]` is `True`, it means the entire string can be segmented.\n   - Use backtracking to construct all possible sentences from the `paths` list.\n\n4. **Sorting the Results**:\n   - Sort the list of sentences lexicographically before returning.\n\nHere's the complete implementation:\n\n```python\ndef word_break(s: str, word_dict: list[str]) -> list[str]:\n    n = len(s)\n    dp = [False] * (n + 1)\n    paths = [[] for _ in range(n + 1)]\n    \n    # Initialize dp[0] as True because an empty string can always be segmented\n    dp[0] = True\n    \n    # Fill the dp table\n    for i in range(1, n + 1):\n        for j in range(i):\n            if dp[j] and s[j:i] in word_dict:\n                dp[i] = True\n                paths[i].append(j)\n    \n    # Backtrack to find all valid sentences\n    def backtrack(start):\n        if start == 0:\n            return ['']\n        result = []\n        for end in paths[start]:\n            for suffix in backtrack(end):\n                result.append(suffix + ' ' + s[end:start])\n        return result\n    \n    # Get all valid sentences\n    sentences = backtrack(n)\n    \n    # Sort the sentences lexicographically\n    sentences.sort()\n    \n    return sentences\n\n# Example usage:\ns = \"catsanddog\"\nword_dict = [\"cat\", \"cats\", \"and\", \"sand\", \"dog\"]\nprint(word_break(s, word_dict))\n```\n\n### Explanation:\n- **DP Table**: `dp[i]` is `True` if the substring `s[0:i]` can be segmented.\n- **Paths Array**: `paths[i]` contains all indices `j` such that `s[j:i]` is a word in the dictionary and `dp[j]` is `True`.\n- **Backtracking**: Starting from the end of the string, we build all possible sentences by combining smaller valid segments stored in `paths`.\n- **Sorting**: Finally, we sort the list of sentences to ensure they are in lexicographical order.\n\nThis approach ensures that we efficiently find all possible valid segmentations and return them in the required format.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<string>\", line 40, in <module>\nAssertionError",
+  "timestamp": "2026-11-12T08:08:35.542330+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

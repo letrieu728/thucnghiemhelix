@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_012_can_finish_courses",
+  "task_title": "Course Schedule (Cycle Detection)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool` that returns True if all courses can be finished. Each prerequisite `[a, b]` means course `b` must be taken before course `a`. Return False if the prerequisites contain a cycle that makes completion impossible.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 28.696,
+  "assistant_solution": "```python\nfrom collections import defaultdict\n\ndef can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool:\n    # Step 1: Build the graph\n    graph = defaultdict(list)\n    in_degree = [0] * num_courses\n    \n    for course, prereq in prerequisites:\n        graph[prereq].append(course)\n        in_degree[course] += 1\n    \n    # Step 2: Initialize the queue with courses having zero in-degree\n    queue = [i for i in range(num_courses) if in_degree[i] == 0]\n    \n    # Step 3: Process the queue\n    count = 0\n    while queue:\n        node = queue.pop(0)\n        count += 1\n        \n        for neighbor in graph[node]:\n            in_degree[neighbor] -= 1\n            if in_degree[neighbor] == 0:\n                queue.append(neighbor)\n    \n    # If count equals the number of courses, no cycle was detected\n    return count == num_courses\n\n# Example usage:\nnum_courses = 4\nprerequisites = [[1, 0], [2, 1], [3, 2]]\nprint(can_finish(num_courses, prerequisites))  # Output: True\n\nnum_courses = 2\nprerequisites = [[1, 0], [0, 1]]\nprint(can_finish(num_courses, prerequisites))  # Output: False\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To determine if all courses can be finished given the prerequisites, we need to check for cycles in the directed graph represented by the prerequisites. If there is a cycle, it's impossible to finish all courses.\n\nHere's a step-by-step approach to solve this problem:\n\n1. **Graph Representation**: Represent the courses and their prerequisites using an adjacency list.\n2. **Cycle Detection**: Use Depth-First Search (DFS) with cycle detection to traverse the graph. During DFS, keep track of visiting nodes to detect cycles.\n3. **Topological Sorting**: If no cycles are detected during DFS, then topological sorting is possible, meaning all courses can be finished.\n\nLet's implement this in Python:\n\n```python\nfrom collections import defaultdict\n\ndef can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool:\n    # Step 1: Build the graph\n    graph = defaultdict(list)\n    in_degree = [0] * num_courses\n    \n    for course, prereq in prerequisites:\n        graph[prereq].append(course)\n        in_degree[course] += 1\n    \n    # Step 2: Initialize the queue with courses having zero in-degree\n    queue = [i for i in range(num_courses) if in_degree[i] == 0]\n    \n    # Step 3: Process the queue\n    count = 0\n    while queue:\n        node = queue.pop(0)\n        count += 1\n        \n        for neighbor in graph[node]:\n            in_degree[neighbor] -= 1\n            if in_degree[neighbor] == 0:\n                queue.append(neighbor)\n    \n    # If count equals the number of courses, no cycle was detected\n    return count == num_courses\n\n# Example usage:\nnum_courses = 4\nprerequisites = [[1, 0], [2, 1], [3, 2]]\nprint(can_finish(num_courses, prerequisites))  # Output: True\n\nnum_courses = 2\nprerequisites = [[1, 0], [0, 1]]\nprint(can_finish(num_courses, prerequisites))  # Output: False\n```\n\n### Explanation:\n\n1. **Graph Construction**:\n   - We use a dictionary `graph` where each key is a course and its value is a list of courses that depend on it.\n   - We also maintain an `in_degree` list to keep track of the number of prerequisites for each course.\n\n2. **Initialization**:\n   - We initialize a queue with all courses that have zero in-degree (i.e., no prerequisites).\n\n3. **Processing the Queue**:\n   - We process each course in the queue, decrementing the in-degree of its neighbors.\n   - If a neighbor's in-degree becomes zero, we add it to the queue.\n\n4. **Cycle Detection**:\n   - If we process all courses and the count of processed courses equals the total number of courses, there is no cycle, and we can finish all courses.\n   - If not, there is a cycle, and it's impossible to finish all courses.\n\nThis approach ensures that we efficiently detect cycles and determine if all courses can be completed.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:53:47.547638+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

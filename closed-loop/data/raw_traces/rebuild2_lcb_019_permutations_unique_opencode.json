@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_019_permutations_unique",
+  "task_title": "Unique Permutations",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `permute_unique(nums: list[int]) -> list[list[int]]` that returns all unique permutations of `nums` (which may contain duplicates), sorted in lexicographical order. For an empty input, return `[[]]`.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 5.482,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef permute_unique(nums: List[int]) -> List[List[int]]:\n    def backtrack(path, remaining):\n        if not remaining:\n            result.append(path)\n            return\n        used = set()\n        for i, num in enumerate(remaining):\n            if num not in used:\n                used.add(num)\n                backtrack(path + [num], remaining[:i] + remaining[i+1:])\n    \n    nums.sort()\n    result = []\n    backtrack([], nums)\n    return result\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef permute_unique(nums: List[int]) -> List[List[int]]:\n    def backtrack(path, remaining):\n        if not remaining:\n            result.append(path)\n            return\n        used = set()\n        for i, num in enumerate(remaining):\n            if num not in used:\n                used.add(num)\n                backtrack(path + [num], remaining[:i] + remaining[i+1:])\n    \n    nums.sort()\n    result = []\n    backtrack([], nums)\n    return result\n```",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:07:08.357818+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_016_partition_equal_subset",
+  "task_title": "Partition Equal Subset Sum",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `can_partition(nums: list[int]) -> bool` that returns True if `nums` can be partitioned into two subsets with equal sums. Return True if `nums` is empty (both subsets are empty).",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 31.282,
+  "assistant_solution": "```python\ndef can_partition(nums: list[int]) -> bool:\n    # Step 1: Check for edge case\n    if not nums:\n        return True\n    \n    # Step 2: Calculate total sum\n    total_sum = sum(nums)\n    \n    # Step 3: If total sum is odd, return False\n    if total_sum % 2 != 0:\n        return False\n    \n    target_sum = total_sum // 2\n    \n    # Step 4: Initialize DP array\n    dp = [False] * (target_sum + 1)\n    dp[0] = True\n    \n    # Step 5: Fill DP array\n    for num in nums:\n        for j in range(target_sum, num - 1, -1):\n            dp[j] = dp[j] or dp[j - num]\n    \n    # Step 6: Result\n    return dp[target_sum]\n\n# Example usage:\nprint(can_partition([1, 5, 11, 5]))  # Output: True\nprint(can_partition([1, 2, 3, 5]))   # Output: False\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve the problem of partitioning a list of integers into two subsets with equal sums, we can use dynamic programming. Here's a step-by-step approach to implement this:\n\n1. **Check for Edge Cases**: If the list is empty, return `True` because both subsets will be empty.\n\n2. **Calculate Total Sum**: Compute the total sum of the list. If the total sum is odd, it's impossible to partition the list into two subsets with equal sums, so return `False`.\n\n3. **Dynamic Programming Setup**: Use a boolean DP array where `dp[j]` indicates whether a subset with sum `j` can be formed using the elements of the list.\n\n4. **Initialize DP Array**: Start with `dp[0] = True` because a subset with sum 0 is always possible (the empty subset).\n\n5. **Fill DP Array**: Iterate through each number in the list and update the DP array from right to left to avoid using the same element multiple times.\n\n6. **Result**: Check if `dp[target_sum // 2]` is `True`, which means a subset with half of the total sum exists.\n\nHere's the complete implementation:\n\n```python\ndef can_partition(nums: list[int]) -> bool:\n    # Step 1: Check for edge case\n    if not nums:\n        return True\n    \n    # Step 2: Calculate total sum\n    total_sum = sum(nums)\n    \n    # Step 3: If total sum is odd, return False\n    if total_sum % 2 != 0:\n        return False\n    \n    target_sum = total_sum // 2\n    \n    # Step 4: Initialize DP array\n    dp = [False] * (target_sum + 1)\n    dp[0] = True\n    \n    # Step 5: Fill DP array\n    for num in nums:\n        for j in range(target_sum, num - 1, -1):\n            dp[j] = dp[j] or dp[j - num]\n    \n    # Step 6: Result\n    return dp[target_sum]\n\n# Example usage:\nprint(can_partition([1, 5, 11, 5]))  # Output: True\nprint(can_partition([1, 2, 3, 5]))   # Output: False\n```\n\n### Explanation:\n- **Edge Case Handling**: The function first checks if the input list is empty and returns `True`.\n- **Sum Calculation**: It calculates the total sum of the list. If the sum is odd, it immediately returns `False` because it's impossible to split an odd sum into two equal parts.\n- **DP Array Initialization**: A boolean array `dp` of size `target_sum + 1` is initialized, where `dp[i]` will be `True` if a subset with sum `i` can be formed.\n- **DP Array Filling**: For each number in the list, the function updates the DP array from right to left to ensure that each number is only used once per subset.\n- **Result Extraction**: Finally, the function checks if `dp[target_sum]` is `True`, indicating that a valid partition exists.\n\nThis approach ensures that the function runs efficiently with a time complexity of \\(O(n \\times \\text{total\\_sum})\\) and a space complexity of \\(O(\\text{total\\_sum})\\).",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:00:33.939559+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_007_climbing_stairs",
+  "task_title": "Climbing Stairs (DP)",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `climb_stairs(n: int) -> int` that returns the number of distinct ways to climb `n` stairs if you can take 1 or 2 steps at a time.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 12.476,
+  "assistant_solution": "```python\ndef climb_stairs(n: int) -> int:\n    # Base cases: 0 steps is 1 way (doing nothing), 1 step is 1 way (one 1-step)\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 1\n    \n    # Initialize the first two values of the Fibonacci sequence\n    a, b = 1, 1\n    \n    # Compute the nth Fibonacci number iteratively\n    for _ in range(2, n + 1):\n        a, b = b, a + b\n    \n    return b\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef climb_stairs(n: int) -> int:\n    # Base cases: 0 steps is 1 way (doing nothing), 1 step is 1 way (one 1-step)\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 1\n    \n    # Initialize the first two values of the Fibonacci sequence\n    a, b = 1, 1\n    \n    # Compute the nth Fibonacci number iteratively\n    for _ in range(2, n + 1):\n        a, b = b, a + b\n    \n    return b\n```\n\n### Explanation:\n- **Base Cases**: \n  - If there are no steps (`n == 0`), there's exactly one way to stay on the ground (doing nothing).\n  - If there is one step (`n == 1`), there's only one way to climb it (a single 1-step).\n\n- **Fibonacci Sequence**:\n  - The problem can be reduced to finding the nth Fibonacci number because each state depends on the previous two states:\n    - Climbing to step `i` can be done from either step `i-1` (taking a 1-step) or step `i-2` (taking a 2-step).\n  - Thus, the number of ways to reach step `i` is the sum of the ways to reach step `i-1` and step `i-2`.\n\n- **Iterative Calculation**:\n  - We use an iterative approach to calculate the nth Fibonacci number efficiently with O(1) space complexity. This avoids the overhead of recursion and potential stack overflow issues for large `n`.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:07:10.888631+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

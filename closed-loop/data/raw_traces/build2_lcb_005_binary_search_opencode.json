@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_005_binary_search",
+  "task_title": "Binary Search",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `search(nums: list[int], target: int) -> int` that performs binary search on a sorted list `nums` and returns the index of `target`, or -1 if it is not found. Must run in O(log n) time.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 4.55,
+  "assistant_solution": "```python\ndef search(nums: list[int], target: int) -> int:\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n            \n    return -1\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef search(nums: list[int], target: int) -> int:\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n            \n    return -1\n```",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:25:22.744170+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

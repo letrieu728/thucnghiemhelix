@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_017_merge_k_sorted_lists",
+  "task_title": "Merge K Sorted Linked Lists",
+  "difficulty": "medium",
+  "prompt": "Define a `ListNode` class with `val` and `next` attributes. Write a Python function `merge_k_lists(lists: list) -> object` that merges `k` sorted linked lists into one sorted linked list and returns its head. An empty input list, or a list containing only `None`, must return `None`.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 29.773,
+  "assistant_solution": "```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef merge_two_lists(l1: ListNode, l2: ListNode) -> ListNode:\n    dummy = ListNode()\n    current = dummy\n    \n    while l1 and l2:\n        if l1.val < l2.val:\n            current.next = l1\n            l1 = l1.next\n        else:\n            current.next = l2\n            l2 = l2.next\n        current = current.next\n    \n    if l1:\n        current.next = l1\n    elif l2:\n        current.next = l2\n    \n    return dummy.next\n\ndef merge_k_lists(lists: list) -> ListNode:\n    if not lists:\n        return None\n    \n    while len(lists) > 1:\n        merged_lists = []\n        for i in range(0, len(lists), 2):\n            l1 = lists[i]\n            l2 = lists[i + 1] if i + 1 < len(lists) else None\n            merged_lists.append(merge_two_lists(l1, l2))\n        lists = merged_lists\n    \n    return lists[0]\n\n# Example usage:\n# list1 = ListNode(1, ListNode(4, ListNode(5)))\n# list2 = ListNode(1, ListNode(3, ListNode(4)))\n# list3 = ListNode(2, ListNode(6))\n# merged_list = merge_k_lists([list1, list2, list3])\n# # The merged_list should be: 1 -> 1 -> 2 -> 3 -> 4 -> 4 -> 5 -> 6\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use the divide-and-conquer approach to merge the k sorted linked lists efficiently. Here's a step-by-step plan:\n\n1. **Base Case**: If the input list is empty or contains only `None`, return `None`.\n2. **Divide**: Split the list of linked lists into two halves.\n3. **Conquer**: Recursively merge each half.\n4. **Combine**: Merge the two merged halves into a single sorted linked list.\n\nWe'll need a helper function to merge two sorted linked lists. This function will iterate through both lists, comparing their nodes and appending the smaller node to the result list.\n\nHere's the complete implementation:\n\n```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef merge_two_lists(l1: ListNode, l2: ListNode) -> ListNode:\n    dummy = ListNode()\n    current = dummy\n    \n    while l1 and l2:\n        if l1.val < l2.val:\n            current.next = l1\n            l1 = l1.next\n        else:\n            current.next = l2\n            l2 = l2.next\n        current = current.next\n    \n    if l1:\n        current.next = l1\n    elif l2:\n        current.next = l2\n    \n    return dummy.next\n\ndef merge_k_lists(lists: list) -> ListNode:\n    if not lists:\n        return None\n    \n    while len(lists) > 1:\n        merged_lists = []\n        for i in range(0, len(lists), 2):\n            l1 = lists[i]\n            l2 = lists[i + 1] if i + 1 < len(lists) else None\n            merged_lists.append(merge_two_lists(l1, l2))\n        lists = merged_lists\n    \n    return lists[0]\n\n# Example usage:\n# list1 = ListNode(1, ListNode(4, ListNode(5)))\n# list2 = ListNode(1, ListNode(3, ListNode(4)))\n# list3 = ListNode(2, ListNode(6))\n# merged_list = merge_k_lists([list1, list2, list3])\n# # The merged_list should be: 1 -> 1 -> 2 -> 3 -> 4 -> 4 -> 5 -> 6\n```\n\n### Explanation:\n1. **ListNode Class**: Defines the structure of a node in the linked list.\n2. **merge_two_lists Function**: Merges two sorted linked lists into one sorted linked list.\n   - Uses a dummy node to simplify edge cases (e.g., when one list is exhausted).\n   - Iterates through both lists, appending the smaller node to the result.\n   - Appends any remaining nodes from either list.\n3. **merge_k_lists Function**:\n   - Checks if the input list is empty and returns `None` if true.\n   - Continuously divides the list of linked lists into pairs until only one list remains.\n   - Merges each pair of lists using `merge_two_lists`.\n   - Returns the merged list.\n\nThis approach ensures that the merging process is efficient, leveraging the divide-and-conquer strategy to handle large numbers of linked lists effectively.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:01:54.528757+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

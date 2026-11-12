@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_006_max_subarray",
+  "task_title": "Maximum Subarray Sum and Slice",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `max_sub_array(nums: list[int]) -> tuple[int, list[int]]` that finds the contiguous subarray with the largest sum and returns a tuple `(max_sum, subarray)`. If `nums` is empty, return `(0, [])`.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 8.472,
+  "assistant_solution": "```python\nfrom typing import List, Tuple\n\ndef max_sub_array(nums: List[int]) -> Tuple[int, List[int]]:\n    if not nums:\n        return 0, []\n    \n    max_sum = current_sum = nums[0]\n    start = end = temp_start = 0\n    \n    for i in range(1, len(nums)):\n        if current_sum < 0:\n            current_sum = nums[i]\n            temp_start = i\n        else:\n            current_sum += nums[i]\n        \n        if current_sum > max_sum:\n            max_sum = current_sum\n            start = temp_start\n            end = i\n    \n    return max_sum, nums[start:end+1]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List, Tuple\n\ndef max_sub_array(nums: List[int]) -> Tuple[int, List[int]]:\n    if not nums:\n        return 0, []\n    \n    max_sum = current_sum = nums[0]\n    start = end = temp_start = 0\n    \n    for i in range(1, len(nums)):\n        if current_sum < 0:\n            current_sum = nums[i]\n            temp_start = i\n        else:\n            current_sum += nums[i]\n        \n        if current_sum > max_sum:\n            max_sum = current_sum\n            start = temp_start\n            end = i\n    \n    return max_sum, nums[start:end+1]\n```\n\nThis function uses Kadane's algorithm to find the maximum sum of a contiguous subarray. It iterates through the array once, maintaining a running sum (`current_sum`) and updating the maximum sum found so far (`max_sum`). The indices (`start`, `end`) of the subarray with the maximum sum are also tracked. If the running sum becomes negative, it is reset to the current element, as starting fresh from the next element might yield a higher sum.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:05:54.970485+00:00",
+  "temperature": 0.7,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

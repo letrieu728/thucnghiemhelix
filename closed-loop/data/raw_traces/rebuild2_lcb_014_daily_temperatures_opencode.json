@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_014_daily_temperatures",
+  "task_title": "Daily Temperatures",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `daily_temperatures(temperatures: list[int]) -> list[int]` that returns a list `answer` where `answer[i]` is the number of days to wait after day `i` for a warmer temperature. If there is no warmer day in the future, `answer[i]` is 0.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 5.788,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef daily_temperatures(temperatures: List[int]) -> List[int]:\n    stack = []\n    n = len(temperatures)\n    answer = [0] * n\n    \n    for i in range(n):\n        while stack and temperatures[i] > temperatures[stack[-1]]:\n            prev_index = stack.pop()\n            answer[prev_index] = i - prev_index\n        stack.append(i)\n    \n    return answer\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef daily_temperatures(temperatures: List[int]) -> List[int]:\n    stack = []\n    n = len(temperatures)\n    answer = [0] * n\n    \n    for i in range(n):\n        while stack and temperatures[i] > temperatures[stack[-1]]:\n            prev_index = stack.pop()\n            answer[prev_index] = i - prev_index\n        stack.append(i)\n    \n    return answer\n```",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:58:22.146297+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

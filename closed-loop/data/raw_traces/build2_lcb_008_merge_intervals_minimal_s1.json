@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_008_merge_intervals",
+  "task_title": "Merge Overlapping Intervals with Count",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `merge(intervals: list[list[int]]) -> list[dict]` that merges all overlapping or touching intervals (e.g. `[1, 4]` and `[4, 5]` merge into `[1, 5]`). Return each merged interval as a dictionary `{'start': int, 'end': int, 'count': int}` where `'count'` is the count of original intervals that were merged into it. The result list must be sorted by `'start'`.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 12.456,
+  "assistant_solution": "```python\nfrom heapq import heappush, heappop\n\ndef merge(intervals):\n    if not intervals:\n        return []\n\n    # Sort intervals by start time\n    intervals.sort(key=lambda x: x[0])\n    \n    pq = []\n    for interval in intervals:\n        if pq and pq[0]['end'] >= interval[0]:\n            # Merge with previous interval\n            prev_interval = heappop(pq)\n            new_interval = {'start': prev_interval['start'], 'end': max(prev_interval['end'], interval[1]), 'count': prev_interval['count'] + 1}\n            heappush(pq, new_interval)\n        else:\n            # Add new interval to the heap\n            heappush(pq, {'start': interval[0], 'end': interval[1], 'count': 1})\n\n    # Convert the heap back to a list and return\n    return [heappop(pq) for _ in range(len(pq))]\n```",
+  "passed": false,
+  "test_result": {
+    "passed": false,
+    "error": "Traceback (most recent call last):\n  File \"<string>\", line 25, in <module>\n  File \"<string>\", line 19, in merge\nTypeError: '<' not supported between instances of 'dict' and 'dict'"
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "Here's a Python solution using a priority queue to sort the intervals by their start time:\n\n```python\nfrom heapq import heappush, heappop\n\ndef merge(intervals):\n    if not intervals:\n        return []\n\n    # Sort intervals by start time\n    intervals.sort(key=lambda x: x[0])\n    \n    pq = []\n    for interval in intervals:\n        if pq and pq[0]['end'] >= interval[0]:\n            # Merge with previous interval\n            prev_interval = heappop(pq)\n            new_interval = {'start': prev_interval['start'], 'end': max(prev_interval['end'], interval[1]), 'count': prev_interval['count'] + 1}\n            heappush(pq, new_interval)\n        else:\n            # Add new interval to the heap\n            heappush(pq, {'start': interval[0], 'end': interval[1], 'count': 1})\n\n    # Convert the heap back to a list and return\n    return [heappop(pq) for _ in range(len(pq))]\n```\n\nThis function first sorts the input intervals by their start times. Then, it iterates over the sorted intervals and tries to merge them with the last interval in the priority queue (`pq`). If the current interval overlaps with the last one in the queue, they are merged into a new interval with an incremented count. Otherwise, the current interval is added to the queue as a new interval.\n\nFinally, the function converts the priority queue back to a list and returns it. The resulting list contains dictionaries representing the merged intervals, each with keys 'start', 'end', and 'count'.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<string>\", line 25, in <module>\n  File \"<string>\", line 19, in merge\nTypeError: '<' not supported between instances of 'dict' and 'dict'",
+  "timestamp": "2026-11-12T08:07:37.867738+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

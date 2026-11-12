@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_016_partition_equal_subset",
+  "task_title": "Partition Equal Subset Sum",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `can_partition(nums: list[int]) -> bool` that returns True if `nums` can be partitioned into two subsets with equal sums. Return True if `nums` is empty (both subsets are empty).",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 19.568,
+  "assistant_solution": "```python\ndef can_partition(nums):\n    total_sum = sum(nums)\n    # If the total sum is odd, it cannot be partitioned into two equal parts\n    if total_sum % 2 != 0:\n        return False\n    \n    target = total_sum // 2\n    n = len(nums)\n    \n    # Create a DP array where dp[i][j] will be True if we can get sum j using first i elements\n    dp = [[False] * (target + 1) for _ in range(n + 1)]\n    \n    # Base case: We can always get sum 0 by choosing no elements\n    for i in range(n + 1):\n        dp[i][0] = True\n    \n    # Fill the DP table\n    for i in range(1, n + 1):\n        for j in range(1, target + 1):\n            if nums[i - 1] <= j:\n                dp[i][j] = dp[i - 1][j] or dp[i - 1][j - nums[i - 1]]\n            else:\n                dp[i][j] = dp[i - 1][j]\n    \n    return dp[n][target]\n\n# Example usage:\nprint(can_partition([1, 5, 11, 5]))  # Output: True\nprint(can_partition([1, 2, 3, 5]))   # Output: False\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef can_partition(nums):\n    total_sum = sum(nums)\n    # If the total sum is odd, it cannot be partitioned into two equal parts\n    if total_sum % 2 != 0:\n        return False\n    \n    target = total_sum // 2\n    n = len(nums)\n    \n    # Create a DP array where dp[i][j] will be True if we can get sum j using first i elements\n    dp = [[False] * (target + 1) for _ in range(n + 1)]\n    \n    # Base case: We can always get sum 0 by choosing no elements\n    for i in range(n + 1):\n        dp[i][0] = True\n    \n    # Fill the DP table\n    for i in range(1, n + 1):\n        for j in range(1, target + 1):\n            if nums[i - 1] <= j:\n                dp[i][j] = dp[i - 1][j] or dp[i - 1][j - nums[i - 1]]\n            else:\n                dp[i][j] = dp[i - 1][j]\n    \n    return dp[n][target]\n\n# Example usage:\nprint(can_partition([1, 5, 11, 5]))  # Output: True\nprint(can_partition([1, 2, 3, 5]))   # Output: False\n```\n\nThis Python function uses dynamic programming to solve the problem of partitioning the array into two subsets with equal sums. The function first checks if the total sum of the array is even; if not, it's impossible to partition it equally. It then initializes a DP table where each entry `dp[i][j]` indicates whether it's possible to achieve sum `j` using the first `i` elements of the array. The function fills this table based on whether including the current element helps in achieving the target sum. Finally, it returns whether it's possible to achieve the target sum using all elements.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:00:02.428766+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

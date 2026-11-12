@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_017_merge_k_sorted_lists",
+  "task_title": "Merge K Sorted Linked Lists",
+  "difficulty": "medium",
+  "prompt": "Define a `ListNode` class with `val` and `next` attributes. Write a Python function `merge_k_lists(lists: list) -> object` that merges `k` sorted linked lists into one sorted linked list and returns its head. An empty input list, or a list containing only `None`, must return `None`.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 25.394,
+  "assistant_solution": "```python\nimport heapq\n\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef merge_k_lists(lists: list) -> ListNode:\n    if not lists or all(lst is None for lst in lists):\n        return None\n    \n    # Create a min-heap\n    min_heap = []\n    \n    # Push the first node of each list into the heap\n    for i, lst in enumerate(lists):\n        if lst:\n            heapq.heappush(min_heap, (lst.val, i))\n    \n    # Dummy node to start the merged list\n    dummy = ListNode()\n    current = dummy\n    \n    while min_heap:\n        # Get the smallest element from the heap\n        val, idx = heapq.heappop(min_heap)\n        \n        # Add the smallest element to the merged list\n        current.next = ListNode(val)\n        current = current.next\n        \n        # Move to the next node in the list\n        if lists[idx].next:\n            lists[idx] = lists[idx].next\n            heapq.heappush(min_heap, (lists[idx].val, idx))\n    \n    return dummy.next\n\n# Helper function to print the linked list\ndef print_list(node):\n    while node:\n        print(node.val, end=\" -> \")\n        node = node.next\n    print(\"None\")\n\n# Example usage:\n# list1 = ListNode(1, ListNode(4, ListNode(5)))\n# list2 = ListNode(1, ListNode(3, ListNode(4)))\n# list3 = ListNode(2, ListNode(6))\n# merged_list = merge_k_lists([list1, list2, list3])\n# print_list(merged_list)  # Output: 1 -> 1 -> 2 -> 3 -> 4 -> 4 -> 5 -> 6 -> None\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use the following approach:\n\n1. **Handle Edge Cases**: If the input list is empty or contains only `None`, return `None`.\n2. **Use a Min-Heap**: Use a min-heap to efficiently get the smallest element among the heads of the k lists. This will help us build the merged list in sorted order.\n3. **Build the Merged List**: Iterate through the heap, always taking the smallest element and adding it to the merged list. Update the pointer for the corresponding list.\n\nHere's the implementation:\n\n```python\nimport heapq\n\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef merge_k_lists(lists: list) -> ListNode:\n    if not lists or all(lst is None for lst in lists):\n        return None\n    \n    # Create a min-heap\n    min_heap = []\n    \n    # Push the first node of each list into the heap\n    for i, lst in enumerate(lists):\n        if lst:\n            heapq.heappush(min_heap, (lst.val, i))\n    \n    # Dummy node to start the merged list\n    dummy = ListNode()\n    current = dummy\n    \n    while min_heap:\n        # Get the smallest element from the heap\n        val, idx = heapq.heappop(min_heap)\n        \n        # Add the smallest element to the merged list\n        current.next = ListNode(val)\n        current = current.next\n        \n        # Move to the next node in the list\n        if lists[idx].next:\n            lists[idx] = lists[idx].next\n            heapq.heappush(min_heap, (lists[idx].val, idx))\n    \n    return dummy.next\n\n# Helper function to print the linked list\ndef print_list(node):\n    while node:\n        print(node.val, end=\" -> \")\n        node = node.next\n    print(\"None\")\n\n# Example usage:\n# list1 = ListNode(1, ListNode(4, ListNode(5)))\n# list2 = ListNode(1, ListNode(3, ListNode(4)))\n# list3 = ListNode(2, ListNode(6))\n# merged_list = merge_k_lists([list1, list2, list3])\n# print_list(merged_list)  # Output: 1 -> 1 -> 2 -> 3 -> 4 -> 4 -> 5 -> 6 -> None\n```\n\n### Explanation:\n1. **Edge Case Handling**: The function first checks if the input list is empty or contains only `None`. If so, it returns `None`.\n2. **Min-Heap Initialization**: A min-heap is created using Python's `heapq` module. Each element in the heap is a tuple `(value, index)` where `value` is the node value and `index` is the list index.\n3. **Building the Merged List**:\n   - A dummy node is used to simplify the merging process.\n   - The smallest element from the heap is popped and added to the merged list.\n   - The next node from the same list is pushed back into the heap.\n4. **Helper Function**: The `print_list` function is provided to help visualize the merged linked list.\n\nThis implementation ensures that the merged list is built in O(N log k) time complexity, where N is the total number of nodes across all lists and k is the number of lists. The space complexity is O(k) due to the heap.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:46:16.733556+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

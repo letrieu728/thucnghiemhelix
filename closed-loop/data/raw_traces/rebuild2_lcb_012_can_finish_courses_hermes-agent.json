@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_012_can_finish_courses",
+  "task_title": "Course Schedule (Cycle Detection)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool` that returns True if all courses can be finished. Each prerequisite `[a, b]` means course `b` must be taken before course `a`. Return False if the prerequisites contain a cycle that makes completion impossible.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 15.714,
+  "assistant_solution": "```python\ndef can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool:\n    # Create adjacency list representation of the graph\n    graph = [[] for _ in range(num_courses)]\n    for course, prereq in prerequisites:\n        graph[course].append(prereq)\n    \n    # Initialize visited array to keep track of visit states\n    # 0 - unvisited, 1 - visiting, 2 - visited\n    visited = [0] * num_courses\n    \n    def dfs(course):\n        # If currently visiting this node again, we have a cycle\n        if visited[course] == 1:\n            return False\n        # If already visited, no need to revisit\n        if visited[course] == 2:\n            return True\n        \n        # Mark as visiting\n        visited[course] = 1\n        \n        # Visit all prerequisites\n        for prereq in graph[course]:\n            if not dfs(prereq):\n                return False\n        \n        # Mark as visited after all prerequisites are processed\n        visited[course] = 2\n        return True\n    \n    # Check each course to ensure there's no cycle starting from it\n    for course in range(num_courses):\n        if not dfs(course):\n            return False\n    \n    return True\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool:\n    # Create adjacency list representation of the graph\n    graph = [[] for _ in range(num_courses)]\n    for course, prereq in prerequisites:\n        graph[course].append(prereq)\n    \n    # Initialize visited array to keep track of visit states\n    # 0 - unvisited, 1 - visiting, 2 - visited\n    visited = [0] * num_courses\n    \n    def dfs(course):\n        # If currently visiting this node again, we have a cycle\n        if visited[course] == 1:\n            return False\n        # If already visited, no need to revisit\n        if visited[course] == 2:\n            return True\n        \n        # Mark as visiting\n        visited[course] = 1\n        \n        # Visit all prerequisites\n        for prereq in graph[course]:\n            if not dfs(prereq):\n                return False\n        \n        # Mark as visited after all prerequisites are processed\n        visited[course] = 2\n        return True\n    \n    # Check each course to ensure there's no cycle starting from it\n    for course in range(num_courses):\n        if not dfs(course):\n            return False\n    \n    return True\n```\n\nThis solution uses Depth-First Search (DFS) to detect cycles in the directed graph represented by the prerequisites. The `visited` array helps manage three states: unvisited, visiting, and visited. If we encounter a node marked as \"visiting\" during DFS, it indicates a cycle. The function returns `False` immediately upon detecting a cycle, ensuring efficient detection.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:54:03.385904+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_016_partition_equal_subset",
+  "task_title": "Partition Equal Subset Sum",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `can_partition(nums: list[int]) -> bool` that returns True if `nums` can be partitioned into two subsets with equal sums. Return True if `nums` is empty (both subsets are empty).",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 7.094,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef can_partition(nums: List[int]) -> bool:\n    total_sum = sum(nums)\n    if total_sum % 2 != 0:\n        return False\n    \n    target = total_sum // 2\n    n = len(nums)\n    \n    dp = [False] * (target + 1)\n    dp[0] = True\n    \n    for num in nums:\n        for j in range(target, num - 1, -1):\n            dp[j] = dp[j] or dp[j - num]\n    \n    return dp[target]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef can_partition(nums: List[int]) -> bool:\n    total_sum = sum(nums)\n    if total_sum % 2 != 0:\n        return False\n    \n    target = total_sum // 2\n    n = len(nums)\n    \n    dp = [False] * (target + 1)\n    dp[0] = True\n    \n    for num in nums:\n        for j in range(target, num - 1, -1):\n            dp[j] = dp[j] or dp[j - num]\n    \n    return dp[target]\n```\n\nThis solution uses dynamic programming to determine if there exists a subset of `nums` that sums up to half of the total sum. The time complexity is O(n * target), where n is the number of elements in `nums`, and the space complexity is O(target).",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:45:35.042218+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

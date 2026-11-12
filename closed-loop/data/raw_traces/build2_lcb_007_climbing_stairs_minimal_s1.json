@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_007_climbing_stairs",
+  "task_title": "Climbing Stairs (DP)",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `climb_stairs(n: int) -> int` that returns the number of distinct ways to climb `n` stairs if you can take 1 or 2 steps at a time.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 23.784,
+  "assistant_solution": "```python\ndef climb_stairs(n: int) -> int:\n    # Base cases\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 1\n    \n    # Create a dp array to store the number of ways to reach each stair\n    dp = [0] * (n + 1)\n    \n    # Initialize base cases\n    dp[0] = 1\n    dp[1] = 1\n    \n    # Fill the dp array using the recursive relation\n    for i in range(2, n + 1):\n        dp[i] = dp[i - 1] + dp[i - 2]\n    \n    # Return the number of ways to reach the nth stair\n    return dp[n]\n\n# Example usage:\nprint(climb_stairs(2))  # Output: 2\nprint(climb_stairs(3))  # Output: 3\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use dynamic programming. The idea is to build up a solution for `n` by solving smaller subproblems.\n\nHere's a step-by-step breakdown:\n\n1. **Define the Problem**: We need to find the number of distinct ways to reach the nth stair. From each stair, we can either take one step or two steps.\n\n2. **Base Cases**:\n   - If there is only 1 stair, there is only 1 way to climb it (one step).\n   - If there are 2 stairs, there are 2 ways to climb them (two single steps or one double step).\n\n3. **Recursive Relation**:\n   - For any given stair `i`, the number of ways to reach it is the sum of the ways to reach the previous stair (`i-1`) and the stair before that (`i-2`). This is because from `i-1`, you can take one step to reach `i`, and from `i-2`, you can take two steps to reach `i`.\n\n4. **Dynamic Programming Array**:\n   - Use an array `dp` where `dp[i]` represents the number of ways to reach the `i-th` stair.\n   - Initialize `dp[0] = 1` and `dp[1] = 1`.\n   - Fill the array using the recursive relation for `i` from 2 to `n`.\n\n5. **Result**:\n   - The value `dp[n]` will give us the number of distinct ways to climb `n` stairs.\n\nHere's the Python implementation of the above approach:\n\n```python\ndef climb_stairs(n: int) -> int:\n    # Base cases\n    if n == 0:\n        return 1\n    elif n == 1:\n        return 1\n    \n    # Create a dp array to store the number of ways to reach each stair\n    dp = [0] * (n + 1)\n    \n    # Initialize base cases\n    dp[0] = 1\n    dp[1] = 1\n    \n    # Fill the dp array using the recursive relation\n    for i in range(2, n + 1):\n        dp[i] = dp[i - 1] + dp[i - 2]\n    \n    # Return the number of ways to reach the nth stair\n    return dp[n]\n\n# Example usage:\nprint(climb_stairs(2))  # Output: 2\nprint(climb_stairs(3))  # Output: 3\n```\n\n### Explanation:\n- **Initialization**: We initialize `dp[0]` and `dp[1]` to 1 because there is exactly one way to stay at the ground (doing nothing) and one way to reach the first stair.\n- **Filling the DP Array**: For each subsequent stair `i`, we calculate the number of ways to reach it by summing the ways to reach the previous two stairs (`dp[i-1]` and `dp[i-2]`).\n- **Result**: Finally, `dp[n]` gives us the total number of distinct ways to climb `n` stairs.\n\nThis approach ensures that we efficiently compute the result with a time complexity of \\(O(n)\\) and a space complexity of \\(O(n)\\).",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:06:55.239437+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

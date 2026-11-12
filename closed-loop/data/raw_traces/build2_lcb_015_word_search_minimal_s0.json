@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_015_word_search",
+  "task_title": "Word Search in Grid",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `exist(board: list[list[str]], word: str) -> bool` that returns True if `word` can be constructed from sequentially adjacent cells (up, down, left, right) of `board`, where each cell may be used at most once. The word is non-empty.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 14.177,
+  "assistant_solution": "```python\ndef exist(board, word):\n    def dfs(i, j, k):\n        # Check boundaries and whether the current character matches the word\n        if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]) or board[i][j] != word[k]:\n            return False\n        \n        # If we have matched all characters in the word, return True\n        if k == len(word) - 1:\n            return True\n        \n        # Temporarily mark the cell as visited by replacing it with '#'\n        temp, board[i][j] = board[i][j], '#'\n        \n        # Recursively check all four possible directions\n        found = dfs(i + 1, j, k + 1) or dfs(i - 1, j, k + 1) or dfs(i, j + 1, k + 1) or dfs(i, j - 1, k + 1)\n        \n        # Backtrack: restore the original value of the cell\n        board[i][j] = temp\n        \n        return found\n\n    # Iterate over all cells in the board\n    for i in range(len(board)):\n        for j in range(len(board[0])):\n            if dfs(i, j, 0):\n                return True\n    \n    return False\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "Here's the solution to your problem:\n\n```python\ndef exist(board, word):\n    def dfs(i, j, k):\n        # Check boundaries and whether the current character matches the word\n        if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]) or board[i][j] != word[k]:\n            return False\n        \n        # If we have matched all characters in the word, return True\n        if k == len(word) - 1:\n            return True\n        \n        # Temporarily mark the cell as visited by replacing it with '#'\n        temp, board[i][j] = board[i][j], '#'\n        \n        # Recursively check all four possible directions\n        found = dfs(i + 1, j, k + 1) or dfs(i - 1, j, k + 1) or dfs(i, j + 1, k + 1) or dfs(i, j - 1, k + 1)\n        \n        # Backtrack: restore the original value of the cell\n        board[i][j] = temp\n        \n        return found\n\n    # Iterate over all cells in the board\n    for i in range(len(board)):\n        for j in range(len(board[0])):\n            if dfs(i, j, 0):\n                return True\n    \n    return False\n```\n\nThis solution uses Depth-First Search (DFS) to explore all possible paths on the board starting from each cell. It temporarily marks cells as visited by changing their values to '#' and backtracks when necessary to try other paths.\n\nThe time complexity of this solution is O(m * n * 4^k), where m and n are the dimensions of the board, and k is the length of the word. This is because there are up to 4 recursive calls per cell, and we perform these calls for every cell in the worst case. The space complexity is O(k) due to the recursion stack.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:18:47.196522+00:00",
+  "temperature": 0.7,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

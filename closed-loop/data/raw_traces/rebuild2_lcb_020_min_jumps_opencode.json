@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_020_min_jumps",
+  "task_title": "Jump Game II (Minimum Jumps)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `jump(nums: list[int]) -> int` that returns the minimum number of jumps needed to reach the last index, where `nums[i]` is the maximum jump length from index `i`. Return -1 if the last index cannot be reached, and 0 if `nums` has 0 or 1 element.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 6.794,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef jump(nums: List[int]) -> int:\n    n = len(nums)\n    if n <= 1:\n        return 0\n    \n    max_reach = 0\n    step = 0\n    end = 0\n    for i in range(n - 1):\n        max_reach = max(max_reach, i + nums[i])\n        if i == end:\n            step += 1\n            end = max_reach\n            if end >= n - 1:\n                break\n    return step if end >= n - 1 else -1\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef jump(nums: List[int]) -> int:\n    n = len(nums)\n    if n <= 1:\n        return 0\n    \n    max_reach = 0\n    step = 0\n    end = 0\n    for i in range(n - 1):\n        max_reach = max(max_reach, i + nums[i])\n        if i == end:\n            step += 1\n            end = max_reach\n            if end >= n - 1:\n                break\n    return step if end >= n - 1 else -1\n```",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:08:10.433358+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

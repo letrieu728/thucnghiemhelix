@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_015_word_search",
+  "task_title": "Word Search in Grid",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `exist(board: list[list[str]], word: str) -> bool` that returns True if `word` can be constructed from sequentially adjacent cells (up, down, left, right) of `board`, where each cell may be used at most once. The word is non-empty.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 17.585,
+  "assistant_solution": "```python\ndef exist(board: list[list[str]], word: str) -> bool:\n    def dfs(x, y, index):\n        # Check if the current position matches the character in the word\n        if board[x][y] != word[index]:\n            return False\n        # If we have matched all characters in the word\n        if index == len(word) - 1:\n            return True\n        \n        # Mark the current cell as visited by setting it to an empty string\n        temp, board[x][y] = board[x][y], ''\n        \n        # Explore all four possible directions\n        for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n            nx, ny = x + dx, y + dy\n            # Check if the new position is within bounds and not yet visited\n            if 0 <= nx < m and 0 <= ny < n and board[nx][ny]:\n                if dfs(nx, ny, index + 1):\n                    return True\n        \n        # Backtrack: restore the original value of the cell\n        board[x][y] = temp\n        return False\n    \n    m, n = len(board), len(board[0])\n    \n    # Iterate over each cell in the board\n    for i in range(m):\n        for j in range(n):\n            # Start DFS if the first character matches\n            if board[i][j] == word[0] and dfs(i, j, 0):\n                return True\n    \n    return False\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef exist(board: list[list[str]], word: str) -> bool:\n    def dfs(x, y, index):\n        # Check if the current position matches the character in the word\n        if board[x][y] != word[index]:\n            return False\n        # If we have matched all characters in the word\n        if index == len(word) - 1:\n            return True\n        \n        # Mark the current cell as visited by setting it to an empty string\n        temp, board[x][y] = board[x][y], ''\n        \n        # Explore all four possible directions\n        for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:\n            nx, ny = x + dx, y + dy\n            # Check if the new position is within bounds and not yet visited\n            if 0 <= nx < m and 0 <= ny < n and board[nx][ny]:\n                if dfs(nx, ny, index + 1):\n                    return True\n        \n        # Backtrack: restore the original value of the cell\n        board[x][y] = temp\n        return False\n    \n    m, n = len(board), len(board[0])\n    \n    # Iterate over each cell in the board\n    for i in range(m):\n        for j in range(n):\n            # Start DFS if the first character matches\n            if board[i][j] == word[0] and dfs(i, j, 0):\n                return True\n    \n    return False\n```\nThis Python function uses Depth-First Search (DFS) with backtracking to explore all possible paths on the board that could form the given word. It marks visited cells temporarily to avoid revisiting them during the same path and restores their values after exploring all possibilities.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:58:40.335876+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

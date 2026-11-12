@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_016_partition_equal_subset",
+  "task_title": "Partition Equal Subset Sum",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `can_partition(nums: list[int]) -> bool` that returns True if `nums` can be partitioned into two subsets with equal sums. Return True if `nums` is empty (both subsets are empty).",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 26.102,
+  "assistant_solution": "```python\ndef can_partition(nums: list[int]) -> bool:\n    if not nums:\n        return True\n    \n    total_sum = sum(nums)\n    \n    # If the total sum is odd, it's impossible to partition into two equal subsets\n    if total_sum % 2 != 0:\n        return False\n    \n    target_sum = total_sum // 2\n    \n    # Create a DP array initialized to False\n    dp = [False] * (target_sum + 1)\n    dp[0] = True  # A sum of 0 can always be achieved with an empty subset\n    \n    # Fill the DP array\n    for num in nums:\n        for j in range(target_sum, num - 1, -1):\n            dp[j] = dp[j] or dp[j - num]\n    \n    return dp[target_sum]\n\n# Example usage:\nnums = [1, 5, 11, 5]\nprint(can_partition(nums))  # Output: True\n\nnums = [1, 2, 3, 5]\nprint(can_partition(nums))  # Output: False\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve the problem of partitioning an array into two subsets with equal sums, we can use dynamic programming. The idea is to determine if there exists a subset of the given array whose sum is exactly half of the total sum of the array. If such a subset exists, then the remaining elements will also form another subset with the same sum.\n\nHere's a step-by-step breakdown of the approach:\n\n1. **Calculate the Total Sum**: First, calculate the total sum of the array. If the total sum is odd, it's impossible to partition the array into two subsets with equal sums, so return `False`.\n\n2. **Target Sum**: If the total sum is even, divide it by 2 to get the target sum for each subset.\n\n3. **Dynamic Programming Array**: Use a boolean DP array where `dp[j]` represents whether a subset with sum `j` can be formed using the elements of the array.\n\n4. **Initialization**: Initialize the DP array with `False`, except for `dp[0]` which should be `True` because a sum of 0 can always be achieved with an empty subset.\n\n5. **Fill the DP Array**: Iterate through each number in the array and update the DP array from right to left to avoid using the same element multiple times in the same subset.\n\n6. **Result**: Finally, check if `dp[target_sum]` is `True`, which indicates that a subset with the required sum exists.\n\nHere's the implementation of the function:\n\n```python\ndef can_partition(nums: list[int]) -> bool:\n    if not nums:\n        return True\n    \n    total_sum = sum(nums)\n    \n    # If the total sum is odd, it's impossible to partition into two equal subsets\n    if total_sum % 2 != 0:\n        return False\n    \n    target_sum = total_sum // 2\n    \n    # Create a DP array initialized to False\n    dp = [False] * (target_sum + 1)\n    dp[0] = True  # A sum of 0 can always be achieved with an empty subset\n    \n    # Fill the DP array\n    for num in nums:\n        for j in range(target_sum, num - 1, -1):\n            dp[j] = dp[j] or dp[j - num]\n    \n    return dp[target_sum]\n\n# Example usage:\nnums = [1, 5, 11, 5]\nprint(can_partition(nums))  # Output: True\n\nnums = [1, 2, 3, 5]\nprint(can_partition(nums))  # Output: False\n```\n\n### Explanation of the Code:\n- **Line 1**: Check if the input list `nums` is empty. If it is, return `True` because both subsets would be empty.\n- **Line 3**: Calculate the total sum of the array.\n- **Line 5**: Check if the total sum is odd. If it is, return `False`.\n- **Line 7**: Calculate the target sum as half of the total sum.\n- **Line 9**: Initialize a DP array `dp` of size `target_sum + 1` with all elements set to `False`. Set `dp[0]` to `True`.\n- **Line 11-14**: Iterate through each number in `nums` and update the DP array from right to left.\n- **Line 16**: Return the value of `dp[target_sum]`, which indicates whether a subset with the target sum exists.\n\nThis approach ensures that we efficiently determine if the array can be partitioned into two subsets with equal sums using dynamic programming.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:20:07.549805+00:00",
+  "temperature": 0.7,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

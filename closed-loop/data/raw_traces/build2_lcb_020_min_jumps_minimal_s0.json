@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_020_min_jumps",
+  "task_title": "Jump Game II (Minimum Jumps)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `jump(nums: list[int]) -> int` that returns the minimum number of jumps needed to reach the last index, where `nums[i]` is the maximum jump length from index `i`. Return -1 if the last index cannot be reached, and 0 if `nums` has 0 or 1 element.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 13.581,
+  "assistant_solution": "```python\ndef jump(nums):\n    # If there's only one element or no elements, no jump is needed.\n    if len(nums) <= 1:\n        return 0\n    \n    # Initialize variables to track the farthest point that can be reached,\n    # the end of the current jump range, and the number of jumps made.\n    farthest = 0\n    end = 0\n    jumps = 0\n    \n    # Iterate through the array up to the second last element.\n    for i in range(len(nums) - 1):\n        # Update the farthest point that can be reached from the current position.\n        farthest = max(farthest, nums[i] + i)\n        \n        # When we reach the end of the current jump range, make a jump.\n        if i == end:\n            jumps += 1\n            end = farthest\n            \n            # If the end reaches or exceeds the last index, break early.\n            if end >= len(nums) - 1:\n                break\n    \n    # Check if the last index was reachable.\n    if end < len(nums) - 1:\n        return -1\n    \n    return jumps\n\n# Example usage:\nprint(jump([2,3,1,1,4]))  # Output: 2\nprint(jump([2,3,0,1,4]))  # Output: 2\nprint(jump([0]))          # Output: 0\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef jump(nums):\n    # If there's only one element or no elements, no jump is needed.\n    if len(nums) <= 1:\n        return 0\n    \n    # Initialize variables to track the farthest point that can be reached,\n    # the end of the current jump range, and the number of jumps made.\n    farthest = 0\n    end = 0\n    jumps = 0\n    \n    # Iterate through the array up to the second last element.\n    for i in range(len(nums) - 1):\n        # Update the farthest point that can be reached from the current position.\n        farthest = max(farthest, nums[i] + i)\n        \n        # When we reach the end of the current jump range, make a jump.\n        if i == end:\n            jumps += 1\n            end = farthest\n            \n            # If the end reaches or exceeds the last index, break early.\n            if end >= len(nums) - 1:\n                break\n    \n    # Check if the last index was reachable.\n    if end < len(nums) - 1:\n        return -1\n    \n    return jumps\n\n# Example usage:\nprint(jump([2,3,1,1,4]))  # Output: 2\nprint(jump([2,3,0,1,4]))  # Output: 2\nprint(jump([0]))          # Output: 0\n```\n\nThis Python solution follows the same logic as the given Java code but uses Python-specific syntax and conventions. The function iterates through the list, updating the farthest point that can be reached and making jumps when necessary. It handles edge cases such as empty lists or single-element lists and checks if the last index is reachable before returning the result.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:23:56.435129+00:00",
+  "temperature": 0.7,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

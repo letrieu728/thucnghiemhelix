@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_017_merge_k_sorted_lists",
+  "task_title": "Merge K Sorted Linked Lists",
+  "difficulty": "medium",
+  "prompt": "Define a `ListNode` class with `val` and `next` attributes. Write a Python function `merge_k_lists(lists: list) -> object` that merges `k` sorted linked lists into one sorted linked list and returns its head. An empty input list, or a list containing only `None`, must return `None`.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 14.9,
+  "assistant_solution": "```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef merge_k_lists(lists: list) -> object:\n    if not lists:\n        return None\n    \n    # Helper function to merge two lists\n    def merge_two_lists(l1, l2):\n        dummy = ListNode()\n        current = dummy\n        \n        while l1 and l2:\n            if l1.val < l2.val:\n                current.next = l1\n                l1 = l1.next\n            else:\n                current.next = l2\n                l2 = l2.next\n            current = current.next\n        \n        if l1:\n            current.next = l1\n        elif l2:\n            current.next = l2\n        \n        return dummy.next\n    \n    # Merge the lists using divide and conquer approach\n    while len(lists) > 1:\n        merged_list = []\n        for i in range(0, len(lists), 2):\n            l1 = lists[i]\n            l2 = lists[i + 1] if i + 1 < len(lists) else None\n            merged_list.append(merge_two_lists(l1, l2))\n        lists = merged_list\n    \n    return lists[0]\n\n# Example usage:\n# list1 = ListNode(1, ListNode(4, ListNode(5)))\n# list2 = ListNode(1, ListNode(3, ListNode(4)))\n# list3 = ListNode(2, ListNode(6))\n# merged_head = merge_k_lists([list1, list2, list3])\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef merge_k_lists(lists: list) -> object:\n    if not lists:\n        return None\n    \n    # Helper function to merge two lists\n    def merge_two_lists(l1, l2):\n        dummy = ListNode()\n        current = dummy\n        \n        while l1 and l2:\n            if l1.val < l2.val:\n                current.next = l1\n                l1 = l1.next\n            else:\n                current.next = l2\n                l2 = l2.next\n            current = current.next\n        \n        if l1:\n            current.next = l1\n        elif l2:\n            current.next = l2\n        \n        return dummy.next\n    \n    # Merge the lists using divide and conquer approach\n    while len(lists) > 1:\n        merged_list = []\n        for i in range(0, len(lists), 2):\n            l1 = lists[i]\n            l2 = lists[i + 1] if i + 1 < len(lists) else None\n            merged_list.append(merge_two_lists(l1, l2))\n        lists = merged_list\n    \n    return lists[0]\n\n# Example usage:\n# list1 = ListNode(1, ListNode(4, ListNode(5)))\n# list2 = ListNode(1, ListNode(3, ListNode(4)))\n# list3 = ListNode(2, ListNode(6))\n# merged_head = merge_k_lists([list1, list2, list3])\n```\n\nThis solution defines a `ListNode` class and a `merge_k_lists` function that merges `k` sorted linked lists into one sorted linked list. The function uses a helper function `merge_two_lists` to merge two lists at a time, and then recursively merges the results until all lists are merged into one. This is an efficient way to handle merging multiple sorted lists, leveraging the divide-and-conquer strategy.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:45:50.567542+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

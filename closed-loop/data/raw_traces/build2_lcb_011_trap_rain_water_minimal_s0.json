@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_011_trap_rain_water",
+  "task_title": "Trapping Rain Water",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `trap(height: list[int]) -> int` that computes how much rain water is trapped after raining, given an elevation map where each element is the height of a bar of width 1. Return 0 if no water is trapped or if the input is empty.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 13.388,
+  "assistant_solution": "```python\ndef trap(height):\n    if not height:\n        return 0\n\n    left_max = [height[0]] + [0] * (len(height) - 1)\n    right_max = [0] * (len(height) - 1) + [height[-1]]\n\n    for i in range(1, len(height)):\n        left_max[i] = max(left_max[i-1], height[i])\n\n    for i in reversed(range(len(height)-1)):\n        right_max[i] = max(right_max[i+1], height[i])\n\n    water_trapped = sum(min(l, r) - h for l, r, h in zip(left_max, right_max, height))\n\n    return water_trapped\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "Here's a Python solution for the problem:\n\n```python\ndef trap(height):\n    if not height:\n        return 0\n\n    left_max = [height[0]] + [0] * (len(height) - 1)\n    right_max = [0] * (len(height) - 1) + [height[-1]]\n\n    for i in range(1, len(height)):\n        left_max[i] = max(left_max[i-1], height[i])\n\n    for i in reversed(range(len(height)-1)):\n        right_max[i] = max(right_max[i+1], height[i])\n\n    water_trapped = sum(min(l, r) - h for l, r, h in zip(left_max, right_max, height))\n\n    return water_trapped\n```\n\nIn this code, we first check if the input list is empty and return 0 if it is.\n\nThen, we create two lists `left_max` and `right_max`. For each index `i`, `left_max[i]` will be the maximum height from the start of the list up to `i`, and `right_max[i]` will be the maximum height from the end of the list up to `i`.\n\nAfter calculating these two lists, we iterate through the original height list again and calculate the amount of water trapped at each index by taking the minimum of `left_max[i]` and `right_max[i]` and subtracting the height at that index. We then sum these values to get the total amount of water trapped.\n\nThis algorithm has a time complexity of O(n), where n is the length of the input list. This is because we only need to traverse the list three times. The space complexity is also O(n) due to the additional storage used for the `left_max` and `right_max` lists.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:13:35.098512+00:00",
+  "temperature": 0.7,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

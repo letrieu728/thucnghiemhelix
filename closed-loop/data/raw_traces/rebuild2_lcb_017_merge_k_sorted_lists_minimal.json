@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_017_merge_k_sorted_lists",
+  "task_title": "Merge K Sorted Linked Lists",
+  "difficulty": "medium",
+  "prompt": "Define a `ListNode` class with `val` and `next` attributes. Write a Python function `merge_k_lists(lists: list) -> object` that merges `k` sorted linked lists into one sorted linked list and returns its head. An empty input list, or a list containing only `None`, must return `None`.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 14.883,
+  "assistant_solution": "```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef merge_k_lists(lists: list) -> object:\n    if not lists:\n        return None\n    \n    # Helper function to merge two lists\n    def merge_two(l1, l2):\n        dummy = ListNode()\n        current = dummy\n        \n        while l1 and l2:\n            if l1.val < l2.val:\n                current.next = l1\n                l1 = l1.next\n            else:\n                current.next = l2\n                l2 = l2.next\n            current = current.next\n        \n        if l1:\n            current.next = l1\n        elif l2:\n            current.next = l2\n        \n        return dummy.next\n    \n    # Merge all lists using the helper function\n    result = lists[0]\n    for i in range(1, len(lists)):\n        result = merge_two(result, lists[i])\n    \n    return result\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef merge_k_lists(lists: list) -> object:\n    if not lists:\n        return None\n    \n    # Helper function to merge two lists\n    def merge_two(l1, l2):\n        dummy = ListNode()\n        current = dummy\n        \n        while l1 and l2:\n            if l1.val < l2.val:\n                current.next = l1\n                l1 = l1.next\n            else:\n                current.next = l2\n                l2 = l2.next\n            current = current.next\n        \n        if l1:\n            current.next = l1\n        elif l2:\n            current.next = l2\n        \n        return dummy.next\n    \n    # Merge all lists using the helper function\n    result = lists[0]\n    for i in range(1, len(lists)):\n        result = merge_two(result, lists[i])\n    \n    return result\n```\nThis solution defines a `ListNode` class and a `merge_k_lists` function that merges `k` sorted linked lists into one sorted linked list. The `merge_two` helper function is used to merge two lists at a time, which simplifies the merging process for multiple lists. The main function iterates through the list of lists, merging them sequentially until only one list remains, which is then returned as the head of the merged list. If the input list is empty or contains only `None`, the function returns `None`.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:01:24.521973+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

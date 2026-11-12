@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_010_number_of_islands",
+  "task_title": "Number of Islands (BFS/DFS)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `num_islands(grid: list[list[str]]) -> int` that counts the number of islands in a 2D binary grid. An island is a group of adjacent '1's (land) surrounded by '0's (water). Connections are 4-directional.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 18.092,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef num_islands(grid: List[List[str]]) -> int:\n    if not grid:\n        return 0\n    \n    def dfs(i: int, j: int):\n        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] == '0':\n            return\n        grid[i][j] = '0'\n        dfs(i - 1, j)\n        dfs(i + 1, j)\n        dfs(i, j - 1)\n        dfs(i, j + 1)\n    \n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == '1':\n                dfs(i, j)\n                count += 1\n    return count\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef num_islands(grid: List[List[str]]) -> int:\n    if not grid:\n        return 0\n    \n    def dfs(i: int, j: int):\n        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] == '0':\n            return\n        grid[i][j] = '0'\n        dfs(i - 1, j)\n        dfs(i + 1, j)\n        dfs(i, j - 1)\n        dfs(i, j + 1)\n    \n    count = 0\n    for i in range(len(grid)):\n        for j in range(len(grid[0])):\n            if grid[i][j] == '1':\n                dfs(i, j)\n                count += 1\n    return count\n```\n\n### Explanation:\n1. **ANALYSE**:\n   - The problem involves counting the number of connected components ('islands') in a 2D grid where '1' represents land and '0' represents water.\n   - Connections between lands are 4-directional (up, down, left, right).\n\n2. **PLAN**:\n   - Use Depth-First Search (DFS) to explore each island once.\n   - Mark visited land cells as '0' to avoid reprocessing them.\n   - Count each new DFS invocation as it indicates a new island.\n\n3. **IMPLEMENT**:\n   - Define a helper function `dfs` to perform the depth-first search.\n   - Iterate over each cell in the grid. If a '1' is found, initiate a DFS from that cell and increment the island count.\n\n4. **VERIFY**:\n   - For example, given the grid:\n     ```\n     [\n       [\"1\",\"1\",\"1\",\"1\",\"0\"],\n       [\"1\",\"1\",\"0\",\"1\",\"0\"],\n       [\"1\",\"1\",\"0\",\"0\",\"0\"],\n       [\"0\",\"0\",\"0\",\"0\",\"0\"]\n     ]\n     ```\n     The function should return `1` because there is one island.\n   - Another example:\n     ```\n     [\n       [\"1\",\"1\",\"0\",\"0\",\"0\"],\n       [\"1\",\"1\",\"0\",\"0\",\"0\"],\n       [\"0\",\"0\",\"1\",\"0\",\"0\"],\n       [\"0\",\"0\",\"0\",\"1\",\"1\"]\n     ]\n     ```\n     The function should return `3` because there are three islands.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:11:50.233250+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

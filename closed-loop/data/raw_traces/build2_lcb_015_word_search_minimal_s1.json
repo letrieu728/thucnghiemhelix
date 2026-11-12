@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_015_word_search",
+  "task_title": "Word Search in Grid",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `exist(board: list[list[str]], word: str) -> bool` that returns True if `word` can be constructed from sequentially adjacent cells (up, down, left, right) of `board`, where each cell may be used at most once. The word is non-empty.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 28.185,
+  "assistant_solution": "```python\ndef exist(board: list[list[str]], word: str) -> bool:\n    if not board or not board[0]:\n        return False\n    \n    rows, cols = len(board), len(board[0])\n    visited = set()\n    \n    def dfs(r, c, index):\n        # Base cases\n        if index == len(word):\n            return True\n        if r < 0 or r >= rows or c < 0 or c >= cols or board[r][c] != word[index] or (r, c) in visited:\n            return False\n        \n        # Mark the cell as visited\n        visited.add((r, c))\n        \n        # Explore all four directions\n        found = (dfs(r + 1, c, index + 1) or\n                 dfs(r - 1, c, index + 1) or\n                 dfs(r, c + 1, index + 1) or\n                 dfs(r, c - 1, index + 1))\n        \n        # Unmark the cell as visited\n        visited.remove((r, c))\n        \n        return found\n    \n    # Iterate over the board and start DFS if the first character matches\n    for r in range(rows):\n        for c in range(cols):\n            if board[r][c] == word[0]:\n                if dfs(r, c, 0):\n                    return True\n    \n    return False\n\n# Example usage:\nboard = [\n    ['A', 'B', 'C', 'E'],\n    ['S', 'F', 'C', 'S'],\n    ['A', 'D', 'E', 'E']\n]\nword = \"ABCCED\"\nprint(exist(board, word))  # Output: True\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use Depth-First Search (DFS). Here's a step-by-step implementation of the `exist` function:\n\n1. **Initialize Variables**: We'll need to keep track of the board dimensions and create a set to store visited cells.\n2. **Iterate Over the Board**: For each cell in the board, start a DFS search if the current cell matches the first character of the word.\n3. **DFS Function**: This function will recursively check all four possible directions (up, down, left, right) to see if the remaining characters of the word can be found in the board starting from the current cell.\n4. **Base Cases for DFS**:\n   - If the current index of the word is equal to its length, it means we've successfully matched the entire word.\n   - If the current cell is out of bounds or does not match the corresponding character of the word, return False.\n   - If the cell has already been visited, return False.\n5. **Mark Cell as Visited**: Before making recursive calls, mark the current cell as visited by adding it to the set.\n6. **Unmark Cell as Visited**: After exploring all directions, unmark the cell to allow other paths to use it.\n7. **Return Result**: If any DFS call returns True, propagate the result up.\n\nHere's the complete implementation:\n\n```python\ndef exist(board: list[list[str]], word: str) -> bool:\n    if not board or not board[0]:\n        return False\n    \n    rows, cols = len(board), len(board[0])\n    visited = set()\n    \n    def dfs(r, c, index):\n        # Base cases\n        if index == len(word):\n            return True\n        if r < 0 or r >= rows or c < 0 or c >= cols or board[r][c] != word[index] or (r, c) in visited:\n            return False\n        \n        # Mark the cell as visited\n        visited.add((r, c))\n        \n        # Explore all four directions\n        found = (dfs(r + 1, c, index + 1) or\n                 dfs(r - 1, c, index + 1) or\n                 dfs(r, c + 1, index + 1) or\n                 dfs(r, c - 1, index + 1))\n        \n        # Unmark the cell as visited\n        visited.remove((r, c))\n        \n        return found\n    \n    # Iterate over the board and start DFS if the first character matches\n    for r in range(rows):\n        for c in range(cols):\n            if board[r][c] == word[0]:\n                if dfs(r, c, 0):\n                    return True\n    \n    return False\n\n# Example usage:\nboard = [\n    ['A', 'B', 'C', 'E'],\n    ['S', 'F', 'C', 'S'],\n    ['A', 'D', 'E', 'E']\n]\nword = \"ABCCED\"\nprint(exist(board, word))  # Output: True\n```\n\n### Explanation:\n- **Initialization**: `rows` and `cols` store the dimensions of the board, and `visited` is a set to keep track of visited cells.\n- **DFS Function**: \n  - It checks if the current index matches the length of the word (base case).\n  - It ensures the current cell is within bounds, matches the expected character, and hasn't been visited before.\n  - It marks the cell as visited and explores all four possible directions.\n  - After exploring, it unmarks the cell to allow other paths.\n- **Main Loop**: Iterates over each cell in the board and starts a DFS if the cell matches the first character of the word.\n- **Result**: Returns True if any DFS call finds a valid path, otherwise returns False.\n\nThis approach ensures that all possible paths are explored efficiently using DFS.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:19:15.735100+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

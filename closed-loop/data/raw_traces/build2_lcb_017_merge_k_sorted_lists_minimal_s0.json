@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_017_merge_k_sorted_lists",
+  "task_title": "Merge K Sorted Linked Lists",
+  "difficulty": "medium",
+  "prompt": "Define a `ListNode` class with `val` and `next` attributes. Write a Python function `merge_k_lists(lists: list) -> object` that merges `k` sorted linked lists into one sorted linked list and returns its head. An empty input list, or a list containing only `None`, must return `None`.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 11.009,
+  "assistant_solution": "```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef merge_k_lists(lists: list) -> ListNode:\n    if not lists or all(l is None for l in lists):\n        return None\n    \n    # Helper function to merge two lists\n    def merge_two_lists(l1: ListNode, l2: ListNode) -> ListNode:\n        dummy = ListNode()\n        current = dummy\n        \n        while l1 and l2:\n            if l1.val < l2.val:\n                current.next = l1\n                l1 = l1.next\n            else:\n                current.next = l2\n                l2 = l2.next\n            current = current.next\n        \n        if l1:\n            current.next = l1\n        elif l2:\n            current.next = l2\n        \n        return dummy.next\n    \n    from functools import reduce\n    return reduce(merge_two_lists, lists)\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "Here's the complete solution:\n\n```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef merge_k_lists(lists: list) -> ListNode:\n    if not lists or all(l is None for l in lists):\n        return None\n    \n    # Helper function to merge two lists\n    def merge_two_lists(l1: ListNode, l2: ListNode) -> ListNode:\n        dummy = ListNode()\n        current = dummy\n        \n        while l1 and l2:\n            if l1.val < l2.val:\n                current.next = l1\n                l1 = l1.next\n            else:\n                current.next = l2\n                l2 = l2.next\n            current = current.next\n        \n        if l1:\n            current.next = l1\n        elif l2:\n            current.next = l2\n        \n        return dummy.next\n    \n    from functools import reduce\n    return reduce(merge_two_lists, lists)\n```\n\nThis solution defines a `ListNode` class and a `merge_k_lists` function. The `merge_k_lists` function uses the `reduce` function from the `functools` module to iteratively merge pairs of lists until only one list remains, which is the merged result.\n\nThe helper function `merge_two_lists` takes two sorted linked lists and merges them into a single sorted linked list. It uses a dummy node to simplify the merging process.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:20:58.763117+00:00",
+  "temperature": 0.7,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

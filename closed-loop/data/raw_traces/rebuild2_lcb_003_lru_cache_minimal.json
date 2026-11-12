@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_003_lru_cache",
+  "task_title": "LRU Cache Implementation with Eviction Return",
+  "difficulty": "medium",
+  "prompt": "Implement an LRU (Least Recently Used) cache class `LRUCache(capacity: int)` in Python with O(1) average-time `get(key)` and `put(key, value)` operations. `get` returns -1 if key does not exist. `put` inserts or updates the key; if inserting a new key causes capacity to be exceeded, evict the least recently used item AND return the evicted key. If no eviction occurred, `put` must return None.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 13.58,
+  "assistant_solution": "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity):\n        self.cache = OrderedDict()\n        self.capacity = capacity\n\n    def get(self, key):\n        if key not in self.cache:\n            return -1\n        else:\n            # Move the accessed key to the end to show that it was recently used\n            self.cache.move_to_end(key)\n            return self.cache[key]\n\n    def put(self, key, value):\n        if key in self.cache:\n            # Update the value and move the key to the end\n            self.cache[key] = value\n            self.cache.move_to_end(key)\n        elif len(self.cache) >= self.capacity:\n            # Evict the first item which is the least recently used\n            evicted_key = next(iter(self.cache))\n            del self.cache[evicted_key]\n            self.cache[key] = value\n            return evicted_key\n        else:\n            # Simply add the new key-value pair\n            self.cache[key] = value\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom collections import OrderedDict\n\nclass LRUCache:\n    def __init__(self, capacity):\n        self.cache = OrderedDict()\n        self.capacity = capacity\n\n    def get(self, key):\n        if key not in self.cache:\n            return -1\n        else:\n            # Move the accessed key to the end to show that it was recently used\n            self.cache.move_to_end(key)\n            return self.cache[key]\n\n    def put(self, key, value):\n        if key in self.cache:\n            # Update the value and move the key to the end\n            self.cache[key] = value\n            self.cache.move_to_end(key)\n        elif len(self.cache) >= self.capacity:\n            # Evict the first item which is the least recently used\n            evicted_key = next(iter(self.cache))\n            del self.cache[evicted_key]\n            self.cache[key] = value\n            return evicted_key\n        else:\n            # Simply add the new key-value pair\n            self.cache[key] = value\n```\nThis implementation uses Python's `OrderedDict` to maintain the order of keys based on their usage. The `get` method retrieves a value by key and moves the key to the end to mark it as recently used. The `put` method adds or updates a key-value pair, evicts the least recently used item if necessary, and returns the evicted key if an eviction occurs.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:35:55.846645+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

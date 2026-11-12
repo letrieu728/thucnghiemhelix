@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_006_max_subarray",
+  "task_title": "Maximum Subarray Sum and Slice",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `max_sub_array(nums: list[int]) -> tuple[int, list[int]]` that finds the contiguous subarray with the largest sum and returns a tuple `(max_sum, subarray)`. If `nums` is empty, return `(0, [])`.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 17.673,
+  "assistant_solution": "```python\ndef max_sub_array(nums: list[int]) -> tuple[int, list[int]]:\n    if not nums:\n        return 0, []\n    \n    max_current = max_global = nums[0]\n    start = end = s = 0\n    \n    for i in range(1, len(nums)):\n        if nums[i] > max_current + nums[i]:\n            max_current = nums[i]\n            s = i\n        else:\n            max_current += nums[i]\n        \n        if max_current > max_global:\n            max_global = max_current\n            start = s\n            end = i\n    \n    return max_global, nums[start:end+1]\n\n# Example usage:\nnums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]\nprint(max_sub_array(nums))  # Output should be (6, [4, -1, 2, 1])\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use Kadane's Algorithm, which efficiently finds the maximum sum of a contiguous subarray in linear time. Here's how you can implement it:\n\n```python\ndef max_sub_array(nums: list[int]) -> tuple[int, list[int]]:\n    if not nums:\n        return 0, []\n    \n    max_current = max_global = nums[0]\n    start = end = s = 0\n    \n    for i in range(1, len(nums)):\n        if nums[i] > max_current + nums[i]:\n            max_current = nums[i]\n            s = i\n        else:\n            max_current += nums[i]\n        \n        if max_current > max_global:\n            max_global = max_current\n            start = s\n            end = i\n    \n    return max_global, nums[start:end+1]\n\n# Example usage:\nnums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]\nprint(max_sub_array(nums))  # Output should be (6, [4, -1, 2, 1])\n```\n\n### Explanation:\n1. **Initialization**:\n   - `max_current` keeps track of the maximum sum of the subarray ending at the current position.\n   - `max_global` keeps track of the maximum sum found so far.\n   - `start` and `end` are used to store the starting and ending indices of the subarray with the maximum sum.\n   - `s` is a temporary variable to mark the start of a new subarray when needed.\n\n2. **Iteration**:\n   - For each element in the array starting from the second element:\n     - If adding the current element to `max_current` results in a smaller value than the current element itself, it means starting a new subarray at the current element would yield a higher sum. So, we reset `max_current` to the current element and update `s`.\n     - Otherwise, we add the current element to `max_current`.\n   - If `max_current` exceeds `max_global`, we update `max_global` and adjust the `start` and `end` indices to reflect the new subarray.\n\n3. **Return**:\n   - The function returns a tuple containing the maximum sum and the subarray itself.\n\nThis implementation ensures that the function runs in O(n) time complexity, making it efficient for large input arrays.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:05:46.364153+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

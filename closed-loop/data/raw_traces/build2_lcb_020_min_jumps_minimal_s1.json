@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_020_min_jumps",
+  "task_title": "Jump Game II (Minimum Jumps)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `jump(nums: list[int]) -> int` that returns the minimum number of jumps needed to reach the last index, where `nums[i]` is the maximum jump length from index `i`. Return -1 if the last index cannot be reached, and 0 if `nums` has 0 or 1 element.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 21.888,
+  "assistant_solution": "```python\ndef jump(nums: list[int]) -> int:\n    n = len(nums)\n    \n    # If there's only one element or the array is empty, no jumps are needed.\n    if n <= 1:\n        return 0\n    \n    # Initialize variables\n    jumps = 0\n    current_end = 0\n    farthest = 0\n    \n    for i in range(n - 1):\n        farthest = max(farthest, i + nums[i])\n        \n        # If we have reached the end of the current range,\n        # it means we need another jump to cover the gap.\n        if i == current_end:\n            jumps += 1\n            current_end = farthest\n            \n            # If we have already reached or surpassed the last index,\n            # we can stop early.\n            if current_end >= n - 1:\n                break\n    \n    # If we haven't reached the last index yet, return -1\n    if current_end < n - 1:\n        return -1\n    \n    return jumps\n\n# Example usage:\nprint(jump([2,3,1,1,4]))  # Output: 2\nprint(jump([2,3,0,1,4]))  # Output: 2\nprint(jump([0]))          # Output: 0\nprint(jump([1]))          # Output: 0\nprint(jump([1,2,3]))      # Output: 2\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use a greedy algorithm. The idea is to keep track of the farthest point that can be reached with the current number of jumps (`current_end`). When we reach the end of the range that can be covered by the current number of jumps (`farthest`), we increment the jump count and update `current_end` to `farthest`.\n\nHere's the implementation:\n\n```python\ndef jump(nums: list[int]) -> int:\n    n = len(nums)\n    \n    # If there's only one element or the array is empty, no jumps are needed.\n    if n <= 1:\n        return 0\n    \n    # Initialize variables\n    jumps = 0\n    current_end = 0\n    farthest = 0\n    \n    for i in range(n - 1):\n        farthest = max(farthest, i + nums[i])\n        \n        # If we have reached the end of the current range,\n        # it means we need another jump to cover the gap.\n        if i == current_end:\n            jumps += 1\n            current_end = farthest\n            \n            # If we have already reached or surpassed the last index,\n            # we can stop early.\n            if current_end >= n - 1:\n                break\n    \n    # If we haven't reached the last index yet, return -1\n    if current_end < n - 1:\n        return -1\n    \n    return jumps\n\n# Example usage:\nprint(jump([2,3,1,1,4]))  # Output: 2\nprint(jump([2,3,0,1,4]))  # Output: 2\nprint(jump([0]))          # Output: 0\nprint(jump([1]))          # Output: 0\nprint(jump([1,2,3]))      # Output: 2\n```\n\n### Explanation:\n1. **Initialization**:\n   - `jumps`: Counts the number of jumps made.\n   - `current_end`: The farthest point that can be reached with the current number of jumps.\n   - `farthest`: The farthest point that can be reached by extending the current jump.\n\n2. **Loop through the array**:\n   - For each index `i`, update `farthest` to the maximum value between its current value and `i + nums[i]`.\n   - If `i` reaches `current_end`, it means we need to make another jump. Increment `jumps` and update `current_end` to `farthest`.\n   - If at any point `current_end` reaches or surpasses the last index, we break out of the loop early.\n\n3. **Check if the last index is reachable**:\n   - If after the loop `current_end` is still less than the last index, return `-1` indicating the last index cannot be reached.\n   - Otherwise, return the number of jumps made.\n\nThis approach ensures that we find the minimum number of jumps required to reach the last index efficiently.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:24:18.946143+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

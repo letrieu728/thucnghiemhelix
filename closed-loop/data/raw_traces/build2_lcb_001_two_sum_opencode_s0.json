@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_001_two_sum",
+  "task_title": "Two Sum with Indices",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `two_sum(nums: list[int], target: int) -> list[int]` that returns the indices of the two numbers in `nums` that add up to `target`. You may assume each input has exactly one solution and you may not use the same element twice. Return indices in ascending order.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 14.026,
+  "assistant_solution": "```python\ndef two_sum(nums: list[int], target: int) -> list[int]:\n    num_to_index = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in num_to_index:\n            return [num_to_index[complement], i]\n        num_to_index[num] = i\n    raise ValueError(\"No two sum solution\")\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef two_sum(nums: list[int], target: int) -> list[int]:\n    num_to_index = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in num_to_index:\n            return [num_to_index[complement], i]\n        num_to_index[num] = i\n    raise ValueError(\"No two sum solution\")\n```\n\n**Explanation**:\n1. **ANALYSIS**: The problem requires finding two indices in a list such that their corresponding values sum up to a given target. Each number can only be used once.\n2. **PLAN**: \n   - Use a dictionary to store each number and its index as we iterate through the list.\n   - For each number, calculate its complement with respect to the target.\n   - Check if this complement exists in the dictionary.\n   - If it does, return the indices of the complement and the current number.\n   - If not, add the current number and its index to the dictionary.\n3. **IMPLEMENTATION**: The function uses a dictionary `num_to_index` to map numbers to their indices. As it iterates through the list, it checks if the complement of the current number exists in the dictionary. If it does, it returns the indices of the complement and the current number. If not, it adds the current number and its index to the dictionary.\n4. **VERIFY**: \n   - Example 1: `two_sum([2, 7, 11, 15], 9)` should return `[0, 1]`.\n   - Example 2: `two_sum([3, 2, 4], 6)` should return `[1, 2]`.\n   - Example 3: `two_sum([3, 3], 6)` should return `[0, 1]`.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:55:17.838513+00:00",
+  "temperature": 0.7,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

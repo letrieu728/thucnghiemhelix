@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_013_longest_palindromic_substring",
+  "task_title": "Longest Palindromic Substring",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `longest_palindrome(s: str) -> str` that returns the longest palindromic substring of `s`. If several palindromic substrings share the maximum length, return the one with the smallest starting index. Return an empty string if `s` is empty.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 11.463,
+  "assistant_solution": "```python\ndef longest_palindrome(s: str) -> str:\n    # Helper function to check if a given string is a palindrome\n    def is_palindrome(sub):\n        return sub == sub[::-1]\n    \n    n = len(s)\n    max_length = 0\n    longest_substring = \"\"\n    \n    # Iterate over all possible substrings\n    for i in range(n):\n        for j in range(i + 1, n + 1):\n            substring = s[i:j]\n            # Check if the current substring is a palindrome and longer than the previous ones found\n            if is_palindrome(substring) and len(substring) > max_length:\n                max_length = len(substring)\n                longest_substring = substring\n                \n    return longest_substring\n\n# Example usage:\nprint(longest_palindrome(\"babad\"))  # Output: \"bab\" or \"aba\"\nprint(longest_palindrome(\"cbbd\"))   # Output: \"bb\"\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef longest_palindrome(s: str) -> str:\n    # Helper function to check if a given string is a palindrome\n    def is_palindrome(sub):\n        return sub == sub[::-1]\n    \n    n = len(s)\n    max_length = 0\n    longest_substring = \"\"\n    \n    # Iterate over all possible substrings\n    for i in range(n):\n        for j in range(i + 1, n + 1):\n            substring = s[i:j]\n            # Check if the current substring is a palindrome and longer than the previous ones found\n            if is_palindrome(substring) and len(substring) > max_length:\n                max_length = len(substring)\n                longest_substring = substring\n                \n    return longest_substring\n\n# Example usage:\nprint(longest_palindrome(\"babad\"))  # Output: \"bab\" or \"aba\"\nprint(longest_palindrome(\"cbbd\"))   # Output: \"bb\"\n```\n\nThis Python function `longest_palindrome` takes a string `s` as input and returns the longest palindromic substring found within `s`. It uses a nested loop to generate all possible substrings of `s`, checks each substring using the helper function `is_palindrome`, and keeps track of the longest palindrome found. If multiple substrings have the same maximum length, it returns the first one encountered (i.e., the one with the smallest starting index). The function handles edge cases such as when `s` is empty by returning an empty string.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:16:05.442443+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

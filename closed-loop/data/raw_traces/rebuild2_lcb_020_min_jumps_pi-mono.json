@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_020_min_jumps",
+  "task_title": "Jump Game II (Minimum Jumps)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `jump(nums: list[int]) -> int` that returns the minimum number of jumps needed to reach the last index, where `nums[i]` is the maximum jump length from index `i`. Return -1 if the last index cannot be reached, and 0 if `nums` has 0 or 1 element.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 26.591,
+  "assistant_solution": "```python\ndef jump(nums: list[int]) -> int:\n    n = len(nums)\n    \n    # If the list has 0 or 1 element, no jumps are needed\n    if n <= 1:\n        return 0\n    \n    jumps = 0\n    current_end = 0\n    previous_end = 0\n    \n    for i in range(n - 1):\n        current_end = max(current_end, i + nums[i])\n        \n        # If we have reached the end of the range that can be reached with the previous number of jumps\n        if i == previous_end:\n            jumps += 1\n            previous_end = current_end\n            \n            # If the farthest point that can be reached is less than the current index, return -1\n            if previous_end < i + 1:\n                return -1\n    \n    return jumps\n\n# Example usage:\nprint(jump([2, 3, 1, 1, 4]))  # Output: 2\nprint(jump([2, 3, 0, 1, 4]))  # Output: 2\nprint(jump([0]))              # Output: 0\nprint(jump([1]))              # Output: 0\nprint(jump([1, 2, 3]))        # Output: 2\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use a greedy algorithm. The idea is to keep track of the farthest point that can be reached with the current number of jumps (`current_end`). When we reach the end of what we can currently jump to (`previous_end`), we increment our jump count and update `previous_end` to `current_end`.\n\nHere's the step-by-step approach:\n\n1. If the list has 0 or 1 element, return 0 because no jumps are needed.\n2. Initialize variables to keep track of the number of jumps (`jumps`), the farthest point that can be reached with the current number of jumps (`current_end`), and the end of the range that can be reached with the previous number of jumps (`previous_end`).\n3. Iterate through the list while the end of the range that can be reached with the previous number of jumps is less than the last index.\n4. For each position, update the farthest point that can be reached.\n5. When the end of the range that can be reached with the previous number of jumps is reached, increment the jump count and update the end of the range to the farthest point that can be reached.\n6. If at any point the farthest point that can be reached is less than the current index, it means the last index cannot be reached, so return -1.\n7. Return the number of jumps.\n\nHere's the implementation:\n\n```python\ndef jump(nums: list[int]) -> int:\n    n = len(nums)\n    \n    # If the list has 0 or 1 element, no jumps are needed\n    if n <= 1:\n        return 0\n    \n    jumps = 0\n    current_end = 0\n    previous_end = 0\n    \n    for i in range(n - 1):\n        current_end = max(current_end, i + nums[i])\n        \n        # If we have reached the end of the range that can be reached with the previous number of jumps\n        if i == previous_end:\n            jumps += 1\n            previous_end = current_end\n            \n            # If the farthest point that can be reached is less than the current index, return -1\n            if previous_end < i + 1:\n                return -1\n    \n    return jumps\n\n# Example usage:\nprint(jump([2, 3, 1, 1, 4]))  # Output: 2\nprint(jump([2, 3, 0, 1, 4]))  # Output: 2\nprint(jump([0]))              # Output: 0\nprint(jump([1]))              # Output: 0\nprint(jump([1, 2, 3]))        # Output: 2\n```\n\nThis implementation ensures that we find the minimum number of jumps needed to reach the last index efficiently.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:07:47.429279+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

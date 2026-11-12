@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_005_binary_search",
+  "task_title": "Binary Search",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `search(nums: list[int], target: int) -> int` that performs binary search on a sorted list `nums` and returns the index of `target`, or -1 if it is not found. Must run in O(log n) time.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 12.192,
+  "assistant_solution": "```python\ndef search(nums: list[int], target: int) -> int:\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        \n        # Check if the middle element is the target\n        if nums[mid] == target:\n            return mid\n        \n        # Decide which half to continue searching\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n            \n    # Target not found\n    return -1\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef search(nums: list[int], target: int) -> int:\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        \n        # Check if the middle element is the target\n        if nums[mid] == target:\n            return mid\n        \n        # Decide which half to continue searching\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n            \n    # Target not found\n    return -1\n```\n\nThis function implements binary search by repeatedly dividing the search interval in half. It starts with the entire range of indices from 0 to the length of the list minus one. In each iteration, it calculates the middle index and compares the middle element with the target. If the middle element is equal to the target, it returns the index. If the target is greater, it continues the search in the right half; otherwise, in the left half. The loop terminates when the target is found or the search interval is exhausted, returning -1 if not found. This ensures the function runs in O(log n) time complexity.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:41:54.553065+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

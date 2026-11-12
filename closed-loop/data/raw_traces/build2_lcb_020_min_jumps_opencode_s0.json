@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_020_min_jumps",
+  "task_title": "Jump Game II (Minimum Jumps)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `jump(nums: list[int]) -> int` that returns the minimum number of jumps needed to reach the last index, where `nums[i]` is the maximum jump length from index `i`. Return -1 if the last index cannot be reached, and 0 if `nums` has 0 or 1 element.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 9.61,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef jump(nums: List[int]) -> int:\n    if len(nums) <= 1:\n        return 0\n    \n    max_reach = 0\n    current_end = 0\n    jumps = 0\n    \n    for i in range(len(nums) - 1):\n        max_reach = max(max_reach, i + nums[i])\n        \n        if i == current_end:\n            jumps += 1\n            current_end = max_reach\n            \n            if current_end >= len(nums) - 1:\n                break\n    \n    return jumps if current_end >= len(nums) - 1 else -1\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef jump(nums: List[int]) -> int:\n    if len(nums) <= 1:\n        return 0\n    \n    max_reach = 0\n    current_end = 0\n    jumps = 0\n    \n    for i in range(len(nums) - 1):\n        max_reach = max(max_reach, i + nums[i])\n        \n        if i == current_end:\n            jumps += 1\n            current_end = max_reach\n            \n            if current_end >= len(nums) - 1:\n                break\n    \n    return jumps if current_end >= len(nums) - 1 else -1\n```\n\nThis solution uses a greedy approach to determine the minimum number of jumps required to reach the end of the array. It iterates through the array while keeping track of the farthest point that can be reached (`max_reach`). Each time it reaches the end of the current jump range (`current_end`), it increments the jump count and updates the new range. If at any point `current_end` covers or exceeds the last index, it breaks out of the loop early. If the loop completes without reaching the last index, it returns -1 indicating that the last index cannot be reached.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:24:29.058407+00:00",
+  "temperature": 0.7,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

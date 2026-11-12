@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_005_binary_search",
+  "task_title": "Binary Search",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `search(nums: list[int], target: int) -> int` that performs binary search on a sorted list `nums` and returns the index of `target`, or -1 if it is not found. Must run in O(log n) time.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 16.182,
+  "assistant_solution": "```python\ndef search(nums: list[int], target: int) -> int:\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        \n        # Check if the middle element is the target\n        if nums[mid] == target:\n            return mid\n        \n        # Decide which half to continue searching\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    # Target not found\n    return -1\n\n# Example usage:\nnums = [-1, 0, 3, 5, 9, 12]\ntarget = 9\nprint(search(nums, target))  # Output: 4\n\ntarget = 2\nprint(search(nums, target))  # Output: -1\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "Certainly! Below is a complete Python function that performs binary search on a sorted list `nums` and returns the index of `target`, or -1 if it is not found. The function runs in O(log n) time as required.\n\n```python\ndef search(nums: list[int], target: int) -> int:\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        \n        # Check if the middle element is the target\n        if nums[mid] == target:\n            return mid\n        \n        # Decide which half to continue searching\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    # Target not found\n    return -1\n\n# Example usage:\nnums = [-1, 0, 3, 5, 9, 12]\ntarget = 9\nprint(search(nums, target))  # Output: 4\n\ntarget = 2\nprint(search(nums, target))  # Output: -1\n```\n\n### Explanation:\n1. **Initialization**: We initialize two pointers, `left` and `right`, to the start and end of the list, respectively.\n2. **Loop**: We enter a loop that continues as long as `left` is less than or equal to `right`.\n3. **Midpoint Calculation**: We calculate the midpoint `mid` using integer division `(left + right) // 2`.\n4. **Comparison**:\n   - If `nums[mid]` is equal to `target`, we return `mid` because we have found the target.\n   - If `nums[mid]` is less than `target`, we move the `left` pointer to `mid + 1` to search in the right half of the list.\n   - If `nums[mid]` is greater than `target`, we move the `right` pointer to `mid - 1` to search in the left half of the list.\n5. **Not Found**: If the loop exits without finding the target, we return `-1`.\n\nThis implementation ensures that the search operation runs in O(log n) time complexity, making it efficient for large lists.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:24:41.040419+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

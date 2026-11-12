@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_014_daily_temperatures",
+  "task_title": "Daily Temperatures",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `daily_temperatures(temperatures: list[int]) -> list[int]` that returns a list `answer` where `answer[i]` is the number of days to wait after day `i` for a warmer temperature. If there is no warmer day in the future, `answer[i]` is 0.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 12.355,
+  "assistant_solution": "```python\ndef daily_temperatures(temperatures):\n    n = len(temperatures)\n    answer = [0] * n\n    stack = []\n    \n    # Iterate over the temperatures\n    for i in range(n):\n        # While stack is not empty and current temp is greater than the temp at index on top of stack\n        while stack and temperatures[i] > temperatures[stack[-1]]:\n            prev_index = stack.pop()\n            # Calculate the difference in indices which gives the number of days\n            answer[prev_index] = i - prev_index\n        # Push the current index onto the stack\n        stack.append(i)\n        \n    return answer\n\n# Test the function\nprint(daily_temperatures([73, 74, 75, 71, 69, 72, 76, 73])) \n# Output: [1, 1, 4, 2, 1, 1, 0, 0]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "Here's a Python solution using a stack:\n\n```python\ndef daily_temperatures(temperatures):\n    n = len(temperatures)\n    answer = [0] * n\n    stack = []\n    \n    # Iterate over the temperatures\n    for i in range(n):\n        # While stack is not empty and current temp is greater than the temp at index on top of stack\n        while stack and temperatures[i] > temperatures[stack[-1]]:\n            prev_index = stack.pop()\n            # Calculate the difference in indices which gives the number of days\n            answer[prev_index] = i - prev_index\n        # Push the current index onto the stack\n        stack.append(i)\n        \n    return answer\n\n# Test the function\nprint(daily_temperatures([73, 74, 75, 71, 69, 72, 76, 73])) \n# Output: [1, 1, 4, 2, 1, 1, 0, 0]\n```\n\nIn this solution, we use a stack to keep track of the indices of the temperatures array. For each temperature, if it's higher than the temperature at the index stored at the top of the stack, we calculate how many days have passed since the previous day with a lower temperature (the difference between the current index and the index at the top of the stack) and update the result for the previous day. We then push the current index onto the stack. This way, by the time we reach an index, we know all the previous days with lower temperatures that haven't been resolved yet.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:17:51.199458+00:00",
+  "temperature": 0.7,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_012_can_finish_courses",
+  "task_title": "Course Schedule (Cycle Detection)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool` that returns True if all courses can be finished. Each prerequisite `[a, b]` means course `b` must be taken before course `a`. Return False if the prerequisites contain a cycle that makes completion impossible.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 24.51,
+  "assistant_solution": "```python\ndef can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool:\n    # Step 1: Build the graph\n    graph = [[] for _ in range(num_courses)]\n    for a, b in prerequisites:\n        graph[a].append(b)\n    \n    # Step 2: Initialize visited and rec_stack arrays\n    visited = [False] * num_courses\n    rec_stack = [False] * num_courses\n    \n    # Step 3: Helper function to perform DFS\n    def dfs(node):\n        # Mark the current node as visited and add to recursion stack\n        visited[node] = True\n        rec_stack[node] = True\n        \n        # Recur for all vertices adjacent to this vertex\n        for neighbor in graph[node]:\n            if not visited[neighbor]:\n                if dfs(neighbor):\n                    return True\n            elif rec_stack[neighbor]:\n                return True\n        \n        # Remove the node from recursion stack\n        rec_stack[node] = False\n        return False\n    \n    # Step 4: Call the recursive helper function to detect cycle in different DFS trees\n    for node in range(num_courses):\n        if not visited[node]:\n            if dfs(node):\n                return False\n    \n    return True\n\n# Example usage:\nnum_courses = 2\nprerequisites = [[1, 0]]\nprint(can_finish(num_courses, prerequisites))  # Output: True\n\nnum_courses = 2\nprerequisites = [[1, 0], [0, 1]]\nprint(can_finish(num_courses, prerequisites))  # Output: False\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To determine if all courses can be finished given the prerequisites, we need to check for cycles in the directed graph formed by the courses and their prerequisites. If there is a cycle, it means it's impossible to finish all courses.\n\nHere's a step-by-step approach to solve this problem:\n\n1. **Graph Representation**: Represent the courses and prerequisites using an adjacency list.\n2. **Cycle Detection**: Use Depth-First Search (DFS) with a stack to detect cycles. During DFS, keep track of nodes currently in the recursion stack. If we encounter a node already in the stack, a cycle is detected.\n\nHere's the implementation of the `can_finish` function:\n\n```python\ndef can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool:\n    # Step 1: Build the graph\n    graph = [[] for _ in range(num_courses)]\n    for a, b in prerequisites:\n        graph[a].append(b)\n    \n    # Step 2: Initialize visited and rec_stack arrays\n    visited = [False] * num_courses\n    rec_stack = [False] * num_courses\n    \n    # Step 3: Helper function to perform DFS\n    def dfs(node):\n        # Mark the current node as visited and add to recursion stack\n        visited[node] = True\n        rec_stack[node] = True\n        \n        # Recur for all vertices adjacent to this vertex\n        for neighbor in graph[node]:\n            if not visited[neighbor]:\n                if dfs(neighbor):\n                    return True\n            elif rec_stack[neighbor]:\n                return True\n        \n        # Remove the node from recursion stack\n        rec_stack[node] = False\n        return False\n    \n    # Step 4: Call the recursive helper function to detect cycle in different DFS trees\n    for node in range(num_courses):\n        if not visited[node]:\n            if dfs(node):\n                return False\n    \n    return True\n\n# Example usage:\nnum_courses = 2\nprerequisites = [[1, 0]]\nprint(can_finish(num_courses, prerequisites))  # Output: True\n\nnum_courses = 2\nprerequisites = [[1, 0], [0, 1]]\nprint(can_finish(num_courses, prerequisites))  # Output: False\n```\n\n### Explanation:\n\n1. **Graph Construction**:\n   - We create an adjacency list `graph` where each index represents a course, and the list at that index contains the courses that depend on it.\n\n2. **Initialization**:\n   - `visited` array keeps track of whether a course has been visited during the DFS traversal.\n   - `rec_stack` array keeps track of the nodes currently in the recursion stack to detect cycles.\n\n3. **DFS Function**:\n   - The `dfs` function marks the current node as visited and adds it to the recursion stack.\n   - It then recursively visits all its neighbors.\n   - If a neighbor is not visited, it calls `dfs` on that neighbor. If a neighbor is already in the recursion stack, a cycle is detected.\n   - After exploring all neighbors, the node is removed from the recursion stack.\n\n4. **Main Loop**:\n   - We iterate through all courses and call the `dfs` function for each unvisited course. If any DFS call detects a cycle, the function returns `False`.\n\nIf no cycles are detected after visiting all courses, the function returns `True`, indicating that all courses can be finished.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:14:54.888552+00:00",
+  "temperature": 0.7,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

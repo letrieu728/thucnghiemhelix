@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_018_decode_string",
+  "task_title": "Decode Nested String",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `decode_string(s: str) -> str` that decodes an encoded string. The encoding rule is `k[encoded_string]`, where `encoded_string` is repeated exactly `k` times; `k` is a positive integer that may have multiple digits, and encodings may be nested. Plain letters outside brackets are kept as-is.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 6.375,
+  "assistant_solution": "```python\nfrom typing import *\n\ndef decode_string(s: str) -> str:\n    stack = []\n    num = 0\n    result = \"\"\n    \n    for char in s:\n        if char.isdigit():\n            num = num * 10 + int(char)\n        elif char == '[':\n            stack.append((result, num))\n            result = \"\"\n            num = 0\n        elif char == ']':\n            prev_result, k = stack.pop()\n            result = prev_result + result * k\n        else:\n            result += char\n    \n    return result\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import *\n\ndef decode_string(s: str) -> str:\n    stack = []\n    num = 0\n    result = \"\"\n    \n    for char in s:\n        if char.isdigit():\n            num = num * 10 + int(char)\n        elif char == '[':\n            stack.append((result, num))\n            result = \"\"\n            num = 0\n        elif char == ']':\n            prev_result, k = stack.pop()\n            result = prev_result + result * k\n        else:\n            result += char\n    \n    return result\n```",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:03:15.260151+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

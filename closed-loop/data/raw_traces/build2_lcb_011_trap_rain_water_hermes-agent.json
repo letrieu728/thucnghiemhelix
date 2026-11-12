@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_011_trap_rain_water",
+  "task_title": "Trapping Rain Water",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `trap(height: list[int]) -> int` that computes how much rain water is trapped after raining, given an elevation map where each element is the height of a bar of width 1. Return 0 if no water is trapped or if the input is empty.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 23.488,
+  "assistant_solution": "```python\ndef trap(height: list[int]) -> int:\n    if not height:\n        return 0\n    \n    left, right = 0, len(height) - 1\n    max_left, max_right = height[left], height[right]\n    trapped_water = 0\n    \n    while left <= right:\n        if height[left] <= height[right]:\n            if height[left] >= max_left:\n                max_left = height[left]\n            else:\n                trapped_water += max_left - height[left]\n            left += 1\n        else:\n            if height[right] >= max_right:\n                max_right = height[right]\n            else:\n                trapped_water += max_right - height[right]\n            right -= 1\n    \n    return trapped_water\n\n# Example usage:\nheights = [0,1,0,2,1,0,1,3,2,1,2,1]\nprint(trap(heights))  # Output: 6\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve the problem of computing how much rainwater is trapped after raining given an elevation map, we can use a two-pointer approach. This method efficiently calculates the trapped water in linear time, O(n), by maintaining two pointers at the beginning and end of the array and moving them towards each other while keeping track of the maximum heights encountered so far from both sides.\n\nHere's the step-by-step explanation:\n\n1. **Initialize Pointers and Variables**:\n   - Use two pointers, `left` starting at the beginning (index 0) and `right` starting at the end (last index) of the array.\n   - Initialize two variables, `max_left` and `max_right`, to keep track of the maximum height encountered from the left and right respectively.\n   - Initialize a variable `trapped_water` to accumulate the total amount of trapped water.\n\n2. **Two-Pointer Traversal**:\n   - While the `left` pointer is less than or equal to the `right` pointer:\n     - If the height at the `left` pointer is less than or equal to the height at the `right` pointer:\n       - If the current height at `left` is greater than or equal to `max_left`, update `max_left`.\n       - Otherwise, calculate the trapped water at the `left` position as `max_left - height[left]` and add it to `trapped_water`.\n       - Move the `left` pointer one step to the right.\n     - Else:\n       - If the current height at `right` is greater than or equal to `max_right`, update `max_right`.\n       - Otherwise, calculate the trapped water at the `right` position as `max_right - height[right]` and add it to `trapped_water`.\n       - Move the `right` pointer one step to the left.\n\n3. **Return the Result**:\n   - After the loop completes, return the accumulated `trapped_water`.\n\nThis approach ensures that we only traverse the array once, making it efficient for large inputs.\n\n```python\ndef trap(height: list[int]) -> int:\n    if not height:\n        return 0\n    \n    left, right = 0, len(height) - 1\n    max_left, max_right = height[left], height[right]\n    trapped_water = 0\n    \n    while left <= right:\n        if height[left] <= height[right]:\n            if height[left] >= max_left:\n                max_left = height[left]\n            else:\n                trapped_water += max_left - height[left]\n            left += 1\n        else:\n            if height[right] >= max_right:\n                max_right = height[right]\n            else:\n                trapped_water += max_right - height[right]\n            right -= 1\n    \n    return trapped_water\n\n# Example usage:\nheights = [0,1,0,2,1,0,1,3,2,1,2,1]\nprint(trap(heights))  # Output: 6\n```\n\n### Explanation of the Example\nFor the input `[0,1,0,2,1,0,1,3,2,1,2,1]`, the function correctly calculates that 6 units of water are trapped. The visualization of the water trapped between bars can help understand this better.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:35:32.250828+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

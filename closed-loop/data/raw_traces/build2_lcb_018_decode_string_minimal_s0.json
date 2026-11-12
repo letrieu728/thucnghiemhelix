@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_018_decode_string",
+  "task_title": "Decode Nested String",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `decode_string(s: str) -> str` that decodes an encoded string. The encoding rule is `k[encoded_string]`, where `encoded_string` is repeated exactly `k` times; `k` is a positive integer that may have multiple digits, and encodings may be nested. Plain letters outside brackets are kept as-is.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 14.593,
+  "assistant_solution": "```python\ndef decode_string(s: str) -> str:\n    stack = []\n    num = 0\n    current_str = \"\"\n    \n    for char in s:\n        if char.isdigit():\n            num = num * 10 + int(char)\n        elif char == '[':\n            stack.append((num, current_str))\n            num = 0\n            current_str = \"\"\n        elif char == ']':\n            prev_num, prev_str = stack.pop()\n            current_str = prev_str + prev_num * current_str\n        else:\n            current_str += char\n    \n    return current_str\n\n# Example usage:\nencoded_string = \"3[a2[c]]\"\ndecoded_string = decode_string(encoded_string)\nprint(decoded_string)  # Output: accaccacc\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To decode the given encoded string, we can use a stack to keep track of the current number and the corresponding strings. We iterate through each character in the input string:\n\n1. If the character is a digit, we update the current number.\n2. If the character is a letter, we append it to the current string.\n3. If the character is '[', we push the current number and string onto the stack and reset them for the new level of nesting.\n4. If the character is ']', we pop the last number and string from the stack, repeat the current string that many times, and concatenate it with the popped string.\n\nHere's the implementation of the `decode_string` function:\n\n```python\ndef decode_string(s: str) -> str:\n    stack = []\n    num = 0\n    current_str = \"\"\n    \n    for char in s:\n        if char.isdigit():\n            num = num * 10 + int(char)\n        elif char == '[':\n            stack.append((num, current_str))\n            num = 0\n            current_str = \"\"\n        elif char == ']':\n            prev_num, prev_str = stack.pop()\n            current_str = prev_str + prev_num * current_str\n        else:\n            current_str += char\n    \n    return current_str\n\n# Example usage:\nencoded_string = \"3[a2[c]]\"\ndecoded_string = decode_string(encoded_string)\nprint(decoded_string)  # Output: accaccacc\n```\n\n### Explanation:\n- **Stack**: Used to store pairs of `(number, string)` when encountering `[`. This helps in managing nested structures.\n- **Number (`num`)**: Accumulates digits to form the repetition count.\n- **Current String (`current_str`)**: Builds the string inside the current level of brackets.\n\nAs we process each character, we build up the decoded string by handling the different cases appropriately. When we encounter a closing bracket, we combine the results from the stack and the current context to produce the correct decoding at that level.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:22:25.354369+00:00",
+  "temperature": 0.7,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

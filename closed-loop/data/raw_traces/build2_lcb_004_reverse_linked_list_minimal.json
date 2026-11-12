@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_004_reverse_linked_list",
+  "task_title": "Reverse a Linked List",
+  "difficulty": "easy",
+  "prompt": "Define a `ListNode` class with `val` and `next` attributes. Write a Python function `reverse_list(head: ListNode | None) -> ListNode | None` that reverses a singly linked list in-place and returns the new head.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 11.331,
+  "assistant_solution": "```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverse_list(head: ListNode | None) -> ListNode | None:\n    prev = None\n    current = head\n    while current is not None:\n        next_node = current.next  # Store next node\n        current.next = prev       # Reverse the link\n        prev = current            # Move pointers one position ahead\n        current = next_node\n    return prev\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverse_list(head: ListNode | None) -> ListNode | None:\n    prev = None\n    current = head\n    while current is not None:\n        next_node = current.next  # Store next node\n        current.next = prev       # Reverse the link\n        prev = current            # Move pointers one position ahead\n        current = next_node\n    return prev\n```\n\n**Explanation**:\n- The `ListNode` class defines a node in a singly linked list with an integer value (`val`) and a reference to the next node (`next`).\n- The `reverse_list` function takes the head of a singly linked list as input and reverses it in-place.\n- It initializes three pointers: `prev` (which starts at `None`), `current` (which starts at the head of the list), and `next_node` (used for temporarily storing the next node during the reversal process).\n- Inside the loop, `next_node` stores the next node of `current`, then `current.next` is set to `prev` to reverse the link. After that, `prev` and `current` are moved forward by setting them to `current` and `next_node`, respectively.\n- Once the loop completes, `prev` will be pointing to the new head of the reversed list, which is returned.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:23:39.332765+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

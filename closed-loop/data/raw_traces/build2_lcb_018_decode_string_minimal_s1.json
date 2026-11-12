@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_018_decode_string",
+  "task_title": "Decode Nested String",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `decode_string(s: str) -> str` that decodes an encoded string. The encoding rule is `k[encoded_string]`, where `encoded_string` is repeated exactly `k` times; `k` is a positive integer that may have multiple digits, and encodings may be nested. Plain letters outside brackets are kept as-is.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 16.752,
+  "assistant_solution": "```python\ndef decode_string(s: str) -> str:\n    stack = []\n    \n    for char in s:\n        if char == ']':\n            # Pop elements until we find '['\n            decoded_str = ''\n            while stack[-1] != '[':\n                decoded_str = stack.pop() + decoded_str\n            \n            # Pop the '[' character\n            stack.pop()\n            \n            # Get the number k (which could be multi-digit)\n            k = ''\n            while stack and stack[-1].isdigit():\n                k = stack.pop() + k\n            \n            # Repeat the decoded string k times and push it back onto the stack\n            stack.append(decoded_str * int(k))\n        else:\n            # Push non-digit characters directly onto the stack\n            stack.append(char)\n    \n    # Join all remaining elements in the stack to form the final decoded string\n    return ''.join(stack)\n\n# Example usage:\nencoded_string = \"3[a2[c]]\"\ndecoded_string = decode_string(encoded_string)\nprint(decoded_string)  # Output: accaccacc\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "Certainly! Below is a Python function `decode_string(s: str) -> str` that decodes an encoded string according to the given rules:\n\n```python\ndef decode_string(s: str) -> str:\n    stack = []\n    \n    for char in s:\n        if char == ']':\n            # Pop elements until we find '['\n            decoded_str = ''\n            while stack[-1] != '[':\n                decoded_str = stack.pop() + decoded_str\n            \n            # Pop the '[' character\n            stack.pop()\n            \n            # Get the number k (which could be multi-digit)\n            k = ''\n            while stack and stack[-1].isdigit():\n                k = stack.pop() + k\n            \n            # Repeat the decoded string k times and push it back onto the stack\n            stack.append(decoded_str * int(k))\n        else:\n            # Push non-digit characters directly onto the stack\n            stack.append(char)\n    \n    # Join all remaining elements in the stack to form the final decoded string\n    return ''.join(stack)\n\n# Example usage:\nencoded_string = \"3[a2[c]]\"\ndecoded_string = decode_string(encoded_string)\nprint(decoded_string)  # Output: accaccacc\n```\n\n### Explanation:\n1. **Stack Initialization**: We use a stack to keep track of characters and numbers as we iterate through the string.\n2. **Iterate Through Characters**:\n   - If the character is `[`, we simply push it onto the stack.\n   - If the character is `]`, we start popping elements from the stack until we encounter `[`. These popped elements form the innermost encoded string.\n   - After finding `[`, we pop the `[` from the stack.\n   - Next, we pop elements until we encounter a non-digit character or the stack is empty. These popped elements form the number `k`.\n   - We then repeat the decoded string `k` times and push this result back onto the stack.\n   - If the character is neither `[` nor `]`, we push it directly onto the stack.\n3. **Final Result**: After processing all characters, the stack will contain the final decoded string, which we join and return.\n\nThis approach ensures that nested encodings are correctly handled and the final decoded string is produced efficiently.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:22:42.724783+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_014_daily_temperatures",
+  "task_title": "Daily Temperatures",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `daily_temperatures(temperatures: list[int]) -> list[int]` that returns a list `answer` where `answer[i]` is the number of days to wait after day `i` for a warmer temperature. If there is no warmer day in the future, `answer[i]` is 0.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 7.677,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef daily_temperatures(temperatures: List[int]) -> List[int]:\n    stack = []\n    n = len(temperatures)\n    answer = [0] * n\n    \n    for i in range(n):\n        while stack and temperatures[i] > temperatures[stack[-1]]:\n            prev_index = stack.pop()\n            answer[prev_index] = i - prev_index\n        stack.append(i)\n    \n    return answer\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef daily_temperatures(temperatures: List[int]) -> List[int]:\n    stack = []\n    n = len(temperatures)\n    answer = [0] * n\n    \n    for i in range(n):\n        while stack and temperatures[i] > temperatures[stack[-1]]:\n            prev_index = stack.pop()\n            answer[prev_index] = i - prev_index\n        stack.append(i)\n    \n    return answer\n```\n\nThis solution uses a stack to keep track of the indices of the temperatures. As we iterate through the list, if the current temperature is higher than the temperature at the index stored at the top of the stack, we pop the stack and calculate the difference in indices as the number of days until a warmer temperature. We then push the current index onto the stack. This approach ensures that each temperature is pushed and popped from the stack at most once, resulting in an O(n) time complexity. The space complexity is also O(n) due to the stack.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:18:32.714455+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

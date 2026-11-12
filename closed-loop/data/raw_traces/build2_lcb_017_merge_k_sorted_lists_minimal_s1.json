@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_017_merge_k_sorted_lists",
+  "task_title": "Merge K Sorted Linked Lists",
+  "difficulty": "medium",
+  "prompt": "Define a `ListNode` class with `val` and `next` attributes. Write a Python function `merge_k_lists(lists: list) -> object` that merges `k` sorted linked lists into one sorted linked list and returns its head. An empty input list, or a list containing only `None`, must return `None`.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 12.601,
+  "assistant_solution": "```python\nimport heapq\n\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef mergeKLists(lists: List[ListNode]) -> Optional[ListNode]:\n    # Create a min heap to store the nodes from all lists\n    heap = []\n    \n    # Push the first node of each list onto the heap\n    for lst in lists:\n        if lst:\n            heapq.heappush(heap, (lst.val, lst))\n            \n    # If the heap is empty, return None\n    if not heap:\n        return None\n    \n    # Pop the smallest element from the heap\n    _, head = heapq.heappop(heap)\n    current = head\n    \n    # Continue popping elements until the heap is empty\n    while heap:\n        _, nxt = heapq.heappop(heap)\n        current.next = nxt\n        current = current.next\n        \n        # If there are more elements in the popped list, push them onto the heap\n        if nxt.next:\n            heapq.heappush(heap, (nxt.next.val, nxt.next))\n            \n    return head\n```",
+  "passed": false,
+  "test_result": {
+    "passed": false,
+    "error": "Traceback (most recent call last):\n  File \"<string>\", line 8, in <module>\nNameError: name 'List' is not defined. Did you mean: 'list'?"
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "Here's a Python solution using the heapq module for efficient merging of k sorted lists:\n\n```python\nimport heapq\n\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef mergeKLists(lists: List[ListNode]) -> Optional[ListNode]:\n    # Create a min heap to store the nodes from all lists\n    heap = []\n    \n    # Push the first node of each list onto the heap\n    for lst in lists:\n        if lst:\n            heapq.heappush(heap, (lst.val, lst))\n            \n    # If the heap is empty, return None\n    if not heap:\n        return None\n    \n    # Pop the smallest element from the heap\n    _, head = heapq.heappop(heap)\n    current = head\n    \n    # Continue popping elements until the heap is empty\n    while heap:\n        _, nxt = heapq.heappop(heap)\n        current.next = nxt\n        current = current.next\n        \n        # If there are more elements in the popped list, push them onto the heap\n        if nxt.next:\n            heapq.heappush(heap, (nxt.next.val, nxt.next))\n            \n    return head\n```\n\nThis solution works by maintaining a min-heap of tuples where each tuple contains the value of a node and the node itself. We start by pushing the first node from each non-empty list onto the heap. Then we repeatedly pop the smallest element from the heap and link it to our result list. If the popped node has a next node, we push that next node onto the heap. This process continues until the heap is empty, at which point we have merged all the lists into one sorted list.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<string>\", line 8, in <module>\nNameError: name 'List' is not defined. Did you mean: 'list'?",
+  "timestamp": "2026-11-12T08:21:12.141269+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

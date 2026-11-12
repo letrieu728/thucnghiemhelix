@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_002_valid_parentheses",
+  "task_title": "Valid Parentheses String with Wildcard",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `is_valid(s: str) -> bool` that checks if brackets are valid. The string can contain `()`, `[]`, `{}`, AND the wildcard character `'*'` which can be treated as a single `'('`, `')'`, or an empty string `\"\"`.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 32.493,
+  "assistant_solution": "```python\ndef is_valid(s: str) -> bool:\n    # Mapping of closing brackets to their corresponding opening brackets\n    bracket_map = {')': '(', ']': '[', '}': '{'}\n    \n    # Stack to keep track of opening brackets\n    stack = []\n    \n    # List to store indices of wildcard characters\n    wildcards = []\n    \n    # Iterate through the string\n    for i, char in enumerate(s):\n        if char in bracket_map.values():\n            stack.append((char, i))\n        elif char in bracket_map.keys():\n            if stack and stack[-1][0] == bracket_map[char]:\n                stack.pop()\n            elif wildcards:\n                wildcards.pop()\n            else:\n                return False\n        elif char == '*':\n            wildcards.append(i)\n    \n    # Check remaining opening brackets with wildcards\n    while stack:\n        if not wildcards:\n            return False\n        open_bracket, open_index = stack.pop()\n        wildcard_index = wildcards.pop()\n        \n        # Wildcard must come after the opening bracket\n        if wildcard_index < open_index:\n            return False\n    \n    return True\n\n# Example usage:\nprint(is_valid(\"(*))\"))  # True\nprint(is_valid(\"(*)\"))   # True\nprint(is_valid(\")(\"))    # False\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we need to create a function `is_valid(s: str) -> bool` that checks if the brackets in the given string are valid, considering the wildcard character `*`. Here's a step-by-step approach to implement this:\n\n1. **Initialize Data Structures**: We'll use a stack to keep track of opening brackets and another list to store the indices of wildcard characters.\n\n2. **Iterate Through the String**: As we iterate through the string, we'll handle three cases:\n   - If the current character is an opening bracket (`(`, `[`, `{`), push its index onto the stack.\n   - If the current character is a closing bracket (`)`, `[`, `}`), check if there's a matching opening bracket on the stack. If so, pop from the stack. If not, check if there's a wildcard character that can act as a match. If no matches are found, return `False`.\n   - If the current character is a wildcard character (`*`), store its index in the list.\n\n3. **Handle Remaining Opening Brackets**: After iterating through the string, any remaining opening brackets in the stack must have a corresponding wildcard character to be considered valid. We'll use the stored indices of wildcards to match them with the remaining opening brackets.\n\n4. **Check for Validity**: Ensure that all opening brackets have been matched either by a direct closing bracket or a wildcard character.\n\nHere's the complete implementation:\n\n```python\ndef is_valid(s: str) -> bool:\n    # Mapping of closing brackets to their corresponding opening brackets\n    bracket_map = {')': '(', ']': '[', '}': '{'}\n    \n    # Stack to keep track of opening brackets\n    stack = []\n    \n    # List to store indices of wildcard characters\n    wildcards = []\n    \n    # Iterate through the string\n    for i, char in enumerate(s):\n        if char in bracket_map.values():\n            stack.append((char, i))\n        elif char in bracket_map.keys():\n            if stack and stack[-1][0] == bracket_map[char]:\n                stack.pop()\n            elif wildcards:\n                wildcards.pop()\n            else:\n                return False\n        elif char == '*':\n            wildcards.append(i)\n    \n    # Check remaining opening brackets with wildcards\n    while stack:\n        if not wildcards:\n            return False\n        open_bracket, open_index = stack.pop()\n        wildcard_index = wildcards.pop()\n        \n        # Wildcard must come after the opening bracket\n        if wildcard_index < open_index:\n            return False\n    \n    return True\n\n# Example usage:\nprint(is_valid(\"(*))\"))  # True\nprint(is_valid(\"(*)\"))   # True\nprint(is_valid(\")(\"))    # False\n```\n\n### Explanation:\n- **bracket_map**: This dictionary helps us quickly find the matching opening bracket for a given closing bracket.\n- **stack**: This keeps track of the opening brackets encountered so far.\n- **wildcards**: This list stores the indices of wildcard characters.\n- During iteration, we handle each character appropriately and ensure that all brackets (including those represented by wildcards) are properly matched.\n- Finally, we check if there are any unmatched opening brackets left. If they are, we need to ensure that there are enough wildcards to match them, and these wildcards must appear after the corresponding opening brackets.\n\nThis approach ensures that the function correctly handles all edge cases and efficiently checks the validity of the brackets in the given string.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:33:19.753078+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

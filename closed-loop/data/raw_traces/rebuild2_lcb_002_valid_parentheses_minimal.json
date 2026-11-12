@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_002_valid_parentheses",
+  "task_title": "Valid Parentheses String with Wildcard",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `is_valid(s: str) -> bool` that checks if brackets are valid. The string can contain `()`, `[]`, `{}`, AND the wildcard character `'*'` which can be treated as a single `'('`, `')'`, or an empty string `\"\"`.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 16.9,
+  "assistant_solution": "```python\ndef is_valid(s: str) -> bool:\n    stack = []\n    mapping = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    \n    for char in s:\n        if char in mapping.values():\n            stack.append(char)\n        elif char == '*':\n            continue  # '*' can act as any bracket, so we skip it\n        else:\n            if not stack or (stack and stack[-1] != mapping[char]):\n                return False\n            stack.pop()\n    \n    # Check if there are unmatched opening brackets left\n    while stack:\n        if stack[-1] == '*':  # '*' can close any unmatched opening bracket\n            stack.pop()\n        else:\n            return False\n    \n    return True\n```",
+  "passed": false,
+  "test_result": {
+    "passed": false,
+    "error": "Traceback (most recent call last):\n  File \"<string>\", line 27, in <module>\nAssertionError"
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef is_valid(s: str) -> bool:\n    stack = []\n    mapping = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    \n    for char in s:\n        if char in mapping.values():\n            stack.append(char)\n        elif char == '*':\n            continue  # '*' can act as any bracket, so we skip it\n        else:\n            if not stack or (stack and stack[-1] != mapping[char]):\n                return False\n            stack.pop()\n    \n    # Check if there are unmatched opening brackets left\n    while stack:\n        if stack[-1] == '*':  # '*' can close any unmatched opening bracket\n            stack.pop()\n        else:\n            return False\n    \n    return True\n```\n\n**Explanation**:\n- We use a stack to keep track of the opening brackets.\n- A dictionary `mapping` is used to map closing brackets to their corresponding opening brackets.\n- As we iterate through the string:\n  - If the current character is an opening bracket, we push it onto the stack.\n  - If it's a '*', we simply ignore it since it can represent any type of bracket.\n  - If it's a closing bracket, we check if the stack is empty or if the top of the stack does not match the expected opening bracket using the `mapping`. If either condition is true, the string is invalid, and we return `False`.\n  - If the conditions are met, we pop the top of the stack.\n- After processing all characters, we need to ensure that there are no unmatched opening brackets left in the stack. If there are, we check if they can be matched by '*' characters. If not, the string is invalid.\n- Finally, if all checks pass, we return `True`, indicating that the string has valid brackets.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<string>\", line 27, in <module>\nAssertionError",
+  "timestamp": "2026-11-12T08:32:46.559066+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

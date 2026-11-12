@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_014_daily_temperatures",
+  "task_title": "Daily Temperatures",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `daily_temperatures(temperatures: list[int]) -> list[int]` that returns a list `answer` where `answer[i]` is the number of days to wait after day `i` for a warmer temperature. If there is no warmer day in the future, `answer[i]` is 0.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 13.992,
+  "assistant_solution": "```python\ndef daily_temperatures(temperatures: list[int]) -> list[int]:\n    stack = []  # Stack to keep track of indices of temperatures\n    n = len(temperatures)\n    answer = [0] * n  # Initialize result array with zeros\n\n    for i in range(n):\n        # While stack is not empty and current temp is greater than temp at index on top of stack\n        while stack and temperatures[i] > temperatures[stack[-1]]:\n            prev_index = stack.pop()  # Pop the index from stack\n            # Calculate the difference in days and store it in the result array\n            answer[prev_index] = i - prev_index\n        stack.append(i)  # Push current index onto stack\n\n    return answer\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef daily_temperatures(temperatures: list[int]) -> list[int]:\n    stack = []  # Stack to keep track of indices of temperatures\n    n = len(temperatures)\n    answer = [0] * n  # Initialize result array with zeros\n\n    for i in range(n):\n        # While stack is not empty and current temp is greater than temp at index on top of stack\n        while stack and temperatures[i] > temperatures[stack[-1]]:\n            prev_index = stack.pop()  # Pop the index from stack\n            # Calculate the difference in days and store it in the result array\n            answer[prev_index] = i - prev_index\n        stack.append(i)  # Push current index onto stack\n\n    return answer\n```\n\nThis solution uses a stack to keep track of the indices of the temperatures. As we iterate through the list of temperatures, if the current temperature is higher than the temperature at the index stored at the top of the stack, we pop the index from the stack and calculate the number of days until the warmer temperature by subtracting the popped index from the current index. We then push the current index onto the stack. This approach ensures that each temperature is pushed and popped from the stack at most once, resulting in an efficient O(n) time complexity. The space complexity is also O(n) due to the use of the stack.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:58:15.333048+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

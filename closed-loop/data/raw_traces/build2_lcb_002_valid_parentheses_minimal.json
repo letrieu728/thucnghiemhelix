@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_002_valid_parentheses",
+  "task_title": "Valid Parentheses String with Wildcard",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `is_valid(s: str) -> bool` that checks if brackets are valid. The string can contain `()`, `[]`, `{}`, AND the wildcard character `'*'` which can be treated as a single `'('`, `')'`, or an empty string `\"\"`.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 24.216,
+  "assistant_solution": "```python\ndef is_valid(s: str) -> bool:\n    # Dictionary to map closing brackets to their corresponding opening brackets\n    bracket_map = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    \n    # Stack to keep track of opening brackets\n    stack = []\n    \n    for char in s:\n        if char in \"([{\":\n            stack.append(char)\n        elif char == \"*\":\n            # Push all possible states for '*' onto the stack\n            stack.extend([char, '(', ')', '[', ']', '{', '}'])\n        else:\n            # If stack is empty or top of stack doesn't match the current closing bracket, return False\n            if not stack:\n                return False\n            \n            # Pop the top element from the stack\n            top = stack.pop()\n            \n            # If the top element is not the corresponding opening bracket, return False\n            if char != top and char != bracket_map.get(top):\n                return False\n    \n    # If stack is not empty, return False\n    return len(stack) == 0\n\n# Example usage:\nprint(is_valid(\"(*)\"))       # True\nprint(is_valid(\"(*))\"))      # False\nprint(is_valid(\"((**))\"))    # True\nprint(is_valid(\"[(*)]\"))     # True\nprint(is_valid(\"[(])\"))      # False\n```",
+  "passed": false,
+  "test_result": {
+    "passed": false,
+    "error": "Traceback (most recent call last):\n  File \"<string>\", line 37, in <module>\nAssertionError"
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we need to create a function that checks if the given string containing parentheses, square brackets, curly braces, and the wildcard character `*` is valid. The wildcard character `*` can act as any of the three characters: `(`, `)`, or an empty string.\n\nHere's a step-by-step approach to implement the `is_valid` function:\n\n1. **Initialize a Stack**: We'll use a stack to keep track of the opening brackets.\n2. **Iterate Through the String**: For each character in the string:\n   - If it's an opening bracket (`(`, `[`, `{`) or a wildcard `*`, push it onto the stack.\n   - If it's a closing bracket (`)`, `]`, `}`), check if there's a matching opening bracket on the stack. If not, return `False`.\n3. **Handle Wildcard Characters**: When encountering a wildcard `*`, consider all possible cases:\n   - Treat it as an empty string.\n   - Treat it as the corresponding opening bracket.\n   - Treat it as the corresponding closing bracket.\n4. **Final Check**: After processing all characters, ensure that the stack is empty. If it's not, return `False`.\n\nHere's the implementation of the `is_valid` function:\n\n```python\ndef is_valid(s: str) -> bool:\n    # Dictionary to map closing brackets to their corresponding opening brackets\n    bracket_map = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    \n    # Stack to keep track of opening brackets\n    stack = []\n    \n    for char in s:\n        if char in \"([{\":\n            stack.append(char)\n        elif char == \"*\":\n            # Push all possible states for '*' onto the stack\n            stack.extend([char, '(', ')', '[', ']', '{', '}'])\n        else:\n            # If stack is empty or top of stack doesn't match the current closing bracket, return False\n            if not stack:\n                return False\n            \n            # Pop the top element from the stack\n            top = stack.pop()\n            \n            # If the top element is not the corresponding opening bracket, return False\n            if char != top and char != bracket_map.get(top):\n                return False\n    \n    # If stack is not empty, return False\n    return len(stack) == 0\n\n# Example usage:\nprint(is_valid(\"(*)\"))       # True\nprint(is_valid(\"(*))\"))      # False\nprint(is_valid(\"((**))\"))    # True\nprint(is_valid(\"[(*)]\"))     # True\nprint(is_valid(\"[(])\"))      # False\n```\n\n### Explanation:\n- **bracket_map**: This dictionary helps us quickly find the corresponding opening bracket for a given closing bracket.\n- **stack**: We use a list to simulate the stack operations.\n- **Iteration**: We iterate through each character in the string:\n  - If it's an opening bracket or a wildcard, we handle it accordingly.\n  - If it's a closing bracket, we check if there's a matching opening bracket on the stack.\n- **Wildcard Handling**: When encountering a wildcard `*`, we push all possible states onto the stack to account for its flexibility.\n- **Final Check**: After processing all characters, we ensure that the stack is empty, indicating that all brackets have been properly matched.\n\nThis approach ensures that the function correctly handles the wildcard character and determines if the string is valid.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<string>\", line 37, in <module>\nAssertionError",
+  "timestamp": "2026-11-12T07:12:25.065516+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

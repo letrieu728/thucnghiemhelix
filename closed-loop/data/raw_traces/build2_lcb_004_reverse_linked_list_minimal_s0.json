@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_004_reverse_linked_list",
+  "task_title": "Reverse a Linked List",
+  "difficulty": "easy",
+  "prompt": "Define a `ListNode` class with `val` and `next` attributes. Write a Python function `reverse_list(head: ListNode | None) -> ListNode | None` that reverses a singly linked list in-place and returns the new head.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 14.824,
+  "assistant_solution": "```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverse_list(head: ListNode | None) -> ListNode | None:\n    prev = None\n    current = head\n    \n    while current is not None:\n        # Store next node\n        next_node = current.next\n        \n        # Reverse the link\n        current.next = prev\n        \n        # Move pointers one position ahead.\n        prev = current\n        current = next_node\n    \n    return prev  # New head of the reversed list\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "Here's how you can define the `ListNode` class and implement the `reverse_list` function:\n\n```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverse_list(head: ListNode | None) -> ListNode | None:\n    prev = None\n    current = head\n    \n    while current is not None:\n        # Store next node\n        next_node = current.next\n        \n        # Reverse the link\n        current.next = prev\n        \n        # Move pointers one position ahead.\n        prev = current\n        current = next_node\n    \n    return prev  # New head of the reversed list\n```\n\n### Explanation:\n\n1. **ListNode Class**: \n   - The `ListNode` class represents each node in the linked list. Each node has an integer value (`val`) and a reference to the next node (`next`).\n\n2. **reverse_list Function**:\n   - The function takes the head of the linked list as input and returns the new head after reversing the list.\n   - It uses three pointers: `prev`, `current`, and `next_node`.\n     - `prev` initially points to `None`. As we traverse through the list, it will eventually point to the last node (new head).\n     - `current` starts at the head of the list and moves through the nodes one by one.\n     - `next_node` temporarily stores the next node in the original list so that we don't lose track of it when reversing the links.\n   - In each iteration of the loop, the `current.next` pointer is reversed to point to `prev`, effectively reversing the direction of the list.\n   - After updating the pointer, `prev` and `current` move forward one step.\n   - When the loop ends, `prev` will be pointing to the new head of the reversed list.\n\nThis implementation ensures that the list is reversed in-place without using any extra space for storing the entire list or additional nodes.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:04:22.828584+00:00",
+  "temperature": 0.7,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

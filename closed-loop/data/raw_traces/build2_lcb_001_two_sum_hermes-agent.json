@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_001_two_sum",
+  "task_title": "Two Sum with Indices",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `two_sum(nums: list[int], target: int) -> list[int]` that returns the indices of the two numbers in `nums` that add up to `target`. You may assume each input has exactly one solution and you may not use the same element twice. Return indices in ascending order.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 19.287,
+  "assistant_solution": "```python\ndef two_sum(nums: list[int], target: int) -> list[int]:\n    \"\"\"\n    Finds the indices of the two numbers in nums that add up to target.\n    \n    Args:\n    nums (list[int]): A list of integers.\n    target (int): The target sum.\n    \n    Returns:\n    list[int]: A list containing the indices of the two numbers that add up to target, sorted in ascending order.\n    \"\"\"\n    # Dictionary to store the value and its index\n    num_to_index = {}\n    \n    # Iterate over the list of numbers\n    for i, num in enumerate(nums):\n        # Calculate the complement needed to reach the target\n        complement = target - num\n        \n        # Check if the complement exists in the dictionary\n        if complement in num_to_index:\n            # If found, return the indices in ascending order\n            return [min(i, num_to_index[complement]), max(i, num_to_index[complement])]\n        \n        # Store the number and its index in the dictionary\n        num_to_index[num] = i\n    \n    # If no solution is found, raise an exception (though the problem guarantees one)\n    raise ValueError(\"No two sum solution\")\n\n# Example usage:\n# result = two_sum([2, 7, 11, 15], 9)\n# print(result)  # Output: [0, 1]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "Certainly! Below is the implementation of the `two_sum` function in Python:\n\n```python\ndef two_sum(nums: list[int], target: int) -> list[int]:\n    \"\"\"\n    Finds the indices of the two numbers in nums that add up to target.\n    \n    Args:\n    nums (list[int]): A list of integers.\n    target (int): The target sum.\n    \n    Returns:\n    list[int]: A list containing the indices of the two numbers that add up to target, sorted in ascending order.\n    \"\"\"\n    # Dictionary to store the value and its index\n    num_to_index = {}\n    \n    # Iterate over the list of numbers\n    for i, num in enumerate(nums):\n        # Calculate the complement needed to reach the target\n        complement = target - num\n        \n        # Check if the complement exists in the dictionary\n        if complement in num_to_index:\n            # If found, return the indices in ascending order\n            return [min(i, num_to_index[complement]), max(i, num_to_index[complement])]\n        \n        # Store the number and its index in the dictionary\n        num_to_index[num] = i\n    \n    # If no solution is found, raise an exception (though the problem guarantees one)\n    raise ValueError(\"No two sum solution\")\n\n# Example usage:\n# result = two_sum([2, 7, 11, 15], 9)\n# print(result)  # Output: [0, 1]\n```\n\n### Explanation:\n1. **Dictionary Initialization**: We initialize an empty dictionary `num_to_index` to store each number and its corresponding index as we iterate through the list.\n2. **Iteration**: We loop through the list using `enumerate` to get both the index `i` and the value `num` at that index.\n3. **Complement Calculation**: For each number, we calculate its complement by subtracting the number from the target (`complement = target - num`).\n4. **Check Complement**: We check if this complement exists in our dictionary. If it does, it means we have found the two numbers that add up to the target.\n5. **Return Indices**: We return the indices of the two numbers in ascending order using `min` and `max` functions.\n6. **Store Number and Index**: If the complement is not found, we store the current number and its index in the dictionary.\n7. **Exception Handling**: Although the problem guarantees a solution, we include an exception handling block to raise a `ValueError` if no solution is found.\n\nThis approach ensures that we find the solution in linear time, O(n), where n is the length of the list.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:11:55.937250+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

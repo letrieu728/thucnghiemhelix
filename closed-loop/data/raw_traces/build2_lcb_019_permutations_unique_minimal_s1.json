@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_019_permutations_unique",
+  "task_title": "Unique Permutations",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `permute_unique(nums: list[int]) -> list[list[int]]` that returns all unique permutations of `nums` (which may contain duplicates), sorted in lexicographical order. For an empty input, return `[[]]`.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 18.612,
+  "assistant_solution": "```python\ndef permute_unique(nums: list[int]) -> list[list[int]]:\n    def backtrack(start):\n        if start == len(nums):\n            result.append(nums[:])\n            return\n        \n        for i in range(start, len(nums)):\n            # Skip duplicates\n            if i > start and nums[i] == nums[start]:\n                continue\n            \n            # Swap to place the current element at the start position\n            nums[start], nums[i] = nums[i], nums[start]\n            \n            # Recurse with the next position\n            backtrack(start + 1)\n            \n            # Backtrack by swapping back\n            nums[start], nums[i] = nums[i], nums[start]\n    \n    # Sort the input list to handle duplicates\n    nums.sort()\n    result = []\n    backtrack(0)\n    return result\n\n# Example usage:\nnums = [1, 1, 2]\nprint(permute_unique(nums))\n```",
+  "passed": false,
+  "test_result": {
+    "passed": false,
+    "error": "Traceback (most recent call last):\n  File \"<string>\", line 33, in <module>\nAssertionError"
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve the problem of generating all unique permutations of a list of integers that may contain duplicates and sorting them in lexicographical order, we can use a backtracking approach. Here's a step-by-step explanation and the corresponding Python code:\n\n1. **Sort the Input List**: Sorting helps in easily skipping duplicates during the permutation generation.\n2. **Backtracking Function**: Use a helper function to generate permutations recursively.\n3. **Avoid Duplicates**: Skip over duplicate elements to ensure each permutation is unique.\n\nHere's the implementation:\n\n```python\ndef permute_unique(nums: list[int]) -> list[list[int]]:\n    def backtrack(start):\n        if start == len(nums):\n            result.append(nums[:])\n            return\n        \n        for i in range(start, len(nums)):\n            # Skip duplicates\n            if i > start and nums[i] == nums[start]:\n                continue\n            \n            # Swap to place the current element at the start position\n            nums[start], nums[i] = nums[i], nums[start]\n            \n            # Recurse with the next position\n            backtrack(start + 1)\n            \n            # Backtrack by swapping back\n            nums[start], nums[i] = nums[i], nums[start]\n    \n    # Sort the input list to handle duplicates\n    nums.sort()\n    result = []\n    backtrack(0)\n    return result\n\n# Example usage:\nnums = [1, 1, 2]\nprint(permute_unique(nums))\n```\n\n### Explanation:\n\n1. **Sorting**: The input list `nums` is sorted to make it easier to skip duplicates.\n2. **Backtracking Function** (`backtrack(start)`):\n   - If `start` equals the length of `nums`, it means we have formed a valid permutation, so we add a copy of `nums` to the result list.\n   - Iterate through the list starting from the `start` index to the end.\n   - Skip duplicate elements by checking if the current element is the same as the previous one and if the current index is greater than the start index.\n   - Swap the current element with the element at the `start` index to place the current element at the start position.\n   - Recursively call `backtrack` with the next position (`start + 1`).\n   - After the recursive call, swap back to restore the original state (backtrack).\n\nThis approach ensures that all permutations are generated uniquely and in lexicographical order. The time complexity is O(n * n!) due to the permutations, where n is the number of elements in the input list.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<string>\", line 33, in <module>\nAssertionError",
+  "timestamp": "2026-11-12T08:23:28.062339+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

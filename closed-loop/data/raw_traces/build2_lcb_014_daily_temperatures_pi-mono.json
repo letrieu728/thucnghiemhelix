@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_014_daily_temperatures",
+  "task_title": "Daily Temperatures",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `daily_temperatures(temperatures: list[int]) -> list[int]` that returns a list `answer` where `answer[i]` is the number of days to wait after day `i` for a warmer temperature. If there is no warmer day in the future, `answer[i]` is 0.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 22.41,
+  "assistant_solution": "```python\ndef daily_temperatures(temperatures: list[int]) -> list[int]:\n    n = len(temperatures)\n    answer = [0] * n\n    stack = []\n    \n    for i in range(n):\n        while stack and temperatures[i] > temperatures[stack[-1]]:\n            prev_index = stack.pop()\n            answer[prev_index] = i - prev_index\n        stack.append(i)\n    \n    return answer\n\n# Example usage:\ntemperatures = [73, 74, 75, 71, 69, 72, 76, 73]\nprint(daily_temperatures(temperatures))  # Output: [1, 1, 4, 2, 1, 1, 0, 0]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem efficiently, we can use a stack to keep track of the indices of the temperatures. This approach allows us to avoid nested loops, resulting in a time complexity of O(n).\n\nHere's a step-by-step breakdown of the solution:\n\n1. Initialize an empty stack and a result list `answer` filled with zeros.\n2. Iterate through the list of temperatures using an index `i`.\n3. For each temperature, check if it is higher than the temperature at the index stored at the top of the stack.\n4. If it is higher, pop the index from the stack and calculate the difference between the current index `i` and the popped index. Update the `answer` list at the popped index with this difference.\n5. Push the current index `i` onto the stack.\n6. Continue this process until all temperatures have been processed.\n\nThis way, the stack will always contain indices of temperatures in increasing order, and when we encounter a warmer temperature, we know exactly how many days we had to wait.\n\nHere's the complete implementation:\n\n```python\ndef daily_temperatures(temperatures: list[int]) -> list[int]:\n    n = len(temperatures)\n    answer = [0] * n\n    stack = []\n    \n    for i in range(n):\n        while stack and temperatures[i] > temperatures[stack[-1]]:\n            prev_index = stack.pop()\n            answer[prev_index] = i - prev_index\n        stack.append(i)\n    \n    return answer\n\n# Example usage:\ntemperatures = [73, 74, 75, 71, 69, 72, 76, 73]\nprint(daily_temperatures(temperatures))  # Output: [1, 1, 4, 2, 1, 1, 0, 0]\n```\n\n### Explanation of the Example\nFor the input `[73, 74, 75, 71, 69, 72, 76, 73]`, the output `[1, 1, 4, 2, 1, 1, 0, 0]` means:\n- Day 0 (temperature 73) waits 1 day for a warmer temperature (day 1).\n- Day 1 (temperature 74) waits 1 day for a warmer temperature (day 2).\n- Day 2 (temperature 75) waits 4 days for a warmer temperature (day 6).\n- Day 3 (temperature 71) waits 2 days for a warmer temperature (day 5).\n- Day 4 (temperature 69) waits 1 day for a warmer temperature (day 5).\n- Day 5 (temperature 72) waits 1 day for a warmer temperature (day 6).\n- Day 6 (temperature 76) does not need to wait as there is no warmer temperature in the future.\n- Day 7 (temperature 73) does not need to wait as there is no warmer temperature in the future.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:42:03.368839+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

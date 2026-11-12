@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_012_can_finish_courses",
+  "task_title": "Course Schedule (Cycle Detection)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool` that returns True if all courses can be finished. Each prerequisite `[a, b]` means course `b` must be taken before course `a`. Return False if the prerequisites contain a cycle that makes completion impossible.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 10.517,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef can_finish(num_courses: int, prerequisites: List[List[int]]) -> bool:\n    from collections import defaultdict, deque\n    \n    # Build graph and in-degree count\n    graph = defaultdict(list)\n    in_degree = [0] * num_courses\n    for course, prereq in prerequisites:\n        graph[prereq].append(course)\n        in_degree[course] += 1\n    \n    # Initialize queue with courses having zero in-degree\n    queue = deque([i for i in range(num_courses) if in_degree[i] == 0])\n    visited_count = 0\n    \n    # Process nodes in topological order\n    while queue:\n        node = queue.popleft()\n        visited_count += 1\n        for neighbor in graph[node]:\n            in_degree[neighbor] -= 1\n            if in_degree[neighbor] == 0:\n                queue.append(neighbor)\n    \n    # If all courses are visited, no cycle exists\n    return visited_count == num_courses\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef can_finish(num_courses: int, prerequisites: List[List[int]]) -> bool:\n    from collections import defaultdict, deque\n    \n    # Build graph and in-degree count\n    graph = defaultdict(list)\n    in_degree = [0] * num_courses\n    for course, prereq in prerequisites:\n        graph[prereq].append(course)\n        in_degree[course] += 1\n    \n    # Initialize queue with courses having zero in-degree\n    queue = deque([i for i in range(num_courses) if in_degree[i] == 0])\n    visited_count = 0\n    \n    # Process nodes in topological order\n    while queue:\n        node = queue.popleft()\n        visited_count += 1\n        for neighbor in graph[node]:\n            in_degree[neighbor] -= 1\n            if in_degree[neighbor] == 0:\n                queue.append(neighbor)\n    \n    # If all courses are visited, no cycle exists\n    return visited_count == num_courses\n```\n\nThis solution uses Kahn's algorithm to detect cycles in a directed graph. It builds the graph and calculates the in-degree of each node. Nodes with zero in-degree are added to a queue. The algorithm processes nodes in topological order, reducing the in-degree of their neighbors. If all nodes are processed without forming a cycle, it returns True; otherwise, it returns False.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:37:12.855177+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

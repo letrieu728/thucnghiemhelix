@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_015_word_search",
+  "task_title": "Word Search in Grid",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `exist(board: list[list[str]], word: str) -> bool` that returns True if `word` can be constructed from sequentially adjacent cells (up, down, left, right) of `board`, where each cell may be used at most once. The word is non-empty.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 11.996,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef exist(board: List[List[str]], word: str) -> bool:\n\n    def dfs(x: int, y: int, index: int) -> bool:\n        if index == len(word):\n            return True\n        if x < 0 or x >= rows or y < 0 or y >= cols or board[x][y] != word[index]:\n            return False\n        \n        temp = board[x][y]\n        board[x][y] = '#'  # Mark as visited\n        \n        found = (dfs(x + 1, y, index + 1) or\n                 dfs(x - 1, y, index + 1) or\n                 dfs(x, y + 1, index + 1) or\n                 dfs(x, y - 1, index + 1))\n        \n        board[x][y] = temp  # Unmark\n        \n        return found\n    \n    rows, cols = len(board), len(board[0])\n    \n    for i in range(rows):\n        for j in range(cols):\n            if board[i][j] == word[0] and dfs(i, j, 0):\n                return True\n    \n    return False\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef exist(board: List[List[str]], word: str) -> bool:\n\n    def dfs(x: int, y: int, index: int) -> bool:\n        if index == len(word):\n            return True\n        if x < 0 or x >= rows or y < 0 or y >= cols or board[x][y] != word[index]:\n            return False\n        \n        temp = board[x][y]\n        board[x][y] = '#'  # Mark as visited\n        \n        found = (dfs(x + 1, y, index + 1) or\n                 dfs(x - 1, y, index + 1) or\n                 dfs(x, y + 1, index + 1) or\n                 dfs(x, y - 1, index + 1))\n        \n        board[x][y] = temp  # Unmark\n        \n        return found\n    \n    rows, cols = len(board), len(board[0])\n    \n    for i in range(rows):\n        for j in range(cols):\n            if board[i][j] == word[0] and dfs(i, j, 0):\n                return True\n    \n    return False\n```\n\nThis solution uses Depth-First Search (DFS) to explore all possible paths starting from each cell on the board that matches the first character of the word. It marks visited cells with a temporary character (`#`) to avoid revisiting them and backtracks when necessary. The function returns `True` if any path forms the given word, otherwise `False`.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:44:11.337755+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

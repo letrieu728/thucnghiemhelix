@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_013_longest_palindromic_substring",
+  "task_title": "Longest Palindromic Substring",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `longest_palindrome(s: str) -> str` that returns the longest palindromic substring of `s`. If several palindromic substrings share the maximum length, return the one with the smallest starting index. Return an empty string if `s` is empty.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 16.043,
+  "assistant_solution": "```python\ndef longest_palindrome(s: str) -> str:\n    def expand_around_center(left: int, right: int) -> str:\n        while left >= 0 and right < len(s) and s[left] == s[right]:\n            left -= 1\n            right += 1\n        return s[left + 1:right]\n\n    if not s:\n        return \"\"\n\n    longest = \"\"\n    for i in range(len(s)):\n        # Odd length palindrome\n        odd = expand_around_center(i, i)\n        # Even length palindrome\n        even = expand_around_center(i, i + 1)\n        # Update longest palindrome found\n        longest = max(longest, odd, even, key=len)\n\n    return longest\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef longest_palindrome(s: str) -> str:\n    def expand_around_center(left: int, right: int) -> str:\n        while left >= 0 and right < len(s) and s[left] == s[right]:\n            left -= 1\n            right += 1\n        return s[left + 1:right]\n\n    if not s:\n        return \"\"\n\n    longest = \"\"\n    for i in range(len(s)):\n        # Odd length palindrome\n        odd = expand_around_center(i, i)\n        # Even length palindrome\n        even = expand_around_center(i, i + 1)\n        # Update longest palindrome found\n        longest = max(longest, odd, even, key=len)\n\n    return longest\n```\n\n### Explanation:\n\n1. **Function Definition**:\n   - The function `longest_palindrome` takes a single argument `s` which is a string and returns a string representing the longest palindromic substring.\n\n2. **Helper Function**:\n   - `expand_around_center`: This helper function expands around a given center (which could be a single character for odd-length palindromes or between two characters for even-length palindromes) and returns the longest palindrome found from that center.\n\n3. **Edge Case**:\n   - If the input string `s` is empty, the function immediately returns an empty string.\n\n4. **Main Logic**:\n   - Initialize an empty string `longest` to keep track of the longest palindrome found.\n   - Iterate over each character in the string `s`.\n   - For each character, consider it as the center of both odd-length and even-length palindromes and call `expand_around_center` to find the corresponding palindromes.\n   - Update `longest` with the longer palindrome found among the current `longest`, the odd-length palindrome, and the even-length palindrome.\n\n5. **Return Result**:\n   - After iterating through all characters, return the longest palindromic substring found.\n\nThis approach ensures that we efficiently find the longest palindromic substring with a time complexity of \\(O(n^2)\\), where \\(n\\) is the length of the string.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:16:21.608622+00:00",
+  "temperature": 0.7,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_019_permutations_unique",
+  "task_title": "Unique Permutations",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `permute_unique(nums: list[int]) -> list[list[int]]` that returns all unique permutations of `nums` (which may contain duplicates), sorted in lexicographical order. For an empty input, return `[[]]`.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 15.512,
+  "assistant_solution": "```python\ndef permute_unique(nums: list[int]) -> list[list[int]]:\n    def backtrack(path, remaining):\n        if not remaining:\n            result.add(tuple(path))\n            return\n        \n        for i in range(len(remaining)):\n            backtrack(path + [remaining[i]], remaining[:i] + remaining[i+1:])\n    \n    result = set()\n    backtrack([], nums)\n    return sorted(list(result))\n\n# Example usage:\nnums = [1, 1, 2]\nprint(permute_unique(nums))  # Output: [[1, 1, 2], [1, 2, 1], [2, 1, 1]]\n```",
+  "passed": false,
+  "test_result": {
+    "passed": false,
+    "error": "Traceback (most recent call last):\n  File \"<string>\", line 19, in <module>\nAssertionError"
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve the problem of generating all unique permutations of a list of integers that may contain duplicates and sorting them in lexicographical order, we can follow these steps:\n\n1. **Generate Permutations**: Use a backtracking approach to generate all possible permutations.\n2. **Remove Duplicates**: Ensure that only unique permutations are considered by using a set or a data structure that inherently avoids duplicates.\n3. **Sort Permutations**: Sort the final list of permutations in lexicographical order.\n\nHere's the implementation of the `permute_unique` function:\n\n```python\ndef permute_unique(nums: list[int]) -> list[list[int]]:\n    def backtrack(path, remaining):\n        if not remaining:\n            result.add(tuple(path))\n            return\n        \n        for i in range(len(remaining)):\n            backtrack(path + [remaining[i]], remaining[:i] + remaining[i+1:])\n    \n    result = set()\n    backtrack([], nums)\n    return sorted(list(result))\n\n# Example usage:\nnums = [1, 1, 2]\nprint(permute_unique(nums))  # Output: [[1, 1, 2], [1, 2, 1], [2, 1, 1]]\n```\n\n### Explanation:\n\n1. **Backtracking Function**:\n   - The `backtrack` function is defined to build permutations recursively.\n   - It takes two parameters: `path`, which is the current permutation being built, and `remaining`, which is the list of elements left to be permuted.\n   - If `remaining` is empty, it means a complete permutation has been formed, so it is added to the `result` set as a tuple (to ensure uniqueness).\n\n2. **Avoiding Duplicates**:\n   - By using a set (`result`), we automatically avoid duplicate permutations because sets do not allow duplicate elements.\n\n3. **Sorting**:\n   - After generating all unique permutations, we convert the set to a list and sort it in lexicographical order using the `sorted` function.\n\nThis approach ensures that all permutations are unique and sorted correctly. The use of a set helps in efficiently managing duplicates, and the backtracking method allows us to explore all possible permutations systematically.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<string>\", line 19, in <module>\nAssertionError",
+  "timestamp": "2026-11-12T07:49:26.168261+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

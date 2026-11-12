@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_004_reverse_linked_list",
+  "task_title": "Reverse a Linked List",
+  "difficulty": "easy",
+  "prompt": "Define a `ListNode` class with `val` and `next` attributes. Write a Python function `reverse_list(head: ListNode | None) -> ListNode | None` that reverses a singly linked list in-place and returns the new head.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 8.924,
+  "assistant_solution": "```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverse_list(head: ListNode | None) -> ListNode | None:\n    prev = None\n    current = head\n    while current:\n        next_node = current.next  # Store next node\n        current.next = prev       # Reverse the link\n        prev = current            # Move pointers one position ahead\n        current = next_node\n    return prev  # New head of the reversed list\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverse_list(head: ListNode | None) -> ListNode | None:\n    prev = None\n    current = head\n    while current:\n        next_node = current.next  # Store next node\n        current.next = prev       # Reverse the link\n        prev = current            # Move pointers one position ahead\n        current = next_node\n    return prev  # New head of the reversed list\n```\n\nThis function iterates through the list, reversing the direction of each pointer to point to the previous node instead of the next. The loop continues until it reaches the end of the original list (when `current` becomes `None`). At this point, `prev` will be pointing to the new head of the reversed list, which is then returned.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:41:04.163013+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_015_word_search",
+  "task_title": "Word Search in Grid",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `exist(board: list[list[str]], word: str) -> bool` that returns True if `word` can be constructed from sequentially adjacent cells (up, down, left, right) of `board`, where each cell may be used at most once. The word is non-empty.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 10.369,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef exist(board: List[List[str]], word: str) -> bool:\n    rows, cols = len(board), len(board[0])\n    \n    def dfs(r, c, i):\n        if i == len(word):\n            return True\n        if r < 0 or r >= rows or c < 0 or c >= cols or board[r][c] != word[i]:\n            return False\n        \n        temp, board[r][c] = board[r][c], '/'  # Mark as visited\n        found = (dfs(r + 1, c, i + 1) or\n                 dfs(r - 1, c, i + 1) or\n                 dfs(r, c + 1, i + 1) or\n                 dfs(r, c - 1, i + 1))\n        board[r][c] = temp  # Unmark\n        return found\n    \n    for r in range(rows):\n        for c in range(cols):\n            if dfs(r, c, 0):\n                return True\n    return False\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef exist(board: List[List[str]], word: str) -> bool:\n    rows, cols = len(board), len(board[0])\n    \n    def dfs(r, c, i):\n        if i == len(word):\n            return True\n        if r < 0 or r >= rows or c < 0 or c >= cols or board[r][c] != word[i]:\n            return False\n        \n        temp, board[r][c] = board[r][c], '/'  # Mark as visited\n        found = (dfs(r + 1, c, i + 1) or\n                 dfs(r - 1, c, i + 1) or\n                 dfs(r, c + 1, i + 1) or\n                 dfs(r, c - 1, i + 1))\n        board[r][c] = temp  # Unmark\n        return found\n    \n    for r in range(rows):\n        for c in range(cols):\n            if dfs(r, c, 0):\n                return True\n    return False\n```\n\nThis solution uses Depth-First Search (DFS) to explore all possible paths on the board that could form the given word. It marks visited cells with a placeholder ('/') to avoid reusing them and backtracks when necessary.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:19:40.758266+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_019_permutations_unique",
+  "task_title": "Unique Permutations",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `permute_unique(nums: list[int]) -> list[list[int]]` that returns all unique permutations of `nums` (which may contain duplicates), sorted in lexicographical order. For an empty input, return `[[]]`.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 10.967,
+  "assistant_solution": "```python\nfrom typing import *\nfrom collections import *\n\ndef permute_unique(nums: List[int]) -> List[List[int]]:\n    def backtrack(path):\n        if len(path) == len(nums):\n            result.append(path[:])\n            return\n        for i in range(len(nums)):\n            if used[i] or (i > 0 and nums[i] == nums[i-1] and not used[i-1]):\n                continue\n            path.append(nums[i])\n            used[i] = True\n            backtrack(path)\n            path.pop()\n            used[i] = False\n\n    nums.sort()\n    used = [False] * len(nums)\n    result = []\n    backtrack([])\n    return result\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import *\nfrom collections import *\n\ndef permute_unique(nums: List[int]) -> List[List[int]]:\n    def backtrack(path):\n        if len(path) == len(nums):\n            result.append(path[:])\n            return\n        for i in range(len(nums)):\n            if used[i] or (i > 0 and nums[i] == nums[i-1] and not used[i-1]):\n                continue\n            path.append(nums[i])\n            used[i] = True\n            backtrack(path)\n            path.pop()\n            used[i] = False\n\n    nums.sort()\n    used = [False] * len(nums)\n    result = []\n    backtrack([])\n    return result\n```\nThis Python function uses backtracking to generate all unique permutations of the input list `nums`, which may contain duplicates. It first sorts the list to ensure that duplicates are adjacent, then iterates through each element, adding it to the current permutation if it hasn't been used before and isn't a duplicate of the previous element (unless the previous element was also used). The function returns a list of all unique permutations in lexicographical order.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T09:03:27.029513+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "rebuild2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_011_trap_rain_water",
+  "task_title": "Trapping Rain Water",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `trap(height: list[int]) -> int` that computes how much rain water is trapped after raining, given an elevation map where each element is the height of a bar of width 1. Return 0 if no water is trapped or if the input is empty.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 16.271,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef trap(height: List[int]) -> int:\n    if not height:\n        return 0\n    \n    n = len(height)\n    left_max = [0] * n\n    right_max = [0] * n\n    water_trapped = 0\n    \n    # Fill left_max array\n    left_max[0] = height[0]\n    for i in range(1, n):\n        left_max[i] = max(left_max[i - 1], height[i])\n    \n    # Fill right_max array\n    right_max[n - 1] = height[n - 1]\n    for i in range(n - 2, -1, -1):\n        right_max[i] = max(right_max[i + 1], height[i])\n    \n    # Calculate trapped water using left_max and right_max\n    for i in range(n):\n        water_trapped += min(left_max[i], right_max[i]) - height[i]\n    \n    return water_trapped\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef trap(height: List[int]) -> int:\n    if not height:\n        return 0\n    \n    n = len(height)\n    left_max = [0] * n\n    right_max = [0] * n\n    water_trapped = 0\n    \n    # Fill left_max array\n    left_max[0] = height[0]\n    for i in range(1, n):\n        left_max[i] = max(left_max[i - 1], height[i])\n    \n    # Fill right_max array\n    right_max[n - 1] = height[n - 1]\n    for i in range(n - 2, -1, -1):\n        right_max[i] = max(right_max[i + 1], height[i])\n    \n    # Calculate trapped water using left_max and right_max\n    for i in range(n):\n        water_trapped += min(left_max[i], right_max[i]) - height[i]\n    \n    return water_trapped\n```\n\n### Explanation:\n1. **Analysis**:\n   - The problem requires calculating the amount of trapped rainwater between bars in a histogram.\n   - Each bar has a width of 1, and the height represents the elevation at that point.\n   \n2. **Plan**:\n   - We need to determine the maximum height of bars to the left and right of each bar.\n   - Using these maximum heights, we can calculate the potential water level at each position.\n   - The actual trapped water at each position is the minimum of the left and right maximums minus the current height.\n\n3. **Implementation**:\n   - Initialize two arrays `left_max` and `right_max` to store the maximum heights to the left and right of each bar.\n   - Iterate through the array to fill these arrays.\n   - For each bar, calculate the trapped water as `min(left_max[i], right_max[i]) - height[i]`.\n   - Sum up the trapped water for all bars.\n\n4. **Verification**:\n   - Test with various cases including edge cases like an empty list or a list with uniform heights.\n   - Ensure the logic correctly handles scenarios where water is trapped or not.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:14:30.247664+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

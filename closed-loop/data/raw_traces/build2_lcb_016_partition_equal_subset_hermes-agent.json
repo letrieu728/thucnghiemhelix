@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_016_partition_equal_subset",
+  "task_title": "Partition Equal Subset Sum",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `can_partition(nums: list[int]) -> bool` that returns True if `nums` can be partitioned into two subsets with equal sums. Return True if `nums` is empty (both subsets are empty).",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 24.187,
+  "assistant_solution": "```python\ndef can_partition(nums: list[int]) -> bool:\n    # Step 1: Check for edge case\n    if not nums:\n        return True\n    \n    # Step 2: Calculate the total sum\n    total_sum = sum(nums)\n    \n    # If the total sum is odd, it's impossible to partition into two equal subsets\n    if total_sum % 2 != 0:\n        return False\n    \n    target = total_sum // 2\n    \n    # Step 3: Initialize the DP array\n    dp = [False] * (target + 1)\n    dp[0] = True  # A subset with sum 0 is always possible\n    \n    # Step 4: Update the DP array\n    for num in nums:\n        for j in range(target, num - 1, -1):\n            dp[j] = dp[j] or dp[j - num]\n    \n    # The result is whether a subset with sum 'target' can be formed\n    return dp[target]\n\n# Example usage:\nprint(can_partition([1, 5, 11, 5]))  # Output: True\nprint(can_partition([1, 2, 3, 5]))   # Output: False\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we need to determine if a given list of integers can be partitioned into two subsets such that the sum of elements in both subsets is equal. This is a classic example of the \"Partition Equal Subset Sum\" problem, which can be solved using dynamic programming.\n\nHere's a step-by-step approach to implement the solution:\n\n1. **Check for Edge Cases**: If the list is empty, return `True` because both subsets would be empty.\n2. **Calculate Total Sum**: Compute the total sum of the list. If the total sum is odd, it's impossible to partition the list into two subsets with equal sums, so return `False`.\n3. **Dynamic Programming Approach**:\n   - Use a boolean DP array where `dp[i]` indicates whether a subset with sum `i` can be formed from the elements of the list.\n   - Initialize `dp[0]` to `True` because a subset with sum 0 is always possible (the empty subset).\n   - Iterate through each number in the list and update the DP array from right to left to avoid using the same element multiple times.\n\nLet's implement this in Python:\n\n```python\ndef can_partition(nums: list[int]) -> bool:\n    # Step 1: Check for edge case\n    if not nums:\n        return True\n    \n    # Step 2: Calculate the total sum\n    total_sum = sum(nums)\n    \n    # If the total sum is odd, it's impossible to partition into two equal subsets\n    if total_sum % 2 != 0:\n        return False\n    \n    target = total_sum // 2\n    \n    # Step 3: Initialize the DP array\n    dp = [False] * (target + 1)\n    dp[0] = True  # A subset with sum 0 is always possible\n    \n    # Step 4: Update the DP array\n    for num in nums:\n        for j in range(target, num - 1, -1):\n            dp[j] = dp[j] or dp[j - num]\n    \n    # The result is whether a subset with sum 'target' can be formed\n    return dp[target]\n\n# Example usage:\nprint(can_partition([1, 5, 11, 5]))  # Output: True\nprint(can_partition([1, 2, 3, 5]))   # Output: False\n```\n\n### Explanation:\n- **Edge Case Handling**: If the list is empty, we return `True` immediately.\n- **Sum Calculation**: We calculate the total sum of the list. If it's odd, we return `False` because it's impossible to split an odd sum into two equal parts.\n- **DP Array Initialization**: We initialize a DP array `dp` of size `target + 1` (where `target` is half of the total sum) with all values set to `False`. We set `dp[0]` to `True` because a subset with sum 0 is always possible.\n- **DP Array Update**: For each number in the list, we update the DP array from right to left. This ensures that each number is only considered once per iteration, preventing reuse.\n\nThis approach ensures that we efficiently determine if the list can be partitioned into two subsets with equal sums using dynamic programming.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:45:27.060441+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

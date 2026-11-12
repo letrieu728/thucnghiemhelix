@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_012_can_finish_courses",
+  "task_title": "Course Schedule (Cycle Detection)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool` that returns True if all courses can be finished. Each prerequisite `[a, b]` means course `b` must be taken before course `a`. Return False if the prerequisites contain a cycle that makes completion impossible.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 24.635,
+  "assistant_solution": "```python\nfrom collections import defaultdict\n\ndef can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool:\n    # Step 1: Build the graph\n    graph = defaultdict(list)\n    for course, prereq in prerequisites:\n        graph[prereq].append(course)\n    \n    # Step 2: Initialize the visit states\n    visit_states = [0] * num_courses  # 0: unvisited, 1: visiting, 2: visited\n    \n    # Step 3: Helper function to perform DFS\n    def dfs(node):\n        if visit_states[node] == 1:\n            return False  # Cycle detected\n        if visit_states[node] == 2:\n            return True  # Node already processed\n        \n        visit_states[node] = 1  # Mark as visiting\n        \n        for neighbor in graph[node]:\n            if not dfs(neighbor):\n                return False\n        \n        visit_states[node] = 2  # Mark as visited\n        return True\n    \n    # Step 4: Perform DFS for each node\n    for i in range(num_courses):\n        if not dfs(i):\n            return False\n    \n    return True\n\n# Example usage:\nnum_courses = 2\nprerequisites = [[1, 0]]\nprint(can_finish(num_courses, prerequisites))  # Output: True\n\nnum_courses = 2\nprerequisites = [[1, 0], [0, 1]]\nprint(can_finish(num_courses, prerequisites))  # Output: False\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To determine if all courses can be finished given their prerequisites, we need to check for cycles in the directed graph formed by the courses and prerequisites. If there is a cycle, it's impossible to finish all courses.\n\nHere's a step-by-step approach to solve this problem using Depth-First Search (DFS):\n\n1. **Graph Representation**: Represent the courses as nodes in a directed graph, and the prerequisites as directed edges.\n2. **Cycle Detection**: Use DFS to detect cycles. During the DFS traversal, keep track of the visiting state of each node:\n   - Initially, all nodes are unvisited.\n   - When entering a node, mark it as visiting.\n   - While exploring its neighbors, if you encounter a node that is already visiting, a cycle is detected.\n   - After exploring all neighbors, mark the node as visited.\n3. **Return Result**: If no cycle is detected during the DFS traversal, return True. Otherwise, return False.\n\nHere's the implementation of the `can_finish` function:\n\n```python\nfrom collections import defaultdict\n\ndef can_finish(num_courses: int, prerequisites: list[list[int]]) -> bool:\n    # Step 1: Build the graph\n    graph = defaultdict(list)\n    for course, prereq in prerequisites:\n        graph[prereq].append(course)\n    \n    # Step 2: Initialize the visit states\n    visit_states = [0] * num_courses  # 0: unvisited, 1: visiting, 2: visited\n    \n    # Step 3: Helper function to perform DFS\n    def dfs(node):\n        if visit_states[node] == 1:\n            return False  # Cycle detected\n        if visit_states[node] == 2:\n            return True  # Node already processed\n        \n        visit_states[node] = 1  # Mark as visiting\n        \n        for neighbor in graph[node]:\n            if not dfs(neighbor):\n                return False\n        \n        visit_states[node] = 2  # Mark as visited\n        return True\n    \n    # Step 4: Perform DFS for each node\n    for i in range(num_courses):\n        if not dfs(i):\n            return False\n    \n    return True\n\n# Example usage:\nnum_courses = 2\nprerequisites = [[1, 0]]\nprint(can_finish(num_courses, prerequisites))  # Output: True\n\nnum_courses = 2\nprerequisites = [[1, 0], [0, 1]]\nprint(can_finish(num_courses, prerequisites))  # Output: False\n```\n\n### Explanation:\n1. **Graph Construction**: We use a dictionary where keys are courses and values are lists of courses that depend on them.\n2. **Visit States**: We maintain an array `visit_states` to keep track of the state of each node during the DFS traversal.\n3. **DFS Function**: The `dfs` function recursively visits each node. If it encounters a node that is currently being visited (`visit_state == 1`), a cycle is detected, and it returns False. If a node has already been fully explored (`visit_state == 2`), it skips further processing.\n4. **Main Loop**: We call the `dfs` function for each node. If any call to `dfs` returns False, we return False immediately. If all calls return True, we return True, indicating that all courses can be finished without detecting any cycles.\n\nThis solution ensures that we correctly identify whether the given prerequisites form a valid schedule or not.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T08:15:19.652799+00:00",
+  "temperature": 0.7,
+  "sample_index": 1,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42001
+}

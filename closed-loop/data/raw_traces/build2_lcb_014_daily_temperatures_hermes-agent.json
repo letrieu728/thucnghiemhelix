@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_014_daily_temperatures",
+  "task_title": "Daily Temperatures",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `daily_temperatures(temperatures: list[int]) -> list[int]` that returns a list `answer` where `answer[i]` is the number of days to wait after day `i` for a warmer temperature. If there is no warmer day in the future, `answer[i]` is 0.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 19.683,
+  "assistant_solution": "```python\ndef daily_temperatures(temperatures: list[int]) -> list[int]:\n    n = len(temperatures)\n    answer = [0] * n\n    stack = []  # Stack to store indices of temperatures\n    \n    for i, temp in enumerate(temperatures):\n        # While stack is not empty and current temperature is greater than the temperature at the index on the stack\n        while stack and temp > temperatures[stack[-1]]:\n            prev_index = stack.pop()\n            answer[prev_index] = i - prev_index\n        stack.append(i)\n    \n    return answer\n\n# Example usage:\ntemperatures = [73, 74, 75, 71, 69, 72, 76, 73]\nprint(daily_temperatures(temperatures))  # Output: [1, 1, 4, 2, 1, 1, 0, 0]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem efficiently, we can use a stack to keep track of the indices of the temperatures. This approach allows us to avoid nested loops, resulting in a time complexity of O(n).\n\nHere's the step-by-step plan:\n1. Initialize an empty stack and an output list `answer` filled with zeros.\n2. Iterate through the list of temperatures.\n3. For each temperature, check if it is higher than the temperature at the index stored at the top of the stack.\n4. If it is, pop the index from the stack and calculate the difference between the current index and the popped index. Update the corresponding position in the `answer` list with this difference.\n5. Push the current index onto the stack.\n6. Continue this process until all temperatures have been processed.\n\nThis way, we ensure that each temperature is pushed and popped from the stack at most once, leading to an efficient solution.\n\n```python\ndef daily_temperatures(temperatures: list[int]) -> list[int]:\n    n = len(temperatures)\n    answer = [0] * n\n    stack = []  # Stack to store indices of temperatures\n    \n    for i, temp in enumerate(temperatures):\n        # While stack is not empty and current temperature is greater than the temperature at the index on the stack\n        while stack and temp > temperatures[stack[-1]]:\n            prev_index = stack.pop()\n            answer[prev_index] = i - prev_index\n        stack.append(i)\n    \n    return answer\n\n# Example usage:\ntemperatures = [73, 74, 75, 71, 69, 72, 76, 73]\nprint(daily_temperatures(temperatures))  # Output: [1, 1, 4, 2, 1, 1, 0, 0]\n```\n\n### Explanation:\n- **Initialization**: We initialize `answer` with zeros because if no warmer day is found, the value will remain zero.\n- **Stack Usage**: The stack helps in keeping track of the indices of temperatures for which we haven't yet found a warmer day.\n- **Iteration**: As we iterate through the temperatures, if the current temperature is higher than the temperature at the index stored at the top of the stack, we know that the current day is the warmer day for the day at the stack's top. We then update the `answer` list accordingly and pop the index from the stack.\n- **Pushing Indices**: After processing the current temperature, we push its index onto the stack.\n\nThis method ensures that each temperature is processed only once, making the solution both time and space efficient.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:42:23.751733+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_020_min_jumps",
+  "task_title": "Jump Game II (Minimum Jumps)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `jump(nums: list[int]) -> int` that returns the minimum number of jumps needed to reach the last index, where `nums[i]` is the maximum jump length from index `i`. Return -1 if the last index cannot be reached, and 0 if `nums` has 0 or 1 element.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 9.251,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef jump(nums: List[int]) -> int:\n    n = len(nums)\n    if n <= 1:\n        return 0\n    \n    max_reach = 0\n    step = 0\n    end = 0\n    jumps = 0\n    \n    for i in range(n - 1):\n        max_reach = max(max_reach, i + nums[i])\n        \n        if i == end:\n            jumps += 1\n            end = max_reach\n            \n            if end >= n - 1:\n                break\n                \n    return jumps if end >= n - 1 else -1\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef jump(nums: List[int]) -> int:\n    n = len(nums)\n    if n <= 1:\n        return 0\n    \n    max_reach = 0\n    step = 0\n    end = 0\n    jumps = 0\n    \n    for i in range(n - 1):\n        max_reach = max(max_reach, i + nums[i])\n        \n        if i == end:\n            jumps += 1\n            end = max_reach\n            \n            if end >= n - 1:\n                break\n                \n    return jumps if end >= n - 1 else -1\n```\n\nThis solution uses a greedy approach with a time complexity of O(n) and a space complexity of O(1). It iterates through the list while keeping track of the farthest point that can be reached (`max_reach`). Each time it reaches the end of the current segment (`end`), it increments the jump count and updates the end to the new farthest point. If at any point the end is greater than or equal to the last index, it returns the number of jumps. If the loop completes without reaching the last index, it returns -1.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:54:05.343455+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

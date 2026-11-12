@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_004_reverse_linked_list",
+  "task_title": "Reverse a Linked List",
+  "difficulty": "easy",
+  "prompt": "Define a `ListNode` class with `val` and `next` attributes. Write a Python function `reverse_list(head: ListNode | None) -> ListNode | None` that reverses a singly linked list in-place and returns the new head.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 17.784,
+  "assistant_solution": "```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverse_list(head: ListNode | None) -> ListNode | None:\n    prev = None\n    current = head\n    \n    while current:\n        next_node = current.next  # Store next node\n        current.next = prev       # Reverse the link\n        prev = current            # Move pointers one position ahead\n        current = next_node\n    \n    return prev  # New head of the reversed list\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To reverse a singly linked list in-place, we need to iterate through the list and change the direction of the pointers from each node to point to its previous node instead of the next one. Here's how you can implement this:\n\n1. Initialize three pointers: `prev`, `current`, and `next_node`.\n2. Start with `prev` set to `None` (since the last node will become the new head), `current` set to the head of the list, and `next_node` set to `None`.\n3. Iterate through the list until `current` is `None`.\n4. Inside the loop:\n   - Set `next_node` to the next node of `current`.\n   - Change the `next` pointer of `current` to point to `prev`.\n   - Move `prev` to `current`.\n   - Move `current` to `next_node`.\n5. After the loop, `prev` will be pointing to the new head of the reversed list.\n\nHere's the complete implementation:\n\n```python\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverse_list(head: ListNode | None) -> ListNode | None:\n    prev = None\n    current = head\n    \n    while current:\n        next_node = current.next  # Store next node\n        current.next = prev       # Reverse the link\n        prev = current            # Move pointers one position ahead\n        current = next_node\n    \n    return prev  # New head of the reversed list\n```\n\n### Explanation:\n- **Initialization**: We start by initializing `prev` to `None` because the last node in the original list will be the first node in the reversed list.\n- **Iteration**: We use a `while` loop to traverse the list as long as `current` is not `None`.\n- **Reversing Links**: Inside the loop, we temporarily store the next node (`next_node`), then reverse the link by setting `current.next` to `prev`. This effectively moves the current node backward.\n- **Moving Pointers**: Finally, we move both `prev` and `current` one step forward.\n- **Return**: Once the loop completes, `prev` will be pointing to the new head of the reversed list, so we return it.\n\nThis approach ensures that the list is reversed in-place with a time complexity of O(n) and a space complexity of O(1).",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:23:57.745423+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

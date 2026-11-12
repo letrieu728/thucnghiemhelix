@@ -1,0 +1,35 @@
+{
+  "phase": "build",
+  "task_id": "lcb_001_two_sum",
+  "task_title": "Two Sum with Indices",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `two_sum(nums: list[int], target: int) -> list[int]` that returns the indices of the two numbers in `nums` that add up to `target`. You may assume each input has exactly one solution and you may not use the same element twice. Return indices in ascending order.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 10.905,
+  "assistant_solution": "```python\ndef two_sum(nums, target):\n    num_dict = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in num_dict:\n            return sorted([num_dict[complement], i])\n        else:\n            num_dict[num] = i\n\n# Test the function\nprint(two_sum([2, 7, 11, 15], 9))  # Output: [0, 1]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "Here is a Python solution using a dictionary to store the value-index pairs as we iterate through the list:\n\n```python\ndef two_sum(nums, target):\n    num_dict = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in num_dict:\n            return sorted([num_dict[complement], i])\n        else:\n            num_dict[num] = i\n\n# Test the function\nprint(two_sum([2, 7, 11, 15], 9))  # Output: [0, 1]\n```\n\nIn this code, we start by creating an empty dictionary `num_dict` to store the values and their corresponding indices. We then iterate over the list `nums` with both index `i` and value `num`.\n\nFor each number, we calculate its complement by subtracting it from the target. If the complement is already in our dictionary, it means we have found the two numbers that add up to the target. In this case, we return the sorted indices of these two numbers.\n\nIf the complement is not in our dictionary, we add the current number and its index to the dictionary and continue iterating.\n\nThis approach ensures that we only pass through the list once (O(n) time complexity), which is more efficient than comparing every possible pair of numbers (O(n^2) time complexity).",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T07:54:47.034301+00:00",
+  "temperature": 0.7,
+  "sample_index": 0,
+  "run_tag": "build2",
+  "prompt_truncations": 0,
+  "seed": 42000
+}
