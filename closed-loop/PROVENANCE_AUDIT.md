@@ -115,3 +115,19 @@ was never trained on is now provided (`data/heldout_problems.json`).
       it separately from training-task numbers.
 - [ ] Update slides/scripts/written report to the corrected wording (the
       decks still say "40 live runs").
+
+## Addendum 2026-11-12 — silent model rewrite in the serving proxy (fixed)
+
+The `cc44b7b` version of `01_modal_vllm.py` contained a proxy rule that
+silently rewrote every chat-completion request naming the base model to
+`helix-lora` whenever an adapter existed in the volume. Any base-model
+(BUILD) evaluation run against that deployment would have measured the
+adapter while recording the base model name. The rule was introduced in
+`cc44b7b` (REBUILD commit, 29/10) and was NOT present in the `a090aba`
+server used for the 28/10 BUILD run, so the 9 live BUILD traces are not
+affected by it; the REBUILD traces explicitly requested `helix-lora` and
+are unaffected too. The rule has been removed in this working copy:
+vLLM multi-LoRA routes by the request's model id, and `02` passes the
+model explicitly per phase. The fork still contains the rule — port this
+fix back before any further base-model evaluation against the fork's
+deployment.

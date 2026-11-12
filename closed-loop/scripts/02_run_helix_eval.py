@@ -1123,7 +1123,16 @@ def save_trace(
     }
 
     output_dir.mkdir(parents=True, exist_ok=True)
-    fname = f"{phase}_{problem['id']}_{harness_id}.json"
+    # Held-out runs evaluate several models on the same problems, so the
+    # model slug must be part of the filename — otherwise the second
+    # model's run silently overwrites the first model's 40 traces.
+    # Build/rebuild keep their historical names (one model per phase).
+    if phase == "heldout":
+        slug = {"Qwen/Qwen2.5-Coder-7B-Instruct": "base"}.get(model, model)
+        slug = re.sub(r"[^A-Za-z0-9_.-]+", "_", slug).strip("_")
+        fname = f"{phase}_{slug}_{problem['id']}_{harness_id}.json"
+    else:
+        fname = f"{phase}_{problem['id']}_{harness_id}.json"
     out_path = output_dir / fname
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(trace, f, indent=2, ensure_ascii=False)

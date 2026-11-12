@@ -93,8 +93,10 @@ python closed-loop/scripts/02_run_helix_eval.py --phase heldout --mode live --pr
 python closed-loop/scripts/02_run_helix_eval.py --phase heldout --mode live --problem-set heldout --model helix-lora
 ```
 
-Verify 80 files (`heldout_held_*_*.json`, 40 per model), all `mode: live`
-with non-empty transcripts. Compare with:
+Verify 80 files (`heldout_base_held_*_*.json` and
+`heldout_helix-lora_held_*_*.json`, 40 per model), all `mode: live`
+with non-empty transcripts. Held-out filenames carry the model slug so
+the two runs cannot overwrite each other (see `save_trace` in `02`). Compare with:
 
 ```bash
 python -c "

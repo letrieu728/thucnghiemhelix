@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-12T00:00:00+00:00",
-  "extractor": "legacy pre-guard extraction (manifest reconstructed 2026-11-12; original run wrote no manifest)",
-  "allow_dry_run": true,
-  "live_traces_kept": 9,
-  "dry_run_build_traces_present": 31,
+  "generated_at": "2026-11-12T04:17:50.400167+00:00",
+  "extractor": "03_extract_pairs.py (live-only guard, 2026-11-12)",
+  "allow_dry_run": false,
+  "live_traces_kept": 40,
+  "dry_run_build_traces_present": 0,
   "dry_run_traces_skipped": 0,
   "tasks": [
     "lcb_001_two_sum",
@@ -18,12 +18,53 @@
     "lcb_010_number_of_islands"
   ],
   "counts": {
-    "sft": 9,
-    "dpo": 8
+    "sft": 8,
+    "dpo": 2
   },
   "data_sha256": {
-    "sft_data.jsonl": "c725ce87d4f875a2f98ac56887c2355d270e7dbd2badc9ffbe72cad0ff49d4b9",
-    "dpo_pairs.jsonl": "6299a70b2286a0b965cddd4e43a6bc6904e1962792cdfb60e5828814f127d61c"
+    "sft_data.jsonl": "feeb902997326560c5675a0f361aebfe0a378cffb519c64122a0dfafad73cddc",
+    "dpo_pairs.jsonl": "fbe03d71335e7127209735725a143fa8a0e10a7affe2d655cf6d9d27ac772576"
   },
-  "note": "Committed datasets mixed 9 live + 31 dry-run BUILD traces: 8/9 SFT records and 8/8 DPO chosen come from hand-written dry-run code. See closed-loop/PROVENANCE_AUDIT.md. Training on this data is blocked by default in 04_train_lora.py; re-extract live-only after a live BUILD re-run."
+  "source_traces": [
+    "build_lcb_001_two_sum_hermes-agent.json",
+    "build_lcb_001_two_sum_minimal.json",
+    "build_lcb_001_two_sum_opencode.json",
+    "build_lcb_001_two_sum_pi-mono.json",
+    "build_lcb_002_valid_parentheses_hermes-agent.json",
+    "build_lcb_002_valid_parentheses_minimal.json",
+    "build_lcb_002_valid_parentheses_opencode.json",
+    "build_lcb_002_valid_parentheses_pi-mono.json",
+    "build_lcb_003_lru_cache_hermes-agent.json",
+    "build_lcb_003_lru_cache_minimal.json",
+    "build_lcb_003_lru_cache_opencode.json",
+    "build_lcb_003_lru_cache_pi-mono.json",
+    "build_lcb_004_reverse_linked_list_hermes-agent.json",
+    "build_lcb_004_reverse_linked_list_minimal.json",
+    "build_lcb_004_reverse_linked_list_opencode.json",
+    "build_lcb_004_reverse_linked_list_pi-mono.json",
+    "build_lcb_005_binary_search_hermes-agent.json",
+    "build_lcb_005_binary_search_minimal.json",
+    "build_lcb_005_binary_search_opencode.json",
+    "build_lcb_005_binary_search_pi-mono.json",
+    "build_lcb_006_max_subarray_hermes-agent.json",
+    "build_lcb_006_max_subarray_minimal.json",
+    "build_lcb_006_max_subarray_opencode.json",
+    "build_lcb_006_max_subarray_pi-mono.json",
+    "build_lcb_007_climbing_stairs_hermes-agent.json",
+    "build_lcb_007_climbing_stairs_minimal.json",
+    "build_lcb_007_climbing_stairs_opencode.json",
+    "build_lcb_007_climbing_stairs_pi-mono.json",
+    "build_lcb_008_merge_intervals_hermes-agent.json",
+    "build_lcb_008_merge_intervals_minimal.json",
+    "build_lcb_008_merge_intervals_opencode.json",
+    "build_lcb_008_merge_intervals_pi-mono.json",
+    "build_lcb_009_word_break_hermes-agent.json",
+    "build_lcb_009_word_break_minimal.json",
+    "build_lcb_009_word_break_opencode.json",
+    "build_lcb_009_word_break_pi-mono.json",
+    "build_lcb_010_number_of_islands_hermes-agent.json",
+    "build_lcb_010_number_of_islands_minimal.json",
+    "build_lcb_010_number_of_islands_opencode.json",
+    "build_lcb_010_number_of_islands_pi-mono.json"
+  ]
 }

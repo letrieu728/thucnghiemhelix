@@ -27,22 +27,23 @@ evaluate = load("evaluate", "notebooks/evaluate_rebuild.py")
 
 class PipelineTests(unittest.TestCase):
     def test_live_only_guard_on_committed_traces(self):
-        # Provenance audit 2026-11-12: 40 committed BUILD traces, but only 9
-        # are live (lcb_001 x4, lcb_002 x4, lcb_003 minimal). The default
-        # extractor must keep exactly those; --allow-dry-run reproduces the
-        # old mixed counts (9 SFT / 8 DPO) for smoke tests only.
+        # Live re-run 2026-11-12: all 40 committed BUILD traces are live
+        # (verified: mode=live, non-empty transcripts, base model only).
+        # The default extractor must keep exactly those; --allow-dry-run
+        # changes nothing now that no dry-run traces remain.
         grouped = extract.load_all_traces(ROOT / "data/raw_traces")
-        self.assertEqual(sum(map(len, grouped.values())), 9)
-        self.assertEqual(set(grouped), {"lcb_001_two_sum", "lcb_002_valid_parentheses", "lcb_003_lru_cache"})
+        self.assertEqual(sum(map(len, grouped.values())), 40)
+        self.assertEqual(len(grouped), 10)
         for traces in grouped.values():
             for trace in traces:
                 self.assertTrue(trace["raw_helix_transcript"])
-        self.assertEqual([r["task_id"] for r in extract.extract_sft_records(grouped)], ["lcb_001_two_sum"])
-        self.assertEqual(extract.extract_dpo_pairs(grouped), [])
+        sft_tasks = {r["task_id"] for r in extract.extract_sft_records(grouped)}
+        self.assertEqual(sft_tasks, set(grouped) - {"lcb_002_valid_parentheses", "lcb_003_lru_cache"})
+        self.assertEqual(len(extract.extract_dpo_pairs(grouped)), 2)
         mixed = extract.load_all_traces(ROOT / "data/raw_traces", allow_dry_run=True)
         self.assertEqual(sum(map(len, mixed.values())), 40)
-        self.assertEqual(len(extract.extract_sft_records(mixed)), 9)
-        self.assertEqual(len(extract.extract_dpo_pairs(mixed)), 8)
+        self.assertEqual(len(extract.extract_sft_records(mixed)), 8)
+        self.assertEqual(len(extract.extract_dpo_pairs(mixed)), 2)
 
     def test_dry_run_mode_field_is_skipped(self):
         live = {"task_id": "t1", "phase": "build", "mode": "live", "passed": True,
@@ -83,15 +84,29 @@ class PipelineTests(unittest.TestCase):
             (Path(tmp) / "sft_data.jsonl").write_text("", encoding="utf-8")
             with self.assertRaises(ValueError):
                 train.validate_data(tmp, "sft")
-        # The committed datasets are legacy mixed (live + dry-run) data: the
-        # provenance gate blocks them by default and admits them only with
-        # the explicit escape hatch.
-        with self.assertRaisesRegex(ValueError, "dry-run"):
-            train.validate_data(ROOT / "data/processed", "sft_then_dpo")
+        # The committed datasets are now verified live-only (2026-11-12
+        # re-run): the provenance gate admits them by default.
         self.assertEqual(
-            set(train.validate_data(ROOT / "data/processed", "sft_then_dpo", allow_unverified=True)),
+            set(train.validate_data(ROOT / "data/processed", "sft_then_dpo")),
             {"sft", "dpo"},
         )
+        # A manifest that admits dry-run data is still blocked by default
+        # and admitted only with the explicit escape hatch (synthetic
+        # mixed manifest built from the current verified datasets).
+        with tempfile.TemporaryDirectory() as tmp:
+            src = ROOT / "data/processed"
+            for name in ("sft_data.jsonl", "dpo_pairs.jsonl", "provenance.json"):
+                shutil.copy(src / name, Path(tmp) / name)
+            manifest_path = Path(tmp) / "provenance.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["allow_dry_run"] = True
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "dry-run"):
+                train.validate_data(tmp, "sft_then_dpo")
+            self.assertEqual(
+                set(train.validate_data(tmp, "sft_then_dpo", allow_unverified=True)),
+                {"sft", "dpo"},
+            )
 
     def test_provenance_gate_blocks_tampered_data(self):
         # Counts/hashes that no longer match the manifest always fail, even

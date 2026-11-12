@@ -271,17 +271,15 @@ class VLLMServer:
                 headers.pop("host", None)
                 body = await request.body()
 
-                # Ensure completion requests in REBUILD phase target the LoRA adapter
-                if self.lora_enabled and request.method == "POST" and "completions" in path:
-                    import json
-                    try:
-                        payload = json.loads(body.decode("utf-8"))
-                        if payload.get("model") in [MODEL_NAME, "default", None]:
-                            payload["model"] = LORA_ADAPTER_NAME
-                            body = json.dumps(payload).encode("utf-8")
-                            headers["content-length"] = str(len(body))
-                    except Exception:
-                        pass
+                # NOTE (2026-11-12): do NOT rewrite the requested model here.
+                # An earlier version of this proxy silently redirected every
+                # base-model completion to the LoRA adapter whenever one
+                # existed in the volume, which would invalidate any
+                # base-model (BUILD) evaluation run against this server.
+                # vLLM multi-LoRA already routes by the request's model id:
+                # base id -> base weights, "helix-lora" -> adapter. The
+                # runner (02) passes the model explicitly per phase, so no
+                # rewrite is needed.
 
                 rp = await client.request(
                     request.method, url, headers=headers, content=body
