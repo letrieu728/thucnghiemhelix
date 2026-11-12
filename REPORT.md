@@ -59,6 +59,27 @@ minh; các số liệu LiveCodeBench và SWE-bench của tác giả chưa đư�
 4. PASS của artifact verifier chỉ nói artifact thỏa rule của verifier, không
    đồng nghĩa benchmark live PASS.
 
+## Kiểm tra chéo closed-loop (2026-11-12)
+
+Chi tiết đầy đủ: [kiểm tra trace closed-loop](./results/2026-11-12-closed-loop-trace-audit.md).
+Đối chiếu 80 trace đã commit trong fork `Vietng-XPrince7/HELIX`
+(`cc44b7b`) với lời ghi "40 live runs" và chạy lại sandbox verifier trên
+toàn bộ solution, không gọi model:
+
+- **BUILD chỉ có 9 live + 31 dry-run mock.** 31 trace mock ghi trong ~1,3
+  giây, transcript rỗng, latency/steps đúng hằng số mock trong runner và
+  solution giống từng ký tự đáp án viết tay trong script.
+- **Dữ liệu train chủ yếu là code viết tay:** 8/9 record SFT và 8/8
+  `chosen` DPO lấy từ trace dry-run. Trích xuất live-only chỉ còn 1 SFT,
+  0 DPO.
+- **Cờ `passed` và số học đều đúng:** chạy lại sandbox cho 80/80 solution,
+  0 lệch; bảng §3 của `REBUILD_REPORT.md` khớp trace. Vấn đề là nguồn gốc
+  trace và việc REBUILD đánh giá đúng 10 bài đã train (3 bài Minimal
+  chuyển PASS đều có đáp án trong SFT), chưa có held-out.
+- **Đã sửa trong fork (branch riêng):** trace ghi thêm trường `mode`,
+  extractor mặc định chỉ lấy trace live, thêm 10 bài held-out và runbook
+  chạy lại live. Phần chạy live/train lại vẫn còn thiếu vì cần Modal.
+
 ## Hạn chế và hướng tái lập đầy đủ
 
 | Hạn chế | Tình trạng | Việc cần làm |

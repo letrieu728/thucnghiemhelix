@@ -65,6 +65,22 @@ artifact có sẵn trong HELIX thành một lần tái lập mới.
 | Current-module audit | FAIL (2026-11-10) | Fingerprint trong artifact (`ce386…`) không khớp fingerprint tính lại (`413e…`). |
 | Live provider/native CLI/LCB/SWE-bench | Không thực hiện | Cần model/credential hoặc dữ liệu và runner không có trong checkout. |
 
+## Kiểm tra chéo closed-loop (2026-11-12)
+
+Kiểm tra offline 80 trace đã commit trong fork `Vietng-XPrince7/HELIX`
+(`cc44b7b`): xem [kết quả chi tiết](./results/2026-11-12-closed-loop-trace-audit.md).
+
+- BUILD chỉ có **9 live + 31 dry-run mock** (không phải 40 live như commit
+  message đã ghi); dữ liệu train 8/9 SFT và 8/8 DPO `chosen` lấy từ code
+  viết tay trong trace mock.
+- Chạy lại sandbox trên 80 solution: **0 lệch** so với cờ `passed`; bảng số
+  trong `REBUILD_REPORT.md` khớp trace. Hạn chế còn lại: REBUILD đánh giá
+  đúng 10 bài đã train, chưa có held-out; 4 "harness" chỉ là scaffold
+  prompt, không phải harness HELIX đã assemble.
+- Bản sửa (guard live-only, trường `mode`, 10 bài held-out, runbook chạy
+  live) nằm trong fork, branch riêng — repo này chỉ giữ bằng chứng kiểm
+  tra, không chứa pipeline train/eval.
+
 ## Các phần chưa làm được và lý do
 
 | Hạng mục | Lý do chưa chạy | Điều kiện để chạy |
