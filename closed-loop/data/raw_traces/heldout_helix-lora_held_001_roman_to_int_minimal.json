@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_001_roman_to_int",
+  "task_title": "Roman to Integer",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `roman_to_int(s: str) -> int` that converts a valid Roman numeral string `s` (using symbols I, V, X, L, C, D, M, value range 1 to 3999) to an integer. Subtractive notation applies: IV is 4, IX is 9, XL is 40, XC is 90, CD is 400, CM is 900.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 19.253,
+  "assistant_solution": "```python\ndef roman_to_int(s: str) -> int:\n    # Define the mapping of Roman numerals to integers\n    roman_map = {\n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000\n    }\n    \n    # Initialize the result variable\n    result = 0\n    \n    # Iterate over the characters in the string\n    for i in range(len(s)):\n        # Get the value of the current Roman numeral\n        value = roman_map[s[i]]\n        \n        # If it's not the last character and the next one is larger, subtract this value\n        if i + 1 < len(s) and roman_map[s[i + 1]] > value:\n            result -= value\n        else:\n            result += value\n    \n    return result\n\n# Example usage:\nprint(roman_to_int(\"III\"))      # Output: 3\nprint(roman_to_int(\"IV\"))       # Output: 4\nprint(roman_to_int(\"IX\"))       # Output: 9\nprint(roman_to_int(\"LVIII\"))    # Output: 58\nprint(roman_to_int(\"MCMXCIV\"))  # Output: 1994\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef roman_to_int(s: str) -> int:\n    # Define the mapping of Roman numerals to integers\n    roman_map = {\n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000\n    }\n    \n    # Initialize the result variable\n    result = 0\n    \n    # Iterate over the characters in the string\n    for i in range(len(s)):\n        # Get the value of the current Roman numeral\n        value = roman_map[s[i]]\n        \n        # If it's not the last character and the next one is larger, subtract this value\n        if i + 1 < len(s) and roman_map[s[i + 1]] > value:\n            result -= value\n        else:\n            result += value\n    \n    return result\n\n# Example usage:\nprint(roman_to_int(\"III\"))      # Output: 3\nprint(roman_to_int(\"IV\"))       # Output: 4\nprint(roman_to_int(\"IX\"))       # Output: 9\nprint(roman_to_int(\"LVIII\"))    # Output: 58\nprint(roman_to_int(\"MCMXCIV\"))  # Output: 1994\n```\n\nThis function works by iterating through each character in the input string, converting it to its corresponding integer value using the `roman_map`. It then checks if the current value should be added or subtracted based on whether the next value is larger. This handles both regular and subtractive cases in Roman numerals.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:11:53.603890+00:00"
+}

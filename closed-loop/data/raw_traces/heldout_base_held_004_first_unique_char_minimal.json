@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_004_first_unique_char",
+  "task_title": "First Unique Character in a String",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `first_unique_char(s: str) -> int` that returns the index of the first non-repeating character in `s`, or -1 if no such character exists.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 10.203,
+  "assistant_solution": "```python\ndef first_unique_char(s: str) -> int:\n    # Create a dictionary to store the count and last seen index of each character\n    char_count = {}\n    \n    # Iterate over the string to populate the dictionary\n    for i, char in enumerate(s):\n        if char in char_count:\n            char_count[char] = (-1, i)  # Mark as repeated by setting count to -1\n        else:\n            char_count[char] = (1, i)   # Set count to 1 and record the index\n    \n    # Find the first character with a count of 1\n    for _, (count, index) in char_count.items():\n        if count == 1:\n            return index\n    \n    # If no unique character is found, return -1\n    return -1\n\n# Example usage:\nprint(first_unique_char(\"leetcode\"))  # Output: 0\nprint(first_unique_char(\"loveleetcode\"))  # Output: 2\nprint(first_unique_char(\"aabbcc\"))  # Output: -1\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef first_unique_char(s: str) -> int:\n    # Create a dictionary to store the count and last seen index of each character\n    char_count = {}\n    \n    # Iterate over the string to populate the dictionary\n    for i, char in enumerate(s):\n        if char in char_count:\n            char_count[char] = (-1, i)  # Mark as repeated by setting count to -1\n        else:\n            char_count[char] = (1, i)   # Set count to 1 and record the index\n    \n    # Find the first character with a count of 1\n    for _, (count, index) in char_count.items():\n        if count == 1:\n            return index\n    \n    # If no unique character is found, return -1\n    return -1\n\n# Example usage:\nprint(first_unique_char(\"leetcode\"))  # Output: 0\nprint(first_unique_char(\"loveleetcode\"))  # Output: 2\nprint(first_unique_char(\"aabbcc\"))  # Output: -1\n```\n\nThis Python function uses a dictionary to keep track of the count and the last seen index of each character in the string. It iterates through the string twice: first to populate the dictionary and then to find the first character with a count of 1. The function returns the index of this character or -1 if all characters repeat.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:02:59.100567+00:00"
+}

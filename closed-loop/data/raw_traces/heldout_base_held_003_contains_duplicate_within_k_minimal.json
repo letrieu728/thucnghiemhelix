@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_003_contains_duplicate_within_k",
+  "task_title": "Contains Duplicate Within Distance K",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `contains_nearby_duplicate(nums: list[int], k: int) -> bool` that returns True if there exist two distinct indices i and j such that nums[i] == nums[j] and abs(i - j) <= k, and False otherwise.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 9.291,
+  "assistant_solution": "```python\ndef contains_nearby_duplicate(nums: list[int], k: int) -> bool:\n    num_dict = {}\n    \n    for i in range(len(nums)):\n        if nums[i] in num_dict:\n            if i - num_dict[nums[i]] <= k:\n                return True\n        num_dict[nums[i]] = i\n    \n    return False\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "Here is the Python solution for your problem:\n\n```python\ndef contains_nearby_duplicate(nums: list[int], k: int) -> bool:\n    num_dict = {}\n    \n    for i in range(len(nums)):\n        if nums[i] in num_dict:\n            if i - num_dict[nums[i]] <= k:\n                return True\n        num_dict[nums[i]] = i\n    \n    return False\n```\n\nThis function uses a dictionary to store the last seen index of each number. For each number in the array, it checks whether this number has been seen before. If so, it checks whether the difference between the current index and the last seen index is less than or equal to k. If it is, then it means there exists a duplicate within k distance, so the function returns True. If not, it updates the last seen index of the current number. If no duplicates within k distance are found after checking all numbers, the function returns False.\n\nThe time complexity of this function is O(n), where n is the length of the input list. The space complexity is also O(n), because in the worst case scenario (when there are no duplicates within k distance), we need to store every number's index in the dictionary.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:01:59.284756+00:00"
+}

@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_009_longest_substring_no_repeat",
+  "task_title": "Longest Substring Without Repeating Characters",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `length_of_longest_substring(s: str) -> int` that returns the length of the longest substring of `s` without repeating characters.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 24.849,
+  "assistant_solution": "```python\ndef length_of_longest_substring(s: str) -> int:\n    # Dictionary to store the last seen index of each character\n    last_seen = {}\n    \n    # Start and end pointers for the sliding window\n    start = 0\n    \n    # Variable to store the maximum length of the substring\n    max_length = 0\n    \n    # Iterate over the string with the end pointer\n    for end, char in enumerate(s):\n        # If the character is already in the dictionary and its last seen index is within the current window\n        if char in last_seen and last_seen[char] >= start:\n            # Move the start pointer to one position right after the last seen index of the current character\n            start = last_seen[char] + 1\n        \n        # Update the last seen index of the current character\n        last_seen[char] = end\n        \n        # Calculate the length of the current window and update max_length if necessary\n        max_length = max(max_length, end - start + 1)\n    \n    # Return the maximum length of the substring\n    return max_length\n\n# Example usage:\nprint(length_of_longest_substring(\"abcabcbb\"))  # Output: 3\nprint(length_of_longest_substring(\"bbbbb\"))     # Output: 1\nprint(length_of_longest_substring(\"pwwkew\"))    # Output: 3\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve the problem of finding the length of the longest substring of a given string `s` without repeating characters, we can use the sliding window technique. This approach allows us to efficiently find the desired length by maintaining a window that expands and contracts as we iterate through the string.\n\nHere's a step-by-step breakdown of the algorithm:\n\n1. **Initialize Variables**:\n   - Use two pointers, `start` and `end`, to represent the current window of non-repeating characters.\n   - Use a dictionary to keep track of the last seen index of each character.\n   - Initialize a variable `max_length` to store the maximum length of the substring found so far.\n\n2. **Iterate Through the String**:\n   - For each character at position `end`, check if it has been seen before and if its last seen index is within the current window (`start <= last_seen_index < end`).\n   - If it has, move the `start` pointer to one position right after the last seen index of the current character to ensure no repetitions.\n   - Update the last seen index of the current character in the dictionary.\n   - Calculate the length of the current window (`end - start + 1`) and update `max_length` if this length is greater than the current `max_length`.\n\n3. **Return the Result**:\n   - After iterating through the string, return `max_length`.\n\nHere's the implementation of the above logic in Python:\n\n```python\ndef length_of_longest_substring(s: str) -> int:\n    # Dictionary to store the last seen index of each character\n    last_seen = {}\n    \n    # Start and end pointers for the sliding window\n    start = 0\n    \n    # Variable to store the maximum length of the substring\n    max_length = 0\n    \n    # Iterate over the string with the end pointer\n    for end, char in enumerate(s):\n        # If the character is already in the dictionary and its last seen index is within the current window\n        if char in last_seen and last_seen[char] >= start:\n            # Move the start pointer to one position right after the last seen index of the current character\n            start = last_seen[char] + 1\n        \n        # Update the last seen index of the current character\n        last_seen[char] = end\n        \n        # Calculate the length of the current window and update max_length if necessary\n        max_length = max(max_length, end - start + 1)\n    \n    # Return the maximum length of the substring\n    return max_length\n\n# Example usage:\nprint(length_of_longest_substring(\"abcabcbb\"))  # Output: 3\nprint(length_of_longest_substring(\"bbbbb\"))     # Output: 1\nprint(length_of_longest_substring(\"pwwkew\"))    # Output: 3\n```\n\n### Explanation of Edge Cases:\n- **Empty String**: The function will correctly return `0` because there are no characters to form a substring.\n- **String with All Unique Characters**: The function will return the length of the entire string since all characters are unique.\n- **String with Repeating Characters**: The function will correctly identify the longest substring without repeating characters.\n- **String with Single Character**: The function will return `1` because a single character is always a valid substring.\n\nThis implementation ensures that the function runs in O(n) time complexity, where n is the length of the input string, due to the linear scan and constant-time operations for dictionary lookups and updates.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:10:13.011439+00:00"
+}

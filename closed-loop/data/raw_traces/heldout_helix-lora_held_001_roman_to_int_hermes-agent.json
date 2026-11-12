@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_001_roman_to_int",
+  "task_title": "Roman to Integer",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `roman_to_int(s: str) -> int` that converts a valid Roman numeral string `s` (using symbols I, V, X, L, C, D, M, value range 1 to 3999) to an integer. Subtractive notation applies: IV is 4, IX is 9, XL is 40, XC is 90, CD is 400, CM is 900.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 27.336,
+  "assistant_solution": "```python\ndef roman_to_int(s: str) -> int:\n    # Define a dictionary to map Roman numerals to their integer values\n    roman_map = {\n        'I': 1, 'V': 5, 'X': 10, 'L': 50,\n        'C': 100, 'D': 500, 'M': 1000\n    }\n    \n    # Initialize the result variable\n    total = 0\n    \n    # Iterate over the string from left to right\n    for i in range(len(s)):\n        # Get the value of the current Roman numeral\n        value = roman_map[s[i]]\n        \n        # If it's not the last character and the next character represents a larger number,\n        # then this is a subtractive case (e.g., IV, IX)\n        if i + 1 < len(s) and roman_map[s[i + 1]] > value:\n            total -= value\n        else:\n            total += value\n    \n    return total\n\n# Test cases to validate the solution\nprint(roman_to_int(\"III\"))      # Output: 3\nprint(roman_to_int(\"IV\"))       # Output: 4\nprint(roman_to_int(\"IX\"))       # Output: 9\nprint(roman_to_int(\"LVIII\"))    # Output: 58\nprint(roman_to_int(\"MCMXCIV\"))  # Output: 1994\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef roman_to_int(s: str) -> int:\n    # Define a dictionary to map Roman numerals to their integer values\n    roman_map = {\n        'I': 1, 'V': 5, 'X': 10, 'L': 50,\n        'C': 100, 'D': 500, 'M': 1000\n    }\n    \n    # Initialize the result variable\n    total = 0\n    \n    # Iterate over the string from left to right\n    for i in range(len(s)):\n        # Get the value of the current Roman numeral\n        value = roman_map[s[i]]\n        \n        # If it's not the last character and the next character represents a larger number,\n        # then this is a subtractive case (e.g., IV, IX)\n        if i + 1 < len(s) and roman_map[s[i + 1]] > value:\n            total -= value\n        else:\n            total += value\n    \n    return total\n\n# Test cases to validate the solution\nprint(roman_to_int(\"III\"))      # Output: 3\nprint(roman_to_int(\"IV\"))       # Output: 4\nprint(roman_to_int(\"IX\"))       # Output: 9\nprint(roman_to_int(\"LVIII\"))    # Output: 58\nprint(roman_to_int(\"MCMXCIV\"))  # Output: 1994\n```\n\n### Explanation:\n1. **Mapping**: We create a dictionary `roman_map` to store the integer values corresponding to each Roman numeral symbol.\n2. **Initialization**: We initialize a variable `total` to accumulate the resulting integer value.\n3. **Iteration**: We iterate through each character in the input string `s`.\n   - For each character, we get its corresponding integer value from the `roman_map`.\n   - If the current character is followed by a character representing a larger value (indicating a subtractive case), we subtract the current value from `total`.\n   - Otherwise, we add the current value to `total`.\n4. **Return**: Finally, we return the accumulated `total`.\n\nThis approach ensures that we correctly handle both standard and subtractive Roman numeral representations. The time complexity is O(n), where n is the length of the input string, as we only need to traverse the string once.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:12:52.075168+00:00"
+}

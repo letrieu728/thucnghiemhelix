@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_004_first_unique_char",
+  "task_title": "First Unique Character in a String",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `first_unique_char(s: str) -> int` that returns the index of the first non-repeating character in `s`, or -1 if no such character exists.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 17.28,
+  "assistant_solution": "```python\ndef first_unique_char(s: str) -> int:\n    # Dictionary to store the frequency of each character\n    char_count = {}\n    \n    # List to store the order of characters\n    char_order = []\n    \n    # First pass: count frequencies and record order\n    for i, char in enumerate(s):\n        if char not in char_count:\n            char_count[char] = 0\n            char_order.append(char)\n        char_count[char] += 1\n    \n    # Second pass: find the first character with a frequency of 1\n    for char in char_order:\n        if char_count[char] == 1:\n            return s.index(char)\n    \n    # If no unique character is found, return -1\n    return -1\n\n# Example usage:\nprint(first_unique_char(\"leetcode\"))  # Output: 0\nprint(first_unique_char(\"loveleetcode\"))  # Output: 2\nprint(first_unique_char(\"aabbcc\"))  # Output: -1\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem efficiently, we need to find the first unique character in a given string `s`. The approach involves using two main data structures:\n\n1. A dictionary to count the frequency of each character in the string.\n2. A list to remember the order of characters as they appear in the string.\n\nHere's the step-by-step plan:\n1. Traverse the string to populate the frequency dictionary and the order list.\n2. Traverse the order list to find the first character with a frequency of 1.\n\nThis ensures that we efficiently find the first unique character while maintaining the order of appearance.\n\n```python\ndef first_unique_char(s: str) -> int:\n    # Dictionary to store the frequency of each character\n    char_count = {}\n    \n    # List to store the order of characters\n    char_order = []\n    \n    # First pass: count frequencies and record order\n    for i, char in enumerate(s):\n        if char not in char_count:\n            char_count[char] = 0\n            char_order.append(char)\n        char_count[char] += 1\n    \n    # Second pass: find the first character with a frequency of 1\n    for char in char_order:\n        if char_count[char] == 1:\n            return s.index(char)\n    \n    # If no unique character is found, return -1\n    return -1\n\n# Example usage:\nprint(first_unique_char(\"leetcode\"))  # Output: 0\nprint(first_unique_char(\"loveleetcode\"))  # Output: 2\nprint(first_unique_char(\"aabbcc\"))  # Output: -1\n```\n\n### Explanation:\n1. **First Pass**: We iterate through the string and use a dictionary `char_count` to keep track of how many times each character appears. Simultaneously, we maintain a list `char_order` to remember the order of characters as they appear.\n2. **Second Pass**: We iterate through the `char_order` list and check the frequency of each character in the `char_count` dictionary. The first character with a frequency of 1 is returned.\n3. **Edge Cases**:\n   - If there are no unique characters, the function returns `-1`.\n\nThis approach ensures that we efficiently find the first unique character with a time complexity of O(n), where n is the length of the string. The space complexity is also O(n) due to the additional storage used for the dictionary and list.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:03:39.020369+00:00"
+}

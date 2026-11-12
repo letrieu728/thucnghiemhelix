@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_003_contains_duplicate_within_k",
+  "task_title": "Contains Duplicate Within Distance K",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `contains_nearby_duplicate(nums: list[int], k: int) -> bool` that returns True if there exist two distinct indices i and j such that nums[i] == nums[j] and abs(i - j) <= k, and False otherwise.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 4.518,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef contains_nearby_duplicate(nums: List[int], k: int) -> bool:\n    num_indices = {}\n    for i, num in enumerate(nums):\n        if num in num_indices and i - num_indices[num] <= k:\n            return True\n        num_indices[num] = i\n    return False\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef contains_nearby_duplicate(nums: List[int], k: int) -> bool:\n    num_indices = {}\n    for i, num in enumerate(nums):\n        if num in num_indices and i - num_indices[num] <= k:\n            return True\n        num_indices[num] = i\n    return False\n```",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:15:57.553367+00:00"
+}

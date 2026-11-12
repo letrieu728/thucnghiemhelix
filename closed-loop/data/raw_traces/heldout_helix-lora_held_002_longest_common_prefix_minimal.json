@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_002_longest_common_prefix",
+  "task_title": "Longest Common Prefix",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `longest_common_prefix(strs: list[str]) -> str` that returns the longest common prefix string shared by all strings in `strs`. Return an empty string if there is no common prefix or if `strs` is empty.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 15.067,
+  "assistant_solution": "```python\ndef longest_common_prefix(strs: list[str]) -> str:\n    # Check if the input list is empty\n    if not strs:\n        return \"\"\n    \n    # Start with the first string as the initial prefix\n    prefix = strs[0]\n    \n    # Iterate over the rest of the strings\n    for s in strs[1:]:\n        # Reduce the prefix length until it matches the start of the current string\n        while not s.startswith(prefix):\n            prefix = prefix[:-1]\n            # If the prefix becomes empty, return an empty string immediately\n            if not prefix:\n                return \"\"\n    \n    # Return the found common prefix\n    return prefix\n\n# Example usage:\nprint(longest_common_prefix([\"flower\", \"flow\", \"flight\"]))  # Output: \"fl\"\nprint(longest_common_prefix([\"dog\", \"racecar\", \"car\"]))     # Output: \"\"\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef longest_common_prefix(strs: list[str]) -> str:\n    # Check if the input list is empty\n    if not strs:\n        return \"\"\n    \n    # Start with the first string as the initial prefix\n    prefix = strs[0]\n    \n    # Iterate over the rest of the strings\n    for s in strs[1:]:\n        # Reduce the prefix length until it matches the start of the current string\n        while not s.startswith(prefix):\n            prefix = prefix[:-1]\n            # If the prefix becomes empty, return an empty string immediately\n            if not prefix:\n                return \"\"\n    \n    # Return the found common prefix\n    return prefix\n\n# Example usage:\nprint(longest_common_prefix([\"flower\", \"flow\", \"flight\"]))  # Output: \"fl\"\nprint(longest_common_prefix([\"dog\", \"racecar\", \"car\"]))     # Output: \"\"\n```\n\nThis Python function starts with the first string in the list as the initial prefix and iteratively checks each subsequent string to ensure it starts with this prefix. If at any point the prefix does not match the beginning of a string, the function shortens the prefix from the end until it either matches or becomes empty. The function returns the longest common prefix found or an empty string if no common prefix exists.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:13:20.346054+00:00"
+}

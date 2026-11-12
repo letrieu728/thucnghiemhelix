@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_010_coin_change",
+  "task_title": "Coin Change (Fewest Coins)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `coin_change(coins: list[int], amount: int) -> int` that returns the fewest number of coins needed to make up `amount` using coins of the given denominations (unlimited supply of each). Return -1 if the amount cannot be made up, and 0 if amount is 0.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 9.069,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef coin_change(coins: List[int], amount: int) -> int:\n    # Initialize a list to store the minimum coins needed for each amount up to the target amount\n    dp = [float('inf')] * (amount + 1)\n    dp[0] = 0  # Base case: 0 coins are needed to make amount 0\n    \n    # Iterate over each coin denomination\n    for coin in coins:\n        # Update the dp array for all amounts greater than or equal to the current coin value\n        for x in range(coin, amount + 1):\n            dp[x] = min(dp[x], dp[x - coin] + 1)\n    \n    # If dp[amount] remains infinity, it means the amount cannot be made up with the given coins\n    return dp[amount] if dp[amount] != float('inf') else -1\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef coin_change(coins: List[int], amount: int) -> int:\n    # Initialize a list to store the minimum coins needed for each amount up to the target amount\n    dp = [float('inf')] * (amount + 1)\n    dp[0] = 0  # Base case: 0 coins are needed to make amount 0\n    \n    # Iterate over each coin denomination\n    for coin in coins:\n        # Update the dp array for all amounts greater than or equal to the current coin value\n        for x in range(coin, amount + 1):\n            dp[x] = min(dp[x], dp[x - coin] + 1)\n    \n    # If dp[amount] remains infinity, it means the amount cannot be made up with the given coins\n    return dp[amount] if dp[amount] != float('inf') else -1\n```\n\nThis solution uses dynamic programming to solve the coin change problem efficiently. The time complexity is O(n * m), where n is the amount and m is the number of coin denominations. The space complexity is O(n) for storing the dp array.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:11:31.853489+00:00"
+}

@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_008_min_stack",
+  "task_title": "Min Stack",
+  "difficulty": "medium",
+  "prompt": "Implement a stack class `MinStack` in Python with methods `push(val: int) -> None`, `pop() -> None` (removes the top element), `top() -> int` (returns the top element), and `get_min() -> int` (returns the minimum element in the stack). All operations will be called on non-empty stacks where a return value is required.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 19.413,
+  "assistant_solution": "```python\nclass MinStack:\n    def __init__(self):\n        # Initialize an empty list to act as the stack\n        self.stack = []\n\n    def push(self, val: int) -> None:\n        # If the stack is empty, the first element is both the value and the min\n        if not self.stack:\n            self.stack.append((val, val))\n        else:\n            # Get the current minimum from the top of the stack\n            current_min = self.stack[-1][1]\n            # Push the new value and the updated minimum\n            self.stack.append((val, min(val, current_min)))\n\n    def pop(self) -> None:\n        # Remove the top element from the stack\n        self.stack.pop()\n\n    def top(self) -> int:\n        # Return the top value of the stack\n        return self.stack[-1][0]\n\n    def get_min(self) -> int:\n        # Return the current minimum value in the stack\n        return self.stack[-1][1]\n\n# Example usage:\nmin_stack = MinStack()\nmin_stack.push(-2)\nmin_stack.push(0)\nmin_stack.push(-3)\nprint(min_stack.get_min())  # Output: -3\nmin_stack.pop()\nprint(min_stack.top())      # Output: 0\nprint(min_stack.get_min())  # Output: -2\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To implement a `MinStack` class in Python that supports all the specified operations efficiently, we can use a list to store tuples. Each tuple will contain two values:\n1. The actual value being pushed onto the stack.\n2. The current minimum value up to that point.\n\nThis way, each push operation will update both the stack and the minimum value in constant time.\n\nHere's the complete implementation:\n\n```python\nclass MinStack:\n    def __init__(self):\n        # Initialize an empty list to act as the stack\n        self.stack = []\n\n    def push(self, val: int) -> None:\n        # If the stack is empty, the first element is both the value and the min\n        if not self.stack:\n            self.stack.append((val, val))\n        else:\n            # Get the current minimum from the top of the stack\n            current_min = self.stack[-1][1]\n            # Push the new value and the updated minimum\n            self.stack.append((val, min(val, current_min)))\n\n    def pop(self) -> None:\n        # Remove the top element from the stack\n        self.stack.pop()\n\n    def top(self) -> int:\n        # Return the top value of the stack\n        return self.stack[-1][0]\n\n    def get_min(self) -> int:\n        # Return the current minimum value in the stack\n        return self.stack[-1][1]\n\n# Example usage:\nmin_stack = MinStack()\nmin_stack.push(-2)\nmin_stack.push(0)\nmin_stack.push(-3)\nprint(min_stack.get_min())  # Output: -3\nmin_stack.pop()\nprint(min_stack.top())      # Output: 0\nprint(min_stack.get_min())  # Output: -2\n```\n\n### Explanation:\n1. **Initialization (`__init__`)**:\n   - We initialize an empty list `stack` to hold our data.\n\n2. **Push Operation**:\n   - If the stack is empty, we push a tuple `(val, val)` because the first element is both the value and the minimum.\n   - If the stack is not empty, we retrieve the current minimum from the top of the stack and push a tuple `(val, min(val, current_min))`.\n\n3. **Pop Operation**:\n   - We simply remove the top element from the stack using `pop()`.\n\n4. **Top Operation**:\n   - We return the value part of the top tuple using `self.stack[-1][0]`.\n\n5. **Get Minimum Operation**:\n   - We return the minimum part of the top tuple using `self.stack[-1][1]`.\n\nThis implementation ensures that all operations (`push`, `pop`, `top`, `get_min`) are performed in constant time \\(O(1)\\).",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:08:53.675964+00:00"
+}

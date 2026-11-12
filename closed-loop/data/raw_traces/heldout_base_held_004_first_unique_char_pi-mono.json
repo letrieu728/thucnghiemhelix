@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_004_first_unique_char",
+  "task_title": "First Unique Character in a String",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `first_unique_char(s: str) -> int` that returns the index of the first non-repeating character in `s`, or -1 if no such character exists.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 22.401,
+  "assistant_solution": "```python\nfrom collections import OrderedDict\n\ndef first_unique_char(s: str) -> int:\n    # Dictionary to store the frequency of each character\n    char_frequency = {}\n    \n    # Ordered list to store the characters in the order they appear\n    char_order = []\n    \n    # First pass: populate the frequency dictionary and char_order list\n    for i, char in enumerate(s):\n        if char not in char_frequency:\n            char_frequency[char] = 0\n            char_order.append(char)\n        char_frequency[char] += 1\n    \n    # Second pass: find the first character with a frequency of 1\n    for char in char_order:\n        if char_frequency[char] == 1:\n            return s.index(char)\n    \n    # If no unique character is found, return -1\n    return -1\n\n# Example usage:\nprint(first_unique_char(\"leetcode\"))  # Output: 0\nprint(first_unique_char(\"loveleetcode\"))  # Output: 2\nprint(first_unique_char(\"aabbcc\"))  # Output: -1\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem efficiently, we need to keep track of both the frequency of each character and their order of appearance. We can use two data structures for this purpose:\n\n1. A dictionary to store the frequency of each character.\n2. An ordered list (or deque) to store the characters in the order they appear.\n\nHere's a step-by-step approach to implement the function:\n\n1. Traverse the string and update the frequency dictionary and the ordered list.\n2. Traverse the ordered list and check the frequency of each character in the dictionary.\n3. Return the index of the first character with a frequency of 1, or -1 if all characters have a frequency greater than 1.\n\nLet's write the Python function implementing this logic:\n\n```python\nfrom collections import OrderedDict\n\ndef first_unique_char(s: str) -> int:\n    # Dictionary to store the frequency of each character\n    char_frequency = {}\n    \n    # Ordered list to store the characters in the order they appear\n    char_order = []\n    \n    # First pass: populate the frequency dictionary and char_order list\n    for i, char in enumerate(s):\n        if char not in char_frequency:\n            char_frequency[char] = 0\n            char_order.append(char)\n        char_frequency[char] += 1\n    \n    # Second pass: find the first character with a frequency of 1\n    for char in char_order:\n        if char_frequency[char] == 1:\n            return s.index(char)\n    \n    # If no unique character is found, return -1\n    return -1\n\n# Example usage:\nprint(first_unique_char(\"leetcode\"))  # Output: 0\nprint(first_unique_char(\"loveleetcode\"))  # Output: 2\nprint(first_unique_char(\"aabbcc\"))  # Output: -1\n```\n\n### Explanation:\n\n1. **Frequency Dictionary (`char_frequency`)**:\n   - This dictionary keeps track of how many times each character appears in the string.\n\n2. **Ordered List (`char_order`)**:\n   - This list maintains the order of characters as they appear in the string. It helps us to easily find the first non-repeating character.\n\n3. **First Pass**:\n   - We iterate through the string and update the frequency dictionary and the ordered list.\n   - For each character, if it's not already in the dictionary, we add it with a count of 0 and append it to the ordered list.\n   - We then increment the count of the character in the dictionary.\n\n4. **Second Pass**:\n   - We iterate through the ordered list and check the frequency of each character in the dictionary.\n   - The first character with a frequency of 1 is the first non-repeating character, so we return its index using `s.index(char)`.\n\n5. **Return -1**:\n   - If no character has a frequency of 1, we return -1 indicating that there is no unique character.\n\nThis approach ensures that we only traverse the string twice, making it efficient with a time complexity of O(n), where n is the length of the string. The space complexity is also O(n) due to the additional storage used by the dictionary and the ordered list.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:03:21.620367+00:00"
+}

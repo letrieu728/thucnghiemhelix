@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_004_first_unique_char",
+  "task_title": "First Unique Character in a String",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `first_unique_char(s: str) -> int` that returns the index of the first non-repeating character in `s`, or -1 if no such character exists.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 23.162,
+  "assistant_solution": "```python\ndef first_unique_char(s: str) -> int:\n    \"\"\"\n    Returns the index of the first non-repeating character in the string s.\n    If no unique character is found, returns -1.\n    \n    :param s: Input string to search for the first unique character.\n    :return: Index of the first unique character, or -1 if none exists.\n    \"\"\"\n    # Dictionary to store the count of each character\n    char_count = {}\n    \n    # First pass: Count the occurrences of each character\n    for char in s:\n        if char in char_count:\n            char_count[char] += 1\n        else:\n            char_count[char] = 1\n    \n    # Second pass: Find the first character with a count of 1\n    for i, char in enumerate(s):\n        if char_count[char] == 1:\n            return i\n    \n    # If no unique character is found, return -1\n    return -1\n\n# Example usage:\nprint(first_unique_char(\"leetcode\"))  # Output: 0\nprint(first_unique_char(\"loveleetcode\"))  # Output: 2\nprint(first_unique_char(\"aabbcc\"))  # Output: -1\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef first_unique_char(s: str) -> int:\n    \"\"\"\n    Returns the index of the first non-repeating character in the string s.\n    If no unique character is found, returns -1.\n    \n    :param s: Input string to search for the first unique character.\n    :return: Index of the first unique character, or -1 if none exists.\n    \"\"\"\n    # Dictionary to store the count of each character\n    char_count = {}\n    \n    # First pass: Count the occurrences of each character\n    for char in s:\n        if char in char_count:\n            char_count[char] += 1\n        else:\n            char_count[char] = 1\n    \n    # Second pass: Find the first character with a count of 1\n    for i, char in enumerate(s):\n        if char_count[char] == 1:\n            return i\n    \n    # If no unique character is found, return -1\n    return -1\n\n# Example usage:\nprint(first_unique_char(\"leetcode\"))  # Output: 0\nprint(first_unique_char(\"loveleetcode\"))  # Output: 2\nprint(first_unique_char(\"aabbcc\"))  # Output: -1\n```\n\n### Explanation:\n1. **Counting Characters**: We use a dictionary `char_count` to keep track of how many times each character appears in the string.\n2. **First Pass**: Iterate through the string and populate the `char_count` dictionary.\n3. **Second Pass**: Iterate through the string again and check the count of each character in the `char_count` dictionary. The first character with a count of 1 is returned as the result.\n4. **Edge Cases**:\n   - If all characters repeat (`\"aabbcc\"`), the function returns `-1`.\n   - If the string is empty or all characters are unique (`\"leetcode\"`), it correctly identifies the first unique character.\n\nThis approach ensures that we efficiently find the first unique character with a time complexity of O(n), where n is the length of the string.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:17:12.251837+00:00"
+}

@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_009_longest_substring_no_repeat",
+  "task_title": "Longest Substring Without Repeating Characters",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `length_of_longest_substring(s: str) -> int` that returns the length of the longest substring of `s` without repeating characters.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 10.894,
+  "assistant_solution": "```python\ndef length_of_longest_substring(s: str) -> int:\n    char_index_map = {}\n    start = 0\n    max_length = 0\n\n    for end, char in enumerate(s):\n        if char in char_index_map and char_index_map[char] >= start:\n            start = char_index_map[char] + 1\n        else:\n            max_length = max(max_length, end - start + 1)\n        \n        char_index_map[char] = end\n    \n    return max_length\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef length_of_longest_substring(s: str) -> int:\n    char_index_map = {}\n    start = 0\n    max_length = 0\n\n    for end, char in enumerate(s):\n        if char in char_index_map and char_index_map[char] >= start:\n            start = char_index_map[char] + 1\n        else:\n            max_length = max(max_length, end - start + 1)\n        \n        char_index_map[char] = end\n    \n    return max_length\n```\n\nThis function uses a sliding window approach to keep track of the longest substring without repeating characters. It maintains a dictionary to map characters to their most recent index and updates the start of the window whenever a duplicate character is found. The time complexity is O(n), where n is the length of the string, and the space complexity is O(min(m, n)), where m is the size of the character set.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:25:04.117656+00:00"
+}

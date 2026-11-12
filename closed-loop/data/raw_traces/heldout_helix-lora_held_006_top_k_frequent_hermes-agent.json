@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_006_top_k_frequent",
+  "task_title": "Top K Frequent Elements",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `top_k_frequent(nums: list[int], k: int) -> list[int]` that returns the `k` most frequent elements in `nums`, in any order. It is guaranteed that the answer is unique in terms of which elements qualify (no ties at the cutoff), and 1 <= k <= number of unique elements.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 27.692,
+  "assistant_solution": "```python\nfrom collections import Counter\nfrom typing import List\n\ndef top_k_frequent(nums: List[int], k: int) -> List[int]:\n    # Step 1: Count the frequency of each element\n    freq_counter = Counter(nums)\n    \n    # Step 2: Sort elements by frequency in descending order\n    sorted_elements = sorted(freq_counter.items(), key=lambda x: x[1], reverse=True)\n    \n    # Step 3: Extract the top k elements\n    top_k_elements = [element for element, _ in sorted_elements[:k]]\n    \n    return top_k_elements\n\n# Example usage:\nnums = [1, 1, 1, 2, 2, 3]\nk = 2\nprint(top_k_frequent(nums, k))  # Output could be [1, 2] or [2, 1]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use a combination of hash maps and sorting. Here's a step-by-step approach:\n\n1. **Count Frequencies**: Use a dictionary to count the frequency of each element in the input list `nums`.\n2. **Sort by Frequency**: Sort the elements based on their frequencies in descending order.\n3. **Select Top K Elements**: Select the top `k` elements from the sorted list.\n\nHere's the implementation of the function:\n\n```python\nfrom collections import Counter\nfrom typing import List\n\ndef top_k_frequent(nums: List[int], k: int) -> List[int]:\n    # Step 1: Count the frequency of each element\n    freq_counter = Counter(nums)\n    \n    # Step 2: Sort elements by frequency in descending order\n    sorted_elements = sorted(freq_counter.items(), key=lambda x: x[1], reverse=True)\n    \n    # Step 3: Extract the top k elements\n    top_k_elements = [element for element, _ in sorted_elements[:k]]\n    \n    return top_k_elements\n\n# Example usage:\nnums = [1, 1, 1, 2, 2, 3]\nk = 2\nprint(top_k_frequent(nums, k))  # Output could be [1, 2] or [2, 1]\n```\n\n### Explanation:\n\n1. **Counting Frequencies**:\n   - We use `Counter` from the `collections` module to create a dictionary where keys are the elements from `nums` and values are their respective counts.\n\n2. **Sorting**:\n   - We sort the items of the counter using `sorted()`. The `key=lambda x: x[1]` argument specifies that we should sort based on the frequency (the second element of each tuple). The `reverse=True` argument ensures that the list is sorted in descending order.\n\n3. **Extracting Top K Elements**:\n   - We use list comprehension to extract the first `k` elements from the sorted list. Each element in the sorted list is a tuple `(element, frequency)`, so we only need the element part (`element for element, _ in sorted_elements[:k]`).\n\nThis approach ensures that we efficiently find the top `k` frequent elements in the list. The time complexity is dominated by the sorting step, which is \\(O(n \\log n)\\), where \\(n\\) is the number of elements in `nums`. This is efficient enough given the constraints.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:20:19.349527+00:00"
+}

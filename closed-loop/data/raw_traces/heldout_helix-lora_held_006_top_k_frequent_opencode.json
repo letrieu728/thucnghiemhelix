@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_006_top_k_frequent",
+  "task_title": "Top K Frequent Elements",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `top_k_frequent(nums: list[int], k: int) -> list[int]` that returns the `k` most frequent elements in `nums`, in any order. It is guaranteed that the answer is unique in terms of which elements qualify (no ties at the cutoff), and 1 <= k <= number of unique elements.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 4.671,
+  "assistant_solution": "```python\nfrom collections import Counter\nfrom typing import List\n\ndef top_k_frequent(nums: List[int], k: int) -> List[int]:\n    # Count the frequency of each element\n    count = Counter(nums)\n    # Sort elements by frequency and return the top k\n    return [num for num, freq in count.most_common(k)]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom collections import Counter\nfrom typing import List\n\ndef top_k_frequent(nums: List[int], k: int) -> List[int]:\n    # Count the frequency of each element\n    count = Counter(nums)\n    # Sort elements by frequency and return the top k\n    return [num for num, freq in count.most_common(k)]\n```",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:20:24.155984+00:00"
+}

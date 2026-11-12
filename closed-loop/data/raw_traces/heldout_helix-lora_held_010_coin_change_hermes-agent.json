@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_010_coin_change",
+  "task_title": "Coin Change (Fewest Coins)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `coin_change(coins: list[int], amount: int) -> int` that returns the fewest number of coins needed to make up `amount` using coins of the given denominations (unlimited supply of each). Return -1 if the amount cannot be made up, and 0 if amount is 0.",
+  "harness_id": "hermes-agent",
+  "harness_category": "advanced",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 35.617,
+  "assistant_solution": "```python\ndef coin_change(coins: list[int], amount: int) -> int:\n    # Initialize dp array with infinity\n    dp = [float('inf')] * (amount + 1)\n    \n    # Base case: 0 coins are needed to make amount 0\n    dp[0] = 0\n    \n    # Iterate over each coin\n    for coin in coins:\n        # Update the dp array for each amount from coin to amount\n        for x in range(coin, amount + 1):\n            dp[x] = min(dp[x], dp[x - coin] + 1)\n    \n    # If dp[amount] is still infinity, it means the amount cannot be made up\n    return dp[amount] if dp[amount] != float('inf') else -1\n\n# Example usage:\ncoins = [1, 2, 5]\namount = 11\nprint(coin_change(coins, amount))  # Output: 3 (5+5+1)\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve the coin change problem, we can use dynamic programming. The idea is to build a table where each entry `dp[i]` represents the minimum number of coins required to make up the amount `i`. We initialize this table with infinity (`float('inf')`) for all amounts except `dp[0]`, which should be 0 because no coins are needed to make up the amount 0.\n\nHere's the step-by-step approach:\n\n1. Initialize a list `dp` of size `amount + 1` with all elements set to infinity, except `dp[0]` which is set to 0.\n2. Iterate over each coin denomination.\n3. For each coin, update the `dp` array such that for every amount `i` from the value of the coin to `amount`, calculate the minimum number of coins needed by considering the current coin.\n4. If updating the `dp` array results in a smaller value than the current value, update it.\n5. After processing all coins, check if `dp[amount]` is still infinity. If it is, return -1 indicating that the amount cannot be made up. Otherwise, return `dp[amount]`.\n\nHere's the implementation:\n\n```python\ndef coin_change(coins: list[int], amount: int) -> int:\n    # Initialize dp array with infinity\n    dp = [float('inf')] * (amount + 1)\n    \n    # Base case: 0 coins are needed to make amount 0\n    dp[0] = 0\n    \n    # Iterate over each coin\n    for coin in coins:\n        # Update the dp array for each amount from coin to amount\n        for x in range(coin, amount + 1):\n            dp[x] = min(dp[x], dp[x - coin] + 1)\n    \n    # If dp[amount] is still infinity, it means the amount cannot be made up\n    return dp[amount] if dp[amount] != float('inf') else -1\n\n# Example usage:\ncoins = [1, 2, 5]\namount = 11\nprint(coin_change(coins, amount))  # Output: 3 (5+5+1)\n```\n\n### Explanation:\n- **Initialization**: `dp[0]` is set to 0 because no coins are needed to make the amount 0.\n- **Nested Loops**:\n  - The outer loop iterates over each coin.\n  - The inner loop updates the `dp` array for each amount from the value of the coin to the target amount.\n  - For each amount `x`, we consider using the current coin and update `dp[x]` to be the minimum of its current value and `dp[x - coin] + 1`.\n- **Result**: Finally, we check if `dp[amount]` is still infinity. If it is, it means the amount cannot be made up with the given coins, so we return -1. Otherwise, we return `dp[amount]`, which contains the minimum number of coins needed.\n\nThis approach ensures that we efficiently compute the minimum number of coins needed for any given amount using dynamic programming.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:26:55.057689+00:00"
+}

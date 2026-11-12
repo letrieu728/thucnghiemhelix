@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_003_contains_duplicate_within_k",
+  "task_title": "Contains Duplicate Within Distance K",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `contains_nearby_duplicate(nums: list[int], k: int) -> bool` that returns True if there exist two distinct indices i and j such that nums[i] == nums[j] and abs(i - j) <= k, and False otherwise.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 23.518,
+  "assistant_solution": "```python\ndef contains_nearby_duplicate(nums: list[int], k: int) -> bool:\n    # Dictionary to store the last seen index of each element\n    index_map = {}\n    \n    for i, num in enumerate(nums):\n        if num in index_map:\n            # Check if the difference between indices is less than or equal to k\n            if i - index_map[num] <= k:\n                return True\n        # Update the last seen index of the current element\n        index_map[num] = i\n    \n    # No duplicates within the required distance were found\n    return False\n\n# Example usage:\nnums = [1, 2, 3, 1]\nk = 3\nprint(contains_nearby_duplicate(nums, k))  # Output: True\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem efficiently, we can use a dictionary to keep track of the indices of the elements as we iterate through the list. This allows us to check in constant time whether a duplicate exists within the required distance.\n\nHere's a step-by-step breakdown of the approach:\n\n1. Initialize an empty dictionary to store the last seen index of each element.\n2. Iterate through the list with both the index and the value.\n3. For each element, check if it is already in the dictionary:\n   - If it is, calculate the difference between the current index and the stored index.\n   - If the difference is less than or equal to `k`, return `True`.\n4. If the element is not in the dictionary or the difference is greater than `k`, update the dictionary with the current index of the element.\n5. If no duplicates within the required distance are found by the end of the iteration, return `False`.\n\nThis approach ensures that we only pass through the list once, making the time complexity O(n), where n is the length of the list.\n\nHere's the complete implementation:\n\n```python\ndef contains_nearby_duplicate(nums: list[int], k: int) -> bool:\n    # Dictionary to store the last seen index of each element\n    index_map = {}\n    \n    for i, num in enumerate(nums):\n        if num in index_map:\n            # Check if the difference between indices is less than or equal to k\n            if i - index_map[num] <= k:\n                return True\n        # Update the last seen index of the current element\n        index_map[num] = i\n    \n    # No duplicates within the required distance were found\n    return False\n\n# Example usage:\nnums = [1, 2, 3, 1]\nk = 3\nprint(contains_nearby_duplicate(nums, k))  # Output: True\n```\n\nThis function will correctly determine if there are any two distinct indices `i` and `j` such that `nums[i] == nums[j]` and `abs(i - j) <= k`.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:15:15.605901+00:00"
+}

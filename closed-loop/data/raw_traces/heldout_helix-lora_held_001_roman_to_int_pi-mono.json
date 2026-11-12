@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_001_roman_to_int",
+  "task_title": "Roman to Integer",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `roman_to_int(s: str) -> int` that converts a valid Roman numeral string `s` (using symbols I, V, X, L, C, D, M, value range 1 to 3999) to an integer. Subtractive notation applies: IV is 4, IX is 9, XL is 40, XC is 90, CD is 400, CM is 900.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 30.893,
+  "assistant_solution": "```python\ndef roman_to_int(s: str) -> int:\n    # Mapping of Roman numeral symbols to their integer values\n    roman_map = {\n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000\n    }\n    \n    # Initialize the result\n    result = 0\n    \n    # Iterate through the string\n    i = 0\n    while i < len(s):\n        # Check for subtractive pairs\n        if i + 1 < len(s) and roman_map[s[i]] < roman_map[s[i + 1]]:\n            result += roman_map[s[i + 1]] - roman_map[s[i]]\n            i += 2\n        else:\n            result += roman_map[s[i]]\n            i += 1\n    \n    return result\n\n# Example usage:\nprint(roman_to_int(\"III\"))      # Output: 3\nprint(roman_to_int(\"IV\"))       # Output: 4\nprint(roman_to_int(\"IX\"))       # Output: 9\nprint(roman_to_int(\"LVIII\"))    # Output: 58\nprint(roman_to_int(\"MCMXCIV\"))  # Output: 1994\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To convert a Roman numeral string to an integer in Python, we need to handle both the basic values of the Roman numerals and their subtractive notations. Here's a step-by-step approach to implement this:\n\n1. Create a dictionary to map each Roman numeral symbol to its corresponding integer value.\n2. Iterate through the string from left to right.\n3. For each character, check if it forms a subtractive pair with the next character.\n4. If it does, add the difference to the result and skip the next character.\n5. If it doesn't, add the value of the current character to the result.\n\nHere's the complete implementation:\n\n```python\ndef roman_to_int(s: str) -> int:\n    # Mapping of Roman numeral symbols to their integer values\n    roman_map = {\n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000\n    }\n    \n    # Initialize the result\n    result = 0\n    \n    # Iterate through the string\n    i = 0\n    while i < len(s):\n        # Check for subtractive pairs\n        if i + 1 < len(s) and roman_map[s[i]] < roman_map[s[i + 1]]:\n            result += roman_map[s[i + 1]] - roman_map[s[i]]\n            i += 2\n        else:\n            result += roman_map[s[i]]\n            i += 1\n    \n    return result\n\n# Example usage:\nprint(roman_to_int(\"III\"))      # Output: 3\nprint(roman_to_int(\"IV\"))       # Output: 4\nprint(roman_to_int(\"IX\"))       # Output: 9\nprint(roman_to_int(\"LVIII\"))    # Output: 58\nprint(roman_to_int(\"MCMXCIV\"))  # Output: 1994\n```\n\n### Explanation:\n- The `roman_map` dictionary maps each Roman numeral symbol to its integer value.\n- We initialize `result` to store the final integer value.\n- We use a while loop to iterate through the string `s`.\n- Inside the loop, we check if the current character forms a subtractive pair with the next character by comparing their values in `roman_map`.\n- If it does, we add the difference to `result` and move two steps forward (`i += 2`).\n- If it doesn't, we simply add the value of the current character to `result` and move one step forward (`i += 1`).\n\nThis approach ensures that we correctly handle both basic and subtractive Roman numeral representations.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:12:24.619180+00:00"
+}

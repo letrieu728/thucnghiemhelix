@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_003_contains_duplicate_within_k",
+  "task_title": "Contains Duplicate Within Distance K",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `contains_nearby_duplicate(nums: list[int], k: int) -> bool` that returns True if there exist two distinct indices i and j such that nums[i] == nums[j] and abs(i - j) <= k, and False otherwise.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 11.85,
+  "assistant_solution": "```python\ndef contains_nearby_duplicate(nums: list[int], k: int) -> bool:\n    num_dict = {}\n    for i, num in enumerate(nums):\n        if num in num_dict and i - num_dict[num] <= k:\n            return True\n        num_dict[num] = i\n    return False\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "Here is a Python solution using a dictionary to store the last seen index of each number:\n\n```python\ndef contains_nearby_duplicate(nums: list[int], k: int) -> bool:\n    num_dict = {}\n    for i, num in enumerate(nums):\n        if num in num_dict and i - num_dict[num] <= k:\n            return True\n        num_dict[num] = i\n    return False\n```\n\nIn this solution, we iterate over the list of numbers with their indices. For each number, we check if it has been seen before (i.e., it exists in our dictionary). If it has, we then check if the difference between the current index and the last seen index is less than or equal to k. If both conditions are met, we return True. If not, we update the dictionary with the current index of the number.\n\nIf we finish iterating over the list without finding any duplicates within the given range, we return False. This solution works in O(n) time complexity where n is the length of the input list.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:14:51.940114+00:00"
+}

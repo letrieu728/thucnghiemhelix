@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_010_coin_change",
+  "task_title": "Coin Change (Fewest Coins)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `coin_change(coins: list[int], amount: int) -> int` that returns the fewest number of coins needed to make up `amount` using coins of the given denominations (unlimited supply of each). Return -1 if the amount cannot be made up, and 0 if amount is 0.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 33.858,
+  "assistant_solution": "```python\ndef coin_change(coins: list[int], amount: int) -> int:\n    # Initialize the dp array with infinity\n    dp = [float('inf')] * (amount + 1)\n    \n    # Base case: 0 coins are needed to make amount 0\n    dp[0] = 0\n    \n    # Fill the dp array\n    for coin in coins:\n        for x in range(coin, amount + 1):\n            dp[x] = min(dp[x], dp[x - coin] + 1)\n    \n    # If dp[amount] is still infinity, it means the amount cannot be made up\n    return dp[amount] if dp[amount] != float('inf') else -1\n\n# Example usage:\ncoins = [1, 2, 5]\namount = 11\nprint(coin_change(coins, amount))  # Output: 3 (5+5+1)\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use dynamic programming. The idea is to build a table where the entry at index `i` represents the minimum number of coins required to make up the amount `i`. Here's a step-by-step breakdown of the approach:\n\n1. **Initialization**: Create a list `dp` of size `amount + 1` initialized with infinity (`float('inf')`). This will store the minimum number of coins needed for each amount from 0 to `amount`. Set `dp[0]` to 0 because no coins are needed to make up the amount 0.\n\n2. **Filling the DP Table**:\n   - Iterate through each coin denomination.\n   - For each coin, iterate through all amounts from the coin's value up to the target amount.\n   - Update the `dp` table by considering the current coin and the previously computed values.\n\n3. **Result Extraction**: After filling the table, check if `dp[amount]` is still infinity. If it is, it means the amount cannot be made up with the given coins, so return -1. Otherwise, return `dp[amount]`.\n\nHere's the complete implementation:\n\n```python\ndef coin_change(coins: list[int], amount: int) -> int:\n    # Initialize the dp array with infinity\n    dp = [float('inf')] * (amount + 1)\n    \n    # Base case: 0 coins are needed to make amount 0\n    dp[0] = 0\n    \n    # Fill the dp array\n    for coin in coins:\n        for x in range(coin, amount + 1):\n            dp[x] = min(dp[x], dp[x - coin] + 1)\n    \n    # If dp[amount] is still infinity, it means the amount cannot be made up\n    return dp[amount] if dp[amount] != float('inf') else -1\n\n# Example usage:\ncoins = [1, 2, 5]\namount = 11\nprint(coin_change(coins, amount))  # Output: 3 (5+5+1)\n```\n\n### Explanation:\n- **Initialization**: `dp = [float('inf')] * (amount + 1)` initializes the list with infinity, except for `dp[0]` which is set to 0.\n- **Nested Loops**: The outer loop iterates over each coin, and the inner loop updates the `dp` array for each possible amount.\n- **Updating DP Array**: `dp[x] = min(dp[x], dp[x - coin] + 1)` ensures that we take the minimum between the current value and the value obtained by including the current coin.\n- **Final Check**: If `dp[amount]` is still infinity after filling the table, it means it's not possible to make up the amount with the given coins, so we return -1.\n\nThis approach ensures that we efficiently compute the minimum number of coins needed or determine if it's impossible.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:26:19.318219+00:00"
+}

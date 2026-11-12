@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_005_group_anagrams",
+  "task_title": "Group Anagrams",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `group_anagrams(strs: list[str]) -> list[list[str]]` that groups the strings in `strs` so that strings that are anagrams of each other end up in the same group. Return the groups in any order.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 14.013,
+  "assistant_solution": "```python\nfrom collections import defaultdict\n\ndef group_anagrams(strs: list[str]) -> list[list[str]]:\n    # Create a default dictionary where keys are sorted strings and values are lists of anagrams\n    anagram_dict = defaultdict(list)\n    \n    for s in strs:\n        # Sort the string and use it as a key in the dictionary\n        sorted_str = ''.join(sorted(s))\n        anagram_dict[sorted_str].append(s)\n    \n    # Return the values of the dictionary as a list of lists\n    return list(anagram_dict.values())\n\n# Example usage:\nstrs = [\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]\nprint(group_anagrams(strs))  # Output: [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use a dictionary to map sorted versions of the strings to lists of original strings. Here's how you can implement the `group_anagrams` function:\n\n```python\nfrom collections import defaultdict\n\ndef group_anagrams(strs: list[str]) -> list[list[str]]:\n    # Create a default dictionary where keys are sorted strings and values are lists of anagrams\n    anagram_dict = defaultdict(list)\n    \n    for s in strs:\n        # Sort the string and use it as a key in the dictionary\n        sorted_str = ''.join(sorted(s))\n        anagram_dict[sorted_str].append(s)\n    \n    # Return the values of the dictionary as a list of lists\n    return list(anagram_dict.values())\n\n# Example usage:\nstrs = [\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]\nprint(group_anagrams(strs))  # Output: [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]\n```\n\n### Explanation:\n1. **Default Dictionary**: We use `defaultdict(list)` to create a dictionary where each key is a sorted version of a string, and the corresponding value is a list of strings that are anagrams of each other.\n2. **Sorting Strings**: For each string in the input list, we sort its characters and use the sorted string as a key in our dictionary.\n3. **Appending Anagrams**: We append the original string to the list corresponding to its sorted key in the dictionary.\n4. **Returning Results**: Finally, we return the values of the dictionary, which are lists of grouped anagrams.\n\nThis approach ensures that all anagrams are grouped together efficiently. The time complexity is O(N * K log K), where N is the number of strings and K is the maximum length of a string, due to the sorting step. The space complexity is O(N * K) for storing the sorted strings and their corresponding groups.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:04:00.324387+00:00"
+}

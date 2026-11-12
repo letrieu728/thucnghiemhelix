@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_006_top_k_frequent",
+  "task_title": "Top K Frequent Elements",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `top_k_frequent(nums: list[int], k: int) -> list[int]` that returns the `k` most frequent elements in `nums`, in any order. It is guaranteed that the answer is unique in terms of which elements qualify (no ties at the cutoff), and 1 <= k <= number of unique elements.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 9.872,
+  "assistant_solution": "```python\nfrom collections import Counter\nfrom typing import List\n\ndef top_k_frequent(nums: List[int], k: int) -> List[int]:\n    # Count the frequency of each element in nums\n    count = Counter(nums)\n    \n    # Sort the elements based on their frequency in descending order\n    sorted_elements = sorted(count.items(), key=lambda x: x[1], reverse=True)\n    \n    # Extract the first k elements from the sorted list\n    top_k = [element[0] for element in sorted_elements[:k]]\n    \n    return top_k\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom collections import Counter\nfrom typing import List\n\ndef top_k_frequent(nums: List[int], k: int) -> List[int]:\n    # Count the frequency of each element in nums\n    count = Counter(nums)\n    \n    # Sort the elements based on their frequency in descending order\n    sorted_elements = sorted(count.items(), key=lambda x: x[1], reverse=True)\n    \n    # Extract the first k elements from the sorted list\n    top_k = [element[0] for element in sorted_elements[:k]]\n    \n    return top_k\n```\n\nThis solution works as follows:\n\n1. **Count the Frequency**: We use `Counter` to count the frequency of each element in the input list `nums`.\n2. **Sort Elements**: We sort the items of the counter based on their frequency in descending order using `sorted()`.\n3. **Extract Top K**: We extract the first `k` elements from the sorted list, which will be the elements with the highest frequencies.\n4. **Return Result**: Finally, we return these `k` elements.\n\nThis approach ensures that we efficiently find the `k` most frequent elements while maintaining a time complexity of \\(O(n \\log n)\\) due to the sorting step. The space complexity is \\(O(n)\\) for storing the counts and the result.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:07:20.627032+00:00"
+}

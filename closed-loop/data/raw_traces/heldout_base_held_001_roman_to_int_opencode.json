@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_001_roman_to_int",
+  "task_title": "Roman to Integer",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `roman_to_int(s: str) -> int` that converts a valid Roman numeral string `s` (using symbols I, V, X, L, C, D, M, value range 1 to 3999) to an integer. Subtractive notation applies: IV is 4, IX is 9, XL is 40, XC is 90, CD is 400, CM is 900.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 10.64,
+  "assistant_solution": "```python\ndef roman_to_int(s: str) -> int:\n    # Define the mapping of Roman numerals to integers\n    val = {\n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000\n    }\n    \n    # Initialize the result variable\n    res = 0\n    \n    # Iterate over the characters in the string\n    for i in range(len(s)):\n        # If the current value is less than the next value, subtract it\n        if i + 1 < len(s) and val[s[i]] < val[s[i + 1]]:\n            res -= val[s[i]]\n        else:\n            # Otherwise, add it\n            res += val[s[i]]\n    \n    return res\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef roman_to_int(s: str) -> int:\n    # Define the mapping of Roman numerals to integers\n    val = {\n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000\n    }\n    \n    # Initialize the result variable\n    res = 0\n    \n    # Iterate over the characters in the string\n    for i in range(len(s)):\n        # If the current value is less than the next value, subtract it\n        if i + 1 < len(s) and val[s[i]] < val[s[i + 1]]:\n            res -= val[s[i]]\n        else:\n            # Otherwise, add it\n            res += val[s[i]]\n    \n    return res\n```\n\nThis function works by iterating through each character in the input string `s`. It uses a dictionary `val` to map Roman numeral characters to their corresponding integer values. The function checks if the current numeral's value is less than the next numeral's value; if so, it subtracts the current value from the result (to handle cases like IV and IX). Otherwise, it adds the current value to the result. This approach ensures that the function correctly handles both standard and subtractive Roman numeral representations.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:00:48.544656+00:00"
+}

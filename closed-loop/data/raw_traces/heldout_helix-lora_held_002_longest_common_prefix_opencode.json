@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_002_longest_common_prefix",
+  "task_title": "Longest Common Prefix",
+  "difficulty": "easy",
+  "prompt": "Write a Python function `longest_common_prefix(strs: list[str]) -> str` that returns the longest common prefix string shared by all strings in `strs`. Return an empty string if there is no common prefix or if `strs` is empty.",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 18.905,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef longest_common_prefix(strs: List[str]) -> str:\n    if not strs:\n        return \"\"\n    \n    # Start with the first string as the initial prefix\n    prefix = strs[0]\n    \n    # Compare the current prefix with each string in the list\n    for s in strs[1:]:\n        while not s.startswith(prefix):\n            prefix = prefix[:-1]\n            if not prefix:\n                return \"\"\n    \n    return prefix\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef longest_common_prefix(strs: List[str]) -> str:\n    if not strs:\n        return \"\"\n    \n    # Start with the first string as the initial prefix\n    prefix = strs[0]\n    \n    # Compare the current prefix with each string in the list\n    for s in strs[1:]:\n        while not s.startswith(prefix):\n            prefix = prefix[:-1]\n            if not prefix:\n                return \"\"\n    \n    return prefix\n```\n\n### Explanation:\n1. **ANALYSE**: The problem requires finding the longest common prefix among a list of strings. If the list is empty or no common prefix exists, return an empty string.\n2. **PLAN**:\n   - Initialize the prefix with the first string in the list.\n   - Iterate through the rest of the strings and adjust the prefix to be the longest prefix that matches the start of the current string.\n   - If at any point the prefix becomes empty, return an empty string immediately.\n3. **IMPLEMENT**:\n   - Check if the input list is empty and return an empty string if true.\n   - Set the initial prefix to the first string.\n   - For each subsequent string, use a while loop to trim the prefix from the end until it matches the start of the current string.\n   - If the prefix becomes empty during this process, return an empty string.\n   - Return the final prefix after processing all strings.\n4. **VERIFY**:\n   - Test cases can be used to verify correctness, such as `[\"flower\", \"flow\", \"flight\"]` should return `\"fl\"`, and `[\"dog\", \"racecar\", \"car\"]` should return `\"\"`.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:14:39.971776+00:00"
+}

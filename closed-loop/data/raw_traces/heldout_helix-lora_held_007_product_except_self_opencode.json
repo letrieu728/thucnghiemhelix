@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_007_product_except_self",
+  "task_title": "Product of Array Except Self",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `product_except_self(nums: list[int]) -> list[int]` that returns an array `answer` where answer[i] is the product of all elements of `nums` except nums[i]. Do not use division. For a single-element input, return [1] (the product of no elements).",
+  "harness_id": "opencode",
+  "harness_category": "complex",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 12.578,
+  "assistant_solution": "```python\nfrom typing import List\n\ndef product_except_self(nums: List[int]) -> List[int]:\n    n = len(nums)\n    if n == 1:\n        return [1]\n    \n    left_products = [1] * n\n    right_products = [1] * n\n    \n    for i in range(1, n):\n        left_products[i] = left_products[i - 1] * nums[i - 1]\n    \n    for i in range(n - 2, -1, -1):\n        right_products[i] = right_products[i + 1] * nums[i + 1]\n    \n    result = [left_products[i] * right_products[i] for i in range(n)]\n    \n    return result\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\nfrom typing import List\n\ndef product_except_self(nums: List[int]) -> List[int]:\n    n = len(nums)\n    if n == 1:\n        return [1]\n    \n    left_products = [1] * n\n    right_products = [1] * n\n    \n    for i in range(1, n):\n        left_products[i] = left_products[i - 1] * nums[i - 1]\n    \n    for i in range(n - 2, -1, -1):\n        right_products[i] = right_products[i + 1] * nums[i + 1]\n    \n    result = [left_products[i] * right_products[i] for i in range(n)]\n    \n    return result\n```\n\nThis solution uses two auxiliary arrays to store the products of all elements to the left and right of each index, respectively. The final result is obtained by multiplying these two arrays at each index. This approach ensures that we do not use division and operates in O(n) time with O(n) space complexity.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:22:06.856802+00:00"
+}

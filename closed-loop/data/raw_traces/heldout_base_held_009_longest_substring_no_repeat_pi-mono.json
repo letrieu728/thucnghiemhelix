@@ -1,0 +1,30 @@
+{
+  "phase": "heldout",
+  "task_id": "held_009_longest_substring_no_repeat",
+  "task_title": "Longest Substring Without Repeating Characters",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `length_of_longest_substring(s: str) -> int` that returns the length of the longest substring of `s` without repeating characters.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 17.844,
+  "assistant_solution": "```python\ndef length_of_longest_substring(s: str) -> int:\n    n = len(s)\n    if n == 0:\n        return 0\n    \n    char_set = set()\n    max_length = 0\n    start = 0\n    \n    for end in range(n):\n        while s[end] in char_set:\n            char_set.remove(s[start])\n            start += 1\n        char_set.add(s[end])\n        max_length = max(max_length, end - start + 1)\n    \n    return max_length\n\n# Example usage:\nprint(length_of_longest_substring(\"abcabcbb\"))  # Output: 3\nprint(length_of_longest_substring(\"bbbbb\"))     # Output: 1\nprint(length_of_longest_substring(\"pwwkew\"))    # Output: 3\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use the sliding window technique. This approach involves maintaining a window that represents the current substring without repeating characters. We will use two pointers to represent the start and end of the window, and a set to keep track of the characters currently in the window.\n\nHere's a step-by-step breakdown of the algorithm:\n\n1. Initialize two pointers, `start` and `end`, both set to 0. These pointers represent the current window.\n2. Use a set to store the characters in the current window.\n3. Iterate through the string with the `end` pointer:\n   - If the character at the `end` pointer is not in the set, add it to the set and move the `end` pointer forward.\n   - If the character at the `end` pointer is already in the set, remove the character at the `start` pointer from the set and move the `start` pointer forward until the duplicate character is removed.\n4. Keep track of the maximum length of the window encountered during the iteration.\n5. Return the maximum length.\n\nHere's the complete implementation:\n\n```python\ndef length_of_longest_substring(s: str) -> int:\n    n = len(s)\n    if n == 0:\n        return 0\n    \n    char_set = set()\n    max_length = 0\n    start = 0\n    \n    for end in range(n):\n        while s[end] in char_set:\n            char_set.remove(s[start])\n            start += 1\n        char_set.add(s[end])\n        max_length = max(max_length, end - start + 1)\n    \n    return max_length\n\n# Example usage:\nprint(length_of_longest_substring(\"abcabcbb\"))  # Output: 3\nprint(length_of_longest_substring(\"bbbbb\"))     # Output: 1\nprint(length_of_longest_substring(\"pwwkew\"))    # Output: 3\n```\n\n### Explanation:\n- The `char_set` keeps track of the characters in the current window.\n- As we iterate through the string with the `end` pointer, we check if the current character is already in the set.\n- If it is, we shrink the window from the left by moving the `start` pointer until the duplicate character is removed.\n- We then add the current character to the set and update the `max_length` if the current window size is larger.\n- Finally, we return the `max_length` which represents the length of the longest substring without repeating characters.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-12T05:09:48.016363+00:00"
+}
