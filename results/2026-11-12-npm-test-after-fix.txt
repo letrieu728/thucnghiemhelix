@@ -1,0 +1,548 @@
+
+> helix@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.10 /home/hatch/workspace/helix-repro-clean-2026-11-11
+
+ ✓ packages/external-tools/test/capture-dry-run.test.ts (11 tests) 4405ms
+     ✓ allows enough default doctor time for cold launchers  3350ms
+ ❯ packages/conformance/todo29-builder-flow-visibility.conformance.test.ts (2 tests | 2 failed) 3218ms
+     × keeps partial and guard module confirmation visible instead of presenting native parity 1472ms
+     × flags Builder or Flow surfaces that hide partial or guard module confirmation 1743ms
+ ❯ packages/conformance/task-parity.conformance.test.ts (12 tests | 1 failed) 4883ms
+     × runs deterministic task parity for OpenCode, Pi, Nanobot, and Hermes assembled/original paths 63ms
+     ✓ captures concrete workspace diffs for edit tasks  439ms
+     ✓ exposes opt-in native CLI original runner prerequisites separately from contract replay 65ms
+     ✓ uses external capture artifacts as original task parity references 8ms
+     ✓ freezes task runner submodules, including reserved native server/RPC runner shape 2ms
+     ✓ verifies and diffs offline artifacts without credential-shaped fields  327ms
+     ✓ writes and verifies split v2 task parity artifacts with hashed attachments  1089ms
+     ✓ rejects stale pair gaps and missing cadence fields without throwing  322ms
+     ✓ diagnoses cadence drift ownership and candidate fixes from archived artifacts 2ms
+     ✓ uses provider boundary observability before assigning request-count drift to the common loop  674ms
+     ✓ splits native cadence fixtures from live nondeterminism artifacts  1503ms
+     ✓ writes native cadence fixtures as split v2 summaries plus replay attachments  383ms
+ ❯ packages/conformance/installed-harness.conformance.test.ts (7 tests | 1 failed) 2369ms
+     ✓ installs a profile, keeps secrets as env refs, and rejects fake provider profiles  394ms
+     ✓ normalizes Telegram updates, splits long messages, and redacts env secret values 4ms
+     × exposes profile activation APIs without echoing secret values 1366ms
+     ✓ binds Telegram threads to sessions and handles gateway commands without provider turns 28ms
+     ✓ manages worker lifecycle, redacts logs, and emits service manifests 83ms
+     ✓ records worker exit codes and skips live Telegram smoke without credentials 218ms
+     ✓ retries Telegram polling requests and sends typing actions 272ms
+ ❯ packages/conformance/docs-site.conformance.test.ts (4 tests | 4 failed) 4815ms
+     × does not display product factory atoms as native without TODO27 proof 2072ms
+     × generates a static assembly console from recipes and TODO progress 1110ms
+     × surfaces external tool install hints, imported artifacts, verifier status, and local-only state 903ms
+     × serves the online builder API and in-memory recipe drafts 727ms
+ ❯ packages/conformance/reverse-assembly.conformance.test.ts (1 test | 1 failed) 3498ms
+     × proves product recipes can be assembled back into harness surfaces 3496ms
+ ❯ packages/conformance/compatible-bridge-visibility.conformance.test.ts (1 test | 1 failed) 1625ms
+     × keeps the completed TODO27 compatible bridge set empty across Builder, Flow, and audits 1623ms
+ ❯ packages/conformance/block-ledger.conformance.test.ts (2 tests | 1 failed) 1218ms
+     × keeps the catalog, port fixtures, recipe bindings, package exports, and boundary lint in sync 1211ms
+     ✓ reports catalog rows that have no executable fixture evidence 4ms
+ ❯ packages/conformance/nanobot-lego-depth.conformance.test.ts (1 test | 1 failed) 2273ms
+     × audits Nanobot as decomposed lego atoms rather than a monolithic adapter 2271ms
+ ❯ packages/conformance/preview-metadata-retention-visibility.conformance.test.ts (1 test | 1 failed) 1462ms
+     × keeps preview shells completed while metadata overlays remain visibly non-executable 1460ms
+ ❯ packages/conformance/product-turn-profile-visibility.conformance.test.ts (1 test | 1 failed) 1496ms
+     × keeps product turn atoms visible after the profile-compatible queue drains 1494ms
+ ❯ packages/conformance/recipe-targets.conformance.test.ts (1 test | 1 failed) 1086ms
+     × freezes atom-level target shapes for OpenCode, Pi Mono, neutral minimal, and binding-only swaps 1084ms
+ ❯ packages/conformance/p1-native-like-visibility.conformance.test.ts (1 test | 1 failed) 1411ms
+     × keeps P1 native-like projections completed and prevents any native-like residuals 1408ms
+ ❯ packages/conformance/boundary-lint.conformance.test.ts (2 tests | 1 failed) 115ms
+     × keeps current common atoms, provider atoms, tool atoms, and product shells inside declared boundaries 109ms
+     ✓ reports product leakage across common/provider/tool/product-shell boundaries 4ms
+ ❯ packages/conformance/todo27-misleading-native-copy.conformance.test.ts (1 test | 1 failed) 5086ms
+     × keeps fake/compatible/preview/metadata/native-like wording guarded across repository text surfaces 5084ms
+ ✓ packages/conformance/assembly-contract.conformance.test.ts (22 tests) 26814ms
+     ✓ builds verifiable contracts for OpenCode, Pi, Nanobot, and the neutral fixture  2400ms
+     ✓ classifies common, product-specific, fixture-only, and reserved atoms without product leakage  394ms
+     ✓ declares implementation kind for factory, bridge, preview, and metadata-only atoms  1810ms
+     ✓ keeps source-product upstream metadata for custom mixed recipe atoms  804ms
+     ✓ carries TODO-027 native evidence metadata for bridge, preview, metadata, native-like, and common atoms  7682ms
+     ✓ binds OpenCode runtime executable ports to native providers while retaining product metadata overlays  1332ms
+     ✓ rejects metadata-only atoms as providers for executable runtime ports  368ms
+     ✓ promotes Pi, Nanobot, and Hermes TUI event-loop shells to native surfaces  1139ms
+     ✓ promotes Pi, Nanobot, and Hermes TUI product shells to native surfaces  887ms
+     ✓ promotes Pi, Nanobot, and Hermes Web product shells to native surfaces  1290ms
+     ✓ rejects preview-only shells as primary product shell providers  317ms
+     ✓ rejects native-like atoms that lose native evidence and fixtures  397ms
+     ✓ rejects product native upgrades without complete proof or product-specific source modules  390ms
+     ✓ binds product prompt support ports to executable atoms instead of metadata aliases  1393ms
+     ✓ rejects product prompt support metadata aliases on executable prompt ports  1686ms
+     ✓ rejects product-specific prompt support executable atoms without upstream fixtures  1622ms
+     ✓ keeps fingerprints stable across regenerated timestamps and detects semantic contract changes  716ms
+     ✓ fails verification when required port provider evidence is removed  313ms
+     ✓ rejects multiple selected bundles in the same replace-policy exclusive family  607ms
+     ✓ links task parity and native fixture artifacts when they are provided  396ms
+     ✓ links verified external tool evidence refs without accepting raw trace paths  328ms
+     ✓ round-trips contract artifacts through the public writer and reader  476ms
+ ❯ packages/conformance/package-exports.conformance.test.ts (2 tests | 1 failed) 107267ms
+     ✓ publishes stable subpath exports for atoms, packs, and product shells  107196ms
+     × keeps tests on public package exports instead of unexported deep imports 69ms
+ ✓ packages/conformance/flow-graph.conformance.test.ts (24 tests) 21485ms
+     ✓ builds a stable assembled blueprint with every canonical stage  1095ms
+     ✓ can attach current module confirmation status to assembled stage metrics  3793ms
+     ✓ separates executable binding evidence from runtime metadata overlay evidence  395ms
+     ✓ publishes a canonical stage catalog with assembled and original evidence mappings  400ms
+     ✓ classifies product surface result coverage without overstating snapshot surfaces  1607ms
+     ✓ links live provider split summary evidence to surface result coverage without raw responses  798ms
+     ✓ compares assembled and original flows as a verifiable artifact  505ms
+     ✓ rejects flow artifacts with stale hashes or missing evidence refs  406ms
+     ✓ rejects prompt evidence with a stale sanitized artifact hash  370ms
+     ✓ rejects assembled flow graphs with Helix placeholder prompt identity  314ms
+     ✓ does not mark prompt identity native from selection reason without TODO27 proof  317ms
+     ✓ marks product prompt identity snapshots as native once exact fixtures are present  991ms
+     ✓ projects prompt native evidence and lossiness into assembled flow artifacts  303ms
+     ✓ rejects assembled flow graphs with compatible-only prompt identity  305ms
+     ✓ rejects flow artifacts that include raw prompt, provider request, or tool result fields  375ms
+     ✓ surfaces cadence diff categories for comparison tables  422ms
+     ✓ builds a redacted assembled flow run artifact from event envelopes  473ms
+     ✓ covers no-tools, tools, retry, compaction, and early accept assembled run traces  606ms
+     ✓ exposes flow graph generation and verification through the CLI  1890ms
+     ✓ writes verified flow graph report artifacts for docs reports  1120ms
+     ✓ builds native flow graphs from split native cadence fixture manifests  702ms
+     ✓ surfaces field-level native projection losses in four-product compare graphs  2493ms
+     ✓ builds native flow graphs from legacy task parity artifacts and compare graphs from native cadence fixtures  1783ms
+ ✓ packages/conformance/todo27-opencode-split-acceptance.conformance.test.ts (5 tests) 11087ms
+     ✓ summarizes verified OpenCode executable native parity without claiming TODO completion  3379ms
+     ✓ writes JSON and Markdown acceptance artifacts that round-trip through the verifier  1802ms
+     ✓ rejects reports that keep stale OpenCode Flow parity blockers after executable stages are native  1799ms
+     ✓ rejects reports that reinterpret split review readiness as TODO completion  2102ms
+     ✓ is available through the public CLI and writes verifiable report artifacts  2002ms
+ ✓ packages/conformance/package-boundary.conformance.test.ts (2 tests) 19983ms
+     ✓ dry-runs publishable package tarballs through npm pack  19977ms
+ ✓ packages/conformance/executable-placeholder-audit.conformance.test.ts (8 tests) 7184ms
+     ✓ builds a verifiable audit for canonical products with runtime metadata retained only as overlays  2978ms
+     ✓ classifies synthetic partial product turn factories as profile-compatible  325ms
+     ✓ writes JSON and Markdown reports that round-trip through the verifier  378ms
+     ✓ flags metadata-only providers as compile blockers in generated audit artifacts  324ms
+     ✓ flags product prompt support metadata aliases as executable compile blockers  1782ms
+     ✓ keeps the TODO-027 executable keep-with-evidence queue drained after product turn nativeization  1386ms
+ ✓ packages/conformance/recipes.conformance.test.ts (36 tests) 6203ms
+     ✓ exposes product-specific harness assembly atoms  693ms
+     ✓ exposes OpenCode SDK, server, workspace, and control-plane product surfaces  334ms
+     ✓ exposes Pi SDK, CLI, TUI, RPC, Web UI, package manager, examples, browser smoke, and release hardening surfaces  360ms
+     ✓ collects a redacted runtime event timeline from runFixtureTurn  1212ms
+ ❯ packages/conformance/current-module-placeholder-audit.conformance.test.ts (5 tests | 2 failed) 21818ms
+     × lists every current module gap with owner TODO, evidence, lossiness, and next action 6580ms
+     ✓ groups source-file fixture work by source owner and line-level exact-diff status  4817ms
+     ✓ writes JSON and Markdown reports that round-trip through the verifier  1701ms
+     ✓ rejects audits that lose classification or unproven native source evidence  1701ms
+     × is available through the public CLI and writes verifiable report artifacts 7016ms
+ ✓ packages/conformance/todo27-native-rewrite-inventory.conformance.test.ts (4 tests) 4772ms
+     ✓ classifies every product-scoped transition atom with an owner, blocker, and fixture target  2361ms
+     ✓ writes JSON and Markdown reports that round-trip through the verifier  409ms
+     ✓ rejects inventories that lose classification or evidence fields  382ms
+     ✓ is available through the public CLI and writes verifiable report artifacts  1616ms
+ ✓ packages/conformance/hermes-nanobot-cadence-native.conformance.test.ts (4 tests) 4292ms
+     ✓ selects the remaining P1-04 cadence atoms as native factories  4219ms
+ ❯ packages/conformance/config-prompt-ui.conformance.test.ts (52 tests | 1 failed) 23084ms
+     ✓ anchors OpenCode config bridges to pinned upstream config sources 6ms
+     ✓ projects OpenCode config runtime signals into a lossy partial fixture 1ms
+     ✓ captures OpenCode config live runtime fixture without promoting native parity 10ms
+     ✓ anchors Pi, Nanobot, and Hermes config bridges to pinned upstream config sources 2ms
+     ✓ records config discovery precedence positive and negative gates 61ms
+     ✓ records config runtime validation blockers without upgrading partial config evidence 4ms
+     ✓ records config exact-diff blockers without claiming native parity 7ms
+     ✓ records config pinned discovery precedence replay fixtures with OpenCode native exact coverage 10ms
+     ✓ merges config layers with product-specific defaults 1ms
+     ✓ builds a Pi default config 1ms
+     ✓ loads OpenCode config files and plugin directories 3ms
+     ✓ loads Pi settings files and extension directories 2ms
+     ✓ exposes config sources, merge strategies, validators, and discovery as atoms 2ms
+     ✓ exposes product config atoms and resolves Nanobot env references 3ms
+     ✓ records prompt family rendered output positive and negative gates 178ms
+     ✓ records prompt family upstream exact diff blockers while promoting OpenCode to native exact 85ms
+     ✓ records prompt family pinned rendered-output replay fixtures with OpenCode native exact coverage 119ms
+     ✓ provides upstream OpenCode agent prompt variants 294ms
+     × builds Nanobot memory, skills, recent history, archived summary, and Dream prompts from upstream templates 19314ms
+     ✓ plans and syncs Nanobot workspace templates without overwriting project files 175ms
+     ✓ builds a Nanobot skills index cache for builtin, workspace, disabled, and unavailable skills 219ms
+     ✓ builds a system prompt with resources and hook transforms 3ms
+     ✓ records Pi Mono mode, extension, and theme prompt family matrix 9ms
+     ✓ renders reference attachments into the system prompt 66ms
+     ✓ discovers Pi prompt resource conventions by kind 4ms
+     ✓ discovers Hermes context resources and blocks promptware before injection 3ms
+     ✓ discovers Nanobot prompt resource conventions by kind 2ms
+     ✓ discovers OpenCode project skills and renders the upstream-style available skills prompt  1117ms
+     ✓ captures OpenCode SystemPrompt live runtime fixture without promoting native parity 8ms
+     ✓ captures OpenCode SystemPrompt core exact fixture for pinned upstream provider environment and skills paths 5ms
+     ✓ captures OpenCode LLM request system exact fixture for the pinned upstream prepare path 59ms
+     ✓ filters OpenCode available skills with top-level and agent permission config 34ms
+     ✓ exposes product prompt atoms and Nanobot-style prompt sections 97ms
+     ✓ captures OpenCode instruction resource discovery and loader as native exact atoms 6ms
+     ✓ captures OpenCode compaction prompt adapter as a native exact atom 2ms
+     ✓ captures OpenCode prompt provider support as native exact atoms 1ms
+     ✓ captures Pi prompt support ports as native exact atoms 6ms
+     ✓ selects product prompt lego blocks during assembled turns  653ms
+     ✓ applies product turn atoms during assembled Nanobot turns 121ms
+     ✓ exposes prompt/resource builders, renderers, model adapters, and compaction as atoms 4ms
+     ✓ exposes OpenCode prompt mode-builder as a product-native atom 9ms
+     ✓ lets config-selected prompt overrides flow through the general hook interface 1ms
+     ✓ provides no-op UI defaults with observable notifications 1ms
+     ✓ provides UI chrome, widget, overlay, editor, autocomplete, and renderer registries 1ms
+     ✓ bridges TUI, RPC, and Web/Desktop UI adapters through one facade 1ms
+     ✓ runs a shared TUI event loop for command, selector, submit, and safe error events 2ms
+     ✓ exposes UI event-loop, renderer, command-router, theme, input, and snapshot atoms 1ms
+     ✓ exposes product UI atoms for OpenCode, Pi, and Nanobot shells 2ms
+     ✓ records UI/TUI interaction replay positive and negative gates 60ms
+     ✓ records UI/TUI interaction exact-diff blockers without claiming native parity 7ms
+     ✓ exposes config, prompt, and ui services for OpenCode and Pi 202ms
+     ✓ accepts Pi extension-discovered prompt resources 93ms
+ ✓ packages/conformance/product-shell-surfaces.conformance.test.ts (26 tests) 4185ms
+     ✓ smokes OpenCode SDK as its own product shell  376ms
+     ✓ smokes Nanobot server as its own product shell  493ms
+     ✓ smokes Hermes Agent SDK/CLI/ACP/gateway/API server as product shells  409ms
+     ✓ runs provider-backed who-are-you smoke through public CLI and server surfaces  697ms
+ ✓ packages/conformance/nanobot-turn-native.conformance.test.ts (3 tests) 2926ms
+     ✓ selects Nanobot turn atoms as native factories across contract, flow, inventory, and current audit  2908ms
+ ✓ packages/conformance/hermes-turn-native.conformance.test.ts (3 tests) 4466ms
+     ✓ selects Hermes turn atoms as native factories across contract, flow, inventory, and current audit  4385ms
+ ✓ packages/conformance/agent-loop.conformance.test.ts (45 tests) 4704ms
+     ✓ proves OpenCode turn native-loop tool-result continuation as a live exact-diff fixture  380ms
+     ✓ emits agent, provider, and tool lifecycle events in order  385ms
+     ✓ keeps sequential tool calls out of parallel batches  317ms
+ ✓ packages/conformance/hermes-nanobot-prompt-native.conformance.test.ts (3 tests) 2801ms
+     ✓ promotes both prompt agent builders to product native assembly atoms  2686ms
+ ✓ packages/conformance/flow-graph-compare.conformance.test.ts (5 tests) 4110ms
+     ✓ aligns assembled and original opencode flows on canonical stages  1910ms
+     ✓ aligns assembled and original pi-mono flows on canonical stages  904ms
+     ✓ aligns assembled and original nanobot flows on canonical stages  604ms
+     ✓ aligns assembled and original hermes-agent flows on canonical stages  383ms
+     ✓ keeps Hermes Agent native-visible stages explicitly lossy without breaking alignment  306ms
+ ✓ packages/conformance/pi-tool-registration-native.conformance.test.ts (7 tests) 2196ms
+     ✓ marks the selected assembly atoms product-native exact  1214ms
+     ✓ marks the Pi tool-pack compatibility aggregate product-native exact  903ms
+ ✓ packages/conformance/opencode-differential.conformance.test.ts (10 tests) 3194ms
+     ✓ compares assembled OpenCode against the native OpenCode trace shape without fixture gaps  585ms
+     ✓ keeps Nanobot differential support on pinned fixture traces  524ms
+     ✓ keeps Pi Mono differential support on pinned fixture traces  303ms
+     ✓ treats native Pi reasoning and streamed text deltas as protocol-compatible  471ms
+     ✓ treats native OpenCode stdout-only captures as CLI-compatible but not trace-complete  521ms
+     ✓ fails trace parity when redaction policy evidence is downgraded  583ms
+ ✓ packages/conformance/opencode-product-shell-native.conformance.test.ts (4 tests) 1811ms
+     ✓ pins OpenCode SDK, server, and TUI product-shell atoms to upstream native behavior  1106ms
+     ✓ exercises OpenCode server listener and route behavior with upstream listener policy  416ms
+ ✓ packages/conformance/pi-session-native.conformance.test.ts (16 tests) 2214ms
+     ✓ projects Pi agent-loop message parts through native SessionManager persistence  1312ms
+     ✓ exposes Pi native session atoms through the native session product schema module  712ms
+ ❯ packages/conformance/cli.conformance.test.ts (37 tests | 3 failed) 159098ms
+     ✓ loads .env values for script entrypoints without overriding process env 5ms
+     ✓ keeps external capture consent shell-only when loading .env 60ms
+     ✓ parses real provider selection for recipe runs 2ms
+     ✓ requires real providers for recipe runs and rejects fake-only options 2ms
+     ✓ parses external tool gateway commands 3ms
+     ✓ keeps real claude-tap capture scripts manual and credential gated 7ms
+     ✓ keeps external-tools doctor optional unless --require-tool is set 101ms
+     ✓ requires normalized claude-tap captures before verify scripts run  318ms
+     ✓ allows claude-tap real-capture credentials from .env without accepting .env consent  310ms
+     ✓ keeps claude-tap no-credentials override shell-only  369ms
+     ✓ gates non-dry-run external tool capture in the CLI namespace 5ms
+     ✓ fails claude-tap capture-ready preflight strict without shell consent  311ms
+     ✓ keeps claude-tap capture-ready preflight strategy-specific  2696ms
+     × reports claude-tap preflight readiness without leaking credential values 120089ms
+     ✓ compares synthetic claude-tap external captures for Phase 4 products  4510ms
+     ✓ imports and verifies claude-tap trace artifacts through the CLI  3898ms
+     × writes claude-tap capture dry-run manifests through the CLI 15010ms
+     ✓ runs claude-tap capture through a mock CLI binary  989ms
+     ✓ returns the failing claude-tap capture exit code without verified evidence  390ms
+     ✓ parses live provider parity report options 1ms
+     ✓ parses live provider parity artifact verification options 0ms
+     ✓ parses task parity report, verification, and diff options 6ms
+     ✓ replays native cadence fixtures through the CLI into a reusable artifact  708ms
+     ✓ parses OpenCode differential report options 1ms
+     ✓ parses recipe inspection commands 1ms
+     ✓ parses assembly contract commands 2ms
+     ✓ parses installed profile, channel, and gateway commands 3ms
+     ✓ keeps interactive TUI stdin queued across multiple turns 85ms
+     ✓ writes redacted runtime traces for Builder TUI test turns  376ms
+     ✓ sends product identity prompts through provider-backed TUI turns  632ms
+     ✓ installs, configures, and smokes an installed harness profile through the CLI 187ms
+     ✓ exposes recipe graph, diff, and validation dry-run commands  2506ms
+     ✓ runs an OpenCode recipe with native JSON event output 187ms
+     ✓ writes, verifies, and diffs a task parity artifact through the CLI  306ms
+     ✓ writes a skipped live provider parity report without leaking credentials 4ms
+     ✓ does not archive failed required live provider reports to the final artifact path 1ms
+     × runs an OpenCode recipe through the CLI entrypoint 5005ms
+ ✓ packages/conformance/opencode-ui-native.conformance.test.ts (7 tests) 1733ms
+     ✓ upgrades the OpenCode event-loop, command-router, input-normalizer, renderer, snapshot, and theme-registry assembly atoms  1633ms
+ ✓ packages/conformance/product-workflow-parity.conformance.test.ts (1 test) 2321ms
+     ✓ exercises provider, interactive surfaces, and pinned fixture workflows through assembled products  2317ms
+ ✓ packages/conformance/bundle-catalog.conformance.test.ts (3 tests) 2393ms
+     ✓ records bundle evidence in assembly contracts without changing the runtime atom fingerprint  2293ms
+ ✓ packages/conformance/live-provider-parity.conformance.test.ts (3 tests) 1303ms
+     ✓ runs all product harnesses through an HTTP streaming provider adapter  1293ms
+ ✓ packages/conformance/hermes-provider-native.conformance.test.ts (5 tests) 923ms
+     ✓ selects Hermes provider atoms as native in assembly without source-matrix bridge lossiness  906ms
+ ✓ packages/conformance/hermes-ui-native.conformance.test.ts (1 test) 905ms
+     ✓ pins the Hermes UI atom group to upstream display, command, input, render, snapshot, theme, and gateway behavior  902ms
+ ✓ packages/conformance/hermes-session-native.conformance.test.ts (5 tests) 1106ms
+     ✓ promotes Hermes ACP session atoms to native factory descriptors in the assembly contract  1075ms
+ ✓ packages/conformance/opencode-runtime-assembly-native.conformance.test.ts (1 test) 1521ms
+     ✓ pins the interactive runtime five-pack to upstream boot, lifecycle, transport, queue, and graph behavior  1515ms
+ ✓ packages/conformance/hermes-tool-native.conformance.test.ts (5 tests) 1000ms
+     ✓ exposes native descriptors and selects them in the Hermes assembly  919ms
+ ✓ packages/conformance/agent-loop-semantics.conformance.test.ts (1 test) 696ms
+     ✓ runs the OpenCode, Pi, and Nanobot personalities through the same complete loop semantics  693ms
+ ✓ packages/conformance/opencode-runtime-acceptance-native.conformance.test.ts (1 test) 1198ms
+     ✓ pins SessionRunState, SessionStatus, SessionProcessor, retry, and compaction boundaries to native exact behavior  1195ms
+ ✓ packages/conformance/opencode-config-native.conformance.test.ts (6 tests) 909ms
+     ✓ selects OpenCode config atoms as native exact assembly providers  882ms
+ ✓ packages/conformance/pi-runtime-assembly-native.conformance.test.ts (1 test) 900ms
+     ✓ pins the AgentSession runtime five-pack to upstream session factory, extension, replacement, and graph behavior  898ms
+ ✓ packages/conformance/nanobot-trace-native.conformance.test.ts (5 tests) 910ms
+     ✓ selects Nanobot trace as native in assembly without source-matrix bridge lossiness  887ms
+ ✓ packages/conformance/pi-hook-lifecycle-native.conformance.test.ts (5 tests) 912ms
+     ✓ marks the selected assembly atoms product-native exact  880ms
+ ✓ packages/conformance/nanobot-runtime-acceptance-native.conformance.test.ts (1 test) 801ms
+     ✓ pins runtime.py and RuntimeState acceptance behavior to native exact fixtures  799ms
+ ✓ packages/conformance/hermes-trace-native.conformance.test.ts (6 tests) 899ms
+     ✓ selects Hermes trace as native in assembly without source-matrix bridge lossiness  801ms
+ ✓ packages/conformance/hermes-product-shell-native.conformance.test.ts (1 test) 1073ms
+     ✓ pins Hermes CLI, SDK, ACP, gateway, API server, harness, TUI, and Web dashboard product shells to native behavior  1070ms
+ ✓ packages/conformance/pi-tool-runtime-native.conformance.test.ts (5 tests) 1000ms
+     ✓ marks the selected assembly atoms product-native exact  925ms
+ ✓ packages/conformance/opencode-identity-native.conformance.test.ts (4 tests) 972ms
+     ✓ routes and assembles OpenCode identity atoms as native exact product atoms  879ms
+ ✓ packages/conformance/nanobot-event-native.conformance.test.ts (5 tests) 1111ms
+     ✓ proves native descriptors, assembly wiring, and fixture drift guards  1100ms
+ ✓ packages/conformance/pi-ui-native.conformance.test.ts (1 test) 1177ms
+     ✓ pins Pi TUI input, command routing, rendering, theme, and snapshot atoms to native exact behavior  1174ms
+ ✓ packages/conformance/nanobot-tool-native.conformance.test.ts (6 tests) 981ms
+     ✓ exposes native descriptors and selects them in the Nanobot assembly  807ms
+ ✓ packages/conformance/hermes-hook-native.conformance.test.ts (6 tests) 1103ms
+     ✓ marks the selected assembly atoms product-native exact  1080ms
+ ✓ packages/conformance/nanobot-config-native.conformance.test.ts (6 tests) 1304ms
+     ✓ selects the Nanobot config atoms as native exact assembly providers  1215ms
+ ✓ packages/conformance/hermes-event-native.conformance.test.ts (5 tests) 1091ms
+     ✓ selects Hermes event atoms as native in assembly without source-matrix bridge lossiness  1021ms
+ ✓ packages/conformance/hermes-runtime-acceptance-native.conformance.test.ts (1 test) 971ms
+     ✓ pins Codex runtime streaming, app-server turn, retry, and footer behavior to native exact fixtures  966ms
+ ✓ packages/conformance/nanobot-identity-native.conformance.test.ts (3 tests) 1494ms
+     ✓ promotes Nanobot identity atoms to native factory descriptors in the assembly contract  1407ms
+ ✓ packages/conformance/nanobot-session-native.conformance.test.ts (5 tests) 983ms
+     ✓ binds the Nanobot session message-part port to the native projector  899ms
+ ✓ packages/conformance/pi-runtime-acceptance-native.conformance.test.ts (1 test) 785ms
+     ✓ pins Agent and AgentSession runtime acceptance lifecycle to native exact behavior  783ms
+ ✓ packages/conformance/hermes-identity-native.conformance.test.ts (3 tests) 889ms
+     ✓ promotes Hermes identity atoms to native factory descriptors in the assembly contract  827ms
+ ✓ packages/conformance/hermes-config-native.conformance.test.ts (6 tests) 968ms
+     ✓ selects the Hermes config atoms as native exact assembly providers  903ms
+ ✓ packages/conformance/upstream-e2e-parity.conformance.test.ts (1 test) 1080ms
+     ✓ maps deeper upstream smoke tests into offline assembled-product checks  1076ms
+ ✓ packages/conformance/pi-trace-native.conformance.test.ts (4 tests) 1081ms
+     ✓ selects Pi trace as native in assembly without source-matrix bridge lossiness  1019ms
+ ✓ packages/conformance/pi-product-shell-native.conformance.test.ts (1 test) 898ms
+     ✓ pins Pi product-shell atoms to upstream native behavior  835ms
+ ✓ packages/conformance/modular-acceptance.conformance.test.ts (3 tests) 897ms
+     ✓ declares complete conformance gates for all primary recipes  564ms
+     ✓ keeps every current common atom covered by an independent port-level suite  309ms
+ ✓ packages/conformance/fake-public-path.conformance.test.ts (3 tests) 996ms
+     ✓ does not expose fake run routes from product HTTP/API servers  918ms
+ ✓ packages/conformance/pi-config-native.conformance.test.ts (6 tests) 1080ms
+     ✓ selects the Pi config atoms as native exact assembly providers  1003ms
+ ✓ packages/conformance/nanobot-product-shell-native.conformance.test.ts (1 test) 833ms
+     ✓ pins Nanobot CLI, SDK, server, harness, TUI, and Web UI product shells to native behavior  830ms
+ ✓ packages/conformance/tools.conformance.test.ts (26 tests) 773ms
+ ✓ packages/conformance/nanobot-ui-native.conformance.test.ts (1 test) 719ms
+     ✓ pins the Nanobot UI atom group to upstream prompt_toolkit, Rich streaming, WebSocket, WebUI, and terminal shell behavior  716ms
+ ✓ packages/conformance/session-atoms.conformance.test.ts (23 tests) 427ms
+ ✓ packages/conformance/port-contract-fixtures.conformance.test.ts (56 tests) 686ms
+ ✓ packages/conformance/fixture-replay.conformance.test.ts (8 tests) 477ms
+ ✓ packages/conformance/provider.conformance.test.ts (44 tests) 493ms
+ ✓ packages/conformance/cadence-atoms.conformance.test.ts (16 tests) 486ms
+ ✓ packages/conformance/todo29-guard-queues.conformance.test.ts (2 tests) 396ms
+ ✓ packages/conformance/hooks.conformance.test.ts (22 tests) 491ms
+ ✓ packages/conformance/todo29-source-file-dispatch.conformance.test.ts (2 tests) 478ms
+ ✓ packages/conformance/session.conformance.test.ts (28 tests) 204ms
+ ✓ packages/conformance/surface-swap.conformance.test.ts (1 test) 497ms
+     ✓ drives OpenCode through its native TUI event loop and Pi through the shared ui.event-loop  495ms
+ ✓ packages/conformance/personality-adapters.conformance.test.ts (8 tests) 103ms
+ ✓ packages/external-tools/test/redaction.test.ts (18 tests) 81ms
+ ✓ packages/conformance/pi-identity-clock.conformance.test.ts (6 tests) 96ms
+ ✓ packages/conformance/opencode-tool-native.conformance.test.ts (5 tests) 95ms
+ ✓ packages/conformance/runtime.conformance.test.ts (9 tests) 49ms
+ ✓ packages/conformance/opencode-session-native.conformance.test.ts (5 tests) 182ms
+ ✓ packages/conformance/runtime-acceptance-guards.conformance.test.ts (2 tests) 81ms
+ ✓ packages/conformance/nanobot-hook-native.conformance.test.ts (3 tests) 78ms
+ ✓ packages/external-tools/test/claude-tap-importer.test.ts (8 tests) 82ms
+ ✓ packages/conformance/contracts-schema.conformance.test.ts (7 tests) 79ms
+ ✓ packages/conformance/opencode-event-native.conformance.test.ts (4 tests) 14ms
+ ✓ packages/conformance/opencode-hook-native.conformance.test.ts (3 tests) 29ms
+ ✓ packages/conformance/pi-provider-native.conformance.test.ts (3 tests) 83ms
+ ✓ packages/external-tools/test/profile-schema.test.ts (7 tests) 78ms
+ ✓ packages/conformance/pi-event-native.conformance.test.ts (3 tests) 78ms
+ ✓ packages/conformance/nanobot-provider-native.conformance.test.ts (4 tests) 20ms
+ ✓ packages/conformance/builder-slots.conformance.test.ts (2 tests) 65ms
+ ✓ packages/conformance/nanobot-baseline.conformance.test.ts (1 test) 6ms
+ ✓ packages/conformance/personality-inventory.conformance.test.ts (1 test) 9ms
+ ✓ packages/conformance/pipeline-swaps.conformance.test.ts (1 test) 5ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 25 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/conformance/block-ledger.conformance.test.ts > lego block ledger > keeps the catalog, port fixtures, recipe bindings, package exports, and boundary lint in sync
+ FAIL  packages/conformance/boundary-lint.conformance.test.ts > source boundary lint > keeps current common atoms, provider atoms, tool atoms, and product shells inside declared boundaries
+ FAIL  packages/conformance/compatible-bridge-visibility.conformance.test.ts > compatible bridge visibility > keeps the completed TODO27 compatible bridge set empty across Builder, Flow, and audits
+ FAIL  packages/conformance/docs-site.conformance.test.ts > docs site > does not display product factory atoms as native without TODO27 proof
+ FAIL  packages/conformance/docs-site.conformance.test.ts > docs site > generates a static assembly console from recipes and TODO progress
+ FAIL  packages/conformance/docs-site.conformance.test.ts > docs site > surfaces external tool install hints, imported artifacts, verifier status, and local-only state
+ FAIL  packages/conformance/docs-site.conformance.test.ts > docs site > serves the online builder API and in-memory recipe drafts
+ FAIL  packages/conformance/installed-harness.conformance.test.ts > installed harness profiles and gateway activation > exposes profile activation APIs without echoing secret values
+ FAIL  packages/conformance/nanobot-lego-depth.conformance.test.ts > nanobot lego depth > audits Nanobot as decomposed lego atoms rather than a monolithic adapter
+ FAIL  packages/conformance/p1-native-like-visibility.conformance.test.ts > P1 native-like projection visibility > keeps P1 native-like projections completed and prevents any native-like residuals
+ FAIL  packages/conformance/preview-metadata-retention-visibility.conformance.test.ts > preview shell and metadata retention visibility > keeps preview shells completed while metadata overlays remain visibly non-executable
+ FAIL  packages/conformance/product-turn-profile-visibility.conformance.test.ts > product turn profile-compatible visibility > keeps product turn atoms visible after the profile-compatible queue drains
+ FAIL  packages/conformance/recipe-targets.conformance.test.ts > recipe target shapes > freezes atom-level target shapes for OpenCode, Pi Mono, neutral minimal, and binding-only swaps
+ FAIL  packages/conformance/reverse-assembly.conformance.test.ts > reverse assembly audit > proves product recipes can be assembled back into harness surfaces
+ FAIL  packages/conformance/todo29-builder-flow-visibility.conformance.test.ts > TODO29 Builder/BOM/Flow visibility > keeps partial and guard module confirmation visible instead of presenting native parity
+ FAIL  packages/conformance/todo29-builder-flow-visibility.conformance.test.ts > TODO29 Builder/BOM/Flow visibility > flags Builder or Flow surfaces that hide partial or guard module confirmation
+Error: ENOENT: no such file or directory, stat '/home/hatch/workspace/helix-repro-clean-2026-11-11/packages/conformance/fixtures/tasks/livecodebench-v6-000-abc387-b'
+ ❯ packages/recipes/src/boundary-lint.ts:203:18
+    201|   return readdirSync(root).flatMap((entry) => {
+    202|     const path = join(root, entry)
+    203|     const stat = statSync(path)
+       |                  ^
+    204|     if (stat.isDirectory()) return listFiles(path)
+    205|     return path.endsWith(".ts") || path.endsWith(".tsx") ? [path] : []
+ ❯ listFiles packages/recipes/src/boundary-lint.ts:201:28
+ ❯ packages/recipes/src/boundary-lint.ts:204:36
+ ❯ listFiles packages/recipes/src/boundary-lint.ts:201:28
+ ❯ packages/recipes/src/boundary-lint.ts:204:36
+ ❯ listFiles packages/recipes/src/boundary-lint.ts:201:28
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/25]⎯
+
+ FAIL  packages/conformance/cli.conformance.test.ts > Helix CLI conformance > reports claude-tap preflight readiness without leaking credential values
+Error: Test timed out in 120000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/conformance/cli.conformance.test.ts:940:3
+    938|   })
+    939|
+    940|   it("reports claude-tap preflight readiness without leaking credentia…
+       |   ^
+    941|     const { stdout } = await execFileAsync(process.execPath, ["externa…
+    942|       cwd: process.cwd(),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/25]⎯
+
+ FAIL  packages/conformance/cli.conformance.test.ts > Helix CLI conformance > writes claude-tap capture dry-run manifests through the CLI
+Error: Test timed out in 15000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/conformance/cli.conformance.test.ts:2273:3
+    2271|   })
+    2272|
+    2273|   it("writes claude-tap capture dry-run manifests through the CLI", as…
+       |   ^
+    2274|     const dir = mkdtempSync(join(tmpdir(), "helix-external-capture-cli…
+    2275|     const stdout: string[] = []
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/25]⎯
+
+ FAIL  packages/conformance/cli.conformance.test.ts > Helix CLI conformance > runs an OpenCode recipe through the CLI entrypoint
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/conformance/cli.conformance.test.ts:4511:3
+    4509|   })
+    4510|
+    4511|   it("runs an OpenCode recipe through the CLI entrypoint", async () =>…
+       |   ^
+    4512|     const tsx = resolve(process.cwd(), "node_modules/.bin/tsx")
+    4513|     const { stdout } = await withLocalOpenAICompatibleProvider("runnin…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/25]⎯
+
+ FAIL  packages/conformance/config-prompt-ui.conformance.test.ts > prompt lego module > builds Nanobot memory, skills, recent history, archived summary, and Dream prompts from upstream templates
+Error: Test timed out in 15000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/conformance/config-prompt-ui.conformance.test.ts:2383:3
+    2381|   })
+    2382|
+    2383|   it("builds Nanobot memory, skills, recent history, archived summary,…
+       |   ^
+    2384|     const cwd = mkdtempSync(join(tmpdir(), "helix-nanobot-prompt-famil…
+    2385|     mkdirSync(join(cwd, "memory"), { recursive: true })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/25]⎯
+
+ FAIL  packages/conformance/current-module-placeholder-audit.conformance.test.ts > current module placeholder audit conformance > lists every current module gap with owner TODO, evidence, lossiness, and next action
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/conformance/current-module-placeholder-audit.conformance.test.ts:14:3
+     12|
+     13| describe("current module placeholder audit conformance", () => {
+     14|   it("lists every current module gap with owner TODO, evidence, lossin…
+       |   ^
+     15|     const audit = buildCurrentModulePlaceholderAudit({
+     16|       generatedAt: "2026-06-10T00:00:00.000Z",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/25]⎯
+
+ FAIL  packages/conformance/current-module-placeholder-audit.conformance.test.ts > current module placeholder audit conformance > is available through the public CLI and writes verifiable report artifacts
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/conformance/current-module-placeholder-audit.conformance.test.ts:4513:3
+    4511|   })
+    4512|
+    4513|   it("is available through the public CLI and writes verifiable report…
+       |   ^
+    4514|     const dir = mkdtempSync(join(tmpdir(), "helix-current-module-audit…
+    4515|     try {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/25]⎯
+
+ FAIL  packages/conformance/package-exports.conformance.test.ts > package exports > keeps tests on public package exports instead of unexported deep imports
+Error: ENOENT: no such file or directory, stat '/home/hatch/workspace/helix-repro-clean-2026-11-11/packages/conformance/fixtures/tasks/livecodebench-v6-000-abc387-b'
+ ❯ packages/conformance/package-exports.conformance.test.ts:977:18
+    975|   return readdirSync(root).flatMap((entry) => {
+    976|     const path = join(root, entry)
+    977|     const stat = statSync(path)
+       |                  ^
+    978|     if (stat.isDirectory()) return listFiles(path)
+    979|     return path.endsWith(".ts") ? [path] : []
+ ❯ listFiles packages/conformance/package-exports.conformance.test.ts:975:28
+ ❯ packages/conformance/package-exports.conformance.test.ts:978:36
+ ❯ listFiles packages/conformance/package-exports.conformance.test.ts:975:28
+ ❯ packages/conformance/package-exports.conformance.test.ts:978:36
+ ❯ listFiles packages/conformance/package-exports.conformance.test.ts:975:28
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/25]⎯
+
+ FAIL  packages/conformance/task-parity.conformance.test.ts > product task parity > runs deterministic task parity for OpenCode, Pi, Nanobot, and Hermes assembled/original paths
+Error: ENOENT: no such file or directory, stat '/home/hatch/workspace/helix-repro-clean-2026-11-11/packages/conformance/fixtures/tasks/livecodebench-v6-000-abc387-b'
+ ❯ packages/recipes/src/task-parity.ts:3191:12
+    3189|     .filter((entry) => {
+    3190|       const dir = join(fixtureRoot, entry)
+    3191|       if (!statSync(dir).isDirectory()) return false
+       |            ^
+    3192|       const policy = JSON.parse(readFileSync(join(dir, "policy.json"),…
+    3193|       return (policy.suite ?? "smoke") === suite
+ ❯ listTaskIDs packages/recipes/src/task-parity.ts:3189:6
+ ❯ runProductTaskParitySuite packages/recipes/src/task-parity.ts:1070:36
+ ❯ packages/conformance/task-parity.conformance.test.ts:47:28
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/25]⎯
+
+ FAIL  packages/conformance/todo27-misleading-native-copy.conformance.test.ts > TODO-027 misleading native copy audit > keeps fake/compatible/preview/metadata/native-like wording guarded across repository text surfaces
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/conformance/todo27-misleading-native-copy.conformance.test.ts:161:3
+    159|
+    160| describe("TODO-027 misleading native copy audit", () => {
+    161|   it("keeps fake/compatible/preview/metadata/native-like wording guard…
+       |   ^
+    162|     const auditedFiles = collectAuditedFiles(process.cwd())
+    163|     const missing = REQUIRED_AUDITED_FILES.filter((file) => !auditedFi…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/25]⎯
+
+
+ Test Files  18 failed | 90 passed (108)
+      Tests  25 failed | 809 passed (834)
+   Start at  02:34:59
+   Duration  291.73s (transform 26.66s, setup 0ms, import 272.65s, tests 535.29s, environment 16ms)
+
