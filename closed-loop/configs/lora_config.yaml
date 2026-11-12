@@ -1,0 +1,68 @@
+# ==============================================================================
+# HELIX Closed-Loop LoRA Training Configuration
+# Model: Qwen/Qwen2.5-Coder-7B-Instruct
+# Pipeline: SFT (Supervised Fine-Tuning) + DPO (Direct Preference Optimization)
+# ==============================================================================
+# MIRROR FILE (reconciled 2026-11-12): these values mirror the effective
+# defaults in scripts/04_train_lora.py. The script does NOT read this file;
+# it is the human-readable record of the configuration, and
+# tests/test_pipeline.py::test_config_matches_training_script fails if the
+# two drift apart. To change the configuration, change the script defaults
+# first, then update this file in the same commit.
+#
+# History: the pre-2026-11-12 version of this file disagreed with the script
+# (logging_steps 5 vs 1, save_strategy "epoch" vs "no", dpo.epochs 2 vs the
+# shared 3, and a wholly different storage section). Those values were
+# aspirational; the values below are what the script actually does.
+
+model:
+  base_model_name: "Qwen/Qwen2.5-Coder-7B-Instruct"
+  max_seq_length: 4096
+  load_in_4bit: true
+  dtype: "bfloat16" # bfloat16 when supported by the GPU, else float16 (see script)
+
+lora:
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  bias: "none"
+  target_modules:
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+  task_type: "CAUSAL_LM"
+
+training:
+  stage: "sft_then_dpo" # Options: sft, dpo, sft_then_dpo
+  epochs: 3
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 4
+  learning_rate: 2.0e-4
+  warmup_ratio: 0.1 # 0.1 when max_steps == -1, else 0.0 (see script)
+  lr_scheduler_type: "cosine"
+  weight_decay: 0.01
+  logging_steps: 1
+  save_strategy: "no" # adapters are saved explicitly by the script, not by the trainer
+  seed: 42
+  optimizer: "adamw_8bit"
+
+dpo:
+  beta: 0.1
+  learning_rate: 5.0e-6
+  epochs: 3 # DPO shares training.epochs in the script (no separate epoch count)
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 8
+  max_length: 4096 # max_prompt_length is not set by the script (TRL default applies)
+
+storage:
+  modal_volume_name: "helix-adapters"
+  mount_path: "/vol/checkpoints"
+  checkpoint_dir: "/vol/checkpoints"
+  runs_dir: "/vol/checkpoints/runs"
+  sft_output_dir: "/vol/checkpoints/sft_checkpoints"
+  dpo_output_dir: "/vol/checkpoints/dpo_checkpoints"
+  final_adapter_dir: "/vol/checkpoints/helix-lora-final"

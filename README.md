@@ -81,6 +81,31 @@ Kiểm tra offline 80 trace đã commit trong fork `Vietng-XPrince7/HELIX`
   live) nằm trong fork, branch riêng — repo này chỉ giữ bằng chứng kiểm
   tra, không chứa pipeline train/eval.
 
+## Bản sao pipeline closed-loop trong repo này (2026-11-12)
+
+Theo yêu cầu của Triệu, toàn bộ `closed-loop/` của fork (commit `cc44b7b`
+cộng các bản sửa provenance 12/11) được sao vào `closed-loop/` của repo này
+làm working copy, kèm các cải tiến train chỉ có ở bản sao này:
+
+- `03_extract_pairs.py` ghi thêm `data/processed/provenance.json` (số lượng,
+  trace nguồn, SHA-256 của 2 file dữ liệu) mỗi lần trích xuất.
+- `04_train_lora.py` từ chối train nếu thiếu manifest, manifest nhận dữ
+  liệu dry-run, hoặc số lượng/hash không còn khớp file; dữ liệu legacy bị
+  chặn mặc định, chỉ mở bằng `--allow-unverified-data` khi chủ đích xác
+  nhận; lệch số lượng/hash thì luôn chặn.
+- Mỗi run train ghi `metadata.json` đầy đủ (siêu tham số, seed, hash dữ
+  liệu, tóm tắt provenance, step/loss cuối từng stage, phiên bản thư viện)
+  và entrypoint tải về cả `metadata.json` + `versions.json`.
+- `seed` thành tham số (mặc định 42); `lora_config.yaml` đã đồng bộ lại
+  đúng default của script (bản cũ lệch logging/save strategy/DPO epochs và
+  toàn bộ mục storage), có test chặn lệch trong tương lai.
+- Ảnh `rebuild_comparison_plot.png` không sao vào (file nhị phân); chạy
+  `notebooks/evaluate_rebuild.py` để vẽ lại.
+
+Fork vẫn là pipeline chính thức của nhóm; cải tiến ở bản sao này cần port
+ngược về fork bằng patch, không sửa song song hai nơi. Chạy live/train lại
+vẫn cần Modal, làm theo `closed-loop/HELDOUT_RUNBOOK.md`.
+
 ## Các phần chưa làm được và lý do
 
 | Hạng mục | Lý do chưa chạy | Điều kiện để chạy |

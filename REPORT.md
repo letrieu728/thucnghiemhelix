@@ -80,6 +80,20 @@ toàn bộ solution, không gọi model:
   extractor mặc định chỉ lấy trace live, thêm 10 bài held-out và runbook
   chạy lại live. Phần chạy live/train lại vẫn còn thiếu vì cần Modal.
 
+## Bản sao pipeline closed-loop trong repo này (2026-11-12)
+
+Cùng ngày 12/11, theo yêu cầu của Triệu, `closed-loop/` của fork được sao
+nguyên trạng (cộng bản sửa provenance) vào repo này làm working copy, kèm
+cải tiến train: manifest provenance do script trích xuất ghi ra, script
+train chặn dữ liệu không provenance/dry-run/lệch hash, metadata run đầy đủ,
+tham số `seed`, và `lora_config.yaml` đồng bộ với default của script (có
+test chặn lệch). Chi tiết xem `closed-loop/README.md` trong repo. Quyết
+định phạm vi: repo này vốn chỉ chứa verification, nhưng Triệu muốn bản
+train hoàn thiện nằm ở repo của mình vì không push được lên fork; fork vẫn
+là pipeline chính thức của nhóm và cải tiến cần được port ngược bằng patch.
+Việc chạy live và train lại vẫn chưa làm được offline; xem runbook trong
+bản sao.
+
 ## Hạn chế và hướng tái lập đầy đủ
 
 | Hạn chế | Tình trạng | Việc cần làm |

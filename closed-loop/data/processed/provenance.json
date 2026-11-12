@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-11-12T00:00:00+00:00",
+  "extractor": "legacy pre-guard extraction (manifest reconstructed 2026-11-12; original run wrote no manifest)",
+  "allow_dry_run": true,
+  "live_traces_kept": 9,
+  "dry_run_build_traces_present": 31,
+  "dry_run_traces_skipped": 0,
+  "tasks": [
+    "lcb_001_two_sum",
+    "lcb_002_valid_parentheses",
+    "lcb_003_lru_cache",
+    "lcb_004_reverse_linked_list",
+    "lcb_005_binary_search",
+    "lcb_006_max_subarray",
+    "lcb_007_climbing_stairs",
+    "lcb_008_merge_intervals",
+    "lcb_009_word_break",
+    "lcb_010_number_of_islands"
+  ],
+  "counts": {
+    "sft": 9,
+    "dpo": 8
+  },
+  "data_sha256": {
+    "sft_data.jsonl": "c725ce87d4f875a2f98ac56887c2355d270e7dbd2badc9ffbe72cad0ff49d4b9",
+    "dpo_pairs.jsonl": "6299a70b2286a0b965cddd4e43a6bc6904e1962792cdfb60e5828814f127d61c"
+  },
+  "note": "Committed datasets mixed 9 live + 31 dry-run BUILD traces: 8/9 SFT records and 8/8 DPO chosen come from hand-written dry-run code. See closed-loop/PROVENANCE_AUDIT.md. Training on this data is blocked by default in 04_train_lora.py; re-extract live-only after a live BUILD re-run."
+}
