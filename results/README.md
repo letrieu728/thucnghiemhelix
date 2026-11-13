@@ -1,7 +1,7 @@
 # Mục lục thư mục `results/`
 
 Thư mục này giữ log và bằng chứng gốc của công việc kiểm chứng offline
-(07–12/11/2026) và các audit/báo cáo kèm theo. Số liệu tổng hợp nằm ở
+(07–13/11/2026) và các audit/báo cáo kèm theo. Số liệu tổng hợp nằm ở
 [`../RESULTS.md`](../RESULTS.md) và [`../REPORT.md`](../REPORT.md); ở đây
 là bằng chứng thô để đối chiếu lại.
 
@@ -20,6 +20,7 @@ là bằng chứng thô để đối chiếu lại.
 | `2026-11-12-closed-loop-copy-verification.md` | Kiểm chứng bản sao `closed-loop/` trong repo này |
 | `2026-11-12-fixture-symlink-check.md` | Kiểm tra 101 fixture symlink hỏng |
 | `2026-11-12-fork-carryover-check.md` | Đối chiếu phần việc mang từ fork sang repo này |
+| `2026-11-13-tinh-trang-harness-that-benchmark.md` | Tình trạng harness thật + benchmark thật (13/11): smoke test chưa ghép được, 101 symlink chặn benchmark |
 
 ## Log chạy lệnh (11–12/11)
 
@@ -47,6 +48,8 @@ là bằng chứng thô để đối chiếu lại.
 | --- | --- |
 | `2026-11-11-fixed-artifacts/` | 3 artifact tái sinh ngày 11/11 (current-module audit, split manifest) — bản gốc vẫn giữ nguyên và vẫn FAIL |
 | `2026-11-12-real-harness-smoke-test/` | Bằng chứng smoke test ghép LoRA với harness lắp thật (chưa thành công, 2 blocker đã chẩn đoán) |
+| `2026-11-13-test-audit/` | Rà test 35 bài (13/11): 29 test đúng, 6 test lỏng, 0 mâu thuẫn; số headline giữ nguyên; kèm 8 script kiểm tra tái chạy được |
+| `2026-11-13-per-task-analysis/` | Phân tích theo từng bài (13/11): train 5 cải thiện / 1 tụt / 14 không đổi; held-out 3 / 1 / 11; kiểm định cấp bài đều không có ý nghĩa |
 
 ## Lưu ý khi thêm file mới
 

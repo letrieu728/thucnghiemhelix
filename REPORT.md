@@ -14,8 +14,9 @@ minh; các số liệu LiveCodeBench và SWE-bench của tác giả chưa đư�
 
 ## Phạm vi và phương pháp
 
-- Nguồn công bố: [ghi chú phân tích ban đầu](../../THUC-NGHIEM-HELIX.md) và
-  artifact trong [HELIX source](../HELIX-git/).
+- Nguồn công bố: ghi chú phân tích ban đầu (file ngoài repo, không version
+  hóa tại đây) và artifact trong
+  [repo gốc HKUDS/HELIX](https://github.com/HKUDS/HELIX).
 - Kết quả lệnh: [offline verification](./results/2026-11-10-offline-verification.md)
   và [RESULTS.md](./RESULTS.md).
 - Verifier `tsx` chạy ngoài sandbox vì sandbox làm `node:os.userInfo()` lỗi
@@ -78,7 +79,9 @@ toàn bộ solution, không gọi model:
   chuyển PASS đều có đáp án trong SFT), chưa có held-out.
 - **Đã sửa trong fork (branch riêng):** trace ghi thêm trường `mode`,
   extractor mặc định chỉ lấy trace live, thêm 10 bài held-out và runbook
-  chạy lại live. Phần chạy live/train lại vẫn còn thiếu vì cần Modal.
+  chạy lại live. Phần chạy live/train lại sau đó đã thực hiện ngày 12/11
+  trên Modal (hai vòng, 520 trace live; xem `closed-loop/REBUILD_REPORT.md`
+  §8–§9 và [RESULTS.md](./RESULTS.md)).
 
 ## Bản sao pipeline closed-loop trong repo này (2026-11-12)
 
@@ -91,8 +94,9 @@ test chặn lệch). Chi tiết xem `closed-loop/README.md` trong repo. Quyết
 định phạm vi: repo này vốn chỉ chứa verification, nhưng Triệu muốn bản
 train hoàn thiện nằm ở repo của mình vì không push được lên fork; fork vẫn
 là pipeline chính thức của nhóm và cải tiến cần được port ngược bằng patch.
-Việc chạy live và train lại vẫn chưa làm được offline; xem runbook trong
-bản sao.
+Việc chạy live và train lại không làm được offline mà cần Modal; hai vòng
+chạy live đã thực hiện ngày 12/11 trên Modal — xem runbook trong bản sao
+và `closed-loop/REBUILD_REPORT.md` §8–§9.
 
 ## Hạn chế và hướng tái lập đầy đủ
 
