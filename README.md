@@ -1,6 +1,6 @@
 # Thực nghiệm HELIX — Model–Harness Co-evolution ở quy mô nhỏ
 
-Repository này ghi lại toàn bộ công việc thực nghiệm của nhóm 5 cho bài báo
+Repository này ghi lại toàn bộ công việc thực nghiệm của Nhóm 19 cho bài báo
 HELIX: kiểm chứng offline framework của tác giả, audit nguồn gốc dữ liệu của
 nhóm, hai vòng chạy live pipeline closed-loop (Build → Update → Rebuild)
 trên Modal với model `Qwen/Qwen2.5-Coder-7B-Instruct`, và một smoke test
@@ -9,7 +9,7 @@ và báo cáo phân tích đều nằm trong repository này; số liệu nào c
 minh được thì ghi rõ là chưa chứng minh được, phần nào chưa làm được thì
 ghi rõ là chưa làm được.
 
-Nhóm thực hiện: Nhóm 5 ("Song sát thầy Thụy"), môn Khai phá dữ liệu / Cơ sở
+Nhóm thực hiện: Nhóm 19, môn Khai phá dữ liệu / Cơ sở
 hệ thống thông tin, VNU-UET, học kỳ I năm học 2026–2027. Giảng viên hướng
 dẫn môn học: PGS.TS Hà Quang Thụy.
 
@@ -172,9 +172,6 @@ commit
   nghĩa thống kê** — báo cáo của nhóm không tuyên bố model đã học được kỹ
   năng chung, chỉ tuyên bố vòng lặp chạy được đầu-cuối, dữ liệu có nguồn
   gốc rõ ràng, và adapter không thoái hóa trên bài mới.
-- Điểm tự chấm của nhóm so với paper là **7,6/10** (điểm này do nhóm tự
-  chấm theo 5 tiêu chí đối chiếu paper, **không phải điểm môn học**; bản
-  chạy kiểm chứng trên Kaggle chưa được tính vì chưa có link/notebook).
 - Trọng số adapter LoRA chỉ nằm trên Modal volume, không commit trong repo
   này; repo chỉ giữ metadata, loss history và hash dữ liệu của từng run
   train trong `closed-loop/data/training_runs/`.
@@ -225,7 +222,7 @@ Lưu ý: `closed-loop/data/processed/` hiện giữ dataset vòng 2; dataset vò
 
 ## Bản sao pipeline closed-loop
 
-Theo yêu cầu của Triệu, toàn bộ `closed-loop/` của fork (commit `cc44b7b`
+Toàn bộ `closed-loop/` của fork (commit `cc44b7b`
 cộng các bản sửa provenance 12/11) được sao vào `closed-loop/` của repo này
 làm working copy
 ([3dc216d](https://github.com/letrieu728/thucnghiemhelix/commit/3dc216d70e71df5d471bb7ee619c7b548a2e3154)),
@@ -246,7 +243,7 @@ kèm các cải tiến train chỉ có ở bản sao này:
 - Ảnh PNG của biểu đồ không commit trong repo; bản SVG nằm ở
   `closed-loop/data/`; chạy `notebooks/evaluate_rebuild.py` để vẽ lại.
 
-Fork vẫn là pipeline chính thức của nhóm; cải tiến ở bản sao này cần port
+Cải tiến ở bản sao này cần port
 ngược về fork bằng patch, không sửa song song hai nơi. Việc push trực tiếp
 lên fork bị chặn (GitHub App 403), nên các bản sửa được gói thành file patch
 do nhóm giữ và áp bằng tay; patch không commit trong repo này.
@@ -279,7 +276,7 @@ token nào được commit trong repo này.**
 
 ## Kiểm chứng offline
 
-Phần này giữ nguyên nội dung kiểm chứng offline đã làm từ 07–11/11/2026.
+Kiểm chứng offline được thực hiện từ 07–11/11/2026.
 Báo cáo đối chiếu đầy đủ nằm tại [`REPORT.md`](./REPORT.md); log kết quả
 từng ngày nằm tại [`RESULTS.md`](./RESULTS.md) và thư mục
 [`results/`](./results/).
@@ -376,8 +373,7 @@ chưa kết luận được parity. Bằng chứng tại
 Khi chạy trong sandbox, `tsx` gọi `node:os.userInfo()` và dừng với
 `uv_os_get_passwd returned ENOMEM`. Chạy cùng các lệnh ngoài sandbox bằng Node
 của tài khoản người dùng hoạt động bình thường; kết quả thực tế được ghi trong
-`results/2026-11-10-offline-verification.md`. Không chạy lại LCB/SWE-bench hay
-live provider vì các hạng mục đó cần model/credential/dữ liệu riêng.
+`results/2026-11-10-offline-verification.md`.
 
 ## Hạn chế cần nêu trong báo cáo
 
@@ -404,8 +400,6 @@ live provider vì các hạng mục đó cần model/credential/dữ liệu riê
 ## Nguồn và khả năng tái lập
 
 - Source HELIX cục bộ dùng cho kiểm chứng offline: `../HELIX-git/`
-- Fork của nhóm: https://github.com/Vietng-XPrince7/HELIX
-- Code gốc của tác giả: https://github.com/HKUDS/HELIX
 - Phiên bản Node/npm, commit và thời gian chạy được ghi ở đầu mỗi log trong
   `results/`.
 
@@ -418,8 +412,7 @@ live provider vì các hạng mục đó cần model/credential/dữ liệu riê
   ([Vietng-XPrince7](https://github.com/Vietng-XPrince7)): pipeline
   closed-loop, hạ tầng Modal/vLLM, đồng huấn luyện LoRA.
 - Giảng viên hướng dẫn môn học: **PGS.TS Hà Quang Thụy**, VNU-UET.
-- Thực hiện tháng 11/2026. Mọi số liệu trong repo này đều đi kèm trace và
-  log để kiểm tra lại; phần nào chưa chạy thì ghi rõ là chưa chạy.
+- Thực hiện tháng 11/2026.
 
 ## License
 
