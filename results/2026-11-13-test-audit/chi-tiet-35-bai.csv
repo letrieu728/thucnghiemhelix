@@ -1,0 +1,36 @@
+id,title,difficulty,n_test_entries,ref_pass,verdict,evidence,gap_detail,suggested_extra_test
+lcb_001_two_sum,Two Sum with Indices,easy,3,PASS,a,"Vet can moi cap: nghiem duy nhat khop ca 3 test; T1 kiem tra thu tu tang dan",,
+lcb_002_valid_parentheses,Valid Parentheses String with Wildcard,medium,7,PASS,b,"Ref liet ke vet can dau; phuong phap khoang so ngoac mo khop ca 7 test","0/7 literal chua []/{} (kiem tra AST); bien the chi-() dau het; input '([)]' phan biet duoc: bien the tra True, dap an dung False","assert is_valid('([)]') == False; assert is_valid('[]{}') == True; assert is_valid('[*]') == True; assert is_valid('([*])') == True; assert is_valid('(]') == False"
+lcb_003_lru_cache,LRU Cache Implementation with Eviction Return,medium,11,PASS,a,"Mo phong doc lap bang danh sach recency khop tung buoc (truc xuat 2 roi 3); get va put-update deu cap nhat recency; bien the put luon None truot. O(1) khong kiem chung bang assert (gioi han harness)",,
+lcb_004_reverse_linked_list,Reverse a Linked List,easy,15,PASS,b,"Ref in-place dau","Bien the tao node moi dau het -> 'in-place' khong duoc kiem tra (kiem tra identity phan biet duoc); thieu case 1 node","assert to_list(reverse_list(make_list([1]))) == [1]; assert tap id() node truoc/sau khi dao bang nhau"
+lcb_005_binary_search,Binary Search,easy,5,PASS,a,"Quet tuyen tinh xac nhan vi tri duy nhat; co test rong + don tri. O(log n) khong kiem chung bang assert. Luu y: spec khong dinh nghia mang co phan tu trung, khong test nao co trung",,
+lcb_006_max_subarray,Maximum Subarray Sum and Slice,medium,5,PASS,a,"Liet ke moi mang con: moi test co duy nhat 1 lat cuc dai (T0 chi co [4,-1,2,1]) -> spec thieu quy tac hoa khong gay anh huong",,
+lcb_007_climbing_stairs,Climbing Stairs (DP),easy,5,PASS,a,"Kiem tra Fibonacci doc lap khop 1, 2, 3, 8, 89. n=0 khong duoc spec neu",,
+lcb_008_merge_intervals,Merge Overlapping Intervals with Count,medium,4,PASS,a,"Kiem tra union-find khop ca 4 (gop cham [1,4]+[4,5] count=2; input chua sap xep; rong); bien the count luon 1 truot. Luu y nho: khong test chuoi gop >=3 khoang (count>=3)",,
+lcb_009_word_break,Word Break Sentences (DP/Backtracking),medium,4,PASS,b,"Liet ke moi cach tach khop ca 4 (ke ca thu tu sorted); T3 ''->[] phu hop quy tac [] cua spec","DFS theo thu tu dict khong sort van dau; doi thu tu dict -> output mat sorted -> yeu cau sorted chua duoc stress-test","assert word_break('catsanddog', ['dog', 'sand', 'and', 'cats', 'cat']) == ['cat sand dog', 'cats and dog']"
+lcb_010_number_of_islands,Number of Islands (BFS/DFS),medium,6,PASS,a,"Union-find 4 huong khop; ban 8 huong TRUOT (g2 cho 1 thay vi 3) -> tinh 4 huong duoc phan biet that",,
+lcb_011_trap_rain_water,Trapping Rain Water,medium,7,PASS,a,"Tinh naive tung cot khop ca 7 (ke ca T6 = 10)",,
+lcb_012_can_finish_courses,Course Schedule (Cycle Detection),medium,7,PASS,a,"DFS phat hien chu trinh khop ca 7 (chu trinh 2, chu trinh 3, DAG, khong rang buoc). Luu y: self-loop khong co test (spec khong neu rieng)",,
+lcb_013_longest_palindromic_substring,Longest Palindromic Substring,medium,8,PASS,a,"Liet ke moi chuoi con: 'babad' co 2 ung vien dai nhat, test chon dung 'bab' (bat dau 0); 'ac->a' cung kiem tra tie-break; bien the lay max cuoi truot",,
+lcb_014_daily_temperatures,Daily Temperatures,medium,6,PASS,b,"Quet naive khop ca 6","Khong test nao co 2 nhiet do bang nhau ke nhau; bien the >= dau het; input [70,70,71] phan biet duoc ([1,1,0] sai vs [2,1,0] dung)","assert daily_temperatures([70, 70, 71]) == [2, 1, 0]; assert daily_temperatures([73, 73, 73]) == [0, 0, 0]"
+lcb_015_word_search,Word Search in Grid,medium,6,PASS,a,"Liet ke duong di khop ABCCED/SEE/ABCB; bien the cho dung lai o truot (ABCB)",,
+lcb_016_partition_equal_subset,Partition Equal Subset Sum,medium,7,PASS,a,"Liet ke moi tap con khop ca 7 (rong->True theo spec, tong le->False)",,
+lcb_017_merge_k_sorted_lists,Merge K Sorted Linked Lists,medium,17,PASS,a,"Rong, chi-None, None-lan, 1 list, gia tri trung lap qua cac list deu co test",,
+lcb_018_decode_string,Decode Nested String,medium,7,PASS,a,"Parser de quy doc lap khop ca 7 (long nhau, 10[a], chu ngoai ngoac, rong)",,
+lcb_019_permutations_unique,Unique Permutations,medium,5,PASS,b,"Backtracking khop ca 5","Moi input deu da sap xep; bien the giu thu tu gap (khong sort) dau het va truot voi [2,1,1] -> yeu cau sorted chua duoc stress-test","assert permute_unique([2, 1, 1]) == [[1, 1, 2], [1, 2, 1], [2, 1, 1]]; assert permute_unique([3, 1, 2]) == [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]"
+lcb_020_min_jumps,Jump Game II (Minimum Jumps),medium,8,PASS,a,"DFS vet can khop ca 8 (khong toi duoc->-1, 0/1 phan tu->0)",,
+held2_001_edit_distance,Edit Distance,hard,8,PASS,a,"DP ma tran day du khop ca 8",,
+held2_002_regex_match,Regular Expression Matching,hard,10,PASS,a,"re.fullmatch khop ca 10 (ke ca mississippi -> False)",,
+held2_003_n_queens_count,N-Queens Count,hard,7,PASS,a,"Liet ke hoan vi khop n<=5; n=8,9 khop day A000170 (92, 352)",,
+held2_004_number_of_lis,Number of Longest Increasing Subsequences,hard,7,PASS,a,"Liet ke moi day con khop ca 7 (ke ca [1,2,4,3,5,4,7,2]->3)",,
+held2_005_word_ladder,Word Ladder Length,hard,6,PASS,a,"BFS ke naive khop ca 6 (end vang->0, 1 buoc truc tiep, begin trong list)",,
+held2_006_sliding_window_max,Sliding Window Maximum,hard,8,PASS,a,"Cua so naive khop ca 8. k>n khong duoc spec neu",,
+held2_007_course_order,Course Schedule II (Valid Order),hard,10,PASS,a,"Helper _valid da kiem tra truc tiep: tu choi thu tu sai/thieu/trung, chap nhan thu tu dung; chu trinh->[] co test; n=1 co test ==[0]",,
+held2_008_median_finder,Find Median from Data Stream,hard,6,PASS,a,"statistics.median khop ca 7 gia tri (am, trung lap, chan/le, don tri). Luu y: assert == chap nhan int (2 == 2.0)",,
+held2_009_next_permutation,Next Permutation,hard,8,PASS,a,"Liet ke hoan vi khop moi gia tri; bien the sua input truot T7; bien the LeetCode in-place truot. 8/8 traces truot do loi loi giai (5 IndexError, 3 AssertionError) - spec sach",,
+held2_010_three_sum,3Sum,hard,6,PASS,a,"Liet ke moi bo ba khop ca 6 (ke ca thu tu sorted); bien the dao thu tu truot; input chua sap xep nen yeu cau sorted duoc stress-test that",,
+held2_011_valid_sudoku,Valid Sudoku,hard,7,PASS,b,"valid_board sach; b2/b3/b4 deu False dung (phan tich vi pham: b2 hang+hop, b3 hang+cot+hop, b4 hang+hop)","Khong board nao vi pham CHI cot hoac CHI hop -> checker chi-hang va chi-hang+cot deu dau het; board vi pham chi-cot ([0][0]=[3][0]='5') phan biet duoc","Board chi '5' tai [0][0] va [3][0] assert False (vi pham chi-cot); board chi '5' tai [0][0] va [1][1] assert False (vi pham chi-hop)"
+held2_012_gas_station,Gas Station Circuit,hard,6,PASS,a,"Mo phong moi diem xuat phat khop ca 6; moi case dung 1 diem kha thi (dung tuyen bo duy nhat cua spec)",,
+held2_013_decode_ways,Decode Ways,hard,10,PASS,a,"De quy + memo khop ca 10 (so 0 dau, '100'->0, '11106'->2)",,
+held2_014_rotten_oranges,Rotting Oranges,hard,6,PASS,a,"Mo phong tung phut khop ca 6",,
+held2_015_longest_consecutive,Longest Consecutive Sequence,hard,7,PASS,a,"Phuong phap sap xep khop ca 7 (trung lap, am, rong)",,
