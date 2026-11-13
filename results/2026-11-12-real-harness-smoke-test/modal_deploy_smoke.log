@@ -1,0 +1,12 @@
+✓ Created objects.
+├── ✓ Uploaded 
+│   /home/hatch/workspace/helix-eval/thucnghiemhelix/closed-loop/scripts/01_moda
+│   l_vllm.py
+└── ✓ Created Function VLLMServer.*.
+    └── VLLMServer.serve -> 
+        https://letrieu728--helix-vllm-engine-vllmserver-serve.us-east.modal.run
+        (unauthenticated)
+✓ App deployed in 2.404s! 🎉
+
+View Deployment: 
+https://modal.com/apps/letrieu728/main/deployed/helix-vllm-engine

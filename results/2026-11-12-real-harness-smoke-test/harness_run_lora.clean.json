@@ -1,0 +1,945 @@
+{
+  "product": "pi-mono",
+  "graph": [
+    {
+      "id": "block.manifest.schema"
+    },
+    {
+      "id": "block.manifest.normalizer"
+    },
+    {
+      "id": "capability.ref.normalizer"
+    },
+    {
+      "id": "resource.grant.validator"
+    },
+    {
+      "id": "recipe.binding.lockfile"
+    },
+    {
+      "id": "conformance.ref.fixture-registry"
+    },
+    {
+      "id": "identity.id-generator.deterministic"
+    },
+    {
+      "id": "identity.id-generator.random"
+    },
+    {
+      "id": "identity.clock.system"
+    },
+    {
+      "id": "identity.clock.deterministic"
+    },
+    {
+      "id": "identity.workspace-resolver.cwd"
+    },
+    {
+      "id": "identity.workspace-resolver.configured"
+    },
+    {
+      "id": "event.envelope.common"
+    },
+    {
+      "id": "event.log.memory"
+    },
+    {
+      "id": "event.log.jsonl"
+    },
+    {
+      "id": "event.log.projection"
+    },
+    {
+      "id": "trace.recorder.memory"
+    },
+    {
+      "id": "trace.recorder.jsonl"
+    },
+    {
+      "id": "runtime.module-catalog.memory"
+    },
+    {
+      "id": "runtime.capability-resolver.default"
+    },
+    {
+      "id": "runtime.binding-planner.lockfile"
+    },
+    {
+      "id": "runtime.lifecycle-runner.scoped"
+    },
+    {
+      "id": "runtime.assembly-graph.lockfile"
+    },
+    {
+      "id": "common.runtime.acceptance-controller.default"
+    },
+    {
+      "id": "common.runtime.acceptance-evidence.default"
+    },
+    {
+      "id": "session.id-generator.deterministic"
+    },
+    {
+      "id": "session.store.memory"
+    },
+    {
+      "id": "session.store.jsonl-tree"
+    },
+    {
+      "id": "session.store.sqlite-projection"
+    },
+    {
+      "id": "session.event-log.memory"
+    },
+    {
+      "id": "session.event-log.jsonl"
+    },
+    {
+      "id": "session.event-log.projection"
+    },
+    {
+      "id": "session.reader.memory"
+    },
+    {
+      "id": "session.reader.service"
+    },
+    {
+      "id": "session.writer.memory"
+    },
+    {
+      "id": "session.writer.service"
+    },
+    {
+      "id": "session.message-store.memory"
+    },
+    {
+      "id": "session.message-store.service"
+    },
+    {
+      "id": "session.branching.memory"
+    },
+    {
+      "id": "session.branching.service"
+    },
+    {
+      "id": "session.branch-graph.memory"
+    },
+    {
+      "id": "session.branch-graph.service"
+    },
+    {
+      "id": "session.projector.common-transcript"
+    },
+    {
+      "id": "common.session.message-part-projector"
+    },
+    {
+      "id": "session.pagination.memory"
+    },
+    {
+      "id": "session.pagination.service"
+    },
+    {
+      "id": "session.context-selector.memory"
+    },
+    {
+      "id": "session.context-selector.service"
+    },
+    {
+      "id": "session.compaction-records.memory"
+    },
+    {
+      "id": "session.compaction-records.service"
+    },
+    {
+      "id": "hook.bus.source-ordered"
+    },
+    {
+      "id": "hook.observer-chain.source-ordered"
+    },
+    {
+      "id": "hook.handler-chain.source-ordered"
+    },
+    {
+      "id": "hook.scheduler.serial"
+    },
+    {
+      "id": "hook.scheduler.parallel"
+    },
+    {
+      "id": "hook.scheduler.source-ordered"
+    },
+    {
+      "id": "hook.cleanup-scope.registry"
+    },
+    {
+      "id": "hook.error-policy.fail-fast"
+    },
+    {
+      "id": "hook.error-policy.collect-and-continue"
+    },
+    {
+      "id": "registry.tool.common"
+    },
+    {
+      "id": "registry.command.common"
+    },
+    {
+      "id": "registry.provider.common"
+    },
+    {
+      "id": "registry.ui.common"
+    },
+    {
+      "id": "turn.input-normalizer.text"
+    },
+    {
+      "id": "turn.context-builder.transcript"
+    },
+    {
+      "id": "turn.prompt-assembler.common"
+    },
+    {
+      "id": "turn.provider-request-builder.common"
+    },
+    {
+      "id": "turn.provider-stream-runner.common"
+    },
+    {
+      "id": "turn.stream-reducer.common"
+    },
+    {
+      "id": "turn.tool-call-planner.parallel-batch"
+    },
+    {
+      "id": "turn.tool-call-planner.sequential"
+    },
+    {
+      "id": "turn.tool-executor.common"
+    },
+    {
+      "id": "turn.result-recorder.common"
+    },
+    {
+      "id": "turn.retry-policy.none"
+    },
+    {
+      "id": "turn.retry-policy.fixed"
+    },
+    {
+      "id": "turn.retry-policy.exponential"
+    },
+    {
+      "id": "turn.continuation-policy.none"
+    },
+    {
+      "id": "turn.continuation-policy.synthetic-continue"
+    },
+    {
+      "id": "turn.compaction-policy.none"
+    },
+    {
+      "id": "turn.compaction-policy.token-threshold"
+    },
+    {
+      "id": "turn.compaction-policy.manual"
+    },
+    {
+      "id": "turn.stop-condition.no-tool-calls"
+    },
+    {
+      "id": "turn.stop-condition.max-steps"
+    },
+    {
+      "id": "common.agent-loop.request-boundary.default"
+    },
+    {
+      "id": "common.agent-loop.final-summary.default"
+    },
+    {
+      "id": "tool-pack.echo"
+    },
+    {
+      "id": "tool-pack.filesystem"
+    },
+    {
+      "id": "tool-pack.shell"
+    },
+    {
+      "id": "tool-pack.meta"
+    },
+    {
+      "id": "tool.definition.echo"
+    },
+    {
+      "id": "tool.definition.filesystem"
+    },
+    {
+      "id": "tool.definition.shell"
+    },
+    {
+      "id": "tool.definition.meta"
+    },
+    {
+      "id": "tool.schema.json-schema"
+    },
+    {
+      "id": "tool.schema.typebox"
+    },
+    {
+      "id": "tool.schema.zod-compatible"
+    },
+    {
+      "id": "tool.schema.effect-compatible"
+    },
+    {
+      "id": "tool.schema.typescript-validator"
+    },
+    {
+      "id": "common.tools.schema.default"
+    },
+    {
+      "id": "common.tools.batch-scheduler.default"
+    },
+    {
+      "id": "tool.permission.always-allow"
+    },
+    {
+      "id": "tool.permission.always-deny"
+    },
+    {
+      "id": "tool.permission.ask-hook"
+    },
+    {
+      "id": "tool.permission.workspace-scoped"
+    },
+    {
+      "id": "tool.permission.product-personality"
+    },
+    {
+      "id": "tool.executor.default"
+    },
+    {
+      "id": "tool.executor.echo-only"
+    },
+    {
+      "id": "tool.result.text"
+    },
+    {
+      "id": "tool.result.json"
+    },
+    {
+      "id": "tool.result.error"
+    },
+    {
+      "id": "tool.result.truncated"
+    },
+    {
+      "id": "common.tools.result-projector.default"
+    },
+    {
+      "id": "tool.audit.memory"
+    },
+    {
+      "id": "tool.audit.jsonl"
+    },
+    {
+      "id": "filesystem.local"
+    },
+    {
+      "id": "filesystem.memory"
+    },
+    {
+      "id": "filesystem.readonly"
+    },
+    {
+      "id": "filesystem.workspace-scoped"
+    },
+    {
+      "id": "process-runner.disabled"
+    },
+    {
+      "id": "process-runner.local"
+    },
+    {
+      "id": "process-runner.dry-run"
+    },
+    {
+      "id": "process-runner.sandbox"
+    },
+    {
+      "id": "provider.transport.fetch"
+    },
+    {
+      "id": "provider.transport.mock-sse"
+    },
+    {
+      "id": "provider.transport.cassette"
+    },
+    {
+      "id": "provider.auth.api-key"
+    },
+    {
+      "id": "provider.auth.bearer"
+    },
+    {
+      "id": "provider.auth.query-key"
+    },
+    {
+      "id": "provider.model-registry.static"
+    },
+    {
+      "id": "provider.model-registry.env"
+    },
+    {
+      "id": "provider.model-registry.remote-cache"
+    },
+    {
+      "id": "provider.request-shape.openai-compatible"
+    },
+    {
+      "id": "provider.request-shape.anthropic"
+    },
+    {
+      "id": "provider.request-shape.google"
+    },
+    {
+      "id": "provider.stream-parser.sse"
+    },
+    {
+      "id": "provider.stream-parser.json"
+    },
+    {
+      "id": "provider.stream-parser.cassette"
+    },
+    {
+      "id": "common.provider.streaming-delta-recorder"
+    },
+    {
+      "id": "provider.event-normalizer.common"
+    },
+    {
+      "id": "provider.event-normalizer.openai-compatible"
+    },
+    {
+      "id": "provider.event-normalizer.anthropic"
+    },
+    {
+      "id": "provider.event-normalizer.google"
+    },
+    {
+      "id": "provider.usage-normalizer.common"
+    },
+    {
+      "id": "provider.usage-normalizer.pricing-table"
+    },
+    {
+      "id": "provider.cassette.jsonl"
+    },
+    {
+      "id": "provider.cassette.memory"
+    },
+    {
+      "id": "provider.stream.openai-compatible"
+    },
+    {
+      "id": "provider.stream.openrouter"
+    },
+    {
+      "id": "provider.stream.anthropic"
+    },
+    {
+      "id": "provider.stream.google"
+    },
+    {
+      "id": "common.provider.stream-projector"
+    },
+    {
+      "id": "config.source.env"
+    },
+    {
+      "id": "config.source.file"
+    },
+    {
+      "id": "config.source.cli-override"
+    },
+    {
+      "id": "config.merge.deep"
+    },
+    {
+      "id": "config.merge.replace"
+    },
+    {
+      "id": "config.merge.priority"
+    },
+    {
+      "id": "config.validator.schema"
+    },
+    {
+      "id": "config.validator.typescript"
+    },
+    {
+      "id": "resource.discovery.filesystem"
+    },
+    {
+      "id": "resource.discovery.memory"
+    },
+    {
+      "id": "prompt.resource-loader.text"
+    },
+    {
+      "id": "prompt.resource-loader.markdown"
+    },
+    {
+      "id": "prompt.system-builder.common"
+    },
+    {
+      "id": "prompt.tool-renderer.common"
+    },
+    {
+      "id": "prompt.model-capability-adapter.common"
+    },
+    {
+      "id": "prompt.compaction-adapter.common"
+    },
+    {
+      "id": "ui.event-loop.shared-tui"
+    },
+    {
+      "id": "ui.renderer.noop"
+    },
+    {
+      "id": "ui.renderer.text"
+    },
+    {
+      "id": "ui.renderer.html"
+    },
+    {
+      "id": "ui.command-router.common"
+    },
+    {
+      "id": "ui.theme-registry.common"
+    },
+    {
+      "id": "ui.input-normalizer.common"
+    },
+    {
+      "id": "ui.snapshot.common"
+    },
+    {
+      "id": "pi.block.compatibility-metadata"
+    },
+    {
+      "id": "pi.capability.aliases"
+    },
+    {
+      "id": "pi.resource.grant-defaults"
+    },
+    {
+      "id": "pi.recipe.binding-aliases"
+    },
+    {
+      "id": "pi.conformance.product-gate"
+    },
+    {
+      "id": "pi.identity.id-generator"
+    },
+    {
+      "id": "pi.identity.clock-format"
+    },
+    {
+      "id": "pi.identity.workspace-resolver"
+    },
+    {
+      "id": "pi.event.envelope-bridge"
+    },
+    {
+      "id": "pi.event.runtime-bridge"
+    },
+    {
+      "id": "pi.extension.runtime-event-bridge"
+    },
+    {
+      "id": "pi.trace.debug-surface"
+    },
+    {
+      "id": "pi.runtime.module-catalog"
+    },
+    {
+      "id": "pi.runtime.module-aliases"
+    },
+    {
+      "id": "pi.runtime.capability-resolver"
+    },
+    {
+      "id": "pi.runtime.capability-aliases"
+    },
+    {
+      "id": "pi.runtime.binding-planner"
+    },
+    {
+      "id": "pi.runtime.binding-defaults"
+    },
+    {
+      "id": "pi.runtime.lifecycle-runner"
+    },
+    {
+      "id": "pi.runtime.lifecycle-defaults"
+    },
+    {
+      "id": "pi.runtime.assembly-graph"
+    },
+    {
+      "id": "pi.runtime.graph-labels"
+    },
+    {
+      "id": "pi.runtime.acceptance-controller.native-like"
+    },
+    {
+      "id": "pi.runtime.acceptance-evidence.native-like"
+    },
+    {
+      "id": "pi.session.id-generator"
+    },
+    {
+      "id": "pi.session.store.jsonl-v3"
+    },
+    {
+      "id": "pi.session.store.jsonl-v3-migrator"
+    },
+    {
+      "id": "pi.session.event-log.session-manager"
+    },
+    {
+      "id": "pi.session.reader.session-manager"
+    },
+    {
+      "id": "pi.session.writer.session-manager"
+    },
+    {
+      "id": "pi.session.message-store.session-manager"
+    },
+    {
+      "id": "pi.session.branching.session-manager"
+    },
+    {
+      "id": "pi.session.branch-graph.leaf-tree"
+    },
+    {
+      "id": "pi.session.branch-graph.active-leaf"
+    },
+    {
+      "id": "pi.session.projector.jsonl"
+    },
+    {
+      "id": "pi.session.projector.jsonl-v3"
+    },
+    {
+      "id": "pi.session.message-part-projector.native-like"
+    },
+    {
+      "id": "pi.session.pagination.active-path"
+    },
+    {
+      "id": "pi.session.context-selector.active-leaf"
+    },
+    {
+      "id": "pi.session.branch-summary"
+    },
+    {
+      "id": "pi.session.diff.session-manager"
+    },
+    {
+      "id": "pi.hook.extension-bridge"
+    },
+    {
+      "id": "pi.extension.loader"
+    },
+    {
+      "id": "pi.hook.observer-adapter"
+    },
+    {
+      "id": "pi.hook.handler-adapter"
+    },
+    {
+      "id": "pi.extension.event-mapper"
+    },
+    {
+      "id": "pi.hook.scheduler-defaults"
+    },
+    {
+      "id": "pi.extension.cleanup"
+    },
+    {
+      "id": "pi.hook.error-defaults"
+    },
+    {
+      "id": "pi.registry.register-tool"
+    },
+    {
+      "id": "pi.extension.dynamic-tool-bridge"
+    },
+    {
+      "id": "pi.registry.command"
+    },
+    {
+      "id": "pi.registry.provider-extension"
+    },
+    {
+      "id": "pi.extension.provider-registry-bridge"
+    },
+    {
+      "id": "pi.registry.message-renderer"
+    },
+    {
+      "id": "pi.extension.ui-registry-bridge"
+    },
+    {
+      "id": "pi.turn.input-normalizer"
+    },
+    {
+      "id": "pi.turn.context-builder"
+    },
+    {
+      "id": "pi.turn.prompt-assembler"
+    },
+    {
+      "id": "pi.turn.provider-request-builder"
+    },
+    {
+      "id": "pi.turn.provider-stream-runner"
+    },
+    {
+      "id": "pi.turn.stream-reducer"
+    },
+    {
+      "id": "pi.turn.tool-call-planner"
+    },
+    {
+      "id": "pi.turn.tool-executor"
+    },
+    {
+      "id": "pi.turn.result-recorder"
+    },
+    {
+      "id": "pi.turn.retry-policy"
+    },
+    {
+      "id": "pi.turn.continuation-policy"
+    },
+    {
+      "id": "pi.turn.compaction-policy"
+    },
+    {
+      "id": "pi.turn.stop-condition"
+    },
+    {
+      "id": "pi.agent-loop.request-boundary.native-like"
+    },
+    {
+      "id": "pi.agent-loop.final-summary.native-like"
+    },
+    {
+      "id": "pi.tool-pack.compatibility"
+    },
+    {
+      "id": "pi.tool.register-tool-bridge"
+    },
+    {
+      "id": "pi.tool.typebox-bridge"
+    },
+    {
+      "id": "pi.extension.typebox-bridge"
+    },
+    {
+      "id": "pi.tools.schema.native-like"
+    },
+    {
+      "id": "pi.tools.batch-scheduler.native-like"
+    },
+    {
+      "id": "pi.permission.event-bridge"
+    },
+    {
+      "id": "pi.tool.event-render-bridge"
+    },
+    {
+      "id": "pi.tool.result-event-bridge"
+    },
+    {
+      "id": "pi.tools.result-projector.native-like"
+    },
+    {
+      "id": "pi.tool.runtime-event-bridge"
+    },
+    {
+      "id": "pi.workspace-filesystem-bridge"
+    },
+    {
+      "id": "pi.process-runner-bridge"
+    },
+    {
+      "id": "pi.provider.transport-instrumentation"
+    },
+    {
+      "id": "pi.provider.auth-descriptor"
+    },
+    {
+      "id": "pi.provider.model-extension"
+    },
+    {
+      "id": "pi.provider.request-options"
+    },
+    {
+      "id": "pi.provider.parser-observer"
+    },
+    {
+      "id": "pi.provider.streaming-delta-recorder.native-like"
+    },
+    {
+      "id": "pi.provider.event-observer"
+    },
+    {
+      "id": "pi.provider.usage-renderer"
+    },
+    {
+      "id": "pi.provider.cassette-artifact"
+    },
+    {
+      "id": "pi.provider.extension-descriptor"
+    },
+    {
+      "id": "pi.provider.stream-projector.native-like"
+    },
+    {
+      "id": "pi.config.source"
+    },
+    {
+      "id": "pi.config.precedence"
+    },
+    {
+      "id": "pi.config.validator"
+    },
+    {
+      "id": "pi.resource.discovery.project-context"
+    },
+    {
+      "id": "pi.prompt.resource-loader.project-context"
+    },
+    {
+      "id": "pi.prompt.coding-agent-builder"
+    },
+    {
+      "id": "pi.prompt.tool-renderer.runtime-tools"
+    },
+    {
+      "id": "pi.prompt.model-capability-adapter.runtime-model"
+    },
+    {
+      "id": "pi.prompt.compaction-adapter.summary-mode"
+    },
+    {
+      "id": "pi.ui.event-loop"
+    },
+    {
+      "id": "pi.tui.shell"
+    },
+    {
+      "id": "pi.ui.renderer"
+    },
+    {
+      "id": "pi.ui.command-router"
+    },
+    {
+      "id": "pi.ui.theme-registry"
+    },
+    {
+      "id": "pi.ui.input-normalizer"
+    },
+    {
+      "id": "pi.ui.snapshot"
+    },
+    {
+      "id": "pi.product-shell.sdk"
+    },
+    {
+      "id": "pi.product-shell.harness"
+    },
+    {
+      "id": "pi.product-shell.cli"
+    },
+    {
+      "id": "pi.product-shell.tui"
+    },
+    {
+      "id": "pi.product-shell.rpc"
+    },
+    {
+      "id": "pi.product-shell.web-ui"
+    },
+    {
+      "id": "pi.product-shell.server"
+    },
+    {
+      "id": "pi.product-shell.package-manager"
+    },
+    {
+      "id": "pi.product-shell.extension-examples"
+    },
+    {
+      "id": "pi.product-shell.browser-smoke"
+    },
+    {
+      "id": "pi.product-shell.release-hardening"
+    }
+  ],
+  "session": {
+    "id": "ses_b322205f-b4c0-464e-95bb-6e9de0d3ffaf",
+    "title": "New session",
+    "cwd": "/home/hatch/workspace/helix-eval/logs/smoke-harness-2026-11-12/workspace",
+    "created": 1794494268019,
+    "updated": 1794494268019,
+    "path": "/home/hatch/workspace/helix-eval/logs/smoke-harness-2026-11-12/storage/2026-11-12T14-37-48-019Z_ses_b322205f-b4c0-464e-95bb-6e9de0d3ffaf.jsonl"
+  },
+  "blockedTools": [],
+  "steps": 1,
+  "retries": 0,
+  "syntheticContinues": 0,
+  "finish": "provider_error",
+  "error": {
+    "name": "Error",
+    "message": "Provider openai-compatible request failed (502 Bad Gateway): ",
+    "stack": "Error: Provider openai-compatible request failed (502 Bad Gateway): \n    at OpenAICompatibleProviderAdapter.stream (/home/hatch/workspace/helix-eval/upstream/packages/lego-provider/src/openai-compatible.ts:103:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async normalizeProviderStream (/home/hatch/workspace/helix-eval/upstream/packages/lego-provider/src/normalizer.ts:18:20)\n    at async runProviderStep (/home/hatch/workspace/helix-eval/upstream/packages/lego-agent-loop/src/loop/provider-step.ts:58:24)\n    at async runAgentTurn (/home/hatch/workspace/helix-eval/upstream/packages/lego-agent-loop/src/loop/run-turn.ts:217:24)\n    at async runHarnessTurn (/home/hatch/workspace/helix-eval/upstream/packages/recipes/src/harness.ts:523:20)\n    at async runCli (/home/hatch/workspace/helix-eval/upstream/packages/cli/src/index.ts:2166:20)"
+  },
+  "transcript": [
+    {
+      "role": "user",
+      "text": "The file buggy.py in the working directory has an off-by-one bug: sum_first_n(5) prints 10 instead of 15. Read the file, fix the bug, then run the file to verify it prints 15. Only modify buggy.py.",
+      "parts": [
+        {
+          "id": "prt_fcfef365-00ad-4524-ae3e-b74cccaa90ce",
+          "type": "text",
+          "text": "The file buggy.py in the working directory has an off-by-one bug: sum_first_n(5) prints 10 instead of 15. Read the file, fix the bug, then run the file to verify it prints 15. Only modify buggy.py."
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "text": "Provider error: Provider openai-compatible request failed (502 Bad Gateway): ",
+      "parts": [
+        {
+          "id": "prt_2abd9df6-c36a-46f3-9670-c98bf835d439",
+          "type": "text",
+          "text": "Provider error: Provider openai-compatible request failed (502 Bad Gateway): "
+        }
+      ]
+    }
+  ],
+  "assistantParts": [
+    {
+      "id": "prt_2abd9df6-c36a-46f3-9670-c98bf835d439",
+      "type": "text",
+      "text": "Provider error: Provider openai-compatible request failed (502 Bad Gateway): "
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+✓ Created objects.
+├── ✓ Uploaded 
+│   /home/hatch/workspace/helix-eval/logs/smoke-harness-2026-11-12/01_modal_vllm
+│   _smoke.py
+└── ✓ Created Function VLLMServer.*.
+    └── VLLMServer.serve -> 
+        https://letrieu728--helix-vllm-engine-vllmserver-serve.us-east.modal.run
+        (unauthenticated)
+✓ App deployed in 2.308s! 🎉
+
+View Deployment: 
+https://modal.com/apps/letrieu728/main/deployed/helix-vllm-engine
