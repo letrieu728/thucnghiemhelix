@@ -2,13 +2,32 @@
 
 Repository này ghi lại toàn bộ công việc thực nghiệm của nhóm 5 cho bài báo
 HELIX: kiểm chứng offline framework của tác giả, audit nguồn gốc dữ liệu của
-nhóm, và hai vòng chạy live pipeline closed-loop (Build → Update → Rebuild)
-trên Modal với model `Qwen/Qwen2.5-Coder-7B-Instruct`. Mọi trace, dataset,
-log train và báo cáo phân tích đều nằm trong repository này; số liệu nào chưa
-chứng minh được thì ghi rõ là chưa chứng minh được.
+nhóm, hai vòng chạy live pipeline closed-loop (Build → Update → Rebuild)
+trên Modal với model `Qwen/Qwen2.5-Coder-7B-Instruct`, và một smoke test
+ghép adapter đã train với harness lắp thật. Mọi trace, dataset, log train
+và báo cáo phân tích đều nằm trong repository này; số liệu nào chưa chứng
+minh được thì ghi rõ là chưa chứng minh được, phần nào chưa làm được thì
+ghi rõ là chưa làm được.
 
 Nhóm thực hiện: Nhóm 5 ("Song sát thầy Thụy"), môn Khai phá dữ liệu / Cơ sở
-hệ thống thông tin, VNU-UET, học kỳ I năm học 2026–2027.
+hệ thống thông tin, VNU-UET, học kỳ I năm học 2026–2027. Giảng viên hướng
+dẫn môn học: PGS.TS Hà Quang Thụy.
+
+## Hướng dẫn đọc nhanh
+
+Thầy đọc theo thứ tự sau là đủ nắm toàn bộ công việc:
+
+1. **File này (README.md)** — tóm tắt kết quả, caveat và cách chạy lại.
+2. [`REPORT.md`](./REPORT.md) — báo cáo đối chiếu: từng hạng mục của tác
+   giả đối chiếu với kết quả kiểm chứng offline của nhóm.
+3. [`RESULTS.md`](./RESULTS.md) — nhật ký kết quả theo ngày (07–12/11/2026),
+   gồm cả phần phân loại lại lỗi test ngày 12/11 và tóm tắt hai vòng live.
+4. [`closed-loop/REBUILD_REPORT.md`](./closed-loop/REBUILD_REPORT.md) §8–§9
+   — phân tích thống kê đầy đủ của hai vòng chạy live (union, khoảng tin
+   cậy Wilson, kiểm định McNemar).
+5. [`results/`](./results/) — log và bằng chứng gốc (xem
+   [`results/README.md`](./results/README.md) để biết file nào là gì),
+   gồm audit nguồn gốc trace và bằng chứng smoke test harness thật.
 
 ## Bài báo và các repository liên quan
 
@@ -21,8 +40,9 @@ hệ thống thông tin, VNU-UET, học kỳ I năm học 2026–2027.
   https://github.com/Vietng-XPrince7/HELIX (HEAD `cc44b7b`)
 - **Repository này:** kiểm chứng offline + bản sao working copy của
   `closed-loop/` kèm các bản sửa provenance, dữ liệu và trace của hai vòng
-  chạy live. Fork vẫn là pipeline chính thức của nhóm; các cải tiến ở đây
-  được port ngược về fork bằng patch (xem mục
+  chạy live, và bằng chứng smoke test harness thật. Fork vẫn là pipeline
+  chính thức của nhóm; các cải tiến ở đây được port ngược về fork bằng
+  patch (xem mục
   [Bản sao pipeline closed-loop](#bản-sao-pipeline-closed-loop)).
 
 Tác giả làm 65 harness ứng viên × 100 bài (6.500 lượt chạy) và rút ra 438
@@ -117,6 +137,35 @@ Commit: [43758ed](https://github.com/letrieu728/thucnghiemhelix/commit/43758ed27
 [ffb49ab](https://github.com/letrieu728/thucnghiemhelix/commit/ffb49ab69b7361da4ac10f6ea2d4ae7a24d85702)
 (120 trace held-out v2).
 
+### Smoke test: ghép LoRA với harness lắp thật (12/11/2026, tối)
+
+Sau hai vòng chạy qua harness mô phỏng, nhóm thử ghép adapter LoRA vòng 2
+với một harness lắp thật bằng CLI của tác giả: 1 bài sửa lỗi Python nhỏ,
+harness pi-mono (297 module, 4 tool thật), model `helix-lora` qua endpoint
+vLLM trên Modal. Kế hoạch gốc dùng `minimal`, nhưng `minimal` không phải
+product chạy được bằng lệnh `run` của CLI nên buộc phải dùng pi-mono.
+
+**Kết luận: chưa ghép được.** Cả 4 tiêu chí cam kết trước đều FAIL. Harness
+assemble thành công và chạy tới bước gọi model, nhưng request chết ở 2
+blocker độc lập, cả hai đều đã chẩn đoán rõ bằng probe trực tiếp:
+
+1. **Proxy + streaming:** CLI bắt buộc `stream: true`; server vLLM trả 200
+   nhưng response không qua được proxy FastAPI tới CLI (CLI nhận 502 rỗng,
+   3/3 lần). Chạy không streaming thì vẫn 200 bình thường.
+2. **Định dạng tool call:** cả model gốc lẫn LoRA đều sinh tool call dạng
+   XML `<function_call>`, parser Hermes không nhận ra (`tool_calls: []`),
+   nên tool không bao giờ được thực thi. Đây không phải lỗi do LoRA —
+   model gốc cũng sinh y hệt.
+
+Muốn ghép được cần 2 lần sửa ngoài scope smoke test: sửa proxy để stream
+đúng chuẩn, và sửa định dạng tool call của model. Chi phí GPU ước tính
+~$0,2–0,4 từ credit (dưới trần $2 đã duyệt); app Modal đã tắt ngay sau khi
+chạy. Toàn bộ bằng chứng (đề bài, probe, output CLI, log deploy, bản sao
+script có parser):
+[results/2026-11-12-real-harness-smoke-test/](./results/2026-11-12-real-harness-smoke-test/),
+commit
+[baee74f](https://github.com/letrieu728/thucnghiemhelix/commit/baee74ff15fc156bd1fda3b5016eda42bfb1f1b7).
+
 ### Đọc kết quả thế nào
 
 - Hai vòng chạy đều cho gain nhỏ, cùng chiều, nhưng **chưa vòng nào đạt ý
@@ -162,6 +211,9 @@ Commit: [43758ed](https://github.com/letrieu728/thucnghiemhelix/commit/43758ed27
 │   ├── tests/test_pipeline.py           # 17 test (pipeline, provenance gate, drift config)
 │   ├── requirements.txt / .env.template
 ├── results/                             # Log và bằng chứng kiểm chứng offline + audit
+│   ├── README.md                        # Mục lục thư mục results/
+│   ├── 2026-11-12-real-harness-smoke-test/  # Bằng chứng smoke test harness thật
+│   └── 2026-11-11-fixed-artifacts/      # Artifact tái sinh 11/11 (3 FAIL gốc → PASS)
 └── scripts/
     ├── run-offline.ps1                  # Chạy các lệnh verify offline của HELIX
     └── check_fixture_symlinks.py        # Kiểm tra 101 fixture symlink
@@ -225,9 +277,9 @@ endpoint vLLM bằng `01_modal_vllm.py`, chạy đánh giá bằng
 vào file `.env` từ mẫu `closed-loop/.env.template`. **Không có secret hay
 token nào được commit trong repo này.**
 
-### Kiểm chứng offline
+## Kiểm chứng offline
 
-Phần dưới đây giữ nguyên nội dung kiểm chứng offline đã làm từ 07–11/11/2026.
+Phần này giữ nguyên nội dung kiểm chứng offline đã làm từ 07–11/11/2026.
 Báo cáo đối chiếu đầy đủ nằm tại [`REPORT.md`](./REPORT.md); log kết quả
 từng ngày nằm tại [`RESULTS.md`](./RESULTS.md) và thư mục
 [`results/`](./results/).
@@ -236,15 +288,15 @@ Repository này tái lập các kiểm tra **offline, miễn phí và có thể 
 lại** của HELIX. Mục tiêu là đánh giá kỹ thuật của framework, không tuyên
 bố tái lập kết quả benchmark dùng LLM trả phí.
 
-#### Phạm vi đã thực hiện
+### Phạm vi đã thực hiện
 
 | Thực nghiệm | Mục tiêu | Lệnh | Kết quả |
 | --- | --- | --- | --- |
-| Typecheck | Kiểm tra tính nhất quán kiểu của workspace | `npm run typecheck` | Xem `results/typecheck.txt` |
-| Unit & conformance tests (tuỳ chọn) | Kiểm tra hồi quy và các hợp đồng module | `./scripts/run-offline.ps1 -IncludeFullTest` | Xem `results/tests.txt` |
+| Typecheck | Kiểm tra tính nhất quán kiểu của workspace | `npm run typecheck` | Xem `results/2026-11-07-typecheck.md` |
+| Unit & conformance tests (tuỳ chọn) | Kiểm tra hồi quy và các hợp đồng module | `./scripts/run-offline.ps1 -IncludeFullTest` | Xem `results/2026-11-11-npm-test.txt` và `results/2026-11-12-npm-test-after-fix.txt` |
 | Task parity (cassette) | So sánh assembled/original-contract trong chế độ xác định | Không tự chạy trong script | Có thể ghi đè artifact upstream |
-| Cadence verification | Kiểm tra tái lập cadence artifact | `npm run task:parity:cadence:verify` | Xem `results/cadence-verify.txt` |
-| Assembly verification | Kiểm tra recipe/assembly contract | `npm run assembly:contract:verify` | Xem `results/assembly-verify.txt` |
+| Cadence verification | Kiểm tra tái lập cadence artifact | `npm run task:parity:cadence:verify` | Xem `results/2026-11-11-task-parity-cadence-verify.txt` |
+| Assembly verification | Kiểm tra recipe/assembly contract | `npm run assembly:contract:verify` | Xem `results/2026-11-11-linux-verification.md`; log thô nén tại `results/2026-11-11-assembly-contract-verify.txt.gz.b64` (xem `results/2026-11-11-large-files-gz-note.md`) |
 
 Các lệnh được chạy từ bản HELIX cục bộ. Mặc định script giả định cấu trúc
 thư mục:
@@ -271,7 +323,7 @@ Script không dùng API key, không gửi dữ liệu ra ngoài và không gọi
 chỉ chạy các lệnh verify/read-only và lưu log cho từng lệnh vào `results/`.
 Thêm `-IncludeFullTest` khi muốn chạy toàn bộ test suite.
 
-#### Cách diễn giải
+### Cách diễn giải
 
 Các thí nghiệm trên chứng minh rằng source hiện tại biên dịch, test được, và
 các artifact/contract offline nhất quán. Chúng **không** chứng minh HELIX tốt
@@ -281,7 +333,7 @@ hơn các agent khác trên benchmark thực tế, vì không có lần gọi mo
 không bật `--native-original`; vì vậy đây là bằng chứng về khả năng tái lập
 cấu trúc và hành vi đã ghi nhận, không phải native end-to-end parity.
 
-#### Trạng thái tái lập đã xác nhận
+### Trạng thái tái lập đã xác nhận
 
 Kết quả được lưu trong thư mục `results/` và được version hóa khi có kết luận
 rõ ràng. Lần rà soát ngày 2026-11-10 phân biệt giữa **đã chạy thành công**,
@@ -302,7 +354,7 @@ artifact có sẵn trong HELIX thành một lần tái lập mới.
 | Current-module audit | FAIL gốc / PASS tái sinh (2026-11-11) | Artifact gốc `ce386…` ≠ tính lại `413e…`; artifact tái sinh verify PASS. |
 | Live provider/native CLI/LCB/SWE-bench | Không thực hiện | Cần model/credential hoặc dữ liệu và runner không có trong checkout. |
 
-#### Các phần chưa làm được và lý do
+### Các phần chưa làm được và lý do
 
 | Hạng mục | Lý do chưa chạy | Điều kiện để chạy |
 | --- | --- | --- |
@@ -313,7 +365,13 @@ artifact có sẵn trong HELIX thành một lần tái lập mới.
 | So sánh đa seed, đa model | Cần lặp lại nhiều lần inference | API/GPU và một protocol thống kê định trước |
 | Robustness đa provider | Cần endpoint/provider thật để tiêm lỗi mạng/tool | Credentials hoặc hạ tầng provider local tương thích |
 
-#### Ghi chú về giới hạn môi trường
+Ghi chú thêm (12/11): nhóm đã thử 1 lượt live provider qua endpoint
+OpenAI-compatible tự dựng (smoke test ghép LoRA với harness lắp thật, xem
+mục trên); lượt thử bị chặn ở tầng proxy streaming và định dạng tool call,
+chưa kết luận được parity. Bằng chứng tại
+[results/2026-11-12-real-harness-smoke-test/](./results/2026-11-12-real-harness-smoke-test/).
+
+### Ghi chú về giới hạn môi trường
 
 Khi chạy trong sandbox, `tsx` gọi `node:os.userInfo()` và dừng với
 `uv_os_get_passwd returned ENOMEM`. Chạy cùng các lệnh ngoài sandbox bằng Node
@@ -338,6 +396,10 @@ live provider vì các hạng mục đó cần model/credential/dữ liệu riê
    fixture hoặc metadata guard thay vì quan sát native end-to-end.
 8. 101 fixture symlink của tác giả vẫn hỏng; patch port ngược về fork vẫn
    đang chờ áp; bản chạy kiểm chứng trên Kaggle chưa được đưa vào đánh giá.
+9. Việc ghép adapter đã train với harness lắp thật mới dừng ở smoke test
+   1 task và **chưa thành công** (blocker proxy streaming và định dạng
+   tool call, xem mục smoke test ở trên); mọi kết quả BUILD/REBUILD trong
+   repo này đều qua harness mô phỏng, không phải harness lắp thật.
 
 ## Nguồn và khả năng tái lập
 
