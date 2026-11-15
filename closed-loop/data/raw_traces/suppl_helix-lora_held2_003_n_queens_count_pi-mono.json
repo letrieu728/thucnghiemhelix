@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_003_n_queens_count",
+  "task_title": "N-Queens Count",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `total_n_queens(n: int) -> int` that returns the number of distinct solutions to the n-queens puzzle: place `n` queens on an `n x n` chessboard so that no two queens attack each other.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 31.571,
+  "assistant_solution": "```python\ndef total_n_queens(n: int) -> int:\n    def is_not_under_attack(row, col):\n        return (col not in columns and \n                (row - col) not in diagonals1 and \n                (row + col) not in diagonals2)\n    \n    def place_queen(row, col):\n        columns.add(col)\n        diagonals1.add(row - col)\n        diagonals2.add(row + col)\n    \n    def remove_queen(row, col):\n        columns.remove(col)\n        diagonals1.remove(row - col)\n        diagonals2.remove(row + col)\n    \n    def backtrack(row = 0):\n        if row == n:\n            nonlocal count\n            count += 1\n            return\n        \n        for col in range(n):\n            if is_not_under_attack(row, col):\n                place_queen(row, col)\n                backtrack(row + 1)\n                remove_queen(row, col)\n    \n    count = 0\n    columns = set()\n    diagonals1 = set()\n    diagonals2 = set()\n    backtrack()\n    return count\n\n# Example usage:\nprint(total_n_queens(4))  # Output: 2\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve the n-queens puzzle, we need to place `n` queens on an `n x n` chessboard such that no two queens threaten each other. This means no two queens can be in the same row, column, or diagonal.\n\nHere's a step-by-step approach to implement the `total_n_queens` function:\n\n1. **Backtracking**: Use backtracking to try placing queens one by one in different columns. If placing a queen in a column leads to a conflict (i.e., another queen is already placed in the same row or diagonal), backtrack and try the next column.\n\n2. **Tracking Columns, Rows, and Diagonals**: Use three sets to keep track of which columns, rows, and diagonals are currently occupied:\n   - `columns`: Set of columns where a queen is placed.\n   - `diagonals1`: Set of diagonals from top-left to bottom-right where a queen is placed. Each diagonal can be uniquely identified by the difference `(row - col)`.\n   - `diagonals2`: Set of diagonals from top-right to bottom-left where a queen is placed. Each diagonal can be uniquely identified by the sum `(row + col)`.\n\n3. **Recursive Function**: Define a recursive function that tries to place a queen in each column and explores all possible placements recursively.\n\n4. **Counting Solutions**: Increment a counter each time a valid placement of `n` queens is found.\n\nHere's the complete implementation:\n\n```python\ndef total_n_queens(n: int) -> int:\n    def is_not_under_attack(row, col):\n        return (col not in columns and \n                (row - col) not in diagonals1 and \n                (row + col) not in diagonals2)\n    \n    def place_queen(row, col):\n        columns.add(col)\n        diagonals1.add(row - col)\n        diagonals2.add(row + col)\n    \n    def remove_queen(row, col):\n        columns.remove(col)\n        diagonals1.remove(row - col)\n        diagonals2.remove(row + col)\n    \n    def backtrack(row = 0):\n        if row == n:\n            nonlocal count\n            count += 1\n            return\n        \n        for col in range(n):\n            if is_not_under_attack(row, col):\n                place_queen(row, col)\n                backtrack(row + 1)\n                remove_queen(row, col)\n    \n    count = 0\n    columns = set()\n    diagonals1 = set()\n    diagonals2 = set()\n    backtrack()\n    return count\n\n# Example usage:\nprint(total_n_queens(4))  # Output: 2\n```\n\n### Explanation:\n- **is_not_under_attack(row, col)**: Checks if placing a queen at `(row, col)` does not conflict with any previously placed queens.\n- **place_queen(row, col)**: Adds the current position to the sets of occupied columns and diagonals.\n- **remove_queen(row, col)**: Removes the current position from the sets of occupied columns and diagonals.\n- **backtrack(row)**: Recursively tries to place queens starting from the given row. If all queens are placed (`row == n`), it increments the count of solutions.\n- The main function initializes the necessary data structures and starts the backtracking process.\n\nThis implementation efficiently counts the number of distinct solutions to the n-queens puzzle using backtracking and set operations.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-15T12:21:22.208774+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "suppl",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

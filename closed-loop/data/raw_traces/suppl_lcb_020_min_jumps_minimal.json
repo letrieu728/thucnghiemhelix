@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_020_min_jumps",
+  "task_title": "Jump Game II (Minimum Jumps)",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `jump(nums: list[int]) -> int` that returns the minimum number of jumps needed to reach the last index, where `nums[i]` is the maximum jump length from index `i`. Return -1 if the last index cannot be reached, and 0 if `nums` has 0 or 1 element.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 12.589,
+  "assistant_solution": "```python\ndef jump(nums):\n    n = len(nums)\n    if n <= 1:\n        return 0\n    max_reach = nums[0]\n    step = nums[0]\n    jumps = 1\n    for i in range(1, n):\n        if i == n - 1:\n            return jumps\n        max_reach = max(max_reach, i + nums[i])\n        step -= 1\n        if step == 0:\n            jumps += 1\n            if i >= max_reach:\n                return -1\n            step = max_reach - i\n    return -1\n```",
+  "passed": false,
+  "test_result": {
+    "passed": false,
+    "error": "Traceback (most recent call last):\n  File \"<string>\", line 28, in <module>\nAssertionError"
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef jump(nums):\n    n = len(nums)\n    if n <= 1:\n        return 0\n    max_reach = nums[0]\n    step = nums[0]\n    jumps = 1\n    for i in range(1, n):\n        if i == n - 1:\n            return jumps\n        max_reach = max(max_reach, i + nums[i])\n        step -= 1\n        if step == 0:\n            jumps += 1\n            if i >= max_reach:\n                return -1\n            step = max_reach - i\n    return -1\n```\nThis Python function implements a greedy algorithm to find the minimum number of jumps required to reach the end of the array. It iterates through the array while keeping track of the farthest point that can be reached (`max_reach`) and the steps available (`step`). When no more steps are left (`step == 0`), it increments the jump count and updates the step count with the remaining distance to the farthest reachable point. If at any point the current index exceeds `max_reach`, it means the end cannot be reached, and the function returns -1. If the loop completes without returning, it means the end was reached, and the function returns the total number of jumps made.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<string>\", line 28, in <module>\nAssertionError",
+  "timestamp": "2026-11-15T12:17:13.591667+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "suppl",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

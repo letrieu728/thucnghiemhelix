@@ -1,0 +1,9 @@
+{
+  "torch": "2.8.0",
+  "transformers": "4.56.2",
+  "trl": "0.23.0",
+  "unsloth": "2025.10.12",
+  "unsloth_zoo": "2025.10.13",
+  "peft": "0.17.1",
+  "datasets": "3.6.0"
+}

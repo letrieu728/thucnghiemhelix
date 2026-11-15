@@ -1,0 +1,706 @@
+{
+  "run": "supplement rows 2+5 (NOT round 3)",
+  "date": "2026-11-15",
+  "n_suppl_traces": 140,
+  "n_suppl_rebuild": 80,
+  "n_suppl_heldout": 60,
+  "suppl_all_live": true,
+  "suppl_models": [
+    "helix-lora"
+  ],
+  "suppl_temperatures": [
+    0.0
+  ],
+  "suppl_baseline_cells": 140,
+  "reverify_mismatches_suppl": 0,
+  "reverify_mismatch_files": [],
+  "prompt_truncations_suppl": 0,
+  "infra_error_traces_suppl": [],
+  "rebuild_suppl": {
+    "minimal": {
+      "passed": 14,
+      "n": 20,
+      "pass_rate": 0.7,
+      "wilson95": [
+        0.481,
+        0.8545
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 12.85,
+      "total_latency_sec": 257.1
+    },
+    "pi-mono": {
+      "passed": 16,
+      "n": 20,
+      "pass_rate": 0.8,
+      "wilson95": [
+        0.584,
+        0.9193
+      ],
+      "avg_steps": 1.6,
+      "avg_latency_sec": 41.77,
+      "total_latency_sec": 835.5
+    },
+    "hermes-agent": {
+      "passed": 17,
+      "n": 20,
+      "pass_rate": 0.85,
+      "wilson95": [
+        0.6396,
+        0.9476
+      ],
+      "avg_steps": 1.5,
+      "avg_latency_sec": 24.4,
+      "total_latency_sec": 488.1
+    },
+    "opencode": {
+      "passed": 18,
+      "n": 20,
+      "pass_rate": 0.9,
+      "wilson95": [
+        0.699,
+        0.9721
+      ],
+      "avg_steps": 1.3,
+      "avg_latency_sec": 9.55,
+      "total_latency_sec": 191.0
+    },
+    "_total": {
+      "passed": 65,
+      "n": 80,
+      "pass_rate": 0.8125,
+      "wilson95": [
+        0.7134,
+        0.8829
+      ],
+      "total_latency_sec": 1771.7
+    }
+  },
+  "heldout_suppl": {
+    "minimal": {
+      "passed": 13,
+      "n": 15,
+      "pass_rate": 0.8667,
+      "wilson95": [
+        0.6212,
+        0.9626
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 14.77,
+      "total_latency_sec": 221.6
+    },
+    "pi-mono": {
+      "passed": 11,
+      "n": 15,
+      "pass_rate": 0.7333,
+      "wilson95": [
+        0.4805,
+        0.891
+      ],
+      "avg_steps": 1.8,
+      "avg_latency_sec": 53.06,
+      "total_latency_sec": 795.9
+    },
+    "hermes-agent": {
+      "passed": 13,
+      "n": 15,
+      "pass_rate": 0.8667,
+      "wilson95": [
+        0.6212,
+        0.9626
+      ],
+      "avg_steps": 1.4,
+      "avg_latency_sec": 26.84,
+      "total_latency_sec": 402.5
+    },
+    "opencode": {
+      "passed": 14,
+      "n": 15,
+      "pass_rate": 0.9333,
+      "wilson95": [
+        0.7018,
+        0.9881
+      ],
+      "avg_steps": 1.47,
+      "avg_latency_sec": 15.05,
+      "total_latency_sec": 225.8
+    },
+    "_total": {
+      "passed": 51,
+      "n": 60,
+      "pass_rate": 0.85,
+      "wilson95": [
+        0.7389,
+        0.919
+      ],
+      "total_latency_sec": 1645.8
+    }
+  },
+  "build2_baseline": {
+    "minimal": {
+      "passed": 14,
+      "n": 20,
+      "pass_rate": 0.7,
+      "wilson95": [
+        0.481,
+        0.8545
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 17.9,
+      "total_latency_sec": 358.0
+    },
+    "pi-mono": {
+      "passed": 15,
+      "n": 20,
+      "pass_rate": 0.75,
+      "wilson95": [
+        0.5313,
+        0.8881
+      ],
+      "avg_steps": 1.75,
+      "avg_latency_sec": 42.14,
+      "total_latency_sec": 842.8
+    },
+    "hermes-agent": {
+      "passed": 14,
+      "n": 20,
+      "pass_rate": 0.7,
+      "wilson95": [
+        0.481,
+        0.8545
+      ],
+      "avg_steps": 1.9,
+      "avg_latency_sec": 46.21,
+      "total_latency_sec": 924.1
+    },
+    "opencode": {
+      "passed": 17,
+      "n": 20,
+      "pass_rate": 0.85,
+      "wilson95": [
+        0.6396,
+        0.9476
+      ],
+      "avg_steps": 1.5,
+      "avg_latency_sec": 19.08,
+      "total_latency_sec": 381.6
+    },
+    "_total": {
+      "passed": 60,
+      "n": 80,
+      "pass_rate": 0.75,
+      "wilson95": [
+        0.6452,
+        0.8319
+      ],
+      "total_latency_sec": 2506.5
+    }
+  },
+  "rebuild2_baseline": {
+    "minimal": {
+      "passed": 17,
+      "n": 20,
+      "pass_rate": 0.85,
+      "wilson95": [
+        0.6396,
+        0.9476
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 13.48,
+      "total_latency_sec": 269.7
+    },
+    "pi-mono": {
+      "passed": 16,
+      "n": 20,
+      "pass_rate": 0.8,
+      "wilson95": [
+        0.584,
+        0.9193
+      ],
+      "avg_steps": 1.6,
+      "avg_latency_sec": 48.1,
+      "total_latency_sec": 962.0
+    },
+    "hermes-agent": {
+      "passed": 15,
+      "n": 20,
+      "pass_rate": 0.75,
+      "wilson95": [
+        0.5313,
+        0.8881
+      ],
+      "avg_steps": 1.75,
+      "avg_latency_sec": 36.29,
+      "total_latency_sec": 725.8
+    },
+    "opencode": {
+      "passed": 18,
+      "n": 20,
+      "pass_rate": 0.9,
+      "wilson95": [
+        0.699,
+        0.9721
+      ],
+      "avg_steps": 1.3,
+      "avg_latency_sec": 10.12,
+      "total_latency_sec": 202.4
+    },
+    "_total": {
+      "passed": 66,
+      "n": 80,
+      "pass_rate": 0.825,
+      "wilson95": [
+        0.7274,
+        0.8928
+      ],
+      "total_latency_sec": 2159.9
+    }
+  },
+  "heldout2_base_baseline": {
+    "minimal": {
+      "passed": 12,
+      "n": 15,
+      "pass_rate": 0.8,
+      "wilson95": [
+        0.5481,
+        0.9295
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 15.68,
+      "total_latency_sec": 235.2
+    },
+    "pi-mono": {
+      "passed": 13,
+      "n": 15,
+      "pass_rate": 0.8667,
+      "wilson95": [
+        0.6212,
+        0.9626
+      ],
+      "avg_steps": 1.4,
+      "avg_latency_sec": 31.25,
+      "total_latency_sec": 468.8
+    },
+    "hermes-agent": {
+      "passed": 13,
+      "n": 15,
+      "pass_rate": 0.8667,
+      "wilson95": [
+        0.6212,
+        0.9626
+      ],
+      "avg_steps": 1.6,
+      "avg_latency_sec": 37.85,
+      "total_latency_sec": 567.7
+    },
+    "opencode": {
+      "passed": 12,
+      "n": 15,
+      "pass_rate": 0.8,
+      "wilson95": [
+        0.5481,
+        0.9295
+      ],
+      "avg_steps": 1.6,
+      "avg_latency_sec": 22.15,
+      "total_latency_sec": 332.2
+    },
+    "_total": {
+      "passed": 50,
+      "n": 60,
+      "pass_rate": 0.8333,
+      "wilson95": [
+        0.7197,
+        0.9069
+      ],
+      "total_latency_sec": 1603.9
+    }
+  },
+  "heldout2_lora_baseline": {
+    "minimal": {
+      "passed": 13,
+      "n": 15,
+      "pass_rate": 0.8667,
+      "wilson95": [
+        0.6212,
+        0.9626
+      ],
+      "avg_steps": 1.0,
+      "avg_latency_sec": 15.21,
+      "total_latency_sec": 228.1
+    },
+    "pi-mono": {
+      "passed": 13,
+      "n": 15,
+      "pass_rate": 0.8667,
+      "wilson95": [
+        0.6212,
+        0.9626
+      ],
+      "avg_steps": 1.4,
+      "avg_latency_sec": 39.45,
+      "total_latency_sec": 591.7
+    },
+    "hermes-agent": {
+      "passed": 13,
+      "n": 15,
+      "pass_rate": 0.8667,
+      "wilson95": [
+        0.6212,
+        0.9626
+      ],
+      "avg_steps": 1.4,
+      "avg_latency_sec": 26.81,
+      "total_latency_sec": 402.1
+    },
+    "opencode": {
+      "passed": 14,
+      "n": 15,
+      "pass_rate": 0.9333,
+      "wilson95": [
+        0.7018,
+        0.9881
+      ],
+      "avg_steps": 1.47,
+      "avg_latency_sec": 15.83,
+      "total_latency_sec": 237.4
+    },
+    "_total": {
+      "passed": 53,
+      "n": 60,
+      "pass_rate": 0.8833,
+      "wilson95": [
+        0.7782,
+        0.9423
+      ],
+      "total_latency_sec": 1459.3
+    }
+  },
+  "union": {
+    "rebuild_suppl": {
+      "solved_by_at_least_one_harness": 20,
+      "tasks": 20,
+      "wilson95": [
+        0.8389,
+        1.0
+      ],
+      "unsolved_tasks": []
+    },
+    "heldout_suppl": {
+      "solved_by_at_least_one_harness": 14,
+      "tasks": 15,
+      "wilson95": [
+        0.7018,
+        0.9881
+      ],
+      "unsolved_tasks": [
+        "held2_009_next_permutation"
+      ]
+    },
+    "build2": {
+      "solved_by_at_least_one_harness": 17,
+      "tasks": 20,
+      "wilson95": [
+        0.6396,
+        0.9476
+      ],
+      "unsolved_tasks": [
+        "lcb_002_valid_parentheses",
+        "lcb_003_lru_cache",
+        "lcb_013_longest_palindromic_substring"
+      ]
+    },
+    "rebuild2": {
+      "solved_by_at_least_one_harness": 19,
+      "tasks": 20,
+      "wilson95": [
+        0.7639,
+        0.9911
+      ],
+      "unsolved_tasks": [
+        "lcb_009_word_break"
+      ]
+    },
+    "heldout2_base": {
+      "solved_by_at_least_one_harness": 14,
+      "tasks": 15,
+      "wilson95": [
+        0.7018,
+        0.9881
+      ],
+      "unsolved_tasks": [
+        "held2_009_next_permutation"
+      ]
+    },
+    "heldout2_lora": {
+      "solved_by_at_least_one_harness": 14,
+      "tasks": 15,
+      "wilson95": [
+        0.7018,
+        0.9881
+      ],
+      "unsolved_tasks": [
+        "held2_009_next_permutation"
+      ]
+    }
+  },
+  "mcnemar_build2_vs_rebuild_suppl": {
+    "paired_cells": 80,
+    "gains_fail_to_pass": 7,
+    "losses_pass_to_fail": 2,
+    "same_pass": 58,
+    "same_fail": 13,
+    "exact_p_two_sided": 0.1797,
+    "flips": [
+      {
+        "task_id": "lcb_002_valid_parentheses",
+        "harness_id": "pi-mono",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "lcb_003_lru_cache",
+        "harness_id": "opencode",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "lcb_009_word_break",
+        "harness_id": "hermes-agent",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "lcb_009_word_break",
+        "harness_id": "opencode",
+        "before": true,
+        "after": false
+      },
+      {
+        "task_id": "lcb_013_longest_palindromic_substring",
+        "harness_id": "opencode",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "lcb_017_merge_k_sorted_lists",
+        "harness_id": "hermes-agent",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "lcb_019_permutations_unique",
+        "harness_id": "hermes-agent",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "lcb_019_permutations_unique",
+        "harness_id": "minimal",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "lcb_020_min_jumps",
+        "harness_id": "minimal",
+        "before": true,
+        "after": false
+      }
+    ]
+  },
+  "mcnemar_rebuild2_vs_rebuild_suppl": {
+    "paired_cells": 80,
+    "gains_fail_to_pass": 2,
+    "losses_pass_to_fail": 3,
+    "same_pass": 63,
+    "same_fail": 12,
+    "exact_p_two_sided": 1.0,
+    "flips": [
+      {
+        "task_id": "lcb_003_lru_cache",
+        "harness_id": "minimal",
+        "before": true,
+        "after": false
+      },
+      {
+        "task_id": "lcb_009_word_break",
+        "harness_id": "hermes-agent",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "lcb_013_longest_palindromic_substring",
+        "harness_id": "minimal",
+        "before": true,
+        "after": false
+      },
+      {
+        "task_id": "lcb_019_permutations_unique",
+        "harness_id": "hermes-agent",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "lcb_020_min_jumps",
+        "harness_id": "minimal",
+        "before": true,
+        "after": false
+      }
+    ]
+  },
+  "mcnemar_heldout2_base_vs_suppl": {
+    "paired_cells": 60,
+    "gains_fail_to_pass": 4,
+    "losses_pass_to_fail": 3,
+    "same_pass": 47,
+    "same_fail": 6,
+    "exact_p_two_sided": 1.0,
+    "flips": [
+      {
+        "task_id": "held2_001_edit_distance",
+        "harness_id": "hermes-agent",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "held2_002_regex_match",
+        "harness_id": "opencode",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "held2_008_median_finder",
+        "harness_id": "pi-mono",
+        "before": true,
+        "after": false
+      },
+      {
+        "task_id": "held2_013_decode_ways",
+        "harness_id": "pi-mono",
+        "before": true,
+        "after": false
+      },
+      {
+        "task_id": "held2_014_rotten_oranges",
+        "harness_id": "hermes-agent",
+        "before": true,
+        "after": false
+      },
+      {
+        "task_id": "held2_014_rotten_oranges",
+        "harness_id": "minimal",
+        "before": false,
+        "after": true
+      },
+      {
+        "task_id": "held2_014_rotten_oranges",
+        "harness_id": "opencode",
+        "before": false,
+        "after": true
+      }
+    ]
+  },
+  "mcnemar_heldout2_lora_vs_suppl": {
+    "paired_cells": 60,
+    "gains_fail_to_pass": 0,
+    "losses_pass_to_fail": 2,
+    "same_pass": 51,
+    "same_fail": 7,
+    "exact_p_two_sided": 0.5,
+    "flips": [
+      {
+        "task_id": "held2_013_decode_ways",
+        "harness_id": "pi-mono",
+        "before": true,
+        "after": false
+      },
+      {
+        "task_id": "held2_014_rotten_oranges",
+        "harness_id": "pi-mono",
+        "before": true,
+        "after": false
+      }
+    ]
+  },
+  "judge_label_analysis": {
+    "n_judged": 169,
+    "labels": {
+      "clean": 167,
+      "unparseable": 2
+    },
+    "unparseable_files": [
+      "heldout2_base_held2_007_course_order_hermes-agent.json",
+      "heldout2_helix-lora_held2_012_gas_station_hermes-agent.json"
+    ],
+    "unparseable_rate": 0.0118,
+    "latency_sec_total": 392.6,
+    "latency_sec_mean": 2.323,
+    "retries_total": 3,
+    "by_run_tag_model_harness": {
+      "heldout2|Qwen/Qwen2.5-Coder-7B-Instruct|hermes-agent": {
+        "clean": 12,
+        "unparseable": 1
+      },
+      "heldout2|Qwen/Qwen2.5-Coder-7B-Instruct|minimal": {
+        "clean": 12
+      },
+      "heldout2|Qwen/Qwen2.5-Coder-7B-Instruct|opencode": {
+        "clean": 12
+      },
+      "heldout2|Qwen/Qwen2.5-Coder-7B-Instruct|pi-mono": {
+        "clean": 13
+      },
+      "heldout2|helix-lora|hermes-agent": {
+        "clean": 12,
+        "unparseable": 1
+      },
+      "heldout2|helix-lora|minimal": {
+        "clean": 13
+      },
+      "heldout2|helix-lora|opencode": {
+        "clean": 14
+      },
+      "heldout2|helix-lora|pi-mono": {
+        "clean": 13
+      },
+      "rebuild2|helix-lora|hermes-agent": {
+        "clean": 15
+      },
+      "rebuild2|helix-lora|minimal": {
+        "clean": 17
+      },
+      "rebuild2|helix-lora|opencode": {
+        "clean": 18
+      },
+      "rebuild2|helix-lora|pi-mono": {
+        "clean": 16
+      }
+    },
+    "heuristic_agreement_parsed": {
+      "agree": 167,
+      "n": 167,
+      "rate": 1.0
+    },
+    "heuristic_labels_on_judge_set": {
+      "clean": 169
+    },
+    "non_clean_rows": [
+      {
+        "trace_file": "heldout2_base_held2_007_course_order_hermes-agent.json",
+        "label": "unparseable",
+        "criteria": [],
+        "reason": "",
+        "evidence": ""
+      },
+      {
+        "trace_file": "heldout2_helix-lora_held2_012_gas_station_hermes-agent.json",
+        "label": "unparseable",
+        "criteria": [],
+        "reason": "",
+        "evidence": ""
+      }
+    ],
+    "note": "Judge labels are a separate sensitivity analysis (7B model, same family as the solutions). They never change any passed flag."
+  },
+  "method": "Baseline cells only (temperature 0.0, sample 0). Wilson score intervals (z=1.96); McNemar exact two-sided binomial on discordant paired cells. Re-verification re-runs every suppl passed flag in the sandbox via round2_stats.reverify."
+}

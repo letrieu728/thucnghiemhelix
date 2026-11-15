@@ -1,7 +1,7 @@
 # Mục lục thư mục `results/`
 
 Thư mục này giữ log và bằng chứng gốc của công việc kiểm chứng offline
-(07–13/11/2026) và các audit/báo cáo kèm theo. Số liệu tổng hợp nằm ở
+(07–15/11/2026) và các audit/báo cáo kèm theo. Số liệu tổng hợp nằm ở
 [`../RESULTS.md`](../RESULTS.md) và [`../REPORT.md`](../REPORT.md); ở đây
 là bằng chứng thô để đối chiếu lại.
 
@@ -50,6 +50,7 @@ là bằng chứng thô để đối chiếu lại.
 | `2026-11-12-real-harness-smoke-test/` | Bằng chứng smoke test ghép LoRA với harness lắp thật (chưa thành công, 2 blocker đã chẩn đoán) |
 | `2026-11-13-test-audit/` | Rà test 35 bài (13/11): 29 test đúng, 6 test lỏng, 0 mâu thuẫn; số headline giữ nguyên; kèm 8 script kiểm tra tái chạy được |
 | `2026-11-13-per-task-analysis/` | Phân tích theo từng bài (13/11): train 5 cải thiện / 1 tụt / 14 không đổi; held-out 3 / 1 / 11; kiểm định cấp bài đều không có ý nghĩa |
+| `2026-11-15-hang2-hang5/` | Đợt phân tích bổ sung (15/11): chấm critic 169 ô (167 clean, 0 degenerate, 2 không parse được) + DPO mở rộng 6 → 19 cặp, đo lại 65/80 và 51/60, không thay headline vòng 2; kèm rubric, luật DPO, prompt judge, log GPU, thống kê và biểu đồ |
 
 ## Lưu ý khi thêm file mới
 

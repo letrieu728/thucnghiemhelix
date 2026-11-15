@@ -1,0 +1,218 @@
+✓ Initialized. View run at 
+https://modal.com/apps/letrieu728/main/ap-gpbBYw3ymqeS0PE6A9Lb6J
+✓ Created objects.
+├── ✓ Uploaded 
+│   /home/hatch/workspace/helix-eval/thucnghiemhelix/closed-loop/scripts/04_trai
+│   n_lora.py
+├── ✓ Uploaded 
+│   /home/hatch/workspace/helix-eval/thucnghiemhelix/closed-loop/data/processed
+└── ✓ Created Function train_lora_pipeline.
+Triggering remote LoRA training on Modal A100 GPU...
+🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
+🦥 Unsloth Zoo will now patch everything to make training faster!
+======================================================================
+STARTING HELIX CLOSED-LOOP LORA FINE-TUNING ON MODAL A100
+Base Model: Qwen/Qwen2.5-Coder-7B-Instruct | Stage: sft_then_dpo | LoRA r=16, alpha=32
+======================================================================
+==((====))==  Unsloth 2025.10.12: Fast Qwen2 patching. Transformers: 4.56.2.
+   \\   /|    NVIDIA A100-SXM4-40GB. Num GPUs = 1. Max memory: 39.515 GB. Platform: Linux.
+O^O/ \_/ \    Torch: 2.8.0+cu128. CUDA: 8.0. CUDA Toolkit: 12.8. Triton: 3.4.0
+\        /    Bfloat16 = TRUE. FA [Xformers = 0.0.32.post2. FA2 = False]
+ "-____-"     Free license: http://github.com/unslothai/unsloth
+Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
+Unsloth: Dropout = 0 is supported for fast patching. You are using dropout = 0.05.
+Unsloth will patch all other layers, except LoRA matrices, causing a performance hit.
+Unsloth 2025.10.12 patched 28 layers with 0 QKV layers, 0 O layers and 0 MLP layers.
+
+[Stage 1: SFT] Loading training trajectories from /data/processed/sft_data.jsonl...
+[Stage 1: SFT] Loaded 19 samples. Beginning SFTTrainer...
+num_proc must be <= 19. Reducing num_proc to 19 for dataset of size 19.
+[datasets.arrow_dataset|WARNING]num_proc must be <= 19. Reducing num_proc to 19 for dataset of size 19.
+
+[1AUnsloth: Tokenizing ["text"] (num_proc=19):   0%|          | 0/19 [00:00<?, ? examples/s]
+[1AUnsloth: Tokenizing ["text"] (num_proc=19):   5%|▌         | 1/19 [00:00<00:14,  1.20 examples/s]
+[1AUnsloth: Tokenizing ["text"] (num_proc=19):  11%|█         | 2/19 [00:00<00:06,  2.44 examples/s]
+[1AUnsloth: Tokenizing ["text"] (num_proc=19):  21%|██        | 4/19 [00:01<00:03,  4.98 examples/s]
+[1AUnsloth: Tokenizing ["text"] (num_proc=19):  32%|███▏      | 6/19 [00:01<00:01,  6.82 examples/s]
+[1AUnsloth: Tokenizing ["text"] (num_proc=19):  42%|████▏     | 8/19 [00:01<00:01,  7.23 examples/s]
+[1AUnsloth: Tokenizing ["text"] (num_proc=19):  58%|█████▊    | 11/19 [00:01<00:00,  9.77 examples/s]
+[1AUnsloth: Tokenizing ["text"] (num_proc=19):  68%|██████▊   | 13/19 [00:01<00:00, 10.00 examples/s]
+[1AUnsloth: Tokenizing ["text"] (num_proc=19):  79%|███████▉  | 15/19 [00:02<00:00, 11.20 examples/s]
+[1AUnsloth: Tokenizing ["text"] (num_proc=19):  89%|████████▉ | 17/19 [00:02<00:00, 11.06 examples/s]
+[1AUnsloth: Tokenizing ["text"] (num_proc=19): 100%|██████████| 19/19 [00:02<00:00, 11.59 examples/s]
+[1AUnsloth: Tokenizing ["text"] (num_proc=19): 100%|██████████| 19/19 [00:02<00:00,  7.78 examples/s]
+[accelerate.utils.other|WARNING]Detected kernel version 4.19.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None}.
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
+   \\   /|    Num examples = 19 | Num Epochs = 3 | Total steps = 9
+O^O/ \_/ \    Batch size per device = 2 | Gradient accumulation steps = 4
+\        /    Data Parallel GPUs = 1 | Total batch size (2 x 4 x 1) = 8
+ "-____-"     Trainable parameters = 40,370,176 of 7,655,986,688 (0.53% trained)
+
+Unsloth: Will smartly offload gradients to save VRAM!
+[1A  0%|          | 0/9 [00:00<?, ?it/s]
+[1A 11%|█         | 1/9 [00:06<00:48,  6.03s/it]
+[1A                                             
+{'loss': 0.9999, 'grad_norm': 0.3186566233634949, 'learning_rate': 0.0, 'epoch': 0.4}
+[1A
+[1A 11%|█         | 1/9 [00:06<00:48,  6.03s/it]
+[1A 22%|██▏       | 2/9 [00:08<00:25,  3.66s/it]
+[1A                                             
+{'loss': 1.1355, 'grad_norm': 0.39391592144966125, 'learning_rate': 0.0002, 'epoch': 0.8}
+[1A
+[1A 22%|██▏       | 2/9 [00:08<00:25,  3.66s/it]
+[1A 33%|███▎      | 3/9 [00:10<00:18,  3.12s/it]
+[1A                                             
+{'loss': 1.0309, 'grad_norm': 0.4272392690181732, 'learning_rate': 0.0001923879532511287, 'epoch': 1.0}
+[1A
+[1A 33%|███▎      | 3/9 [00:10<00:18,  3.12s/it]
+[1A 44%|████▍     | 4/9 [00:11<00:12,  2.48s/it]
+[1A                                             
+{'loss': 0.8945, 'grad_norm': 0.4219503104686737, 'learning_rate': 0.00017071067811865476, 'epoch': 1.4}
+[1A
+[1A 44%|████▍     | 4/9 [00:11<00:12,  2.48s/it]
+[1A 56%|█████▌    | 5/9 [00:13<00:08,  2.13s/it]
+[1A                                             
+{'loss': 0.7127, 'grad_norm': 0.40656787157058716, 'learning_rate': 0.000138268343236509, 'epoch': 1.8}
+[1A
+[1A 56%|█████▌    | 5/9 [00:13<00:08,  2.13s/it]
+[1A 67%|██████▋   | 6/9 [00:14<00:04,  1.67s/it]
+[1A                                             
+{'loss': 0.5722, 'grad_norm': 0.49861565232276917, 'learning_rate': 0.0001, 'epoch': 2.0}
+[1A
+[1A 67%|██████▋   | 6/9 [00:14<00:04,  1.67s/it]
+[1A 78%|███████▊  | 7/9 [00:15<00:03,  1.62s/it]
+[1A                                             
+{'loss': 0.564, 'grad_norm': 0.4666646718978882, 'learning_rate': 6.173165676349103e-05, 'epoch': 2.4}
+[1A
+[1A 78%|███████▊  | 7/9 [00:15<00:03,  1.62s/it]
+[1A 89%|████████▉ | 8/9 [00:17<00:01,  1.59s/it]
+[1A                                             
+{'loss': 0.4932, 'grad_norm': 0.3837656080722809, 'learning_rate': 2.9289321881345254e-05, 'epoch': 2.8}
+[1A
+[1A 89%|████████▉ | 8/9 [00:17<00:01,  1.59s/it]
+[1A100%|██████████| 9/9 [00:18<00:00,  1.33s/it]
+[1A                                             
+{'loss': 0.4953, 'grad_norm': 0.45733606815338135, 'learning_rate': 7.612046748871327e-06, 'epoch': 3.0}
+[1A
+[1A100%|██████████| 9/9 [00:18<00:00,  1.33s/it]
+[1A                                             
+{'train_runtime': 18.0973, 'train_samples_per_second': 3.15, 'train_steps_per_second': 0.497, 'train_loss': 0.7664708627594842, 'epoch': 3.0}
+[1A
+[1A100%|██████████| 9/9 [00:18<00:00,  1.33s/it]
+[1A100%|██████████| 9/9 [00:18<00:00,  2.01s/it]
+[Stage 1: SFT] Training complete!
+
+[Stage 2: DPO] Loading contrastive pairs from /data/processed/dpo_pairs.jsonl...
+[Stage 2: DPO] Loaded 19 preference pairs. Beginning DPOTrainer...
+num_proc must be <= 19. Reducing num_proc to 19 for dataset of size 19.
+[datasets.arrow_dataset|WARNING]num_proc must be <= 19. Reducing num_proc to 19 for dataset of size 19.
+
+[1AExtracting prompt in train dataset (num_proc=19):   0%|          | 0/19 [00:00<?, ? examples/s]
+[1AExtracting prompt in train dataset (num_proc=19):   5%|▌         | 1/19 [00:00<00:05,  3.04 examples/s]
+[1AExtracting prompt in train dataset (num_proc=19):  21%|██        | 4/19 [00:00<00:01,  8.43 examples/s]
+[1AExtracting prompt in train dataset (num_proc=19):  53%|█████▎    | 10/19 [00:00<00:00, 19.85 examples/s]
+[1AExtracting prompt in train dataset (num_proc=19):  89%|████████▉ | 17/19 [00:00<00:00, 29.15 examples/s]
+[1AExtracting prompt in train dataset (num_proc=19): 100%|██████████| 19/19 [00:00<00:00, 20.69 examples/s]
+num_proc must be <= 19. Reducing num_proc to 19 for dataset of size 19.
+[datasets.arrow_dataset|WARNING]num_proc must be <= 19. Reducing num_proc to 19 for dataset of size 19.
+
+[1AApplying chat template to train dataset (num_proc=19):   0%|          | 0/19 [00:00<?, ? examples/s]
+[1AApplying chat template to train dataset (num_proc=19):   5%|▌         | 1/19 [00:00<00:14,  1.27 examples/s]
+[1AApplying chat template to train dataset (num_proc=19):  11%|█         | 2/19 [00:00<00:06,  2.51 examples/s]
+[1AApplying chat template to train dataset (num_proc=19):  16%|█▌        | 3/19 [00:01<00:04,  3.72 examples/s]
+[1AApplying chat template to train dataset (num_proc=19):  21%|██        | 4/19 [00:01<00:03,  4.92 examples/s]
+[1AApplying chat template to train dataset (num_proc=19):  26%|██▋       | 5/19 [00:01<00:02,  5.84 examples/s]
+[1AApplying chat template to train dataset (num_proc=19):  32%|███▏      | 6/19 [00:01<00:01,  6.77 examples/s]
+[1AApplying chat template to train dataset (num_proc=19):  37%|███▋      | 7/19 [00:01<00:01,  7.30 examples/s]
+[1AApplying chat template to train dataset (num_proc=19):  47%|████▋     | 9/19 [00:01<00:01,  8.77 examples/s]
+[1AApplying chat template to train dataset (num_proc=19):  53%|█████▎    | 10/19 [00:01<00:01,  8.99 examples/s]
+[1AApplying chat template to train dataset (num_proc=19):  63%|██████▎   | 12/19 [00:01<00:00,  9.34 examples/s]
+[1AApplying chat template to train dataset (num_proc=19):  74%|███████▎  | 14/19 [00:02<00:00,  8.34 examples/s]
+[1AApplying chat template to train dataset (num_proc=19):  89%|████████▉ | 17/19 [00:02<00:00, 10.64 examples/s]
+[1AApplying chat template to train dataset (num_proc=19): 100%|██████████| 19/19 [00:02<00:00, 11.58 examples/s]
+[1AApplying chat template to train dataset (num_proc=19): 100%|██████████| 19/19 [00:02<00:00,  7.22 examples/s]
+num_proc must be <= 19. Reducing num_proc to 19 for dataset of size 19.
+[datasets.arrow_dataset|WARNING]num_proc must be <= 19. Reducing num_proc to 19 for dataset of size 19.
+
+[1ATokenizing train dataset (num_proc=19):   0%|          | 0/19 [00:00<?, ? examples/s]
+[1ATokenizing train dataset (num_proc=19):   5%|▌         | 1/19 [00:00<00:14,  1.25 examples/s]
+[1ATokenizing train dataset (num_proc=19):  16%|█▌        | 3/19 [00:00<00:04,  3.62 examples/s]
+[1ATokenizing train dataset (num_proc=19):  26%|██▋       | 5/19 [00:01<00:02,  5.58 examples/s]
+[1ATokenizing train dataset (num_proc=19):  37%|███▋      | 7/19 [00:01<00:01,  7.27 examples/s]
+[1ATokenizing train dataset (num_proc=19):  47%|████▋     | 9/19 [00:01<00:01,  8.57 examples/s]
+[1ATokenizing train dataset (num_proc=19):  58%|█████▊    | 11/19 [00:01<00:00,  9.26 examples/s]
+[1ATokenizing train dataset (num_proc=19):  68%|██████▊   | 13/19 [00:01<00:00,  9.93 examples/s]
+[1ATokenizing train dataset (num_proc=19):  79%|███████▉  | 15/19 [00:01<00:00, 10.91 examples/s]
+[1ATokenizing train dataset (num_proc=19):  89%|████████▉ | 17/19 [00:02<00:00, 11.52 examples/s]
+[1ATokenizing train dataset (num_proc=19): 100%|██████████| 19/19 [00:02<00:00, 11.65 examples/s]
+[1ATokenizing train dataset (num_proc=19): 100%|██████████| 19/19 [00:02<00:00,  7.93 examples/s]
+[accelerate.utils.other|WARNING]Detected kernel version 4.19.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
+   \\   /|    Num examples = 19 | Num Epochs = 3 | Total steps = 9
+O^O/ \_/ \    Batch size per device = 1 | Gradient accumulation steps = 8
+\        /    Data Parallel GPUs = 1 | Total batch size (1 x 8 x 1) = 8
+ "-____-"     Trainable parameters = 40,370,176 of 7,696,356,864 (0.52% trained)
+
+[1A  0%|          | 0/9 [00:00<?, ?it/s]
+[1A 11%|█         | 1/9 [00:05<00:47,  5.88s/it]
+[1A                                             
+{'loss': 0.6931, 'grad_norm': 3.416229724884033, 'learning_rate': 0.0, 'rewards/chosen': 0.0, 'rewards/rejected': 0.0, 'rewards/accuracies': 0.0, 'rewards/margins': 0.0, 'logps/chosen': -35.0158805847168, 'logps/rejected': -114.77762603759766, 'logits/chosen': -1.7348549365997314, 'logits/rejected': -1.652855396270752, 'epoch': 0.42}
+[1A
+[1A 11%|█         | 1/9 [00:05<00:47,  5.88s/it]
+[1A 22%|██▏       | 2/9 [00:10<00:35,  5.07s/it]
+[1A                                             
+{'loss': 0.6931, 'grad_norm': 2.457096576690674, 'learning_rate': 5e-06, 'rewards/chosen': 0.0, 'rewards/rejected': 0.0, 'rewards/accuracies': 0.0, 'rewards/margins': 0.0, 'logps/chosen': -39.902381896972656, 'logps/rejected': -67.81968688964844, 'logits/chosen': -1.8132168054580688, 'logits/rejected': -1.7461320161819458, 'epoch': 0.84}
+[1A
+[1A 22%|██▏       | 2/9 [00:10<00:35,  5.07s/it]
+[1A 33%|███▎      | 3/9 [00:12<00:21,  3.61s/it]
+[1A                                             
+{'loss': 0.6839, 'grad_norm': 3.705329179763794, 'learning_rate': 4.3750000000000005e-06, 'rewards/chosen': -0.007893689908087254, 'rewards/rejected': -0.026877084746956825, 'rewards/accuracies': 0.6666666865348816, 'rewards/margins': 0.018983395770192146, 'logps/chosen': -33.807762145996094, 'logps/rejected': -98.1022720336914, 'logits/chosen': -1.7632309198379517, 'logits/rejected': -1.695143699645996, 'epoch': 1.0}
+[1A
+[1A 33%|███▎      | 3/9 [00:12<00:21,  3.61s/it]
+[1A 44%|████▍     | 4/9 [00:17<00:20,  4.06s/it]
+[1A                                             
+{'loss': 0.6533, 'grad_norm': 2.7382500171661377, 'learning_rate': 3.7500000000000005e-06, 'rewards/chosen': -0.0004595756181515753, 'rewards/rejected': -0.0823243111371994, 'rewards/accuracies': 1.0, 'rewards/margins': 0.08186474442481995, 'logps/chosen': -35.767852783203125, 'logps/rejected': -89.57694244384766, 'logits/chosen': -1.7299540042877197, 'logits/rejected': -1.6879230737686157, 'epoch': 1.42}
+[1A
+[1A 44%|████▍     | 4/9 [00:17<00:20,  4.06s/it]
+[1A 56%|█████▌    | 5/9 [00:21<00:17,  4.31s/it]
+[1A                                             
+{'loss': 0.6253, 'grad_norm': 2.6319425106048584, 'learning_rate': 3.125e-06, 'rewards/chosen': 0.010355567559599876, 'rewards/rejected': -0.13160867989063263, 'rewards/accuracies': 0.875, 'rewards/margins': 0.14196424186229706, 'logps/chosen': -37.908050537109375, 'logps/rejected': -89.90562438964844, 'logits/chosen': -1.8289614915847778, 'logits/rejected': -1.737762689590454, 'epoch': 1.84}
+[1A
+[1A 56%|█████▌    | 5/9 [00:21<00:17,  4.31s/it]
+[1A 67%|██████▋   | 6/9 [00:23<00:10,  3.51s/it]
+[1A                                             
+{'loss': 0.6192, 'grad_norm': 3.933767080307007, 'learning_rate': 2.5e-06, 'rewards/chosen': -0.012456576339900494, 'rewards/rejected': -0.16753922402858734, 'rewards/accuracies': 1.0, 'rewards/margins': 0.15508264303207397, 'logps/chosen': -36.9024543762207, 'logps/rejected': -113.51978302001953, 'logits/chosen': -1.7805684804916382, 'logits/rejected': -1.6310120820999146, 'epoch': 2.0}
+[1A
+[1A 67%|██████▋   | 6/9 [00:23<00:10,  3.51s/it]
+[1A 78%|███████▊  | 7/9 [00:28<00:07,  3.95s/it]
+[1A                                             
+{'loss': 0.6223, 'grad_norm': 2.424196720123291, 'learning_rate': 1.8750000000000003e-06, 'rewards/chosen': -0.007082271855324507, 'rewards/rejected': -0.15706653892993927, 'rewards/accuracies': 0.875, 'rewards/margins': 0.14998427033424377, 'logps/chosen': -42.074134826660156, 'logps/rejected': -94.9962158203125, 'logits/chosen': -1.7338947057724, 'logits/rejected': -1.673702359199524, 'epoch': 2.42}
+[1A
+[1A 78%|███████▊  | 7/9 [00:28<00:07,  3.95s/it]
+[1A 89%|████████▉ | 8/9 [00:33<00:04,  4.26s/it]
+[1A                                             
+[1A
+{'loss': 0.5838, 'grad_norm': 2.792778730392456, 'learning_rate': 1.25e-06, 'rewards/chosen': 0.01140439510345459, 'rewards/rejected': -0.2221524864435196, 'rewards/accuracies': 1.0, 'rewards/margins': 0.2335568517446518, 'logps/chosen': -34.236289978027344, 'logps/rejected': -99.59607696533203, 'logits/chosen': -1.794774055480957, 'logits/rejected': -1.712515950202942, 'epoch': 2.84}
+[1A 89%|████████▉ | 8/9 [00:33<00:04,  4.26s/it]
+[1A100%|██████████| 9/9 [00:35<00:00,  3.48s/it]
+[1A                                             
+{'loss': 0.5918, 'grad_norm': 3.310534954071045, 'learning_rate': 6.25e-07, 'rewards/chosen': 0.019772402942180634, 'rewards/rejected': -0.1963399201631546, 'rewards/accuracies': 1.0, 'rewards/margins': 0.21611233055591583, 'logps/chosen': -29.70342445373535, 'logps/rejected': -77.92281341552734, 'logits/chosen': -1.9084281921386719, 'logits/rejected': -1.7456361055374146, 'epoch': 3.0}
+[1A
+[1A100%|██████████| 9/9 [00:35<00:00,  3.48s/it]
+[1A                                             
+{'train_runtime': 35.2662, 'train_samples_per_second': 1.616, 'train_steps_per_second': 0.255, 'train_loss': 0.6406594779756334, 'epoch': 3.0}
+[1A
+[1A100%|██████████| 9/9 [00:35<00:00,  3.48s/it]
+[1A100%|██████████| 9/9 [00:35<00:00,  3.92s/it]
+[Stage 2: DPO] Alignment complete!
+
+[Persisting Weights] Saving final LoRA adapter to /vol/checkpoints/helix-lora-final...
+Training job finished.
+Run artifacts saved to: /home/hatch/workspace/helix-eval/thucnghiemhelix/closed-loop/data/training_runs/20261115T114301-bcda6414 (commit metadata.json with the report so the run is auditable)
+[✓] Modal Volume committed successfully!
+[✓] Checkpoint ready for REBUILD serving at: /vol/checkpoints/helix-lora-final
+Stopping app - local entrypoint completed.
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/letrieu728/main/ap-gpbBYw3ymqeS0PE6A9Lb6J

@@ -1,0 +1,80 @@
+
+[Health Check] Polling server health at: https://letrieu728--helix-vllm-engine-vllmserver-serve.us-east.modal.run/health
+[Health Check] Server is healthy and ready! [lora_enabled=True, adapter=helix-lora] (0s elapsed)
+
+=================================================================
+  HELIX Closed-Loop Evaluation Runner
+  Phase    : REBUILD
+  Problems : train20 (10 tasks, start=0, of 20)
+  Mode     : live
+  Model    : helix-lora
+  Harnesses: minimal, pi-mono, hermes-agent, opencode
+  Sampling : temperature=0.0, n_samples=1, run_tag=suppl
+  Total    : 40 runs
+  Output   : /home/hatch/workspace/helix-eval/thucnghiemhelix/closed-loop/data/raw_traces
+=================================================================
+
+[Problem lcb_001_two_sum] Two Sum with Indices (easy)
+  [1/40] harness=minimal sample=0 ... [PASS] steps=1 lat=7.8s trunc=0 -> suppl_lcb_001_two_sum_minimal.json
+  [2/40] harness=pi-mono sample=0 ... [PASS] steps=1 lat=25.1s trunc=0 -> suppl_lcb_001_two_sum_pi-mono.json
+  [3/40] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=12.7s trunc=0 -> suppl_lcb_001_two_sum_hermes-agent.json
+  [4/40] harness=opencode sample=0 ... [PASS] steps=1 lat=4.1s trunc=0 -> suppl_lcb_001_two_sum_opencode.json
+
+[Problem lcb_002_valid_parentheses] Valid Parentheses String with Wildcard (medium)
+  [5/40] harness=minimal sample=0 ... [FAIL] steps=1 lat=16.7s trunc=0 -> suppl_lcb_002_valid_parentheses_minimal.json
+  [6/40] harness=pi-mono sample=0 ... [PASS] steps=1 lat=31.9s trunc=0 -> suppl_lcb_002_valid_parentheses_pi-mono.json
+  [7/40] harness=hermes-agent sample=0 ... [FAIL] steps=4 lat=91.5s trunc=0 -> suppl_lcb_002_valid_parentheses_hermes-agent.json
+  [8/40] harness=opencode sample=0 ... [FAIL] steps=4 lat=30.3s trunc=0 -> suppl_lcb_002_valid_parentheses_opencode.json
+
+[Problem lcb_003_lru_cache] LRU Cache Implementation with Eviction Return (medium)
+  [9/40] harness=minimal sample=0 ... [FAIL] steps=1 lat=13.3s trunc=0 -> suppl_lcb_003_lru_cache_minimal.json
+  [10/40] harness=pi-mono sample=0 ... [FAIL] steps=4 lat=150.6s trunc=0 -> suppl_lcb_003_lru_cache_pi-mono.json
+  [11/40] harness=hermes-agent sample=0 ... [FAIL] steps=4 lat=63.3s trunc=0 -> suppl_lcb_003_lru_cache_hermes-agent.json
+  [12/40] harness=opencode sample=0 ... [PASS] steps=1 lat=7.5s trunc=0 -> suppl_lcb_003_lru_cache_opencode.json
+
+[Problem lcb_004_reverse_linked_list] Reverse a Linked List (easy)
+  [13/40] harness=minimal sample=0 ... [PASS] steps=1 lat=10.4s trunc=0 -> suppl_lcb_004_reverse_linked_list_minimal.json
+  [14/40] harness=pi-mono sample=0 ... [PASS] steps=1 lat=23.3s trunc=0 -> suppl_lcb_004_reverse_linked_list_pi-mono.json
+  [15/40] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=7.9s trunc=0 -> suppl_lcb_004_reverse_linked_list_hermes-agent.json
+  [16/40] harness=opencode sample=0 ... [PASS] steps=1 lat=4.8s trunc=0 -> suppl_lcb_004_reverse_linked_list_opencode.json
+
+[Problem lcb_005_binary_search] Binary Search (easy)
+  [17/40] harness=minimal sample=0 ... [PASS] steps=1 lat=6.8s trunc=0 -> suppl_lcb_005_binary_search_minimal.json
+  [18/40] harness=pi-mono sample=0 ... [PASS] steps=1 lat=22.1s trunc=0 -> suppl_lcb_005_binary_search_pi-mono.json
+  [19/40] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=10.3s trunc=0 -> suppl_lcb_005_binary_search_hermes-agent.json
+  [20/40] harness=opencode sample=0 ... [PASS] steps=1 lat=5.2s trunc=0 -> suppl_lcb_005_binary_search_opencode.json
+
+[Problem lcb_006_max_subarray] Maximum Subarray Sum and Slice (medium)
+  [21/40] harness=minimal sample=0 ... [PASS] steps=1 lat=12.3s trunc=0 -> suppl_lcb_006_max_subarray_minimal.json
+  [22/40] harness=pi-mono sample=0 ... [PASS] steps=1 lat=19.1s trunc=0 -> suppl_lcb_006_max_subarray_pi-mono.json
+  [23/40] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=14.3s trunc=0 -> suppl_lcb_006_max_subarray_hermes-agent.json
+  [24/40] harness=opencode sample=0 ... [PASS] steps=1 lat=7.0s trunc=0 -> suppl_lcb_006_max_subarray_opencode.json
+
+[Problem lcb_007_climbing_stairs] Climbing Stairs (DP) (easy)
+  [25/40] harness=minimal sample=0 ... [PASS] steps=1 lat=14.5s trunc=0 -> suppl_lcb_007_climbing_stairs_minimal.json
+  [26/40] harness=pi-mono sample=0 ... [PASS] steps=1 lat=27.3s trunc=0 -> suppl_lcb_007_climbing_stairs_pi-mono.json
+  [27/40] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=18.7s trunc=0 -> suppl_lcb_007_climbing_stairs_hermes-agent.json
+  [28/40] harness=opencode sample=0 ... [PASS] steps=1 lat=3.8s trunc=0 -> suppl_lcb_007_climbing_stairs_opencode.json
+
+[Problem lcb_008_merge_intervals] Merge Overlapping Intervals with Count (medium)
+  [29/40] harness=minimal sample=0 ... [FAIL] steps=1 lat=11.7s trunc=0 -> suppl_lcb_008_merge_intervals_minimal.json
+  [30/40] harness=pi-mono sample=0 ... [PASS] steps=1 lat=25.3s trunc=0 -> suppl_lcb_008_merge_intervals_pi-mono.json
+  [31/40] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=12.1s trunc=0 -> suppl_lcb_008_merge_intervals_hermes-agent.json
+  [32/40] harness=opencode sample=0 ... [PASS] steps=1 lat=8.1s trunc=0 -> suppl_lcb_008_merge_intervals_opencode.json
+
+[Problem lcb_009_word_break] Word Break Sentences (DP/Backtracking) (medium)
+  [33/40] harness=minimal sample=0 ... [FAIL] steps=1 lat=11.2s trunc=0 -> suppl_lcb_009_word_break_minimal.json
+  [34/40] harness=pi-mono sample=0 ... [FAIL] steps=4 lat=105.3s trunc=0 -> suppl_lcb_009_word_break_pi-mono.json
+  [35/40] harness=hermes-agent sample=0 ... [PASS] steps=2 lat=45.8s trunc=0 -> suppl_lcb_009_word_break_hermes-agent.json
+  [36/40] harness=opencode sample=0 ... [FAIL] steps=4 lat=39.5s trunc=0 -> suppl_lcb_009_word_break_opencode.json
+
+[Problem lcb_010_number_of_islands] Number of Islands (BFS/DFS) (medium)
+  [37/40] harness=minimal sample=0 ... [PASS] steps=1 lat=14.2s trunc=0 -> suppl_lcb_010_number_of_islands_minimal.json
+  [38/40] harness=pi-mono sample=0 ... [PASS] steps=1 lat=26.0s trunc=0 -> suppl_lcb_010_number_of_islands_pi-mono.json
+  [39/40] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=14.5s trunc=0 -> suppl_lcb_010_number_of_islands_hermes-agent.json
+  [40/40] harness=opencode sample=0 ... [PASS] steps=1 lat=8.2s trunc=0 -> suppl_lcb_010_number_of_islands_opencode.json
+
+=================================================================
+  Evaluation complete: 30/40 passed (0 reused via --skip-existing)
+  Traces saved to: /home/hatch/workspace/helix-eval/thucnghiemhelix/closed-loop/data/raw_traces
+=================================================================

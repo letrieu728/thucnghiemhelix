@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_011_valid_sudoku",
+  "task_title": "Valid Sudoku",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `is_valid_sudoku(board: list[list[str]]) -> bool` that returns True if a 9x9 Sudoku board is valid: each row, each column, and each of the nine 3x3 sub-boxes must contain the digits '1'-'9' without repetition. Empty cells are '.' and are ignored. A partially filled board can be valid.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 35.312,
+  "assistant_solution": "```python\ndef is_valid_sudoku(board: list[list[str]]) -> bool:\n    # Initialize sets for rows, columns, and sub-boxes\n    rows = [set() for _ in range(9)]\n    cols = [set() for _ in range(9)]\n    boxes = [[set() for _ in range(3)] for _ in range(3)]\n    \n    # Iterate through each cell in the board\n    for i in range(9):\n        for j in range(9):\n            num = board[i][j]\n            if num == '.':\n                continue\n            \n            # Check row constraint\n            if num in rows[i]:\n                return False\n            rows[i].add(num)\n            \n            # Check column constraint\n            if num in cols[j]:\n                return False\n            cols[j].add(num)\n            \n            # Check sub-box constraint\n            box_index_i, box_index_j = i // 3, j // 3\n            if num in boxes[box_index_i][box_index_j]:\n                return False\n            boxes[box_index_i][box_index_j].add(num)\n    \n    # If all constraints are satisfied, the board is valid\n    return True\n\n# Example usage:\nboard = [\n    [\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"],\n    [\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"],\n    [\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"],\n    [\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"],\n    [\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"],\n    [\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"],\n    [\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"],\n    [\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"],\n    [\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]\n]\n\nprint(is_valid_sudoku(board))  # Output: True\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To determine if a 9x9 Sudoku board is valid, we need to ensure that each row, each column, and each of the nine 3x3 sub-boxes contains the digits '1'-'9' without repetition. We will ignore empty cells represented by '.'.\n\nHere's a step-by-step approach to implement this:\n\n1. **Initialize Data Structures**: Use sets to keep track of the numbers seen in each row, column, and sub-box.\n2. **Iterate Through the Board**: For each cell, check if it contains a digit (ignoring empty cells).\n3. **Check Row and Column Constraints**: Ensure that the digit has not been seen in the current row or column.\n4. **Check Sub-Box Constraints**: Determine which sub-box the cell belongs to and ensure that the digit has not been seen in that sub-box.\n5. **Update Sets**: Add the digit to the appropriate row, column, and sub-box set.\n6. **Return Result**: If all checks pass, return True; otherwise, return False.\n\nHere's the complete implementation:\n\n```python\ndef is_valid_sudoku(board: list[list[str]]) -> bool:\n    # Initialize sets for rows, columns, and sub-boxes\n    rows = [set() for _ in range(9)]\n    cols = [set() for _ in range(9)]\n    boxes = [[set() for _ in range(3)] for _ in range(3)]\n    \n    # Iterate through each cell in the board\n    for i in range(9):\n        for j in range(9):\n            num = board[i][j]\n            if num == '.':\n                continue\n            \n            # Check row constraint\n            if num in rows[i]:\n                return False\n            rows[i].add(num)\n            \n            # Check column constraint\n            if num in cols[j]:\n                return False\n            cols[j].add(num)\n            \n            # Check sub-box constraint\n            box_index_i, box_index_j = i // 3, j // 3\n            if num in boxes[box_index_i][box_index_j]:\n                return False\n            boxes[box_index_i][box_index_j].add(num)\n    \n    # If all constraints are satisfied, the board is valid\n    return True\n\n# Example usage:\nboard = [\n    [\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"],\n    [\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"],\n    [\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"],\n    [\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"],\n    [\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"],\n    [\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"],\n    [\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"],\n    [\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"],\n    [\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]\n]\n\nprint(is_valid_sudoku(board))  # Output: True\n```\n\n### Explanation:\n- **Initialization**: We create three lists of sets: one for each row, one for each column, and one for each of the nine 3x3 sub-boxes.\n- **Iteration**: We loop through each cell in the board. If the cell is empty (`.`), we skip it.\n- **Constraints**: For each non-empty cell, we check if the number has already appeared in its row, column, or sub-box. If it has, the board is invalid.\n- **Updating Sets**: If the number passes all checks, we add it to the corresponding row, column, and sub-box set.\n- **Result**: If we successfully iterate through the entire board without finding any violations, the board is valid.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-15T12:37:03.657372+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "suppl",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

@@ -218,3 +218,44 @@ không còn dừng ở ngày 11/11.
 - **Trọng số adapter LoRA** chỉ nằm trên Modal volume, không commit trong
   repo; repo chỉ giữ metadata, loss history và hash dữ liệu train trong
   `closed-loop/data/training_runs/`.
+
+## Đợt phân tích bổ sung — chấm critic và DPO mở rộng (2026-11-15)
+
+Đợt này KHÔNG phải vòng 3 và không thay thế số vòng 2: mọi số vòng 2 ở
+trên giữ nguyên làm lịch sử, adapter vòng 2 vẫn là adapter chính thức
+(`helix-lora-final` đã khôi phục về đúng trạng thái vòng 2, đã kiểm tra
+hash), adapter bổ sung nằm riêng. Toàn bộ bằng chứng nằm ở
+`results/2026-11-15-hang2-hang5/` (nhật ký đầy đủ: `GPU_RUN_LOG.md`;
+thống kê: `suppl_stats.json`, `suppl_comparison_plot.svg`), 140 trace
+mới `suppl_*` trong `closed-loop/data/raw_traces/`, và run train
+`closed-loop/data/training_runs/20261115T114301-bcda6414/`.
+
+- **Hàng 2 — chấm critic/filter (nhãn phân tích, không đổi flag
+  `passed`).** Rubric `clean`/`suspicious`/`degenerate` và luật chấm
+  được đăng ký trước (`RUBRIC.md`, `JUDGE_PROMPT.md`). Heuristic offline
+  quét toàn bộ 520 trace vòng 1–2; judge là model gốc
+  `Qwen/Qwen2.5-Coder-7B-Instruct`, nhiệt độ 0, seed 20261115, chấm 169
+  ô PASS baseline vòng 2: **167 clean, 0 suspicious, 0 degenerate, 2
+  unparseable** (JSON hợp lệ bọc trong fence, giữ nguyên nhãn theo luật,
+  không suy tay). Nhất trí heuristic–judge: 167/167 ô parse được
+  (100%). Hạn chế: judge là model 7B cùng họ với solution, nhãn không
+  phải chuẩn của tác giả — "0 degenerate" không chứng minh không có bám
+  test; tuyên bố mạnh cần chấm kép bởi người.
+- **Hàng 5 — DPO mở rộng và đo lại.** Luật trích đăng ký trước
+  (`DPO_RULES.md`, cổng provenance live-only): **19 cặp DPO** (từ 6 cặp
+  vòng 2), SFT giữ nguyên 19 mẫu; mọi siêu tham số giữ nguyên vòng 2
+  (3 epoch, lr 2e-4 / DPO 5e-6, beta 0,1, r=16, alpha=32, seed 42).
+  DPO loss 0,693 → 0,592 sau 9 bước, reward accuracy đạt 1,0 ở bước 4
+  (dao động 0,875–1,0 sau đó) — học được tín hiệu preference trên loss
+  train. Đo lại 140 ô live (re-verify độc lập 0 sai lệch): **train
+  65/80** (McNemar so với BUILD2: 7 thắng / 2 thua, p = 0,1797; so với
+  REBUILD2: 2 thắng / 3 thua, p = 1,0), **held-out v2 51/60** (so với
+  base: 4 thắng / 3 thua, p = 1,0; so với LoRA vòng 2: 0 thắng / 2 thua,
+  p = 0,5). Union: train 20/20, held-out 14/15 (bài `held2_009` vẫn
+  không harness nào giải được). **Kết luận: DPO học tín hiệu
+  preference nhưng KHÔNG cải thiện Pass@1 đo được; chênh lệch với vòng
+  2 là nhiễu, không có hồi quy có ý nghĩa.**
+- **Chi phí và dọn dẹp.** Ước tính bảo thủ $4,83 (dưới trần $8); hóa
+  đơn Modal đọc được $1,53, billed $0,00 (chỉ dùng credit). App đã dừng,
+  0 task. `data/processed/` đã khôi phục về đúng trạng thái vòng 2 (đã
+  kiểm tra hash); 520 trace cũ kiểm tra checksum lại: 520/520 không đổi.

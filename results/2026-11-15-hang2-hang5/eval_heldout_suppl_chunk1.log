@@ -1,0 +1,68 @@
+
+[Health Check] Polling server health at: https://letrieu728--helix-vllm-engine-vllmserver-serve.us-east.modal.run/health
+[Health Check] Server is healthy and ready! [lora_enabled=True, adapter=helix-lora] (0s elapsed)
+
+=================================================================
+  HELIX Closed-Loop Evaluation Runner
+  Phase    : HELDOUT
+  Problems : heldout2 (8 tasks, start=0, of 15)
+  Mode     : live
+  Model    : helix-lora
+  Harnesses: minimal, pi-mono, hermes-agent, opencode
+  Sampling : temperature=0.0, n_samples=1, run_tag=suppl
+  Total    : 32 runs
+  Output   : /home/hatch/workspace/helix-eval/thucnghiemhelix/closed-loop/data/raw_traces
+=================================================================
+
+[Problem held2_001_edit_distance] Edit Distance (hard)
+  [1/32] harness=minimal sample=0 ... [PASS] steps=1 lat=15.9s trunc=0 -> suppl_helix-lora_held2_001_edit_distance_minimal.json
+  [2/32] harness=pi-mono sample=0 ... [PASS] steps=1 lat=29.5s trunc=0 -> suppl_helix-lora_held2_001_edit_distance_pi-mono.json
+  [3/32] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=17.7s trunc=0 -> suppl_helix-lora_held2_001_edit_distance_hermes-agent.json
+  [4/32] harness=opencode sample=0 ... [PASS] steps=1 lat=10.2s trunc=0 -> suppl_helix-lora_held2_001_edit_distance_opencode.json
+
+[Problem held2_002_regex_match] Regular Expression Matching (hard)
+  [5/32] harness=minimal sample=0 ... [PASS] steps=1 lat=17.4s trunc=0 -> suppl_helix-lora_held2_002_regex_match_minimal.json
+  [6/32] harness=pi-mono sample=0 ... [PASS] steps=1 lat=37.0s trunc=0 -> suppl_helix-lora_held2_002_regex_match_pi-mono.json
+  [7/32] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=14.8s trunc=0 -> suppl_helix-lora_held2_002_regex_match_hermes-agent.json
+  [8/32] harness=opencode sample=0 ... [PASS] steps=1 lat=9.2s trunc=0 -> suppl_helix-lora_held2_002_regex_match_opencode.json
+
+[Problem held2_003_n_queens_count] N-Queens Count (hard)
+  [9/32] harness=minimal sample=0 ... [PASS] steps=1 lat=14.5s trunc=0 -> suppl_helix-lora_held2_003_n_queens_count_minimal.json
+  [10/32] harness=pi-mono sample=0 ... [PASS] steps=1 lat=31.6s trunc=0 -> suppl_helix-lora_held2_003_n_queens_count_pi-mono.json
+  [11/32] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=20.4s trunc=0 -> suppl_helix-lora_held2_003_n_queens_count_hermes-agent.json
+  [12/32] harness=opencode sample=0 ... [PASS] steps=1 lat=13.4s trunc=0 -> suppl_helix-lora_held2_003_n_queens_count_opencode.json
+
+[Problem held2_004_number_of_lis] Number of Longest Increasing Subsequences (hard)
+  [13/32] harness=minimal sample=0 ... [PASS] steps=1 lat=16.1s trunc=0 -> suppl_helix-lora_held2_004_number_of_lis_minimal.json
+  [14/32] harness=pi-mono sample=0 ... [PASS] steps=1 lat=32.0s trunc=0 -> suppl_helix-lora_held2_004_number_of_lis_pi-mono.json
+  [15/32] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=17.6s trunc=0 -> suppl_helix-lora_held2_004_number_of_lis_hermes-agent.json
+  [16/32] harness=opencode sample=0 ... [PASS] steps=1 lat=8.2s trunc=0 -> suppl_helix-lora_held2_004_number_of_lis_opencode.json
+
+[Problem held2_005_word_ladder] Word Ladder Length (hard)
+  [17/32] harness=minimal sample=0 ... [PASS] steps=1 lat=16.1s trunc=0 -> suppl_helix-lora_held2_005_word_ladder_minimal.json
+  [18/32] harness=pi-mono sample=0 ... [PASS] steps=1 lat=37.5s trunc=0 -> suppl_helix-lora_held2_005_word_ladder_pi-mono.json
+  [19/32] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=18.4s trunc=0 -> suppl_helix-lora_held2_005_word_ladder_hermes-agent.json
+  [20/32] harness=opencode sample=0 ... [PASS] steps=1 lat=8.3s trunc=0 -> suppl_helix-lora_held2_005_word_ladder_opencode.json
+
+[Problem held2_006_sliding_window_max] Sliding Window Maximum (hard)
+  [21/32] harness=minimal sample=0 ... [PASS] steps=1 lat=11.2s trunc=0 -> suppl_helix-lora_held2_006_sliding_window_max_minimal.json
+  [22/32] harness=pi-mono sample=0 ... [PASS] steps=1 lat=30.6s trunc=0 -> suppl_helix-lora_held2_006_sliding_window_max_pi-mono.json
+  [23/32] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=13.6s trunc=0 -> suppl_helix-lora_held2_006_sliding_window_max_hermes-agent.json
+  [24/32] harness=opencode sample=0 ... [PASS] steps=1 lat=9.1s trunc=0 -> suppl_helix-lora_held2_006_sliding_window_max_opencode.json
+
+[Problem held2_007_course_order] Course Schedule II (Valid Order) (hard)
+  [25/32] harness=minimal sample=0 ... [PASS] steps=1 lat=17.9s trunc=0 -> suppl_helix-lora_held2_007_course_order_minimal.json
+  [26/32] harness=pi-mono sample=0 ... [PASS] steps=1 lat=31.7s trunc=0 -> suppl_helix-lora_held2_007_course_order_pi-mono.json
+  [27/32] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=27.7s trunc=0 -> suppl_helix-lora_held2_007_course_order_hermes-agent.json
+  [28/32] harness=opencode sample=0 ... [PASS] steps=1 lat=8.8s trunc=0 -> suppl_helix-lora_held2_007_course_order_opencode.json
+
+[Problem held2_008_median_finder] Find Median from Data Stream (hard)
+  [29/32] harness=minimal sample=0 ... [FAIL] steps=1 lat=11.9s trunc=0 -> suppl_helix-lora_held2_008_median_finder_minimal.json
+  [30/32] harness=pi-mono sample=0 ... [FAIL] steps=4 lat=121.2s trunc=0 -> suppl_helix-lora_held2_008_median_finder_pi-mono.json
+  [31/32] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=15.2s trunc=0 -> suppl_helix-lora_held2_008_median_finder_hermes-agent.json
+  [32/32] harness=opencode sample=0 ... [PASS] steps=3 lat=27.6s trunc=0 -> suppl_helix-lora_held2_008_median_finder_opencode.json
+
+=================================================================
+  Evaluation complete: 30/32 passed (0 reused via --skip-existing)
+  Traces saved to: /home/hatch/workspace/helix-eval/thucnghiemhelix/closed-loop/data/raw_traces
+=================================================================

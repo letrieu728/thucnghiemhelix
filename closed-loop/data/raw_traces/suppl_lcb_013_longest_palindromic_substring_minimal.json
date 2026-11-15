@@ -1,0 +1,35 @@
+{
+  "phase": "rebuild",
+  "task_id": "lcb_013_longest_palindromic_substring",
+  "task_title": "Longest Palindromic Substring",
+  "difficulty": "medium",
+  "prompt": "Write a Python function `longest_palindrome(s: str) -> str` that returns the longest palindromic substring of `s`. If several palindromic substrings share the maximum length, return the one with the smallest starting index. Return an empty string if `s` is empty.",
+  "harness_id": "minimal",
+  "harness_category": "minimal",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 15.774,
+  "assistant_solution": "```python\ndef longest_palindrome(s: str) -> str:\n    n = len(s)\n    dp = [[False] * n for _ in range(n)]\n    start, max_length = 0, 0\n\n    # All substrings of length 1 are palindromes\n    for i in range(n):\n        dp[i][i] = True\n\n    # Check for substrings of length 2\n    for i in range(n - 1):\n        if s[i] == s[i + 1]:\n            dp[i][i + 1] = True\n            start = i\n            max_length = 2\n\n    # Check for substrings of length greater than 2\n    for length in range(3, n + 1):\n        for i in range(n - length + 1):\n            j = i + length - 1\n            if s[i] == s[j] and dp[i + 1][j - 1]:\n                dp[i][j] = True\n                start = i\n                max_length = length\n\n    return s[start:start + max_length]\n```",
+  "passed": false,
+  "test_result": {
+    "passed": false,
+    "error": "Traceback (most recent call last):\n  File \"<string>\", line 29, in <module>\nAssertionError"
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "```python\ndef longest_palindrome(s: str) -> str:\n    n = len(s)\n    dp = [[False] * n for _ in range(n)]\n    start, max_length = 0, 0\n\n    # All substrings of length 1 are palindromes\n    for i in range(n):\n        dp[i][i] = True\n\n    # Check for substrings of length 2\n    for i in range(n - 1):\n        if s[i] == s[i + 1]:\n            dp[i][i + 1] = True\n            start = i\n            max_length = 2\n\n    # Check for substrings of length greater than 2\n    for length in range(3, n + 1):\n        for i in range(n - length + 1):\n            j = i + length - 1\n            if s[i] == s[j] and dp[i + 1][j - 1]:\n                dp[i][j] = True\n                start = i\n                max_length = length\n\n    return s[start:start + max_length]\n```\nThis function uses dynamic programming to find the longest palindromic substring. It initializes a 2D boolean array `dp` where `dp[i][j]` is `True` if the substring `s[i:j+1]` is a palindrome. The function iterates over all possible lengths of substrings, updating `dp` based on whether the current substring can be formed by adding characters to smaller palindromic substrings. Finally, it returns the longest palindromic substring found.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<string>\", line 29, in <module>\nAssertionError",
+  "timestamp": "2026-11-15T12:07:22.545647+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "suppl",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

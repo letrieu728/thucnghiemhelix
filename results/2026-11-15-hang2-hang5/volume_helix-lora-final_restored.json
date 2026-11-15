@@ -1,0 +1,74 @@
+[
+  {
+    "filename": "helix-lora-final/README.md",
+    "type": "file",
+    "created_modified": "2026-11-15 12:46:43+00:00",
+    "size": 5266
+  },
+  {
+    "filename": "helix-lora-final/adapter_config.json",
+    "type": "file",
+    "created_modified": "2026-11-15 12:46:41+00:00",
+    "size": 1091
+  },
+  {
+    "filename": "helix-lora-final/adapter_model.safetensors",
+    "type": "file",
+    "created_modified": "2026-11-15 12:46:39+00:00",
+    "size": 161533192
+  },
+  {
+    "filename": "helix-lora-final/added_tokens.json",
+    "type": "file",
+    "created_modified": "2026-11-15 12:46:38+00:00",
+    "size": 632
+  },
+  {
+    "filename": "helix-lora-final/chat_template.jinja",
+    "type": "file",
+    "created_modified": "2026-11-15 12:46:36+00:00",
+    "size": 2507
+  },
+  {
+    "filename": "helix-lora-final/loss_history.json",
+    "type": "file",
+    "created_modified": "2026-11-15 12:46:34+00:00",
+    "size": 3215
+  },
+  {
+    "filename": "helix-lora-final/merges.txt",
+    "type": "file",
+    "created_modified": "2026-11-15 12:46:32+00:00",
+    "size": 1671853
+  },
+  {
+    "filename": "helix-lora-final/metadata.json",
+    "type": "file",
+    "created_modified": "2026-11-15 12:46:30+00:00",
+    "size": 1133
+  },
+  {
+    "filename": "helix-lora-final/special_tokens_map.json",
+    "type": "file",
+    "created_modified": "2026-11-15 12:46:29+00:00",
+    "size": 613
+  },
+  {
+    "filename": "helix-lora-final/tokenizer.json",
+    "type": "file",
+    "created_modified": "2026-11-15 12:46:27+00:00",
+    "size": 11422086
+  },
+  {
+    "filename": "helix-lora-final/tokenizer_config.json",
+    "type": "file",
+    "created_modified": "2026-11-15 12:46:26+00:00",
+    "size": 4891
+  },
+  {
+    "filename": "helix-lora-final/vocab.json",
+    "type": "file",
+    "created_modified": "2026-11-15 12:46:24+00:00",
+    "size": 2776833
+  }
+]

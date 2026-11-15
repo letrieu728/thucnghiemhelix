@@ -1,0 +1,12 @@
+                                      Apps                                      
+                                                                                
+                              Descript                     Created    Stopped   
+  App ID                      ion        State     Tasks   at         at        
+ ────────────────────────────────────────────────────────────────────────────── 
+  ap-gpbBYw3ymqeS0PE6A9Lb6J   helix-lo   stopped   0       2026-11-   2026-11-  
+                              ra-train                     15 11:42   15 11:46  
+                              ing                          UTC        UTC       
+  ap-n6JsYM7JgfeSd4pTqWdfsp   helix-vl   stopped   0       2026-11-   2026-11-  
+                              lm-engin                     15 11:33   15 12:47  
+                              e                            UTC        UTC       
+                                                                                

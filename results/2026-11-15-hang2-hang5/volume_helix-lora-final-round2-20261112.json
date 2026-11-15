@@ -1,0 +1,74 @@
+[
+  {
+    "filename": "helix-lora-final-round2-20261112/README.md",
+    "type": "file",
+    "created_modified": "2026-11-15 11:32:48+00:00",
+    "size": 5266
+  },
+  {
+    "filename": "helix-lora-final-round2-20261112/adapter_model.safetensors",
+    "type": "file",
+    "created_modified": "2026-11-15 11:32:47+00:00",
+    "size": 161533192
+  },
+  {
+    "filename": "helix-lora-final-round2-20261112/added_tokens.json",
+    "type": "file",
+    "created_modified": "2026-11-15 11:32:45+00:00",
+    "size": 632
+  },
+  {
+    "filename": "helix-lora-final-round2-20261112/chat_template.jinja",
+    "type": "file",
+    "created_modified": "2026-11-15 11:32:44+00:00",
+    "size": 2507
+  },
+  {
+    "filename": "helix-lora-final-round2-20261112/loss_history.json",
+    "type": "file",
+    "created_modified": "2026-11-15 11:32:42+00:00",
+    "size": 3215
+  },
+  {
+    "filename": "helix-lora-final-round2-20261112/merges.txt",
+    "type": "file",
+    "created_modified": "2026-11-15 11:32:40+00:00",
+    "size": 1671853
+  },
+  {
+    "filename": "helix-lora-final-round2-20261112/metadata.json",
+    "type": "file",
+    "created_modified": "2026-11-15 11:32:39+00:00",
+    "size": 1133
+  },
+  {
+    "filename": "helix-lora-final-round2-20261112/special_tokens_map.json",
+    "type": "file",
+    "created_modified": "2026-11-15 11:32:37+00:00",
+    "size": 613
+  },
+  {
+    "filename": "helix-lora-final-round2-20261112/tokenizer.json",
+    "type": "file",
+    "created_modified": "2026-11-15 11:32:35+00:00",
+    "size": 11422086
+  },
+  {
+    "filename": "helix-lora-final-round2-20261112/tokenizer_config.json",
+    "type": "file",
+    "created_modified": "2026-11-15 11:32:33+00:00",
+    "size": 4891
+  },
+  {
+    "filename": "helix-lora-final-round2-20261112/vocab.json",
+    "type": "file",
+    "created_modified": "2026-11-15 11:32:32+00:00",
+    "size": 2776833
+  },
+  {
+    "filename": "helix-lora-final-round2-20261112/adapter_config.json",
+    "type": "file",
+    "created_modified": "2026-11-15 11:32:26+00:00",
+    "size": 1091
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "phase": "heldout",
+  "task_id": "held2_010_three_sum",
+  "task_title": "3Sum",
+  "difficulty": "hard",
+  "prompt": "Write a Python function `three_sum(nums: list[int]) -> list[list[int]]` that returns all unique triplets `[a, b, c]` with `a + b + c == 0`. Each triplet must be in ascending order, and the returned list must be sorted in lexicographical order.",
+  "harness_id": "pi-mono",
+  "harness_category": "standard",
+  "model": "helix-lora",
+  "provider": "openai-compatible",
+  "mode": "live",
+  "steps": 1,
+  "latency_sec": 28.157,
+  "assistant_solution": "```python\ndef three_sum(nums: list[int]) -> list[list[int]]:\n    nums.sort()\n    result = []\n    \n    for i in range(len(nums) - 2):\n        # Avoid duplicate elements for the first number\n        if i > 0 and nums[i] == nums[i - 1]:\n            continue\n        \n        left, right = i + 1, len(nums) - 1\n        \n        while left < right:\n            total = nums[i] + nums[left] + nums[right]\n            \n            if total == 0:\n                result.append([nums[i], nums[left], nums[right]])\n                \n                # Move both pointers and skip duplicates\n                while left < right and nums[left] == nums[left + 1]:\n                    left += 1\n                while left < right and nums[right] == nums[right - 1]:\n                    right -= 1\n                \n                left += 1\n                right -= 1\n            \n            elif total < 0:\n                left += 1\n            else:\n                right -= 1\n    \n    return result\n\n# Example usage:\nprint(three_sum([-1, 0, 1, 2, -1, -4]))  # Output: [[-1, -1, 2], [-1, 0, 1]]\n```",
+  "passed": true,
+  "test_result": {
+    "passed": true,
+    "error": ""
+  },
+  "raw_helix_transcript": [
+    {
+      "step": 1,
+      "role": "assistant",
+      "content": "To solve this problem, we can use a two-pointer approach after sorting the array. Here's a step-by-step breakdown of the algorithm:\n\n1. **Sort the Array**: Sorting helps in easily avoiding duplicates and using the two-pointer technique efficiently.\n2. **Iterate through the Array**: Use a loop to fix one element at a time.\n3. **Two-Pointer Technique**: For each fixed element, use two pointers (one starting just after the fixed element and the other starting from the end of the array) to find pairs that sum up to the negative value of the fixed element.\n4. **Avoid Duplicates**: Skip duplicate elements both for the fixed element and within the two-pointer traversal.\n\nHere is the complete Python implementation:\n\n```python\ndef three_sum(nums: list[int]) -> list[list[int]]:\n    nums.sort()\n    result = []\n    \n    for i in range(len(nums) - 2):\n        # Avoid duplicate elements for the first number\n        if i > 0 and nums[i] == nums[i - 1]:\n            continue\n        \n        left, right = i + 1, len(nums) - 1\n        \n        while left < right:\n            total = nums[i] + nums[left] + nums[right]\n            \n            if total == 0:\n                result.append([nums[i], nums[left], nums[right]])\n                \n                # Move both pointers and skip duplicates\n                while left < right and nums[left] == nums[left + 1]:\n                    left += 1\n                while left < right and nums[right] == nums[right - 1]:\n                    right -= 1\n                \n                left += 1\n                right -= 1\n            \n            elif total < 0:\n                left += 1\n            else:\n                right -= 1\n    \n    return result\n\n# Example usage:\nprint(three_sum([-1, 0, 1, 2, -1, -4]))  # Output: [[-1, -1, 2], [-1, 0, 1]]\n```\n\n### Explanation:\n1. **Sorting**: The array is sorted to facilitate the two-pointer technique and easy skipping of duplicates.\n2. **Outer Loop**: The outer loop iterates through each element, treating it as the potential first element of the triplet.\n3. **Two-Pointer Loop**: For each fixed element, the inner loop uses two pointers (`left` and `right`) to find pairs that sum up to the required value.\n4. **Avoiding Duplicates**: Both the outer loop and the inner loop check for duplicates to ensure that only unique triplets are added to the result.\n5. **Appending Results**: When a valid triplet is found, it is appended to the result list, and both pointers are moved inward while skipping any duplicates.\n\nThis approach ensures that the solution is efficient and handles edge cases such as duplicate elements gracefully.",
+      "finish_reason": "stop"
+    }
+  ],
+  "error": "",
+  "timestamp": "2026-11-15T12:35:47.290631+00:00",
+  "temperature": 0.0,
+  "sample_index": 0,
+  "run_tag": "suppl",
+  "prompt_truncations": 0,
+  "seed": 42000
+}

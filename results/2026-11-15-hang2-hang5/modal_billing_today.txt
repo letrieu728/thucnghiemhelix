@@ -1,0 +1,26 @@
+┏━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━┓
+┃            ┃            ┃            ┃ Interval    ┃            ┃            ┃
+┃ Object ID  ┃ Descripti… ┃ Environme… ┃ Start       ┃ Resource   ┃ Cost       ┃
+┡━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━┩
+│ ap-gpbBYw… │ helix-lor… │ main       │ 2026-11-15  │ Network    │ 0.00801267 │
+│            │            │            │             │ Egress     │            │
+│ ap-gpbBYw… │ helix-lor… │ main       │ 2026-11-15  │ CPU        │ 0.00379478 │
+│ ap-gpbBYw… │ helix-lor… │ main       │ 2026-11-15  │ A100-40GB  │ 0.11061555 │
+│ ap-gpbBYw… │ helix-lor… │ main       │ 2026-11-15  │ Memory     │ 0.00198888 │
+│ ap-n6JsYM… │ helix-vll… │ main       │ 2026-11-15  │ A10G       │ 1.32685557 │
+│ ap-n6JsYM… │ helix-vll… │ main       │ 2026-11-15  │ Network    │ 0.00000300 │
+│            │            │            │             │ Egress     │            │
+│ ap-n6JsYM… │ helix-vll… │ main       │ 2026-11-15  │ CPU        │ 0.05768397 │
+│ ap-n6JsYM… │ helix-vll… │ main       │ 2026-11-15  │ Memory     │ 0.02567750 │
+└────────────┴────────────┴────────────┴─────────────┴────────────┴────────────┘
+                                      
+  Metered Cost:                13.17  
+    Deployed Apps:              7.56  
+    Ephemeral Apps:             4.95  
+    Volumes:                    0.57  
+    Network Egress:             0.09  
+  Network Egress Allowance:    -0.09  
+  Free Storage:                -0.57  
+  Credits:                    -12.51  
+  Billed Cost:                 $0.00  
+                                      

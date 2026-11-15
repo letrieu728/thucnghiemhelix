@@ -1,0 +1,74 @@
+[
+  {
+    "filename": "helix-lora-supplement-20261115/README.md",
+    "type": "file",
+    "created_modified": "2026-11-15 11:46:43+00:00",
+    "size": 5266
+  },
+  {
+    "filename": "helix-lora-supplement-20261115/adapter_config.json",
+    "type": "file",
+    "created_modified": "2026-11-15 11:46:42+00:00",
+    "size": 1091
+  },
+  {
+    "filename": "helix-lora-supplement-20261115/adapter_model.safetensors",
+    "type": "file",
+    "created_modified": "2026-11-15 11:46:40+00:00",
+    "size": 161533192
+  },
+  {
+    "filename": "helix-lora-supplement-20261115/added_tokens.json",
+    "type": "file",
+    "created_modified": "2026-11-15 11:46:38+00:00",
+    "size": 632
+  },
+  {
+    "filename": "helix-lora-supplement-20261115/chat_template.jinja",
+    "type": "file",
+    "created_modified": "2026-11-15 11:46:37+00:00",
+    "size": 2507
+  },
+  {
+    "filename": "helix-lora-supplement-20261115/loss_history.json",
+    "type": "file",
+    "created_modified": "2026-11-15 11:46:35+00:00",
+    "size": 6257
+  },
+  {
+    "filename": "helix-lora-supplement-20261115/merges.txt",
+    "type": "file",
+    "created_modified": "2026-11-15 11:46:33+00:00",
+    "size": 1671853
+  },
+  {
+    "filename": "helix-lora-supplement-20261115/metadata.json",
+    "type": "file",
+    "created_modified": "2026-11-15 11:46:32+00:00",
+    "size": 1136
+  },
+  {
+    "filename": "helix-lora-supplement-20261115/special_tokens_map.json",
+    "type": "file",
+    "created_modified": "2026-11-15 11:46:30+00:00",
+    "size": 613
+  },
+  {
+    "filename": "helix-lora-supplement-20261115/tokenizer.json",
+    "type": "file",
+    "created_modified": "2026-11-15 11:46:28+00:00",
+    "size": 11422086
+  },
+  {
+    "filename": "helix-lora-supplement-20261115/tokenizer_config.json",
+    "type": "file",
+    "created_modified": "2026-11-15 11:46:26+00:00",
+    "size": 4891
+  },
+  {
+    "filename": "helix-lora-supplement-20261115/vocab.json",
+    "type": "file",
+    "created_modified": "2026-11-15 11:46:24+00:00",
+    "size": 2776833
+  }
+]

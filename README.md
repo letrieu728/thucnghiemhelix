@@ -20,8 +20,9 @@ Thầy đọc theo thứ tự sau là đủ nắm toàn bộ công việc:
 1. **File này (README.md)** — tóm tắt kết quả, caveat và cách chạy lại.
 2. [`REPORT.md`](./REPORT.md) — báo cáo đối chiếu: từng hạng mục của tác
    giả đối chiếu với kết quả kiểm chứng offline của nhóm.
-3. [`RESULTS.md`](./RESULTS.md) — nhật ký kết quả theo ngày (07–12/11/2026),
-   gồm cả phần phân loại lại lỗi test ngày 12/11 và tóm tắt hai vòng live.
+3. [`RESULTS.md`](./RESULTS.md) — nhật ký kết quả theo ngày (07–15/11/2026),
+   gồm cả phần phân loại lại lỗi test ngày 12/11, tóm tắt hai vòng live
+   và mục phân tích bổ sung ngày 15/11.
 4. [`closed-loop/REBUILD_REPORT.md`](./closed-loop/REBUILD_REPORT.md) §8–§9
    — phân tích thống kê đầy đủ của hai vòng chạy live (union, khoảng tin
    cậy Wilson, kiểm định McNemar).
@@ -166,6 +167,19 @@ script có parser):
 commit
 [baee74f](https://github.com/letrieu728/thucnghiemhelix/commit/baee74ff15fc156bd1fda3b5016eda42bfb1f1b7).
 
+### Đợt phân tích bổ sung (15/11/2026) — không phải vòng 3
+
+Nhóm chấm lại toàn bộ ô PASS baseline vòng 2 bằng rubric critic đăng ký
+trước (heuristic + judge là model gốc, nhiệt độ 0): 167/169 ô `clean`,
+0 `degenerate`, 2 ô không parse được (giữ nguyên nhãn); và train lại
+một adapter riêng với DPO mở rộng 6 → 19 cặp (mọi siêu tham số giữ
+nguyên vòng 2), đo lại 65/80 train và 51/60 held-out. Mọi so sánh với
+vòng 2 đều không có ý nghĩa thống kê (p = 1,0 và p = 0,5), nên **số
+vòng 2 giữ nguyên làm kết quả chính**; adapter vòng 2 vẫn là adapter
+chính thức, adapter bổ sung nằm riêng. Chi tiết:
+[RESULTS.md](./RESULTS.md) (mục ngày 15/11) và
+[results/2026-11-15-hang2-hang5/](./results/2026-11-15-hang2-hang5/).
+
 ### Đọc kết quả thế nào
 
 - Hai vòng chạy đều cho gain nhỏ, cùng chiều, nhưng **chưa vòng nào đạt ý
@@ -202,8 +216,8 @@ commit
 │   │   ├── analysis_round1.json / analysis_round2.json
 │   │   ├── rebuild_comparison_plot.svg / round2_comparison_plot.svg
 │   │   ├── processed/                   # Dataset SFT/DPO hiện tại (vòng 2) + provenance.json
-│   │   ├── raw_traces/                  # 520 trace JSON (vòng 1: 160, vòng 2: 360)
-│   │   └── training_runs/               # metadata + loss history 2 run train
+│   │   ├── raw_traces/                  # 660 trace JSON (vòng 1: 160, vòng 2: 360, bổ sung 15/11: 140)
+│   │   └── training_runs/               # metadata + loss history 3 run train
 │   ├── notebooks/                       # evaluate_rebuild.py, round1_stats.py, round2_stats.py
 │   ├── tests/test_pipeline.py           # 17 test (pipeline, provenance gate, drift config)
 │   ├── requirements.txt / .env.template

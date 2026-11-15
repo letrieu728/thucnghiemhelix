@@ -1,0 +1,62 @@
+
+[Health Check] Polling server health at: https://letrieu728--helix-vllm-engine-vllmserver-serve.us-east.modal.run/health
+[Health Check] Server is healthy and ready! [lora_enabled=True, adapter=helix-lora] (0s elapsed)
+
+=================================================================
+  HELIX Closed-Loop Evaluation Runner
+  Phase    : HELDOUT
+  Problems : heldout2 (7 tasks, start=8, of 15)
+  Mode     : live
+  Model    : helix-lora
+  Harnesses: minimal, pi-mono, hermes-agent, opencode
+  Sampling : temperature=0.0, n_samples=1, run_tag=suppl
+  Total    : 28 runs
+  Output   : /home/hatch/workspace/helix-eval/thucnghiemhelix/closed-loop/data/raw_traces
+=================================================================
+
+[Problem held2_009_next_permutation] Next Permutation (hard)
+  [1/28] harness=minimal sample=0 ... [FAIL] steps=1 lat=15.6s trunc=0 -> suppl_helix-lora_held2_009_next_permutation_minimal.json
+  [2/28] harness=pi-mono sample=0 ... [FAIL] steps=4 lat=123.2s trunc=0 -> suppl_helix-lora_held2_009_next_permutation_pi-mono.json
+  [3/28] harness=hermes-agent sample=0 ... [FAIL] steps=4 lat=109.9s trunc=0 -> suppl_helix-lora_held2_009_next_permutation_hermes-agent.json
+  [4/28] harness=opencode sample=0 ... [FAIL] steps=4 lat=50.3s trunc=0 -> suppl_helix-lora_held2_009_next_permutation_opencode.json
+
+[Problem held2_010_three_sum] 3Sum (hard)
+  [5/28] harness=minimal sample=0 ... [PASS] steps=1 lat=14.2s trunc=0 -> suppl_helix-lora_held2_010_three_sum_minimal.json
+  [6/28] harness=pi-mono sample=0 ... [PASS] steps=1 lat=28.2s trunc=0 -> suppl_helix-lora_held2_010_three_sum_pi-mono.json
+  [7/28] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=15.2s trunc=0 -> suppl_helix-lora_held2_010_three_sum_hermes-agent.json
+  [8/28] harness=opencode sample=0 ... [PASS] steps=1 lat=9.7s trunc=0 -> suppl_helix-lora_held2_010_three_sum_opencode.json
+
+[Problem held2_011_valid_sudoku] Valid Sudoku (hard)
+  [9/28] harness=minimal sample=0 ... [PASS] steps=1 lat=15.6s trunc=0 -> suppl_helix-lora_held2_011_valid_sudoku_minimal.json
+  [10/28] harness=pi-mono sample=0 ... [PASS] steps=1 lat=35.3s trunc=0 -> suppl_helix-lora_held2_011_valid_sudoku_pi-mono.json
+  [11/28] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=14.1s trunc=0 -> suppl_helix-lora_held2_011_valid_sudoku_hermes-agent.json
+  [12/28] harness=opencode sample=0 ... [PASS] steps=1 lat=8.1s trunc=0 -> suppl_helix-lora_held2_011_valid_sudoku_opencode.json
+
+[Problem held2_012_gas_station] Gas Station Circuit (hard)
+  [13/28] harness=minimal sample=0 ... [PASS] steps=1 lat=12.4s trunc=0 -> suppl_helix-lora_held2_012_gas_station_minimal.json
+  [14/28] harness=pi-mono sample=0 ... [PASS] steps=1 lat=27.3s trunc=0 -> suppl_helix-lora_held2_012_gas_station_pi-mono.json
+  [15/28] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=12.7s trunc=0 -> suppl_helix-lora_held2_012_gas_station_hermes-agent.json
+  [16/28] harness=opencode sample=0 ... [PASS] steps=1 lat=6.9s trunc=0 -> suppl_helix-lora_held2_012_gas_station_opencode.json
+
+[Problem held2_013_decode_ways] Decode Ways (hard)
+  [17/28] harness=minimal sample=0 ... [PASS] steps=1 lat=14.0s trunc=0 -> suppl_helix-lora_held2_013_decode_ways_minimal.json
+  [18/28] harness=pi-mono sample=0 ... [FAIL] steps=4 lat=122.4s trunc=0 -> suppl_helix-lora_held2_013_decode_ways_pi-mono.json
+  [19/28] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=15.9s trunc=0 -> suppl_helix-lora_held2_013_decode_ways_hermes-agent.json
+  [20/28] harness=opencode sample=0 ... [PASS] steps=1 lat=7.5s trunc=0 -> suppl_helix-lora_held2_013_decode_ways_opencode.json
+
+[Problem held2_014_rotten_oranges] Rotting Oranges (hard)
+  [21/28] harness=minimal sample=0 ... [PASS] steps=1 lat=16.8s trunc=0 -> suppl_helix-lora_held2_014_rotten_oranges_minimal.json
+  [22/28] harness=pi-mono sample=0 ... [FAIL] steps=4 lat=90.1s trunc=0 -> suppl_helix-lora_held2_014_rotten_oranges_pi-mono.json
+  [23/28] harness=hermes-agent sample=0 ... [FAIL] steps=4 lat=76.6s trunc=0 -> suppl_helix-lora_held2_014_rotten_oranges_hermes-agent.json
+  [24/28] harness=opencode sample=0 ... [PASS] steps=3 lat=42.6s trunc=0 -> suppl_helix-lora_held2_014_rotten_oranges_opencode.json
+
+[Problem held2_015_longest_consecutive] Longest Consecutive Sequence (hard)
+  [25/28] harness=minimal sample=0 ... [PASS] steps=1 lat=11.8s trunc=0 -> suppl_helix-lora_held2_015_longest_consecutive_minimal.json
+  [26/28] harness=pi-mono sample=0 ... [PASS] steps=1 lat=18.4s trunc=0 -> suppl_helix-lora_held2_015_longest_consecutive_pi-mono.json
+  [27/28] harness=hermes-agent sample=0 ... [PASS] steps=1 lat=12.6s trunc=0 -> suppl_helix-lora_held2_015_longest_consecutive_hermes-agent.json
+  [28/28] harness=opencode sample=0 ... [PASS] steps=1 lat=6.0s trunc=0 -> suppl_helix-lora_held2_015_longest_consecutive_opencode.json
+
+=================================================================
+  Evaluation complete: 21/28 passed (0 reused via --skip-existing)
+  Traces saved to: /home/hatch/workspace/helix-eval/thucnghiemhelix/closed-loop/data/raw_traces
+=================================================================
