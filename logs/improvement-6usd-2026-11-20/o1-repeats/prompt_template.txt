@@ -1,0 +1,1 @@
+{prompt} Write your implementation in the file solution.py in the working directory. Only modify solution.py. When done, run the file to verify it works.

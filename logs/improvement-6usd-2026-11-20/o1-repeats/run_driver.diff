@@ -1,0 +1,31 @@
+--- ../o2-clean-retrain/run_driver.py	2026-11-20 13:44:06.190038853 +0000
++++ run_driver.py	2026-11-20 15:59:35.282245302 +0000
+@@ -1,5 +1,7 @@
+ #!/usr/bin/env python3
+-"""O2-clean driver (2026-11-20): pi-mono ONLY, 45 tasks (held2+held3+held4),
++"""O1-repeat driver (2026-11-20): copy of the O2-clean driver.
++O1 DIFFERENCE (only): output dir runs-repeat/ instead of runs/.
++O2-clean driver (2026-11-20): pi-mono ONLY, 45 tasks (held2+held3+held4),
+ 3 models (base / clean / realtool) through the Modal vLLM endpoint
+ (variant C + helix-lora-clean + helix-lora-realtool), score externally.
+ IDENTICAL protocol to the REBUILD-fix driver except the task list and
+@@ -14,7 +16,7 @@
+   - PILOT_IDS are the first held2 tasks (no lcb_* task is in the eval set);
+   - task_set is the cohort (held2 / held3 / held4) from the task_id prefix;
+   - docstring + usage examples updated; scoring, CLI argv, layout
+-    (runs/<product>/<model>/<task>/), health check, spend guard unchanged.
++    (runs-repeat/<product>/<model>/<task>/ in O1), health check, spend guard unchanged.
+ 
+ Usage:
+   python3 run_driver.py --endpoint https://...modal.run --product pi-mono --model clean --tasks pilot3
+@@ -491,7 +493,9 @@
+         parser.error("--rerun requires exactly one task")
+ 
+     model_id = MODEL_IDS[args.model]
+-    runs_root = LOG_DIR / "runs" / args.product / args.model
++    # O1 ONLY DIFFERENCE (DESIGN.md §8): output dir runs-repeat/ so the
++    # repeat never overwrites O2's runs/ (O2 results are read-only).
++    runs_root = LOG_DIR / "runs-repeat" / args.product / args.model
+     runs_root.mkdir(parents=True, exist_ok=True)
+ 
+     # Upstream cleanliness snapshot (read-only check).

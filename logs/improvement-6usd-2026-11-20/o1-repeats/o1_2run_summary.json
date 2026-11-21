@@ -1,0 +1,735 @@
+{
+  "experiment": "O1-repeat (2026-11-20): 2-run analysis of O2 cells",
+  "design": "O1/DESIGN.md section 3 (pre-registered)",
+  "scope": "base + clean only (90 cells x 2 runs). Realtool arm trimmed from O1 by the billing forecast (DESIGN.md section 5 step 1); its O2 numbers stay 1 run/cell.",
+  "runs": {
+    "o2": "O2 run (1st)",
+    "o1": "O1 repeat (2nd)"
+  },
+  "agreement": {
+    "base": {
+      "overall": {
+        "n_cells": 45,
+        "n_agree": 31,
+        "agreement_rate": 0.6889,
+        "n_flips": 14,
+        "flips": [
+          {
+            "task_id": "held2_001_edit_distance",
+            "o2": "PASS",
+            "o1": "FAIL"
+          },
+          {
+            "task_id": "held2_002_regex_match",
+            "o2": "PASS",
+            "o1": "FAIL"
+          },
+          {
+            "task_id": "held2_011_valid_sudoku",
+            "o2": "FAIL",
+            "o1": "PASS"
+          },
+          {
+            "task_id": "held2_014_rotten_oranges",
+            "o2": "PASS",
+            "o1": "FAIL"
+          },
+          {
+            "task_id": "held3_002_missing_number",
+            "o2": "PASS",
+            "o1": "FAIL"
+          },
+          {
+            "task_id": "held3_004_group_anagrams",
+            "o2": "PASS",
+            "o1": "FAIL"
+          },
+          {
+            "task_id": "held3_008_product_except_self",
+            "o2": "FAIL",
+            "o1": "PASS"
+          },
+          {
+            "task_id": "held3_009_coin_change",
+            "o2": "FAIL",
+            "o1": "PASS"
+          },
+          {
+            "task_id": "held3_010_house_robber",
+            "o2": "PASS",
+            "o1": "FAIL"
+          },
+          {
+            "task_id": "held3_011_letter_combinations",
+            "o2": "FAIL",
+            "o1": "PASS"
+          },
+          {
+            "task_id": "held3_012_min_window_substring",
+            "o2": "FAIL",
+            "o1": "PASS"
+          },
+          {
+            "task_id": "held3_015_serialize_binary_tree",
+            "o2": "PASS",
+            "o1": "FAIL"
+          },
+          {
+            "task_id": "held4_013_max_path_sum",
+            "o2": "PASS",
+            "o1": "FAIL"
+          },
+          {
+            "task_id": "held4_015_count_smaller",
+            "o2": "FAIL",
+            "o1": "PASS"
+          }
+        ]
+      },
+      "cohorts": {
+        "held2": {
+          "n_cells": 15,
+          "n_agree": 11,
+          "agreement_rate": 0.7333,
+          "n_flips": 4,
+          "flips": [
+            {
+              "task_id": "held2_001_edit_distance",
+              "o2": "PASS",
+              "o1": "FAIL"
+            },
+            {
+              "task_id": "held2_002_regex_match",
+              "o2": "PASS",
+              "o1": "FAIL"
+            },
+            {
+              "task_id": "held2_011_valid_sudoku",
+              "o2": "FAIL",
+              "o1": "PASS"
+            },
+            {
+              "task_id": "held2_014_rotten_oranges",
+              "o2": "PASS",
+              "o1": "FAIL"
+            }
+          ]
+        },
+        "held3": {
+          "n_cells": 15,
+          "n_agree": 7,
+          "agreement_rate": 0.4667,
+          "n_flips": 8,
+          "flips": [
+            {
+              "task_id": "held3_002_missing_number",
+              "o2": "PASS",
+              "o1": "FAIL"
+            },
+            {
+              "task_id": "held3_004_group_anagrams",
+              "o2": "PASS",
+              "o1": "FAIL"
+            },
+            {
+              "task_id": "held3_008_product_except_self",
+              "o2": "FAIL",
+              "o1": "PASS"
+            },
+            {
+              "task_id": "held3_009_coin_change",
+              "o2": "FAIL",
+              "o1": "PASS"
+            },
+            {
+              "task_id": "held3_010_house_robber",
+              "o2": "PASS",
+              "o1": "FAIL"
+            },
+            {
+              "task_id": "held3_011_letter_combinations",
+              "o2": "FAIL",
+              "o1": "PASS"
+            },
+            {
+              "task_id": "held3_012_min_window_substring",
+              "o2": "FAIL",
+              "o1": "PASS"
+            },
+            {
+              "task_id": "held3_015_serialize_binary_tree",
+              "o2": "PASS",
+              "o1": "FAIL"
+            }
+          ]
+        },
+        "held4": {
+          "n_cells": 15,
+          "n_agree": 13,
+          "agreement_rate": 0.8667,
+          "n_flips": 2,
+          "flips": [
+            {
+              "task_id": "held4_013_max_path_sum",
+              "o2": "PASS",
+              "o1": "FAIL"
+            },
+            {
+              "task_id": "held4_015_count_smaller",
+              "o2": "FAIL",
+              "o1": "PASS"
+            }
+          ]
+        }
+      }
+    },
+    "clean": {
+      "overall": {
+        "n_cells": 45,
+        "n_agree": 40,
+        "agreement_rate": 0.8889,
+        "n_flips": 5,
+        "flips": [
+          {
+            "task_id": "held2_003_n_queens_count",
+            "o2": "FAIL",
+            "o1": "PASS"
+          },
+          {
+            "task_id": "held2_008_median_finder",
+            "o2": "PASS",
+            "o1": "FAIL"
+          },
+          {
+            "task_id": "held2_011_valid_sudoku",
+            "o2": "FAIL",
+            "o1": "PASS"
+          },
+          {
+            "task_id": "held3_011_letter_combinations",
+            "o2": "FAIL",
+            "o1": "PASS"
+          },
+          {
+            "task_id": "held3_012_min_window_substring",
+            "o2": "FAIL",
+            "o1": "PASS"
+          }
+        ]
+      },
+      "cohorts": {
+        "held2": {
+          "n_cells": 15,
+          "n_agree": 12,
+          "agreement_rate": 0.8,
+          "n_flips": 3,
+          "flips": [
+            {
+              "task_id": "held2_003_n_queens_count",
+              "o2": "FAIL",
+              "o1": "PASS"
+            },
+            {
+              "task_id": "held2_008_median_finder",
+              "o2": "PASS",
+              "o1": "FAIL"
+            },
+            {
+              "task_id": "held2_011_valid_sudoku",
+              "o2": "FAIL",
+              "o1": "PASS"
+            }
+          ]
+        },
+        "held3": {
+          "n_cells": 15,
+          "n_agree": 13,
+          "agreement_rate": 0.8667,
+          "n_flips": 2,
+          "flips": [
+            {
+              "task_id": "held3_011_letter_combinations",
+              "o2": "FAIL",
+              "o1": "PASS"
+            },
+            {
+              "task_id": "held3_012_min_window_substring",
+              "o2": "FAIL",
+              "o1": "PASS"
+            }
+          ]
+        },
+        "held4": {
+          "n_cells": 15,
+          "n_agree": 15,
+          "agreement_rate": 1.0,
+          "n_flips": 0,
+          "flips": []
+        }
+      }
+    }
+  },
+  "pooled_2run": {
+    "base": {
+      "cohorts": {
+        "held2": {
+          "k": 22,
+          "n": 30,
+          "rate": 0.7333,
+          "wilson95": [
+            0.5555,
+            0.8582
+          ],
+          "o2_pass": 12,
+          "o1_pass": 10
+        },
+        "held3": {
+          "k": 20,
+          "n": 30,
+          "rate": 0.6667,
+          "wilson95": [
+            0.4878,
+            0.8077
+          ],
+          "o2_pass": 10,
+          "o1_pass": 10
+        },
+        "held4": {
+          "k": 22,
+          "n": 30,
+          "rate": 0.7333,
+          "wilson95": [
+            0.5555,
+            0.8582
+          ],
+          "o2_pass": 11,
+          "o1_pass": 11
+        }
+      },
+      "primary_held3_held4": {
+        "k": 42,
+        "n": 60,
+        "rate": 0.7,
+        "wilson95": [
+          0.5749,
+          0.801
+        ],
+        "o2_pass": 21,
+        "o1_pass": 21
+      },
+      "full_45": {
+        "k": 64,
+        "n": 90,
+        "rate": 0.7111,
+        "wilson95": [
+          0.6104,
+          0.7946
+        ],
+        "o2_pass": 33,
+        "o1_pass": 31
+      }
+    },
+    "clean": {
+      "cohorts": {
+        "held2": {
+          "k": 21,
+          "n": 30,
+          "rate": 0.7,
+          "wilson95": [
+            0.5212,
+            0.8334
+          ],
+          "o2_pass": 10,
+          "o1_pass": 11
+        },
+        "held3": {
+          "k": 24,
+          "n": 30,
+          "rate": 0.8,
+          "wilson95": [
+            0.6269,
+            0.9049
+          ],
+          "o2_pass": 11,
+          "o1_pass": 13
+        },
+        "held4": {
+          "k": 26,
+          "n": 30,
+          "rate": 0.8667,
+          "wilson95": [
+            0.7032,
+            0.9469
+          ],
+          "o2_pass": 13,
+          "o1_pass": 13
+        }
+      },
+      "primary_held3_held4": {
+        "k": 50,
+        "n": 60,
+        "rate": 0.8333,
+        "wilson95": [
+          0.7197,
+          0.9069
+        ],
+        "o2_pass": 24,
+        "o1_pass": 26
+      },
+      "full_45": {
+        "k": 71,
+        "n": 90,
+        "rate": 0.7889,
+        "wilson95": [
+          0.6937,
+          0.8605
+        ],
+        "o2_pass": 34,
+        "o1_pass": 37
+      }
+    }
+  },
+  "mcnemar_per_run": {
+    "o2": {
+      "primary_30": {
+        "model_a": "base",
+        "model_b": "clean",
+        "paired_tasks": 30,
+        "gains_fail_to_pass": 5,
+        "losses_pass_to_fail": 2,
+        "same_pass": 19,
+        "same_fail": 4,
+        "exact_p_two_sided": 0.4531,
+        "flips": [
+          {
+            "task_id": "held3_008_product_except_self",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held3_009_coin_change",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held3_015_serialize_binary_tree",
+            "base_pass": true,
+            "clean_pass": false
+          },
+          {
+            "task_id": "held4_009_level_order",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held4_013_max_path_sum",
+            "base_pass": true,
+            "clean_pass": false
+          },
+          {
+            "task_id": "held4_014_candy",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held4_015_count_smaller",
+            "base_pass": false,
+            "clean_pass": true
+          }
+        ]
+      },
+      "full_45": {
+        "model_a": "base",
+        "model_b": "clean",
+        "paired_tasks": 45,
+        "gains_fail_to_pass": 6,
+        "losses_pass_to_fail": 5,
+        "same_pass": 28,
+        "same_fail": 6,
+        "exact_p_two_sided": 1.0,
+        "flips": [
+          {
+            "task_id": "held2_002_regex_match",
+            "base_pass": true,
+            "clean_pass": false
+          },
+          {
+            "task_id": "held2_003_n_queens_count",
+            "base_pass": true,
+            "clean_pass": false
+          },
+          {
+            "task_id": "held2_008_median_finder",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held2_014_rotten_oranges",
+            "base_pass": true,
+            "clean_pass": false
+          },
+          {
+            "task_id": "held3_008_product_except_self",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held3_009_coin_change",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held3_015_serialize_binary_tree",
+            "base_pass": true,
+            "clean_pass": false
+          },
+          {
+            "task_id": "held4_009_level_order",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held4_013_max_path_sum",
+            "base_pass": true,
+            "clean_pass": false
+          },
+          {
+            "task_id": "held4_014_candy",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held4_015_count_smaller",
+            "base_pass": false,
+            "clean_pass": true
+          }
+        ]
+      }
+    },
+    "o1": {
+      "primary_30": {
+        "model_a": "base",
+        "model_b": "clean",
+        "paired_tasks": 30,
+        "gains_fail_to_pass": 5,
+        "losses_pass_to_fail": 0,
+        "same_pass": 21,
+        "same_fail": 4,
+        "exact_p_two_sided": 0.0625,
+        "flips": [
+          {
+            "task_id": "held3_002_missing_number",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held3_004_group_anagrams",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held3_010_house_robber",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held4_009_level_order",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held4_014_candy",
+            "base_pass": false,
+            "clean_pass": true
+          }
+        ]
+      },
+      "full_45": {
+        "model_a": "base",
+        "model_b": "clean",
+        "paired_tasks": 45,
+        "gains_fail_to_pass": 6,
+        "losses_pass_to_fail": 0,
+        "same_pass": 31,
+        "same_fail": 8,
+        "exact_p_two_sided": 0.0312,
+        "flips": [
+          {
+            "task_id": "held2_001_edit_distance",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held3_002_missing_number",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held3_004_group_anagrams",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held3_010_house_robber",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held4_009_level_order",
+            "base_pass": false,
+            "clean_pass": true
+          },
+          {
+            "task_id": "held4_014_candy",
+            "base_pass": false,
+            "clean_pass": true
+          }
+        ]
+      }
+    }
+  },
+  "base_drift": {
+    "n_tasks_compared": 45,
+    "n_cells_differing": 14,
+    "o2_pass_45": 33,
+    "o1_pass_45": 31,
+    "o2_pass_primary_30": 21,
+    "o1_pass_primary_30": 21,
+    "drift_ge_4": true,
+    "drift_sentence_for_o6": "drift trong-chương-trình ≥ 4 bài — mọi so sánh một-lần-chạy đều hạ xuống mức mô tả",
+    "flips": [
+      {
+        "task_id": "held2_001_edit_distance",
+        "o2": "PASS",
+        "o1": "FAIL"
+      },
+      {
+        "task_id": "held2_002_regex_match",
+        "o2": "PASS",
+        "o1": "FAIL"
+      },
+      {
+        "task_id": "held2_011_valid_sudoku",
+        "o2": "FAIL",
+        "o1": "PASS"
+      },
+      {
+        "task_id": "held2_014_rotten_oranges",
+        "o2": "PASS",
+        "o1": "FAIL"
+      },
+      {
+        "task_id": "held3_002_missing_number",
+        "o2": "PASS",
+        "o1": "FAIL"
+      },
+      {
+        "task_id": "held3_004_group_anagrams",
+        "o2": "PASS",
+        "o1": "FAIL"
+      },
+      {
+        "task_id": "held3_008_product_except_self",
+        "o2": "FAIL",
+        "o1": "PASS"
+      },
+      {
+        "task_id": "held3_009_coin_change",
+        "o2": "FAIL",
+        "o1": "PASS"
+      },
+      {
+        "task_id": "held3_010_house_robber",
+        "o2": "PASS",
+        "o1": "FAIL"
+      },
+      {
+        "task_id": "held3_011_letter_combinations",
+        "o2": "FAIL",
+        "o1": "PASS"
+      },
+      {
+        "task_id": "held3_012_min_window_substring",
+        "o2": "FAIL",
+        "o1": "PASS"
+      },
+      {
+        "task_id": "held3_015_serialize_binary_tree",
+        "o2": "PASS",
+        "o1": "FAIL"
+      },
+      {
+        "task_id": "held4_013_max_path_sum",
+        "o2": "PASS",
+        "o1": "FAIL"
+      },
+      {
+        "task_id": "held4_015_count_smaller",
+        "o2": "FAIL",
+        "o1": "PASS"
+      }
+    ]
+  },
+  "verdict_reread": {
+    "o2_run": {
+      "c1_text_only_clean_30": 0,
+      "c1_met": true,
+      "c2_clean_pass_30": 24,
+      "c2_base_pass_30": 21,
+      "c2_diff": 3,
+      "c2_met": true
+    },
+    "o1_run": {
+      "c1_text_only_clean_30": 0,
+      "c1_met": true,
+      "c2_clean_pass_30": 26,
+      "c2_base_pass_30": 21,
+      "c2_diff": 5,
+      "c2_met": true
+    },
+    "c1_c2_hold_in_both_runs": true,
+    "reread": "phán quyết O2 ổn định qua 2 lượt"
+  },
+  "text_only_per_run": {
+    "base": {
+      "o2": {
+        "primary_30": 4,
+        "full_45": 5,
+        "cohorts": {
+          "held2": 1,
+          "held3": 3,
+          "held4": 1
+        }
+      },
+      "o1": {
+        "primary_30": 4,
+        "full_45": 7,
+        "cohorts": {
+          "held2": 3,
+          "held3": 2,
+          "held4": 2
+        }
+      }
+    },
+    "clean": {
+      "o2": {
+        "primary_30": 0,
+        "full_45": 0,
+        "cohorts": {
+          "held2": 0,
+          "held3": 0,
+          "held4": 0
+        }
+      },
+      "o1": {
+        "primary_30": 0,
+        "full_45": 0,
+        "cohorts": {
+          "held2": 0,
+          "held3": 0,
+          "held4": 0
+        }
+      }
+    }
+  }
+}

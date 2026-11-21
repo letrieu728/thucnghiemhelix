@@ -1,0 +1,24 @@
+--- ../o2-clean-retrain/verify_scoring.py	2026-11-20 13:43:54.094670701 +0000
++++ verify_scoring.py	2026-11-20 15:59:16.714480859 +0000
+@@ -1,8 +1,10 @@
+ #!/usr/bin/env python3
+ """Independent re-verification of step-3 scoring (offline, no GPU).
+ 
++O1-repeat verification (2026-11-20): copy of the O2-clean script.
++O1 DIFFERENCE (only): checks runs-repeat/ instead of runs/.
+ Same logic as step-2 verify_scoring.py, adapted only for the 3-level
+-runs/<product>/<model>/<task>/ layout. For every run with a recorded
++runs-repeat/<product>/<model>/<task>/ layout. For every run with a recorded
+ PASS/FAIL, re-run run_test_cases (from run_driver.py, itself a verbatim
+ copy of the original 02_run_helix_eval.py function) on the SAVED
+ solution_final.py and compare with the recorded scoring.passed flag.
+@@ -32,7 +34,8 @@
+     tasks = {p["id"]: p for p in json.loads((LOG_DIR / "tasks.json").read_text())}
+     checked = skipped = mismatches = hash_mismatches = 0
+     problems = []
+-    for result_path in sorted((LOG_DIR / "runs").glob("*/*/*/result.json")):
++    # O1 ONLY DIFFERENCE: verify runs-repeat/ (the repeat output dir).
++    for result_path in sorted((LOG_DIR / "runs-repeat").glob("*/*/*/result.json")):
+         run_dir = result_path.parent
+         if ".attempt" in run_dir.name:
+             continue

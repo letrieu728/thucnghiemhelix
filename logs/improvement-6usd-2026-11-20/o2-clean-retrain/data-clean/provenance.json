@@ -1,0 +1,77 @@
+{
+  "generated_at": "2026-11-20T13:40:17.390754+00:00",
+  "extractor": "filter_clean_data.py (O2 clean retrain, 2026-11-20; strict subset of REBUILD-fix data 2026-11-18, keeping only task_id starting with 'lcb_' — the 20 train tasks; all held2_* rows dropped; no new traces collected; live real-harness traces only, step 2 pi-mono; Hermes <tool_call> reconstruction, shim-parse verified 29/29)",
+  "allow_dry_run": false,
+  "run_tag_filter": [
+    "rebuild-step2-pi-mono-live"
+  ],
+  "run_tags_observed": [
+    "rebuild-step2-pi-mono-live"
+  ],
+  "live_traces_kept": 29,
+  "dry_run_traces_present": 0,
+  "dry_run_traces_skipped": 0,
+  "tasks": [
+    "lcb_001_two_sum",
+    "lcb_004_reverse_linked_list",
+    "lcb_005_binary_search",
+    "lcb_006_max_subarray",
+    "lcb_007_climbing_stairs",
+    "lcb_008_merge_intervals",
+    "lcb_010_number_of_islands",
+    "lcb_011_trap_rain_water",
+    "lcb_012_can_finish_courses",
+    "lcb_014_daily_temperatures",
+    "lcb_015_word_search",
+    "lcb_016_partition_equal_subset",
+    "lcb_017_merge_k_sorted_lists",
+    "lcb_018_decode_string",
+    "lcb_020_min_jumps"
+  ],
+  "counts": {
+    "sft": 24,
+    "dpo": 5
+  },
+  "data_sha256": {
+    "sft_data.jsonl": "3ebbcb9795a81f42cb915e6eb652263b56204ca4c72a0d4155683c4d5cadf43d",
+    "dpo_pairs.jsonl": "c0fd091dca3426d602698e74a74275863e25518758556ab0a84351eef91484cd"
+  },
+  "source_data": {
+    "sft": "/home/hatch/workspace/helix-eval/logs/rebuild-fix-lora-tooluse/data/sft_data.jsonl",
+    "dpo": "/home/hatch/workspace/helix-eval/logs/rebuild-fix-lora-tooluse/data/dpo_pairs.jsonl",
+    "sft_source_sha256": "22b3d1700e4cd52a7fecb3ca156ef1b931d79224e9dba9a981525d2dfa7510bf",
+    "dpo_source_sha256": "ab5709edbed232dfbff340a400109c05677db846651e43b976a4ae6cc58cd3c5",
+    "filter": "task_id startswith 'lcb_'"
+  },
+  "source_traces": [
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/base/lcb_001_two_sum",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/base/lcb_004_reverse_linked_list",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/base/lcb_005_binary_search",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/base/lcb_006_max_subarray",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/base/lcb_007_climbing_stairs",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/base/lcb_008_merge_intervals",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/base/lcb_010_number_of_islands",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/base/lcb_011_trap_rain_water",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/base/lcb_012_can_finish_courses",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/base/lcb_014_daily_temperatures",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/base/lcb_015_word_search",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/base/lcb_016_partition_equal_subset",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/base/lcb_017_merge_k_sorted_lists",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/base/lcb_018_decode_string",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/base/lcb_020_min_jumps",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/lora/lcb_001_two_sum",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/lora/lcb_004_reverse_linked_list",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/lora/lcb_005_binary_search",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/lora/lcb_006_max_subarray",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/lora/lcb_007_climbing_stairs",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/lora/lcb_008_merge_intervals",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/lora/lcb_010_number_of_islands",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/lora/lcb_011_trap_rain_water",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/lora/lcb_012_can_finish_courses",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/lora/lcb_014_daily_temperatures",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/lora/lcb_015_word_search",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/lora/lcb_016_partition_equal_subset",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/lora/lcb_018_decode_string",
+    "/home/hatch/workspace/helix-eval/logs/rebuild-driver-2026-11-15/runs/lora/lcb_020_min_jumps"
+  ]
+}

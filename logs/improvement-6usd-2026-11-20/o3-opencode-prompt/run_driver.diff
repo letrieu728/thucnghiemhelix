@@ -1,0 +1,104 @@
+--- /home/hatch/workspace/helix-eval/logs/evolution-2026-11-18/step6-mini-search/run_driver.py	2026-11-18 09:31:35.520177093 +0000
++++ run_driver.py	2026-11-20 15:22:02.600885868 +0000
+@@ -5,6 +5,22 @@
+ (written BEFORE any GPU run). One invocation = one recipe; the sweep runs
+ R0..R8 recipe-major.
+ 
++O3 ADAPTATION (2026-11-20, DESIGN.md in the O3 folder; pre-registered):
++  - NEW flag --prompt-suffix: the suffix is appended VERBATIM to the end
++    of the built user prompt (build_prompt output) before passing it to
++    runner.mts; nothing else changes. Recorded in result.json as
++    "prompt_suffix" and in prompt.txt (the file now holds the exact
++    prompt sent, suffix included).
++  - NEW flag --branch (B1/B2/B3): the runs subdirectory becomes
++    runs/<branch>/<task>/ instead of runs/<recipe>/<task>/, and
++    result.json records "branch". Required because B1 and B2 share
++    recipe R8 and would otherwise collide in runs/R8/. No scoring,
++    parser, tool-counting, health-check, classification, rerun, or
++    resume logic is touched by either flag.
++  - The O3 recipes/manifest.json is a SUBSET of the step-6 manifest
++    (R1 + R8 entries copied verbatim); the driver verifies the recipe
++    file against it exactly as before.
++
+ Diff vs the fix run_driver.py (ONLY these; scoring, parser, tool counting,
+ health check, classification order, rerun/resume semantics verbatim):
+   - --product/--model replaced by --recipe (R0..R8) + --recipe-file; the
+@@ -274,7 +290,7 @@
+ 
+ def run_one_task(problem, task_set, model_key, model_id, endpoint, run_dir,
+                  template, recipe_id, recipe_file, recipe_sha256, blend,
+-                 rerun_info=None):
++                 rerun_info=None, prompt_suffix="", branch=None):
+     task_id = problem["id"]
+     workspace_dir = run_dir / "workspace"
+     storage_dir = run_dir / "storage"
+@@ -286,7 +302,8 @@
+     (workspace_dir / "task.md").write_bytes(problem["prompt"].encode("utf-8"))
+     (workspace_dir / "solution.py").write_text(SEED_LINE + "\n", encoding="utf-8")
+ 
+-    prompt = build_prompt(template, problem)
++    # O3: suffix appended verbatim to the built user prompt, nothing else.
++    prompt = build_prompt(template, problem) + prompt_suffix
+     (run_dir / "prompt.txt").write_text(prompt, encoding="utf-8")
+ 
+     argv = [
+@@ -433,6 +450,8 @@
+ 
+     result = {
+         "schema_version": 1,
++        "branch": branch,
++        "prompt_suffix": prompt_suffix,
+         "recipe_id": recipe_id,
+         "recipe_file": str(recipe_file),
+         "recipe_file_sha256": recipe_sha256,
+@@ -491,6 +510,12 @@
+                         help="Recipe JSON file; verified against recipes/manifest.json")
+     parser.add_argument("--model", required=True, choices=["base"],
+                         help="Fixed model for the search (base only)")
++    parser.add_argument("--prompt-suffix", default="",
++                        help="O3: suffix appended verbatim to the built user "
++                             "prompt before passing to runner.mts")
++    parser.add_argument("--branch", default=None,
++                        help="O3: branch label (B1/B2/B3); runs go to "
++                             "runs/<branch>/<task>/ instead of runs/<recipe>/<task>/")
+     parser.add_argument("--tasks", required=True,
+                         help="'search10' (the 10 pre-registered tasks) or comma-separated task ids (subset of search10 only)")
+     parser.add_argument("--rerun", action="store_true",
+@@ -545,7 +570,8 @@
+     blend = entry["blend"]
+ 
+     model_id = MODEL_IDS[args.model]
+-    runs_root = LOG_DIR / "runs" / args.recipe
++    branch = args.branch or args.recipe
++    runs_root = LOG_DIR / "runs" / branch
+     runs_root.mkdir(parents=True, exist_ok=True)
+ 
+     # Upstream cleanliness snapshot (read-only check).
+@@ -564,7 +590,7 @@
+               flush=True)
+ 
+     if not args.skip_health_check:
+-        health_log = LOG_DIR / f"health_check_{args.recipe}_{args.model}_{stamp}.json"
++        health_log = LOG_DIR / f"health_check_{branch}_{args.model}_{stamp}.json"
+         print(f"[driver] checking /health (log: {health_log.name}) ...", flush=True)
+         if not check_health(args.endpoint, health_log):
+             print("[driver] ABORT: /health did not report shim_enabled=true. "
+@@ -599,7 +625,7 @@
+                           "reason": args.rerun_reason,
+                           "rerun_at": now_iso()}
+             with open(LOG_DIR / "REPLACEMENTS.log", "a", encoding="utf-8") as fh:
+-                fh.write(f"{now_iso()} recipe={args.recipe} model={args.model} task={task_id} "
++                fh.write(f"{now_iso()} branch={branch} recipe={args.recipe} model={args.model} task={task_id} "
+                          f"archived={archived.name} reason={args.rerun_reason}\n")
+             print(f"[driver] archived previous run to {archived.name}", flush=True)
+         problem = by_id[task_id]
+@@ -609,7 +635,8 @@
+         result = run_one_task(problem, task_set, args.model, model_id,
+                               args.endpoint, run_dir, template, args.recipe,
+                               recipe_file, recipe_sha256, blend,
+-                              rerun_info=rerun_info)
++                              rerun_info=rerun_info,
++                              prompt_suffix=args.prompt_suffix, branch=branch)
+         print(f"[{idx}/{len(selected)}] {task_id}: {result['classification']} "
+               f"({result['classification_reason']}) steps={result['harness']['steps']} "
+               f"tools={result['harness']['n_tool_calls']} "

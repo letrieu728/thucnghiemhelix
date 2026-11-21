@@ -1,0 +1,282 @@
+{
+  "source": {
+    "sft": "/home/hatch/workspace/helix-eval/logs/rebuild-fix-lora-tooluse/data/sft_data.jsonl",
+    "dpo": "/home/hatch/workspace/helix-eval/logs/rebuild-fix-lora-tooluse/data/dpo_pairs.jsonl",
+    "sft_source_sha256": "22b3d1700e4cd52a7fecb3ca156ef1b931d79224e9dba9a981525d2dfa7510bf",
+    "dpo_source_sha256": "ab5709edbed232dfbff340a400109c05677db846651e43b976a4ae6cc58cd3c5"
+  },
+  "counts": {
+    "sft_total": 40,
+    "sft_kept": 24,
+    "sft_dropped": 16,
+    "dpo_total": 9,
+    "dpo_kept": 5,
+    "dpo_dropped": 4,
+    "distinct_lcb_tasks_sft": 15,
+    "distinct_lcb_tasks_dpo": 5
+  },
+  "kept_task_ids": {
+    "sft": [
+      "lcb_001_two_sum",
+      "lcb_004_reverse_linked_list",
+      "lcb_005_binary_search",
+      "lcb_006_max_subarray",
+      "lcb_007_climbing_stairs",
+      "lcb_008_merge_intervals",
+      "lcb_010_number_of_islands",
+      "lcb_011_trap_rain_water",
+      "lcb_012_can_finish_courses",
+      "lcb_014_daily_temperatures",
+      "lcb_015_word_search",
+      "lcb_016_partition_equal_subset",
+      "lcb_017_merge_k_sorted_lists",
+      "lcb_018_decode_string",
+      "lcb_020_min_jumps"
+    ],
+    "dpo": [
+      "lcb_004_reverse_linked_list",
+      "lcb_008_merge_intervals",
+      "lcb_010_number_of_islands",
+      "lcb_012_can_finish_courses",
+      "lcb_015_word_search"
+    ]
+  },
+  "dropped_task_ids": {
+    "sft": [
+      "held2_001_edit_distance",
+      "held2_003_n_queens_count",
+      "held2_004_number_of_lis",
+      "held2_005_word_ladder",
+      "held2_006_sliding_window_max",
+      "held2_008_median_finder",
+      "held2_010_three_sum",
+      "held2_012_gas_station",
+      "held2_013_decode_ways",
+      "held2_014_rotten_oranges",
+      "held2_015_longest_consecutive"
+    ],
+    "dpo": [
+      "held2_006_sliding_window_max",
+      "held2_008_median_finder",
+      "held2_012_gas_station",
+      "held2_015_longest_consecutive"
+    ]
+  },
+  "checks": {
+    "a_no_held2_in_kept": true,
+    "b_all_kept_in_15_lcb_tasks": true,
+    "c_shim_parses_all_kept": true,
+    "shim_parser_source": "/home/hatch/workspace/helix-eval/logs/rebuild-step1-2026-11-15/variants/01_modal_vllm_rebuild_C.py",
+    "shim_results": {
+      "sft": [
+        {
+          "task_id": "lcb_001_two_sum",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_001_two_sum",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_004_reverse_linked_list",
+          "n_tool_calls_parsed": 2,
+          "tools": [
+            "write",
+            "bash"
+          ]
+        },
+        {
+          "task_id": "lcb_005_binary_search",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_005_binary_search",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_006_max_subarray",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_006_max_subarray",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_007_climbing_stairs",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_007_climbing_stairs",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_008_merge_intervals",
+          "n_tool_calls_parsed": 3,
+          "tools": [
+            "write",
+            "bash",
+            "bash"
+          ]
+        },
+        {
+          "task_id": "lcb_010_number_of_islands",
+          "n_tool_calls_parsed": 3,
+          "tools": [
+            "write",
+            "write",
+            "bash"
+          ]
+        },
+        {
+          "task_id": "lcb_011_trap_rain_water",
+          "n_tool_calls_parsed": 2,
+          "tools": [
+            "write",
+            "bash"
+          ]
+        },
+        {
+          "task_id": "lcb_011_trap_rain_water",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_012_can_finish_courses",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_014_daily_temperatures",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_014_daily_temperatures",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_015_word_search",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_016_partition_equal_subset",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_016_partition_equal_subset",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_017_merge_k_sorted_lists",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_018_decode_string",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_018_decode_string",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        },
+        {
+          "task_id": "lcb_020_min_jumps",
+          "n_tool_calls_parsed": 2,
+          "tools": [
+            "write",
+            "bash"
+          ]
+        },
+        {
+          "task_id": "lcb_020_min_jumps",
+          "n_tool_calls_parsed": 1,
+          "tools": [
+            "write"
+          ]
+        }
+      ],
+      "dpo": [
+        {
+          "task_id": "lcb_004_reverse_linked_list",
+          "chosen_n_tool_calls_parsed": 2,
+          "rejected_n_tool_calls_parsed": 0
+        },
+        {
+          "task_id": "lcb_008_merge_intervals",
+          "chosen_n_tool_calls_parsed": 3,
+          "rejected_n_tool_calls_parsed": 0
+        },
+        {
+          "task_id": "lcb_010_number_of_islands",
+          "chosen_n_tool_calls_parsed": 3,
+          "rejected_n_tool_calls_parsed": 0
+        },
+        {
+          "task_id": "lcb_012_can_finish_courses",
+          "chosen_n_tool_calls_parsed": 1,
+          "rejected_n_tool_calls_parsed": 0
+        },
+        {
+          "task_id": "lcb_015_word_search",
+          "chosen_n_tool_calls_parsed": 1,
+          "rejected_n_tool_calls_parsed": 0
+        }
+      ]
+    },
+    "shim_total_checked": 29
+  },
+  "output_sha256": {
+    "sft_data.jsonl": "3ebbcb9795a81f42cb915e6eb652263b56204ca4c72a0d4155683c4d5cadf43d",
+    "dpo_pairs.jsonl": "c0fd091dca3426d602698e74a74275863e25518758556ab0a84351eef91484cd"
+  }
+}

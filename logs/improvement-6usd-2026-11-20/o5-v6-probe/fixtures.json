@@ -1,0 +1,146 @@
+[
+  {
+    "id": "livecodebench-v6-000-abc387-b",
+    "question_id": "abc387_b",
+    "contest_id": "abc387",
+    "question_title": "9x9 Sum",
+    "publicTestCases": 3,
+    "status": "pilot",
+    "letter": "b"
+  },
+  {
+    "id": "livecodebench-v6-006-abc388-g",
+    "question_id": "abc388_g",
+    "contest_id": "abc388",
+    "question_title": "Simultaneous Kagamimochi 2",
+    "publicTestCases": 2,
+    "status": "verified",
+    "letter": "g"
+  },
+  {
+    "id": "livecodebench-v6-012-abc389-b",
+    "question_id": "abc389_b",
+    "contest_id": "abc389",
+    "question_title": "tcaF",
+    "publicTestCases": 2,
+    "status": "verified",
+    "letter": "b"
+  },
+  {
+    "id": "livecodebench-v6-018-abc390-g",
+    "question_id": "abc390_g",
+    "contest_id": "abc390",
+    "question_title": "Permutation Concatenation",
+    "publicTestCases": 3,
+    "status": "verified",
+    "letter": "g"
+  },
+  {
+    "id": "livecodebench-v6-024-abc391-d",
+    "question_id": "abc391_d",
+    "contest_id": "abc391",
+    "question_title": "Gravity",
+    "publicTestCases": 2,
+    "status": "verified",
+    "letter": "d"
+  },
+  {
+    "id": "livecodebench-v6-030-abc392-a",
+    "question_id": "abc392_a",
+    "contest_id": "abc392",
+    "question_title": "Shuffled Equation",
+    "publicTestCases": 2,
+    "status": "verified",
+    "letter": "a"
+  },
+  {
+    "id": "livecodebench-v6-037-abc393-f",
+    "question_id": "abc393_f",
+    "contest_id": "abc393",
+    "question_title": "Prefix LIS Query",
+    "publicTestCases": 2,
+    "status": "verified",
+    "letter": "f"
+  },
+  {
+    "id": "livecodebench-v6-043-abc394-f",
+    "question_id": "abc394_f",
+    "contest_id": "abc394",
+    "question_title": "Alkane",
+    "publicTestCases": 3,
+    "status": "verified",
+    "letter": "f"
+  },
+  {
+    "id": "livecodebench-v6-049-abc395-f",
+    "question_id": "abc395_f",
+    "contest_id": "abc395",
+    "question_title": "Smooth Occlusion",
+    "publicTestCases": 4,
+    "status": "verified",
+    "letter": "f"
+  },
+  {
+    "id": "livecodebench-v6-055-abc396-f",
+    "question_id": "abc396_f",
+    "contest_id": "abc396",
+    "question_title": "Rotated Inversions",
+    "publicTestCases": 3,
+    "status": "verified",
+    "letter": "f"
+  },
+  {
+    "id": "livecodebench-v6-063-abc397-g",
+    "question_id": "abc397_g",
+    "contest_id": "abc397",
+    "question_title": "Maximize Distance",
+    "publicTestCases": 3,
+    "status": "verified",
+    "letter": "g"
+  },
+  {
+    "id": "livecodebench-v6-070-abc398-a",
+    "question_id": "abc398_a",
+    "contest_id": "abc398",
+    "question_title": "Doors in the Center",
+    "publicTestCases": 2,
+    "status": "verified",
+    "letter": "a"
+  },
+  {
+    "id": "livecodebench-v6-076-abc399-c",
+    "question_id": "abc399_c",
+    "contest_id": "abc399",
+    "question_title": "Make it Forest",
+    "publicTestCases": 3,
+    "status": "verified",
+    "letter": "c"
+  },
+  {
+    "id": "livecodebench-v6-082-abc400-b",
+    "question_id": "abc400_b",
+    "contest_id": "abc400",
+    "question_title": "Sum of Geometric Series",
+    "publicTestCases": 4,
+    "status": "verified",
+    "letter": "b"
+  },
+  {
+    "id": "livecodebench-v6-090-arc191-a",
+    "question_id": "arc191_a",
+    "contest_id": "arc191",
+    "question_title": "Replace Digits",
+    "publicTestCases": 3,
+    "status": "verified",
+    "letter": "a"
+  },
+  {
+    "id": "livecodebench-v6-096-arc193-a",
+    "question_id": "arc193_a",
+    "contest_id": "arc193",
+    "question_title": "Complement Interval Graph",
+    "publicTestCases": 2,
+    "status": "verified",
+    "letter": "a"
+  }
+]

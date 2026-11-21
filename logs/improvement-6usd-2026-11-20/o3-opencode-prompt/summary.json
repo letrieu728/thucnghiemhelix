@@ -1,0 +1,1273 @@
+{
+  "meta": {
+    "model": "base (Qwen/Qwen2.5-Coder-7B-Instruct, fixed for all branches)",
+    "task_order": [
+      "lcb_001_two_sum",
+      "lcb_002_valid_parentheses",
+      "lcb_005_binary_search",
+      "lcb_010_number_of_islands",
+      "lcb_015_word_search",
+      "lcb_020_min_jumps",
+      "held2_001_edit_distance",
+      "held2_005_word_ladder",
+      "held2_009_next_permutation",
+      "held2_013_decode_ways"
+    ],
+    "branches_present": [
+      "B1",
+      "B2",
+      "B3"
+    ],
+    "baseline": "R8 (0/10, text-only 10/10) for B1/B2; R1 (4/10, text-only 2/10) for B3. R0 scored 6/10 on these tasks and is NOT the baseline (DESIGN section 0.1).",
+    "analysis": "Pre-registered (O3 DESIGN.md section 4). Baselines reused from step 6 (different run epoch — caveat in RESULTS.md). McNemar exploratory only. No pooled tests across branches."
+  },
+  "branches": {
+    "B1": {
+      "recipe": "R8",
+      "suffix": "I-full",
+      "blend": {
+        "session": "opencode",
+        "hooks": "opencode",
+        "config": "pi-mono",
+        "acceptance": "pi-mono",
+        "providerPlugins": "opencode",
+        "surfaces": [
+          "opencode",
+          "pi-mono"
+        ],
+        "prompt": "opencode",
+        "tools": "opencode",
+        "turn": "opencode"
+      },
+      "recipe_file": "R8-prompt-opencode_tools-opencode_turn-opencode.json",
+      "complete": true,
+      "missing_task_ids": [],
+      "overall": {
+        "n_total": 10,
+        "n_infra": 0,
+        "n_scored": 10,
+        "n_pass": 1,
+        "n_fail": 9,
+        "pass_rate": 0.1,
+        "wilson95": [
+          0.0179,
+          0.4042
+        ],
+        "avg_latency_sec_scored": 25.99,
+        "total_latency_sec_scored": 259.9,
+        "avg_steps_scored": 2.7,
+        "tool_call_totals": {
+          "bash": 7,
+          "edit": 1,
+          "read": 10,
+          "write": 7
+        },
+        "infra_task_ids": []
+      },
+      "easy": {
+        "n_total": 2,
+        "n_infra": 0,
+        "n_scored": 2,
+        "n_pass": 0,
+        "n_fail": 2,
+        "pass_rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.6576
+        ],
+        "avg_latency_sec_scored": 26.79,
+        "total_latency_sec_scored": 53.6,
+        "avg_steps_scored": 2.5,
+        "tool_call_totals": {
+          "bash": 2,
+          "edit": 1,
+          "read": 2,
+          "write": 1
+        },
+        "infra_task_ids": []
+      },
+      "medium": {
+        "n_total": 4,
+        "n_infra": 0,
+        "n_scored": 4,
+        "n_pass": 1,
+        "n_fail": 3,
+        "pass_rate": 0.25,
+        "wilson95": [
+          0.0456,
+          0.6994
+        ],
+        "avg_latency_sec_scored": 23.67,
+        "total_latency_sec_scored": 94.7,
+        "avg_steps_scored": 2.75,
+        "tool_call_totals": {
+          "bash": 3,
+          "read": 4,
+          "write": 3
+        },
+        "infra_task_ids": []
+      },
+      "hard": {
+        "n_total": 4,
+        "n_infra": 0,
+        "n_scored": 4,
+        "n_pass": 0,
+        "n_fail": 4,
+        "pass_rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.4899
+        ],
+        "avg_latency_sec_scored": 27.92,
+        "total_latency_sec_scored": 111.7,
+        "avg_steps_scored": 2.75,
+        "tool_call_totals": {
+          "bash": 2,
+          "read": 4,
+          "write": 3
+        },
+        "infra_task_ids": []
+      },
+      "loose_test_subset": {
+        "n_total": 1,
+        "n_infra": 0,
+        "n_scored": 1,
+        "n_pass": 0,
+        "n_fail": 1,
+        "pass_rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.7935
+        ],
+        "avg_latency_sec_scored": 28.49,
+        "total_latency_sec_scored": 28.5,
+        "avg_steps_scored": 3.0,
+        "tool_call_totals": {
+          "bash": 1,
+          "read": 1,
+          "write": 1
+        },
+        "infra_task_ids": []
+      },
+      "no_tool_mechanism": {
+        "n_scored": 10,
+        "n_no_tool_calls": 0,
+        "n_no_tool_calls_pass": 0,
+        "n_wrote_file": 7,
+        "n_wrote_file_pass": 1,
+        "text_only_wilson95": [
+          0.0,
+          0.2775
+        ]
+      },
+      "infra_detail": [],
+      "per_task": [
+        {
+          "task_id": "lcb_001_two_sum",
+          "task_set": "train",
+          "difficulty": "easy",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 3,
+          "finish": "stop",
+          "n_tool_calls": 3,
+          "tool_call_counts": {
+            "read": 1,
+            "write": 1,
+            "bash": 1
+          },
+          "latency_sec": 26.35,
+          "scoring_error": "File \"<string>\", line 1\n    def two_sum(nums: list[int], target: int) -> list[int]:\\n    num_to_index = {}\\n    for i, num in enumerate(nums):\\n        complement = target - num\\n        if complement in num_to_index:\\n            return sorted([num_to_index[complement], i])\\n        num_to_index[num] = i\\n    raise ValueError(\"No two sum solution\")\\n\\n# Example usage:\\n# nums = [2, 7, 11, 15]\\n# target = 9\\n# print(two_sum(nums, target))  # Output: [0, 1]\n                                       "
+        },
+        {
+          "task_id": "lcb_002_valid_parentheses",
+          "task_set": "train",
+          "difficulty": "medium",
+          "loose_test": true,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 3,
+          "finish": "stop",
+          "n_tool_calls": 3,
+          "tool_call_counts": {
+            "read": 1,
+            "write": 1,
+            "bash": 1
+          },
+          "latency_sec": 28.49,
+          "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 34, in <module>\nAssertionError"
+        },
+        {
+          "task_id": "lcb_005_binary_search",
+          "task_set": "train",
+          "difficulty": "easy",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 2,
+          "finish": "stop",
+          "n_tool_calls": 3,
+          "tool_call_counts": {
+            "read": 1,
+            "edit": 1,
+            "bash": 1
+          },
+          "latency_sec": 27.22,
+          "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\nNameError: name 'search' is not defined"
+        },
+        {
+          "task_id": "lcb_010_number_of_islands",
+          "task_set": "train",
+          "difficulty": "medium",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 2,
+          "finish": "stop",
+          "n_tool_calls": 1,
+          "tool_call_counts": {
+            "read": 1
+          },
+          "latency_sec": 11.99,
+          "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\nNameError: name 'num_islands' is not defined"
+        },
+        {
+          "task_id": "lcb_015_word_search",
+          "task_set": "train",
+          "difficulty": "medium",
+          "loose_test": false,
+          "classification": "PASS",
+          "reason": "tests_passed",
+          "steps": 3,
+          "finish": "stop",
+          "n_tool_calls": 3,
+          "tool_call_counts": {
+            "read": 1,
+            "write": 1,
+            "bash": 1
+          },
+          "latency_sec": 27.31,
+          "scoring_error": null
+        },
+        {
+          "task_id": "lcb_020_min_jumps",
+          "task_set": "train",
+          "difficulty": "medium",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 3,
+          "finish": "stop",
+          "n_tool_calls": 3,
+          "tool_call_counts": {
+            "read": 1,
+            "write": 1,
+            "bash": 1
+          },
+          "latency_sec": 26.89,
+          "scoring_error": "File \"<string>\", line 1\n    def jump(nums: list[int]) -> int:\\n    if len(nums) <= 1:\\n        return 0\\n    if nums[0] == 0:\\n        return -1\\n\\n    max_reach = nums[0]\\n    step = nums[0]\\n    jumps = 1\\n\\n    for i in range(1, len(nums)):\\n        if i > max_reach:\\n            return -1\\n\\n        max_reach = max(max_reach, i + nums[i])\\n\\n        step -= 1\\n        if step == 0:\\n            jumps += 1\\n            step = max_reach - i\\n\\n    return jumps\n                                 "
+        },
+        {
+          "task_id": "held2_001_edit_distance",
+          "task_set": "heldout2",
+          "difficulty": "hard",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 2,
+          "finish": "stop",
+          "n_tool_calls": 1,
+          "tool_call_counts": {
+            "read": 1
+          },
+          "latency_sec": 27.85,
+          "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\nNameError: name 'min_distance' is not defined"
+        },
+        {
+          "task_id": "held2_005_word_ladder",
+          "task_set": "heldout2",
+          "difficulty": "hard",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 3,
+          "finish": "stop",
+          "n_tool_calls": 3,
+          "tool_call_counts": {
+            "read": 1,
+            "write": 1,
+            "bash": 1
+          },
+          "latency_sec": 23.39,
+          "scoring_error": "File \"<string>\", line 17\n    new_word = current_word[:i] + char + current_word[i+1:]}\n                                                           ^\nSyntaxError: unmatched '}'"
+        },
+        {
+          "task_id": "held2_009_next_permutation",
+          "task_set": "heldout2",
+          "difficulty": "hard",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 3,
+          "finish": "stop",
+          "n_tool_calls": 2,
+          "tool_call_counts": {
+            "read": 1,
+            "write": 1
+          },
+          "latency_sec": 39.04,
+          "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 35, in <module>\nAssertionError"
+        },
+        {
+          "task_id": "held2_013_decode_ways",
+          "task_set": "heldout2",
+          "difficulty": "hard",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 3,
+          "finish": "stop",
+          "n_tool_calls": 3,
+          "tool_call_counts": {
+            "read": 1,
+            "write": 1,
+            "bash": 1
+          },
+          "latency_sec": 21.41,
+          "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 23, in <module>\nAssertionError"
+        }
+      ]
+    },
+    "B2": {
+      "recipe": "R8",
+      "suffix": "I-min",
+      "blend": {
+        "session": "opencode",
+        "hooks": "opencode",
+        "config": "pi-mono",
+        "acceptance": "pi-mono",
+        "providerPlugins": "opencode",
+        "surfaces": [
+          "opencode",
+          "pi-mono"
+        ],
+        "prompt": "opencode",
+        "tools": "opencode",
+        "turn": "opencode"
+      },
+      "recipe_file": "R8-prompt-opencode_tools-opencode_turn-opencode.json",
+      "complete": true,
+      "missing_task_ids": [],
+      "overall": {
+        "n_total": 10,
+        "n_infra": 0,
+        "n_scored": 10,
+        "n_pass": 2,
+        "n_fail": 8,
+        "pass_rate": 0.2,
+        "wilson95": [
+          0.0567,
+          0.5098
+        ],
+        "avg_latency_sec_scored": 22.63,
+        "total_latency_sec_scored": 226.3,
+        "avg_steps_scored": 1.8,
+        "tool_call_totals": {
+          "bash": 8,
+          "write": 7
+        },
+        "infra_task_ids": []
+      },
+      "easy": {
+        "n_total": 2,
+        "n_infra": 0,
+        "n_scored": 2,
+        "n_pass": 1,
+        "n_fail": 1,
+        "pass_rate": 0.5,
+        "wilson95": [
+          0.0945,
+          0.9055
+        ],
+        "avg_latency_sec_scored": 11.16,
+        "total_latency_sec_scored": 22.3,
+        "avg_steps_scored": 1.5,
+        "tool_call_totals": {
+          "bash": 1,
+          "write": 1
+        },
+        "infra_task_ids": []
+      },
+      "medium": {
+        "n_total": 4,
+        "n_infra": 0,
+        "n_scored": 4,
+        "n_pass": 1,
+        "n_fail": 3,
+        "pass_rate": 0.25,
+        "wilson95": [
+          0.0456,
+          0.6994
+        ],
+        "avg_latency_sec_scored": 28.64,
+        "total_latency_sec_scored": 114.6,
+        "avg_steps_scored": 2.0,
+        "tool_call_totals": {
+          "bash": 4,
+          "write": 4
+        },
+        "infra_task_ids": []
+      },
+      "hard": {
+        "n_total": 4,
+        "n_infra": 0,
+        "n_scored": 4,
+        "n_pass": 0,
+        "n_fail": 4,
+        "pass_rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.4899
+        ],
+        "avg_latency_sec_scored": 22.36,
+        "total_latency_sec_scored": 89.5,
+        "avg_steps_scored": 1.75,
+        "tool_call_totals": {
+          "bash": 3,
+          "write": 2
+        },
+        "infra_task_ids": []
+      },
+      "loose_test_subset": {
+        "n_total": 1,
+        "n_infra": 0,
+        "n_scored": 1,
+        "n_pass": 0,
+        "n_fail": 1,
+        "pass_rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.7935
+        ],
+        "avg_latency_sec_scored": 11.47,
+        "total_latency_sec_scored": 11.5,
+        "avg_steps_scored": 1.0,
+        "tool_call_totals": {},
+        "infra_task_ids": []
+      },
+      "no_tool_mechanism": {
+        "n_scored": 10,
+        "n_no_tool_calls": 3,
+        "n_no_tool_calls_pass": 0,
+        "n_wrote_file": 6,
+        "n_wrote_file_pass": 2,
+        "text_only_wilson95": [
+          0.1078,
+          0.6032
+        ]
+      },
+      "infra_detail": [],
+      "per_task": [
+        {
+          "task_id": "lcb_001_two_sum",
+          "task_set": "train",
+          "difficulty": "easy",
+          "loose_test": false,
+          "classification": "PASS",
+          "reason": "tests_passed",
+          "steps": 2,
+          "finish": "stop",
+          "n_tool_calls": 2,
+          "tool_call_counts": {
+            "write": 1,
+            "bash": 1
+          },
+          "latency_sec": 14.11,
+          "scoring_error": null
+        },
+        {
+          "task_id": "lcb_002_valid_parentheses",
+          "task_set": "train",
+          "difficulty": "medium",
+          "loose_test": true,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 1,
+          "finish": "stop",
+          "n_tool_calls": 0,
+          "tool_call_counts": {},
+          "latency_sec": 11.47,
+          "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\nNameError: name 'is_valid' is not defined"
+        },
+        {
+          "task_id": "lcb_005_binary_search",
+          "task_set": "train",
+          "difficulty": "easy",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 1,
+          "finish": "stop",
+          "n_tool_calls": 0,
+          "tool_call_counts": {},
+          "latency_sec": 8.21,
+          "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\nNameError: name 'search' is not defined"
+        },
+        {
+          "task_id": "lcb_010_number_of_islands",
+          "task_set": "train",
+          "difficulty": "medium",
+          "loose_test": false,
+          "classification": "PASS",
+          "reason": "tests_passed",
+          "steps": 2,
+          "finish": "stop",
+          "n_tool_calls": 2,
+          "tool_call_counts": {
+            "write": 1,
+            "bash": 1
+          },
+          "latency_sec": 20.06,
+          "scoring_error": null
+        },
+        {
+          "task_id": "lcb_015_word_search",
+          "task_set": "train",
+          "difficulty": "medium",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 2,
+          "finish": "stop",
+          "n_tool_calls": 2,
+          "tool_call_counts": {
+            "write": 1,
+            "bash": 1
+          },
+          "latency_sec": 26.99,
+          "scoring_error": "File \"<string>\", line 11\n    found = dfs(x + 1, y, index + 1) or \\n                dfs(x - 1, y, index + 1) or \\n                dfs(x, y + 1, index + 1) or \\n                dfs(x, y - 1, index + 1)\n                                         ^\nSyntaxError: unexpected character after line continuation character"
+        },
+        {
+          "task_id": "lcb_020_min_jumps",
+          "task_set": "train",
+          "difficulty": "medium",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 3,
+          "finish": "stop",
+          "n_tool_calls": 4,
+          "tool_call_counts": {
+            "write": 2,
+            "bash": 2
+          },
+          "latency_sec": 56.05,
+          "scoring_error": "File \"<string>\", line 1\n    def jump(nums: list[int]) -> int:\\n    if len(nums) <= 1:\\n        return 0\\n    if nums[0] == 0:\\n        return -1\\n\\n    max_reach = nums[0]\\n    step = nums[0]\\n    jumps = 1\\n\\n    for i in range(1, len(nums)):\\n        if i == len(nums) - 1:\\n            return jumps\\n\\n        max_reach = max(max_reach, i + nums[i])\\n        step -= 1\\n\\n        if step == 0:\\n            jumps += 1\\n            if i >= max_reach:\\n                return -1\\n\\n            step "
+        },
+        {
+          "task_id": "held2_001_edit_distance",
+          "task_set": "heldout2",
+          "difficulty": "hard",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 2,
+          "finish": "stop",
+          "n_tool_calls": 1,
+          "tool_call_counts": {
+            "bash": 1
+          },
+          "latency_sec": 27.07,
+          "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\nNameError: name 'min_distance' is not defined"
+        },
+        {
+          "task_id": "held2_005_word_ladder",
+          "task_set": "heldout2",
+          "difficulty": "hard",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 2,
+          "finish": "stop",
+          "n_tool_calls": 2,
+          "tool_call_counts": {
+            "write": 1,
+            "bash": 1
+          },
+          "latency_sec": 20.61,
+          "scoring_error": "File \"<string>\", line 1\n    from collections import deque\\n\\ndef ladder_length(begin_word: str, end_word: str, word_list: list[str]) -> int:\\n    if end_word not in word_list:\\n        return 0\\n\\n    word_set = set(word_list)\\n    queue = deque([(begin_word, 1)])\\n\\n    while queue:\\n        current_word, length = queue.popleft()\\n\\n        if current_word == end_word:\\n            return length\\n\\n        for i in range(len(current_word)):\\n            for char in 'abcdefghijklmnopqrstuvwxyz':"
+        },
+        {
+          "task_id": "held2_009_next_permutation",
+          "task_set": "heldout2",
+          "difficulty": "hard",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 2,
+          "finish": "stop",
+          "n_tool_calls": 2,
+          "tool_call_counts": {
+            "write": 1,
+            "bash": 1
+          },
+          "latency_sec": 28.17,
+          "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 32, in <module>\n  File \"<string>\", line 13, in next_permutation\nIndexError: list index out of range"
+        },
+        {
+          "task_id": "held2_013_decode_ways",
+          "task_set": "heldout2",
+          "difficulty": "hard",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 1,
+          "finish": "stop",
+          "n_tool_calls": 0,
+          "tool_call_counts": {},
+          "latency_sec": 13.6,
+          "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\nNameError: name 'num_decodings' is not defined"
+        }
+      ]
+    },
+    "B3": {
+      "recipe": "R1",
+      "suffix": "I-full",
+      "blend": {
+        "session": "opencode",
+        "hooks": "opencode",
+        "config": "pi-mono",
+        "acceptance": "pi-mono",
+        "providerPlugins": "opencode",
+        "surfaces": [
+          "opencode",
+          "pi-mono"
+        ],
+        "prompt": "pi-mono",
+        "tools": "pi-mono",
+        "turn": "pi-mono"
+      },
+      "recipe_file": "R1-prompt-pi_tools-pi_turn-pi.json",
+      "complete": true,
+      "missing_task_ids": [],
+      "overall": {
+        "n_total": 10,
+        "n_infra": 0,
+        "n_scored": 10,
+        "n_pass": 6,
+        "n_fail": 4,
+        "pass_rate": 0.6,
+        "wilson95": [
+          0.3127,
+          0.8318
+        ],
+        "avg_latency_sec_scored": 42.66,
+        "total_latency_sec_scored": 426.6,
+        "avg_steps_scored": 3.8,
+        "tool_call_totals": {
+          "bash": 10,
+          "edit": 6,
+          "read": 11,
+          "write": 10
+        },
+        "infra_task_ids": []
+      },
+      "easy": {
+        "n_total": 2,
+        "n_infra": 0,
+        "n_scored": 2,
+        "n_pass": 2,
+        "n_fail": 0,
+        "pass_rate": 1.0,
+        "wilson95": [
+          0.3424,
+          1.0
+        ],
+        "avg_latency_sec_scored": 23.08,
+        "total_latency_sec_scored": 46.2,
+        "avg_steps_scored": 3.5,
+        "tool_call_totals": {
+          "bash": 1,
+          "edit": 1,
+          "read": 2,
+          "write": 2
+        },
+        "infra_task_ids": []
+      },
+      "medium": {
+        "n_total": 4,
+        "n_infra": 0,
+        "n_scored": 4,
+        "n_pass": 1,
+        "n_fail": 3,
+        "pass_rate": 0.25,
+        "wilson95": [
+          0.0456,
+          0.6994
+        ],
+        "avg_latency_sec_scored": 48.62,
+        "total_latency_sec_scored": 194.5,
+        "avg_steps_scored": 3.75,
+        "tool_call_totals": {
+          "bash": 5,
+          "edit": 2,
+          "read": 4,
+          "write": 4
+        },
+        "infra_task_ids": []
+      },
+      "hard": {
+        "n_total": 4,
+        "n_infra": 0,
+        "n_scored": 4,
+        "n_pass": 3,
+        "n_fail": 1,
+        "pass_rate": 0.75,
+        "wilson95": [
+          0.3006,
+          0.9544
+        ],
+        "avg_latency_sec_scored": 46.49,
+        "total_latency_sec_scored": 186.0,
+        "avg_steps_scored": 4.0,
+        "tool_call_totals": {
+          "bash": 4,
+          "edit": 3,
+          "read": 5,
+          "write": 4
+        },
+        "infra_task_ids": []
+      },
+      "loose_test_subset": {
+        "n_total": 1,
+        "n_infra": 0,
+        "n_scored": 1,
+        "n_pass": 0,
+        "n_fail": 1,
+        "pass_rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.7935
+        ],
+        "avg_latency_sec_scored": 31.22,
+        "total_latency_sec_scored": 31.2,
+        "avg_steps_scored": 3.0,
+        "tool_call_totals": {
+          "bash": 1,
+          "read": 1,
+          "write": 1
+        },
+        "infra_task_ids": []
+      },
+      "no_tool_mechanism": {
+        "n_scored": 10,
+        "n_no_tool_calls": 0,
+        "n_no_tool_calls_pass": 0,
+        "n_wrote_file": 10,
+        "n_wrote_file_pass": 6,
+        "text_only_wilson95": [
+          0.0,
+          0.2775
+        ]
+      },
+      "infra_detail": [],
+      "per_task": [
+        {
+          "task_id": "lcb_001_two_sum",
+          "task_set": "train",
+          "difficulty": "easy",
+          "loose_test": false,
+          "classification": "PASS",
+          "reason": "tests_passed",
+          "steps": 4,
+          "finish": "stop",
+          "n_tool_calls": 4,
+          "tool_call_counts": {
+            "read": 1,
+            "edit": 1,
+            "write": 1,
+            "bash": 1
+          },
+          "latency_sec": 30.04,
+          "scoring_error": null
+        },
+        {
+          "task_id": "lcb_002_valid_parentheses",
+          "task_set": "train",
+          "difficulty": "medium",
+          "loose_test": true,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 3,
+          "finish": "stop",
+          "n_tool_calls": 3,
+          "tool_call_counts": {
+            "read": 1,
+            "write": 1,
+            "bash": 1
+          },
+          "latency_sec": 31.22,
+          "scoring_error": "File \"<string>\", line 1\n    def is_valid(s: str) -> bool:\\n    stack = []\\n    star_stack = []\\n\\n    for i, char in enumerate(s):\\n        if char == '(':\\n            stack.append(i)\\n        elif char == '*':\\n            star_stack.append(i)\\n        elif char == ')':\\n            if stack:\\n                stack.pop()\\n            elif star_stack:\\n                star_stack.pop()\\n            else:\\n                return False\\n\\n    while stack and star_stack:\\n        if stack[-1] > sta"
+        },
+        {
+          "task_id": "lcb_005_binary_search",
+          "task_set": "train",
+          "difficulty": "easy",
+          "loose_test": false,
+          "classification": "PASS",
+          "reason": "tests_passed",
+          "steps": 3,
+          "finish": "stop",
+          "n_tool_calls": 2,
+          "tool_call_counts": {
+            "read": 1,
+            "write": 1
+          },
+          "latency_sec": 16.12,
+          "scoring_error": null
+        },
+        {
+          "task_id": "lcb_010_number_of_islands",
+          "task_set": "train",
+          "difficulty": "medium",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 3,
+          "finish": "stop",
+          "n_tool_calls": 4,
+          "tool_call_counts": {
+            "write": 1,
+            "read": 1,
+            "bash": 2
+          },
+          "latency_sec": 61.46,
+          "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 8, in <module>\nAssertionError"
+        },
+        {
+          "task_id": "lcb_015_word_search",
+          "task_set": "train",
+          "difficulty": "medium",
+          "loose_test": false,
+          "classification": "PASS",
+          "reason": "tests_passed",
+          "steps": 5,
+          "finish": "stop",
+          "n_tool_calls": 4,
+          "tool_call_counts": {
+            "read": 1,
+            "edit": 2,
+            "write": 1
+          },
+          "latency_sec": 63.25,
+          "scoring_error": null
+        },
+        {
+          "task_id": "lcb_020_min_jumps",
+          "task_set": "train",
+          "difficulty": "medium",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 4,
+          "finish": "stop",
+          "n_tool_calls": 4,
+          "tool_call_counts": {
+            "read": 1,
+            "write": 1,
+            "bash": 2
+          },
+          "latency_sec": 38.53,
+          "scoring_error": "File \"<string>\", line 1\n    def jump(nums: list[int]) -> int:\\n    if len(nums) <= 1:\\n        return 0\\n\\n    n = len(nums)\\n    max_reach = 0\\n    end = 0\\n    jumps = 0\\n\\n    for i in range(n - 1):\\n        max_reach = max(max_reach, nums[i] + i)\\n\\n        if i == end:\\n            jumps += 1\\n            end = max_reach\\n\\n            if end >= n - 1:\\n                return jumps\\n\\n    return -1\n                                      ^\nSyntaxError: unexpected character after line continua"
+        },
+        {
+          "task_id": "held2_001_edit_distance",
+          "task_set": "heldout2",
+          "difficulty": "hard",
+          "loose_test": false,
+          "classification": "PASS",
+          "reason": "tests_passed",
+          "steps": 5,
+          "finish": "stop",
+          "n_tool_calls": 5,
+          "tool_call_counts": {
+            "read": 2,
+            "edit": 1,
+            "write": 1,
+            "bash": 1
+          },
+          "latency_sec": 54.33,
+          "scoring_error": null
+        },
+        {
+          "task_id": "held2_005_word_ladder",
+          "task_set": "heldout2",
+          "difficulty": "hard",
+          "loose_test": false,
+          "classification": "PASS",
+          "reason": "tests_passed",
+          "steps": 4,
+          "finish": "stop",
+          "n_tool_calls": 4,
+          "tool_call_counts": {
+            "read": 1,
+            "edit": 1,
+            "write": 1,
+            "bash": 1
+          },
+          "latency_sec": 35.52,
+          "scoring_error": null
+        },
+        {
+          "task_id": "held2_009_next_permutation",
+          "task_set": "heldout2",
+          "difficulty": "hard",
+          "loose_test": false,
+          "classification": "FAIL",
+          "reason": "tests_failed",
+          "steps": 3,
+          "finish": "stop",
+          "n_tool_calls": 3,
+          "tool_call_counts": {
+            "read": 1,
+            "write": 1,
+            "bash": 1
+          },
+          "latency_sec": 33.98,
+          "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 36, in <module>\n  File \"<string>\", line 15, in next_permutation\nIndexError: list index out of range"
+        },
+        {
+          "task_id": "held2_013_decode_ways",
+          "task_set": "heldout2",
+          "difficulty": "hard",
+          "loose_test": false,
+          "classification": "PASS",
+          "reason": "tests_passed",
+          "steps": 4,
+          "finish": "stop",
+          "n_tool_calls": 4,
+          "tool_call_counts": {
+            "read": 1,
+            "edit": 1,
+            "write": 1,
+            "bash": 1
+          },
+          "latency_sec": 62.13,
+          "scoring_error": null
+        }
+      ]
+    }
+  },
+  "baselines_reused": {
+    "R8": {
+      "reused": true,
+      "source": "evolution-2026-11-18/step6-mini-search/summary.json",
+      "recipe_file": "R8-prompt-opencode_tools-opencode_turn-opencode.json",
+      "blend": {
+        "session": "opencode",
+        "hooks": "opencode",
+        "config": "pi-mono",
+        "acceptance": "pi-mono",
+        "providerPlugins": "opencode",
+        "surfaces": [
+          "opencode",
+          "pi-mono"
+        ],
+        "prompt": "opencode",
+        "tools": "opencode",
+        "turn": "opencode"
+      },
+      "overall": {
+        "n_total": 10,
+        "n_infra": 0,
+        "n_scored": 10,
+        "n_pass": 0,
+        "n_fail": 10,
+        "pass_rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.2775
+        ],
+        "avg_latency_sec_scored": 11.81,
+        "total_latency_sec_scored": 118.1,
+        "avg_steps_scored": 1.0,
+        "tool_call_totals": {},
+        "infra_task_ids": []
+      },
+      "no_tool_mechanism": {
+        "n_scored": 10,
+        "n_no_tool_calls": 10,
+        "n_no_tool_calls_pass": 0,
+        "n_wrote_file": 0,
+        "n_wrote_file_pass": 0,
+        "text_only_wilson95": [
+          0.7225,
+          1.0
+        ]
+      },
+      "per_task_classification": {
+        "lcb_001_two_sum": "FAIL",
+        "lcb_002_valid_parentheses": "FAIL",
+        "lcb_005_binary_search": "FAIL",
+        "lcb_010_number_of_islands": "FAIL",
+        "lcb_015_word_search": "FAIL",
+        "lcb_020_min_jumps": "FAIL",
+        "held2_001_edit_distance": "FAIL",
+        "held2_005_word_ladder": "FAIL",
+        "held2_009_next_permutation": "FAIL",
+        "held2_013_decode_ways": "FAIL"
+      }
+    },
+    "R1": {
+      "reused": true,
+      "source": "evolution-2026-11-18/step6-mini-search/summary.json",
+      "recipe_file": "R1-prompt-pi_tools-pi_turn-pi.json",
+      "blend": {
+        "session": "opencode",
+        "hooks": "opencode",
+        "config": "pi-mono",
+        "acceptance": "pi-mono",
+        "providerPlugins": "opencode",
+        "surfaces": [
+          "opencode",
+          "pi-mono"
+        ],
+        "prompt": "pi-mono",
+        "tools": "pi-mono",
+        "turn": "pi-mono"
+      },
+      "overall": {
+        "n_total": 10,
+        "n_infra": 0,
+        "n_scored": 10,
+        "n_pass": 4,
+        "n_fail": 6,
+        "pass_rate": 0.4,
+        "wilson95": [
+          0.1682,
+          0.6873
+        ],
+        "avg_latency_sec_scored": 19.7,
+        "total_latency_sec_scored": 197.0,
+        "avg_steps_scored": 2.0,
+        "tool_call_totals": {
+          "bash": 4,
+          "write": 8
+        },
+        "infra_task_ids": []
+      },
+      "no_tool_mechanism": {
+        "n_scored": 10,
+        "n_no_tool_calls": 2,
+        "n_no_tool_calls_pass": 0,
+        "n_wrote_file": 8,
+        "n_wrote_file_pass": 4,
+        "text_only_wilson95": [
+          0.0567,
+          0.5098
+        ]
+      },
+      "per_task_classification": {
+        "lcb_001_two_sum": "PASS",
+        "lcb_002_valid_parentheses": "FAIL",
+        "lcb_005_binary_search": "PASS",
+        "lcb_010_number_of_islands": "PASS",
+        "lcb_015_word_search": "FAIL",
+        "lcb_020_min_jumps": "FAIL",
+        "held2_001_edit_distance": "PASS",
+        "held2_005_word_ladder": "FAIL",
+        "held2_009_next_permutation": "FAIL",
+        "held2_013_decode_ways": "FAIL"
+      }
+    }
+  },
+  "grid": [
+    {
+      "task_id": "lcb_001_two_sum",
+      "B1": "FAIL",
+      "B2": "PASS",
+      "B3": "PASS",
+      "R8_reused": "FAIL",
+      "R1_reused": "PASS"
+    },
+    {
+      "task_id": "lcb_002_valid_parentheses",
+      "B1": "FAIL",
+      "B2": "FAIL",
+      "B3": "FAIL",
+      "R8_reused": "FAIL",
+      "R1_reused": "FAIL"
+    },
+    {
+      "task_id": "lcb_005_binary_search",
+      "B1": "FAIL",
+      "B2": "FAIL",
+      "B3": "PASS",
+      "R8_reused": "FAIL",
+      "R1_reused": "PASS"
+    },
+    {
+      "task_id": "lcb_010_number_of_islands",
+      "B1": "FAIL",
+      "B2": "PASS",
+      "B3": "FAIL",
+      "R8_reused": "FAIL",
+      "R1_reused": "PASS"
+    },
+    {
+      "task_id": "lcb_015_word_search",
+      "B1": "PASS",
+      "B2": "FAIL",
+      "B3": "PASS",
+      "R8_reused": "FAIL",
+      "R1_reused": "FAIL"
+    },
+    {
+      "task_id": "lcb_020_min_jumps",
+      "B1": "FAIL",
+      "B2": "FAIL",
+      "B3": "FAIL",
+      "R8_reused": "FAIL",
+      "R1_reused": "FAIL"
+    },
+    {
+      "task_id": "held2_001_edit_distance",
+      "B1": "FAIL",
+      "B2": "FAIL",
+      "B3": "PASS",
+      "R8_reused": "FAIL",
+      "R1_reused": "PASS"
+    },
+    {
+      "task_id": "held2_005_word_ladder",
+      "B1": "FAIL",
+      "B2": "FAIL",
+      "B3": "PASS",
+      "R8_reused": "FAIL",
+      "R1_reused": "FAIL"
+    },
+    {
+      "task_id": "held2_009_next_permutation",
+      "B1": "FAIL",
+      "B2": "FAIL",
+      "B3": "FAIL",
+      "R8_reused": "FAIL",
+      "R1_reused": "FAIL"
+    },
+    {
+      "task_id": "held2_013_decode_ways",
+      "B1": "FAIL",
+      "B2": "FAIL",
+      "B3": "PASS",
+      "R8_reused": "FAIL",
+      "R1_reused": "FAIL"
+    }
+  ],
+  "mcnemar_exploratory": {
+    "B1_vs_R8": {
+      "branch": "B1",
+      "baseline": "R8",
+      "paired_tasks": 10,
+      "excluded_pairs": [],
+      "gains_fail_to_pass": 1,
+      "losses_pass_to_fail": 0,
+      "same_pass": 0,
+      "same_fail": 9,
+      "exact_p_two_sided": 1.0,
+      "chi2_continuity_corrected": 0.0,
+      "flips": [
+        {
+          "task_id": "lcb_015_word_search",
+          "R8_pass": false,
+          "B1_pass": true
+        }
+      ],
+      "label": "EXPLORATORY: n=10 tasks; baseline REUSED from step 6 (different run epoch). With the baseline at 0/10, 3 wins / 0 losses gives p=0.25 — never significant. Not a confirmatory test."
+    },
+    "B2_vs_R8": {
+      "branch": "B2",
+      "baseline": "R8",
+      "paired_tasks": 10,
+      "excluded_pairs": [],
+      "gains_fail_to_pass": 2,
+      "losses_pass_to_fail": 0,
+      "same_pass": 0,
+      "same_fail": 8,
+      "exact_p_two_sided": 0.5,
+      "chi2_continuity_corrected": 0.5,
+      "flips": [
+        {
+          "task_id": "lcb_001_two_sum",
+          "R8_pass": false,
+          "B2_pass": true
+        },
+        {
+          "task_id": "lcb_010_number_of_islands",
+          "R8_pass": false,
+          "B2_pass": true
+        }
+      ],
+      "label": "EXPLORATORY: n=10 tasks; baseline REUSED from step 6 (different run epoch). With the baseline at 0/10, 3 wins / 0 losses gives p=0.25 — never significant. Not a confirmatory test."
+    },
+    "B3_vs_R1": {
+      "branch": "B3",
+      "baseline": "R1",
+      "paired_tasks": 10,
+      "excluded_pairs": [],
+      "gains_fail_to_pass": 3,
+      "losses_pass_to_fail": 1,
+      "same_pass": 3,
+      "same_fail": 3,
+      "exact_p_two_sided": 0.625,
+      "chi2_continuity_corrected": 0.25,
+      "flips": [
+        {
+          "task_id": "lcb_010_number_of_islands",
+          "R1_pass": true,
+          "B3_pass": false
+        },
+        {
+          "task_id": "lcb_015_word_search",
+          "R1_pass": false,
+          "B3_pass": true
+        },
+        {
+          "task_id": "held2_005_word_ladder",
+          "R1_pass": false,
+          "B3_pass": true
+        },
+        {
+          "task_id": "held2_013_decode_ways",
+          "R1_pass": false,
+          "B3_pass": true
+        }
+      ],
+      "label": "EXPLORATORY: n=10 tasks; baseline REUSED from step 6 (different run epoch). With the baseline at 0/10, 3 wins / 0 losses gives p=0.25 — never significant. Not a confirmatory test."
+    }
+  },
+  "verdicts": {
+    "B1": {
+      "verdict": "BEHAVIOR-ONLY",
+      "criteria": {
+        "behavior_text_only_le_5": true,
+        "outcome_pass_ge_3": false
+      },
+      "baseline": "R8"
+    },
+    "B2": {
+      "verdict": "BEHAVIOR-ONLY",
+      "criteria": {
+        "behavior_text_only_le_5": true,
+        "outcome_pass_ge_3": false
+      },
+      "baseline": "R8"
+    },
+    "B3": {
+      "verdict": "CONTROL-OK",
+      "pass": 6,
+      "baseline_R1_pass": 4,
+      "note": "B3 did not drop >= 2 below R1 4/10."
+    }
+  }
+}

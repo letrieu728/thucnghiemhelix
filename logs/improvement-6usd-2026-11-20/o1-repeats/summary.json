@@ -1,0 +1,2610 @@
+{
+  "experiment": "O2-clean-retrain (2026-11-20)",
+  "design": "DESIGN.md in this directory (pre-registered)",
+  "product": "pi-mono",
+  "task_counts": {
+    "held2": 15,
+    "held3": 15,
+    "held4": 15,
+    "total": 45
+  },
+  "primary_subset": "held3+held4 (30 tasks, truly unseen for both clean and base)",
+  "contamination_note": "realtool held2 cells are CONTAMINATED: the old adapter trained on 16 SFT + 4 DPO from held2. Do not use them for any conclusion. New-vs-old is read only on held3+held4, descriptively.",
+  "products": {
+    "pi-mono": {
+      "models": {
+        "base": {
+          "overall": {
+            "n_total": 45,
+            "n_infra": 0,
+            "n_scored": 45,
+            "n_pass": 31,
+            "n_fail": 14,
+            "pass_rate": 0.6889,
+            "wilson95": [
+              0.5434,
+              0.8047
+            ],
+            "avg_latency_sec_scored": 22.56,
+            "total_latency_sec_scored": 1015.4,
+            "avg_steps_scored": 2.09,
+            "tool_call_totals": {
+              "bash": 24,
+              "write": 45
+            },
+            "infra_task_ids": []
+          },
+          "no_tool_overall": {
+            "n_scored": 45,
+            "n_no_tool_calls": 7,
+            "n_no_tool_calls_pass": 0,
+            "n_wrote_file": 37,
+            "n_wrote_file_pass": 31
+          },
+          "cohorts": {
+            "held2": {
+              "summary": {
+                "n_total": 15,
+                "n_infra": 0,
+                "n_scored": 15,
+                "n_pass": 10,
+                "n_fail": 5,
+                "pass_rate": 0.6667,
+                "wilson95": [
+                  0.4171,
+                  0.8482
+                ],
+                "avg_latency_sec_scored": 29.92,
+                "total_latency_sec_scored": 448.8,
+                "avg_steps_scored": 2.4,
+                "tool_call_totals": {
+                  "bash": 11,
+                  "write": 18
+                },
+                "infra_task_ids": []
+              },
+              "no_tool": {
+                "n_scored": 15,
+                "n_no_tool_calls": 3,
+                "n_no_tool_calls_pass": 0,
+                "n_wrote_file": 11,
+                "n_wrote_file_pass": 10
+              },
+              "contaminated": false
+            },
+            "held3": {
+              "summary": {
+                "n_total": 15,
+                "n_infra": 0,
+                "n_scored": 15,
+                "n_pass": 10,
+                "n_fail": 5,
+                "pass_rate": 0.6667,
+                "wilson95": [
+                  0.4171,
+                  0.8482
+                ],
+                "avg_latency_sec_scored": 19.22,
+                "total_latency_sec_scored": 288.3,
+                "avg_steps_scored": 1.87,
+                "tool_call_totals": {
+                  "bash": 5,
+                  "write": 13
+                },
+                "infra_task_ids": []
+              },
+              "no_tool": {
+                "n_scored": 15,
+                "n_no_tool_calls": 2,
+                "n_no_tool_calls_pass": 0,
+                "n_wrote_file": 13,
+                "n_wrote_file_pass": 10
+              },
+              "contaminated": false
+            },
+            "held4": {
+              "summary": {
+                "n_total": 15,
+                "n_infra": 0,
+                "n_scored": 15,
+                "n_pass": 11,
+                "n_fail": 4,
+                "pass_rate": 0.7333,
+                "wilson95": [
+                  0.4805,
+                  0.891
+                ],
+                "avg_latency_sec_scored": 18.55,
+                "total_latency_sec_scored": 278.2,
+                "avg_steps_scored": 2.0,
+                "tool_call_totals": {
+                  "bash": 8,
+                  "write": 14
+                },
+                "infra_task_ids": []
+              },
+              "no_tool": {
+                "n_scored": 15,
+                "n_no_tool_calls": 2,
+                "n_no_tool_calls_pass": 0,
+                "n_wrote_file": 13,
+                "n_wrote_file_pass": 11
+              },
+              "contaminated": false
+            }
+          },
+          "loose_test_subset": {
+            "n_total": 1,
+            "n_infra": 0,
+            "n_scored": 1,
+            "n_pass": 1,
+            "n_fail": 0,
+            "pass_rate": 1.0,
+            "wilson95": [
+              0.2065,
+              1.0
+            ],
+            "avg_latency_sec_scored": 16.65,
+            "total_latency_sec_scored": 16.6,
+            "avg_steps_scored": 2.0,
+            "tool_call_totals": {
+              "write": 1
+            },
+            "infra_task_ids": []
+          },
+          "infra_detail": [],
+          "per_task": [
+            {
+              "task_id": "held2_001_edit_distance",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 18.13,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\nNameError: name 'min_distance' is not defined"
+            },
+            {
+              "task_id": "held2_002_regex_match",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 1,
+              "finish": "stop",
+              "n_tool_calls": 0,
+              "latency_sec": 19.45,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\nNameError: name 'is_match' is not defined"
+            },
+            {
+              "task_id": "held2_003_n_queens_count",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 19.18,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_004_number_of_lis",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 23.3,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_005_word_ladder",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 16.52,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_006_sliding_window_max",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 16.95,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_007_course_order",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 25.32,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_008_median_finder",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 1,
+              "finish": "stop",
+              "n_tool_calls": 0,
+              "latency_sec": 9.44,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\nNameError: name 'MedianFinder' is not defined"
+            },
+            {
+              "task_id": "held2_009_next_permutation",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 30.52,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 34, in <module>\n  File \"<string>\", line 13, in next_permutation\nIndexError: list index out of range"
+            },
+            {
+              "task_id": "held2_010_three_sum",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 23.81,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_011_valid_sudoku",
+              "task_set": "held2",
+              "loose_test": true,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 16.65,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_012_gas_station",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 10,
+              "finish": "stop",
+              "n_tool_calls": 17,
+              "latency_sec": 156.31,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_013_decode_ways",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 24.0,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_014_rotten_oranges",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 1,
+              "finish": "stop",
+              "n_tool_calls": 0,
+              "latency_sec": 25.87,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\nNameError: name 'oranges_rotting' is not defined"
+            },
+            {
+              "task_id": "held2_015_longest_consecutive",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 3,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 23.37,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_001_valid_anagram",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 13.75,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_002_missing_number",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 23.71,
+              "scoring_error": "File \"<string>\", line 1\n    def missing_number(nums: list[int]) -> int:\\n    n = len(nums)\\n    expected_sum = n * (n + 1) // 2\\n    actual_sum = sum(nums)\\n    return expected_sum - actual_sum\\n\n                                                ^\nSyntaxError: unexpected character after line continuation character"
+            },
+            {
+              "task_id": "held3_003_majority_element",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 18.93,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_004_group_anagrams",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 25.59,
+              "scoring_error": "File \"<string>\", line 1\n    from collections import defaultdict\\ndef group_anagrams(strs: list[str]) -> list[list[str]]:\\n    anagrams = defaultdict(list)\\n    for word in strs:\\n        sorted_word = ''.join(sorted(word))\\n        anagrams[sorted_word].append(word)\\n    return list(anagrams.values())\\n\\nif __name__ == \"__main__\":\\n    test_strs = [\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]\\n    print(group_anagrams(test_strs))\n                                        ^\nSyntaxError: unexpected cha"
+            },
+            {
+              "task_id": "held3_005_top_k_frequent",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 12.94,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_006_longest_substring_no_repeat",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 18.26,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_007_container_most_water",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 17.98,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_008_product_except_self",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 29.82,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_009_coin_change",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 23.72,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_010_house_robber",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 16.89,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nNameError: name 'List' is not defined. Did you mean: 'list'?"
+            },
+            {
+              "task_id": "held3_011_letter_combinations",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 18.25,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_012_min_window_substring",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 22.87,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_013_burst_balloons",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 1,
+              "finish": "stop",
+              "n_tool_calls": 0,
+              "latency_sec": 13.21,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 5, in <module>\nNameError: name 'max_coins' is not defined"
+            },
+            {
+              "task_id": "held3_014_find_duplicate_number",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 12.56,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_015_serialize_binary_tree",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 1,
+              "finish": "stop",
+              "n_tool_calls": 0,
+              "latency_sec": 19.85,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 27, in <module>\nNameError: name 'Codec' is not defined"
+            },
+            {
+              "task_id": "held4_001_roman_to_integer",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 15.37,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_002_best_time_stock",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 16.95,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_003_longest_common_prefix",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 18.37,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_004_rotate_array",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 14.32,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 12, in <module>\n  File \"<string>\", line 3, in rotate\nZeroDivisionError: integer modulo by zero"
+            },
+            {
+              "task_id": "held4_005_sort_colors",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 3,
+              "finish": "stop",
+              "n_tool_calls": 4,
+              "latency_sec": 34.56,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_006_evaluate_rpn",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 19.17,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_007_min_stack",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 26.1,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_008_validate_bst",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 19.47,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_009_level_order",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 1,
+              "finish": "stop",
+              "n_tool_calls": 0,
+              "latency_sec": 8.54,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 17, in <module>\nNameError: name 'level_order' is not defined"
+            },
+            {
+              "task_id": "held4_010_spiral_matrix",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 14.14,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_011_trie",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 3,
+              "finish": "stop",
+              "n_tool_calls": 3,
+              "latency_sec": 19.12,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_012_largest_rectangle_histogram",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 19.35,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_013_max_path_sum",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 1,
+              "finish": "stop",
+              "n_tool_calls": 0,
+              "latency_sec": 17.79,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 17, in <module>\nNameError: name 'max_path_sum' is not defined"
+            },
+            {
+              "task_id": "held4_014_candy",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 20.84,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nNameError: name 'List' is not defined. Did you mean: 'list'?"
+            },
+            {
+              "task_id": "held4_015_count_smaller",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 14.13,
+              "scoring_error": null
+            }
+          ],
+          "primary_held3_held4": {
+            "summary": {
+              "n_total": 30,
+              "n_infra": 0,
+              "n_scored": 30,
+              "n_pass": 21,
+              "n_fail": 9,
+              "pass_rate": 0.7,
+              "wilson95": [
+                0.5212,
+                0.8334
+              ],
+              "avg_latency_sec_scored": 18.88,
+              "total_latency_sec_scored": 566.5,
+              "avg_steps_scored": 1.93,
+              "tool_call_totals": {
+                "bash": 13,
+                "write": 27
+              },
+              "infra_task_ids": []
+            },
+            "no_tool": {
+              "n_scored": 30,
+              "n_no_tool_calls": 4,
+              "n_no_tool_calls_pass": 0,
+              "n_wrote_file": 26,
+              "n_wrote_file_pass": 21
+            }
+          }
+        },
+        "clean": {
+          "overall": {
+            "n_total": 45,
+            "n_infra": 0,
+            "n_scored": 45,
+            "n_pass": 37,
+            "n_fail": 8,
+            "pass_rate": 0.8222,
+            "wilson95": [
+              0.6867,
+              0.9071
+            ],
+            "avg_latency_sec_scored": 35.14,
+            "total_latency_sec_scored": 1581.4,
+            "avg_steps_scored": 3.0,
+            "tool_call_totals": {
+              "bash": 51,
+              "read": 1,
+              "write": 49
+            },
+            "infra_task_ids": []
+          },
+          "no_tool_overall": {
+            "n_scored": 45,
+            "n_no_tool_calls": 0,
+            "n_no_tool_calls_pass": 0,
+            "n_wrote_file": 45,
+            "n_wrote_file_pass": 37
+          },
+          "cohorts": {
+            "held2": {
+              "summary": {
+                "n_total": 15,
+                "n_infra": 0,
+                "n_scored": 15,
+                "n_pass": 11,
+                "n_fail": 4,
+                "pass_rate": 0.7333,
+                "wilson95": [
+                  0.4805,
+                  0.891
+                ],
+                "avg_latency_sec_scored": 28.21,
+                "total_latency_sec_scored": 423.1,
+                "avg_steps_scored": 3.07,
+                "tool_call_totals": {
+                  "bash": 17,
+                  "read": 1,
+                  "write": 16
+                },
+                "infra_task_ids": []
+              },
+              "no_tool": {
+                "n_scored": 15,
+                "n_no_tool_calls": 0,
+                "n_no_tool_calls_pass": 0,
+                "n_wrote_file": 15,
+                "n_wrote_file_pass": 11
+              },
+              "contaminated": false
+            },
+            "held3": {
+              "summary": {
+                "n_total": 15,
+                "n_infra": 0,
+                "n_scored": 15,
+                "n_pass": 13,
+                "n_fail": 2,
+                "pass_rate": 0.8667,
+                "wilson95": [
+                  0.6212,
+                  0.9626
+                ],
+                "avg_latency_sec_scored": 47.15,
+                "total_latency_sec_scored": 707.2,
+                "avg_steps_scored": 2.93,
+                "tool_call_totals": {
+                  "bash": 18,
+                  "write": 16
+                },
+                "infra_task_ids": []
+              },
+              "no_tool": {
+                "n_scored": 15,
+                "n_no_tool_calls": 0,
+                "n_no_tool_calls_pass": 0,
+                "n_wrote_file": 15,
+                "n_wrote_file_pass": 13
+              },
+              "contaminated": false
+            },
+            "held4": {
+              "summary": {
+                "n_total": 15,
+                "n_infra": 0,
+                "n_scored": 15,
+                "n_pass": 13,
+                "n_fail": 2,
+                "pass_rate": 0.8667,
+                "wilson95": [
+                  0.6212,
+                  0.9626
+                ],
+                "avg_latency_sec_scored": 30.07,
+                "total_latency_sec_scored": 451.1,
+                "avg_steps_scored": 3.0,
+                "tool_call_totals": {
+                  "bash": 16,
+                  "write": 17
+                },
+                "infra_task_ids": []
+              },
+              "no_tool": {
+                "n_scored": 15,
+                "n_no_tool_calls": 0,
+                "n_no_tool_calls_pass": 0,
+                "n_wrote_file": 15,
+                "n_wrote_file_pass": 13
+              },
+              "contaminated": false
+            }
+          },
+          "loose_test_subset": {
+            "n_total": 1,
+            "n_infra": 0,
+            "n_scored": 1,
+            "n_pass": 1,
+            "n_fail": 0,
+            "pass_rate": 1.0,
+            "wilson95": [
+              0.2065,
+              1.0
+            ],
+            "avg_latency_sec_scored": 21.89,
+            "total_latency_sec_scored": 21.9,
+            "avg_steps_scored": 2.0,
+            "tool_call_totals": {
+              "write": 1
+            },
+            "infra_task_ids": []
+          },
+          "infra_detail": [],
+          "per_task": [
+            {
+              "task_id": "held2_001_edit_distance",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 3,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 32.16,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_002_regex_match",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 24.92,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 6, in <module>\nAssertionError"
+            },
+            {
+              "task_id": "held2_003_n_queens_count",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 4,
+              "finish": "stop",
+              "n_tool_calls": 5,
+              "latency_sec": 49.82,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_004_number_of_lis",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 24.25,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_005_word_ladder",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 4,
+              "finish": "stop",
+              "n_tool_calls": 3,
+              "latency_sec": 31.73,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_006_sliding_window_max",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 4,
+              "finish": "stop",
+              "n_tool_calls": 3,
+              "latency_sec": 22.06,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_007_course_order",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 4,
+              "finish": "stop",
+              "n_tool_calls": 4,
+              "latency_sec": 42.01,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_008_median_finder",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 21.88,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 22, in <module>\nAssertionError"
+            },
+            {
+              "task_id": "held2_009_next_permutation",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 4,
+              "finish": "stop",
+              "n_tool_calls": 3,
+              "latency_sec": 23.83,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 24, in <module>\nAssertionError"
+            },
+            {
+              "task_id": "held2_010_three_sum",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 3,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 25.28,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_011_valid_sudoku",
+              "task_set": "held2",
+              "loose_test": true,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 21.89,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_012_gas_station",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 3,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 26.88,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_013_decode_ways",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 19.85,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held2_014_rotten_oranges",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 4,
+              "finish": "stop",
+              "n_tool_calls": 3,
+              "latency_sec": 34.77,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 35, in <module>\nAssertionError"
+            },
+            {
+              "task_id": "held2_015_longest_consecutive",
+              "task_set": "held2",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 3,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 21.77,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_001_valid_anagram",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 14.55,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_002_missing_number",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 14.85,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_003_majority_element",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 17.79,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_004_group_anagrams",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 3,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 15.08,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_005_top_k_frequent",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 5,
+              "finish": "stop",
+              "n_tool_calls": 4,
+              "latency_sec": 23.12,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_006_longest_substring_no_repeat",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 3,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 26.16,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_007_container_most_water",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 18.58,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_008_product_except_self",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 39.76,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_009_coin_change",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 18.44,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_010_house_robber",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 3,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 23.45,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_011_letter_combinations",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 3,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 26.79,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_012_min_window_substring",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 32.43,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_013_burst_balloons",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 4,
+              "finish": "stop",
+              "n_tool_calls": 3,
+              "latency_sec": 30.85,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 19, in <module>\nAssertionError"
+            },
+            {
+              "task_id": "held3_014_find_duplicate_number",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 4,
+              "finish": "stop",
+              "n_tool_calls": 3,
+              "latency_sec": 25.85,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held3_015_serialize_binary_tree",
+              "task_set": "held3",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 5,
+              "finish": "stop",
+              "n_tool_calls": 8,
+              "latency_sec": 379.52,
+              "scoring_error": "File \"<string>\", line 1\n    class TreeNode:\\n    def __init__(self, val=0, left=None, right=None):\\n        self.val = val\\n        self.left = left\\n        self.right = right\\nclass Codec:\\n    def serialize(self, root: TreeNode | None) -> str:\\n        def preorder(node):\\n            if node is None:\\n                return 'None,\\n'\\n            return f'{node.val},\\n{preorder(node.left)}{preorder(node.right)}'\\n        return preorder(root)\\n\\n    def deserialize(self, data: str) -> TreeNo"
+            },
+            {
+              "task_id": "held4_001_roman_to_integer",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 3,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 27.06,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_002_best_time_stock",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 4,
+              "finish": "stop",
+              "n_tool_calls": 3,
+              "latency_sec": 36.59,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_003_longest_common_prefix",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 18.14,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_004_rotate_array",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 16.98,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 12, in <module>\n  File \"<string>\", line 3, in rotate\nZeroDivisionError: integer modulo by zero"
+            },
+            {
+              "task_id": "held4_005_sort_colors",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 4,
+              "finish": "stop",
+              "n_tool_calls": 6,
+              "latency_sec": 81.89,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_006_evaluate_rpn",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 26.12,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_007_min_stack",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 7,
+              "finish": "stop",
+              "n_tool_calls": 6,
+              "latency_sec": 46.02,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_008_validate_bst",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 18.62,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_009_level_order",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 4,
+              "finish": "stop",
+              "n_tool_calls": 3,
+              "latency_sec": 29.48,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_010_spiral_matrix",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 23.51,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_011_trie",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 3,
+              "finish": "stop",
+              "n_tool_calls": 2,
+              "latency_sec": 30.82,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_012_largest_rectangle_histogram",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 24.84,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_013_max_path_sum",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "FAIL",
+              "reason": "tests_failed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 24.3,
+              "scoring_error": "Traceback (most recent call last):\n  File \"<string>\", line 28, in <module>\nAssertionError"
+            },
+            {
+              "task_id": "held4_014_candy",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 2,
+              "finish": "stop",
+              "n_tool_calls": 1,
+              "latency_sec": 21.63,
+              "scoring_error": null
+            },
+            {
+              "task_id": "held4_015_count_smaller",
+              "task_set": "held4",
+              "loose_test": false,
+              "classification": "PASS",
+              "reason": "tests_passed",
+              "steps": 4,
+              "finish": "stop",
+              "n_tool_calls": 3,
+              "latency_sec": 25.07,
+              "scoring_error": null
+            }
+          ],
+          "primary_held3_held4": {
+            "summary": {
+              "n_total": 30,
+              "n_infra": 0,
+              "n_scored": 30,
+              "n_pass": 26,
+              "n_fail": 4,
+              "pass_rate": 0.8667,
+              "wilson95": [
+                0.7032,
+                0.9469
+              ],
+              "avg_latency_sec_scored": 38.61,
+              "total_latency_sec_scored": 1158.3,
+              "avg_steps_scored": 2.97,
+              "tool_call_totals": {
+                "bash": 34,
+                "write": 33
+              },
+              "infra_task_ids": []
+            },
+            "no_tool": {
+              "n_scored": 30,
+              "n_no_tool_calls": 0,
+              "n_no_tool_calls_pass": 0,
+              "n_wrote_file": 30,
+              "n_wrote_file_pass": 26
+            }
+          }
+        },
+        "realtool": {
+          "overall": {
+            "n_total": 0,
+            "n_infra": 0,
+            "n_scored": 0,
+            "n_pass": 0,
+            "n_fail": 0,
+            "pass_rate": 0.0,
+            "wilson95": [
+              0.0,
+              0.0
+            ],
+            "avg_latency_sec_scored": 0.0,
+            "total_latency_sec_scored": 0.0,
+            "avg_steps_scored": 0.0,
+            "tool_call_totals": {},
+            "infra_task_ids": []
+          },
+          "no_tool_overall": {
+            "n_scored": 0,
+            "n_no_tool_calls": 0,
+            "n_no_tool_calls_pass": 0,
+            "n_wrote_file": 0,
+            "n_wrote_file_pass": 0
+          },
+          "cohorts": {
+            "held2": {
+              "summary": {
+                "n_total": 0,
+                "n_infra": 0,
+                "n_scored": 0,
+                "n_pass": 0,
+                "n_fail": 0,
+                "pass_rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.0
+                ],
+                "avg_latency_sec_scored": 0.0,
+                "total_latency_sec_scored": 0.0,
+                "avg_steps_scored": 0.0,
+                "tool_call_totals": {},
+                "infra_task_ids": []
+              },
+              "no_tool": {
+                "n_scored": 0,
+                "n_no_tool_calls": 0,
+                "n_no_tool_calls_pass": 0,
+                "n_wrote_file": 0,
+                "n_wrote_file_pass": 0
+              },
+              "contaminated": true
+            },
+            "held3": {
+              "summary": {
+                "n_total": 0,
+                "n_infra": 0,
+                "n_scored": 0,
+                "n_pass": 0,
+                "n_fail": 0,
+                "pass_rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.0
+                ],
+                "avg_latency_sec_scored": 0.0,
+                "total_latency_sec_scored": 0.0,
+                "avg_steps_scored": 0.0,
+                "tool_call_totals": {},
+                "infra_task_ids": []
+              },
+              "no_tool": {
+                "n_scored": 0,
+                "n_no_tool_calls": 0,
+                "n_no_tool_calls_pass": 0,
+                "n_wrote_file": 0,
+                "n_wrote_file_pass": 0
+              },
+              "contaminated": false
+            },
+            "held4": {
+              "summary": {
+                "n_total": 0,
+                "n_infra": 0,
+                "n_scored": 0,
+                "n_pass": 0,
+                "n_fail": 0,
+                "pass_rate": 0.0,
+                "wilson95": [
+                  0.0,
+                  0.0
+                ],
+                "avg_latency_sec_scored": 0.0,
+                "total_latency_sec_scored": 0.0,
+                "avg_steps_scored": 0.0,
+                "tool_call_totals": {},
+                "infra_task_ids": []
+              },
+              "no_tool": {
+                "n_scored": 0,
+                "n_no_tool_calls": 0,
+                "n_no_tool_calls_pass": 0,
+                "n_wrote_file": 0,
+                "n_wrote_file_pass": 0
+              },
+              "contaminated": false
+            }
+          },
+          "loose_test_subset": {
+            "n_total": 0,
+            "n_infra": 0,
+            "n_scored": 0,
+            "n_pass": 0,
+            "n_fail": 0,
+            "pass_rate": 0.0,
+            "wilson95": [
+              0.0,
+              0.0
+            ],
+            "avg_latency_sec_scored": 0.0,
+            "total_latency_sec_scored": 0.0,
+            "avg_steps_scored": 0.0,
+            "tool_call_totals": {},
+            "infra_task_ids": []
+          },
+          "infra_detail": [],
+          "per_task": [],
+          "primary_held3_held4": {
+            "summary": {
+              "n_total": 0,
+              "n_infra": 0,
+              "n_scored": 0,
+              "n_pass": 0,
+              "n_fail": 0,
+              "pass_rate": 0.0,
+              "wilson95": [
+                0.0,
+                0.0
+              ],
+              "avg_latency_sec_scored": 0.0,
+              "total_latency_sec_scored": 0.0,
+              "avg_steps_scored": 0.0,
+              "tool_call_totals": {},
+              "infra_task_ids": []
+            },
+            "no_tool": {
+              "n_scored": 0,
+              "n_no_tool_calls": 0,
+              "n_no_tool_calls_pass": 0,
+              "n_wrote_file": 0,
+              "n_wrote_file_pass": 0
+            }
+          }
+        }
+      },
+      "paired": {
+        "base_vs_clean_primary_30": {
+          "model_a": "base",
+          "model_b": "clean",
+          "paired_tasks": 30,
+          "excluded_pairs": [],
+          "gains_fail_to_pass": 5,
+          "losses_pass_to_fail": 0,
+          "same_pass": 21,
+          "same_fail": 4,
+          "exact_p_two_sided": 0.0625,
+          "chi2_continuity_corrected": 3.2,
+          "flips": [
+            {
+              "task_id": "held3_002_missing_number",
+              "base_pass": false,
+              "clean_pass": true
+            },
+            {
+              "task_id": "held3_004_group_anagrams",
+              "base_pass": false,
+              "clean_pass": true
+            },
+            {
+              "task_id": "held3_010_house_robber",
+              "base_pass": false,
+              "clean_pass": true
+            },
+            {
+              "task_id": "held4_009_level_order",
+              "base_pass": false,
+              "clean_pass": true
+            },
+            {
+              "task_id": "held4_014_candy",
+              "base_pass": false,
+              "clean_pass": true
+            }
+          ]
+        },
+        "base_vs_clean_full_45": {
+          "model_a": "base",
+          "model_b": "clean",
+          "paired_tasks": 45,
+          "excluded_pairs": [],
+          "gains_fail_to_pass": 6,
+          "losses_pass_to_fail": 0,
+          "same_pass": 31,
+          "same_fail": 8,
+          "exact_p_two_sided": 0.0312,
+          "chi2_continuity_corrected": 4.167,
+          "flips": [
+            {
+              "task_id": "held2_001_edit_distance",
+              "base_pass": false,
+              "clean_pass": true
+            },
+            {
+              "task_id": "held3_002_missing_number",
+              "base_pass": false,
+              "clean_pass": true
+            },
+            {
+              "task_id": "held3_004_group_anagrams",
+              "base_pass": false,
+              "clean_pass": true
+            },
+            {
+              "task_id": "held3_010_house_robber",
+              "base_pass": false,
+              "clean_pass": true
+            },
+            {
+              "task_id": "held4_009_level_order",
+              "base_pass": false,
+              "clean_pass": true
+            },
+            {
+              "task_id": "held4_014_candy",
+              "base_pass": false,
+              "clean_pass": true
+            }
+          ]
+        },
+        "base_vs_realtool_full_45": {
+          "model_a": "base",
+          "model_b": "realtool",
+          "paired_tasks": 0,
+          "excluded_pairs": [
+            {
+              "task_id": "held2_001_edit_distance",
+              "reason": "missing_run",
+              "base": "FAIL",
+              "realtool": null
+            },
+            {
+              "task_id": "held2_002_regex_match",
+              "reason": "missing_run",
+              "base": "FAIL",
+              "realtool": null
+            },
+            {
+              "task_id": "held2_003_n_queens_count",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held2_004_number_of_lis",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held2_005_word_ladder",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held2_006_sliding_window_max",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held2_007_course_order",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held2_008_median_finder",
+              "reason": "missing_run",
+              "base": "FAIL",
+              "realtool": null
+            },
+            {
+              "task_id": "held2_009_next_permutation",
+              "reason": "missing_run",
+              "base": "FAIL",
+              "realtool": null
+            },
+            {
+              "task_id": "held2_010_three_sum",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held2_011_valid_sudoku",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held2_012_gas_station",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held2_013_decode_ways",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held2_014_rotten_oranges",
+              "reason": "missing_run",
+              "base": "FAIL",
+              "realtool": null
+            },
+            {
+              "task_id": "held2_015_longest_consecutive",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held3_001_valid_anagram",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held3_002_missing_number",
+              "reason": "missing_run",
+              "base": "FAIL",
+              "realtool": null
+            },
+            {
+              "task_id": "held3_003_majority_element",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held3_004_group_anagrams",
+              "reason": "missing_run",
+              "base": "FAIL",
+              "realtool": null
+            },
+            {
+              "task_id": "held3_005_top_k_frequent",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held3_006_longest_substring_no_repeat",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held3_007_container_most_water",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held3_008_product_except_self",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held3_009_coin_change",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held3_010_house_robber",
+              "reason": "missing_run",
+              "base": "FAIL",
+              "realtool": null
+            },
+            {
+              "task_id": "held3_011_letter_combinations",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held3_012_min_window_substring",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held3_013_burst_balloons",
+              "reason": "missing_run",
+              "base": "FAIL",
+              "realtool": null
+            },
+            {
+              "task_id": "held3_014_find_duplicate_number",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held3_015_serialize_binary_tree",
+              "reason": "missing_run",
+              "base": "FAIL",
+              "realtool": null
+            },
+            {
+              "task_id": "held4_001_roman_to_integer",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held4_002_best_time_stock",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held4_003_longest_common_prefix",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held4_004_rotate_array",
+              "reason": "missing_run",
+              "base": "FAIL",
+              "realtool": null
+            },
+            {
+              "task_id": "held4_005_sort_colors",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held4_006_evaluate_rpn",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held4_007_min_stack",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held4_008_validate_bst",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held4_009_level_order",
+              "reason": "missing_run",
+              "base": "FAIL",
+              "realtool": null
+            },
+            {
+              "task_id": "held4_010_spiral_matrix",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held4_011_trie",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held4_012_largest_rectangle_histogram",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            },
+            {
+              "task_id": "held4_013_max_path_sum",
+              "reason": "missing_run",
+              "base": "FAIL",
+              "realtool": null
+            },
+            {
+              "task_id": "held4_014_candy",
+              "reason": "missing_run",
+              "base": "FAIL",
+              "realtool": null
+            },
+            {
+              "task_id": "held4_015_count_smaller",
+              "reason": "missing_run",
+              "base": "PASS",
+              "realtool": null
+            }
+          ],
+          "gains_fail_to_pass": 0,
+          "losses_pass_to_fail": 0,
+          "same_pass": 0,
+          "same_fail": 0,
+          "exact_p_two_sided": 1.0,
+          "chi2_continuity_corrected": 0.0,
+          "flips": []
+        },
+        "clean_vs_realtool_primary_30": {
+          "model_a": "realtool",
+          "model_b": "clean",
+          "paired_tasks": 0,
+          "excluded_pairs": [
+            {
+              "task_id": "held3_001_valid_anagram",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held3_002_missing_number",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held3_003_majority_element",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held3_004_group_anagrams",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held3_005_top_k_frequent",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held3_006_longest_substring_no_repeat",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held3_007_container_most_water",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held3_008_product_except_self",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held3_009_coin_change",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held3_010_house_robber",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held3_011_letter_combinations",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held3_012_min_window_substring",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held3_013_burst_balloons",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "FAIL"
+            },
+            {
+              "task_id": "held3_014_find_duplicate_number",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held3_015_serialize_binary_tree",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "FAIL"
+            },
+            {
+              "task_id": "held4_001_roman_to_integer",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held4_002_best_time_stock",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held4_003_longest_common_prefix",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held4_004_rotate_array",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "FAIL"
+            },
+            {
+              "task_id": "held4_005_sort_colors",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held4_006_evaluate_rpn",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held4_007_min_stack",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held4_008_validate_bst",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held4_009_level_order",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held4_010_spiral_matrix",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held4_011_trie",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held4_012_largest_rectangle_histogram",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held4_013_max_path_sum",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "FAIL"
+            },
+            {
+              "task_id": "held4_014_candy",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            },
+            {
+              "task_id": "held4_015_count_smaller",
+              "reason": "missing_run",
+              "realtool": null,
+              "clean": "PASS"
+            }
+          ],
+          "gains_fail_to_pass": 0,
+          "losses_pass_to_fail": 0,
+          "same_pass": 0,
+          "same_fail": 0,
+          "exact_p_two_sided": 1.0,
+          "chi2_continuity_corrected": 0.0,
+          "flips": []
+        },
+        "base_vs_clean_held2": {
+          "model_a": "base",
+          "model_b": "clean",
+          "paired_tasks": 15,
+          "excluded_pairs": [],
+          "gains_fail_to_pass": 1,
+          "losses_pass_to_fail": 0,
+          "same_pass": 10,
+          "same_fail": 4,
+          "exact_p_two_sided": 1.0,
+          "chi2_continuity_corrected": 0.0,
+          "flips": [
+            {
+              "task_id": "held2_001_edit_distance",
+              "base_pass": false,
+              "clean_pass": true
+            }
+          ]
+        },
+        "base_vs_clean_held3": {
+          "model_a": "base",
+          "model_b": "clean",
+          "paired_tasks": 15,
+          "excluded_pairs": [],
+          "gains_fail_to_pass": 3,
+          "losses_pass_to_fail": 0,
+          "same_pass": 10,
+          "same_fail": 2,
+          "exact_p_two_sided": 0.25,
+          "chi2_continuity_corrected": 1.333,
+          "flips": [
+            {
+              "task_id": "held3_002_missing_number",
+              "base_pass": false,
+              "clean_pass": true
+            },
+            {
+              "task_id": "held3_004_group_anagrams",
+              "base_pass": false,
+              "clean_pass": true
+            },
+            {
+              "task_id": "held3_010_house_robber",
+              "base_pass": false,
+              "clean_pass": true
+            }
+          ]
+        },
+        "base_vs_clean_held4": {
+          "model_a": "base",
+          "model_b": "clean",
+          "paired_tasks": 15,
+          "excluded_pairs": [],
+          "gains_fail_to_pass": 2,
+          "losses_pass_to_fail": 0,
+          "same_pass": 11,
+          "same_fail": 2,
+          "exact_p_two_sided": 0.5,
+          "chi2_continuity_corrected": 0.5,
+          "flips": [
+            {
+              "task_id": "held4_009_level_order",
+              "base_pass": false,
+              "clean_pass": true
+            },
+            {
+              "task_id": "held4_014_candy",
+              "base_pass": false,
+              "clean_pass": true
+            }
+          ]
+        }
+      },
+      "flip_table": [
+        {
+          "task_id": "held2_001_edit_distance",
+          "cohort": "held2",
+          "base": "FAIL",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": true
+        },
+        {
+          "task_id": "held2_002_regex_match",
+          "cohort": "held2",
+          "base": "FAIL",
+          "clean": "FAIL",
+          "realtool": null,
+          "realtool_contaminated": true
+        },
+        {
+          "task_id": "held2_003_n_queens_count",
+          "cohort": "held2",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": true
+        },
+        {
+          "task_id": "held2_004_number_of_lis",
+          "cohort": "held2",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": true
+        },
+        {
+          "task_id": "held2_005_word_ladder",
+          "cohort": "held2",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": true
+        },
+        {
+          "task_id": "held2_006_sliding_window_max",
+          "cohort": "held2",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": true
+        },
+        {
+          "task_id": "held2_007_course_order",
+          "cohort": "held2",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": true
+        },
+        {
+          "task_id": "held2_008_median_finder",
+          "cohort": "held2",
+          "base": "FAIL",
+          "clean": "FAIL",
+          "realtool": null,
+          "realtool_contaminated": true
+        },
+        {
+          "task_id": "held2_009_next_permutation",
+          "cohort": "held2",
+          "base": "FAIL",
+          "clean": "FAIL",
+          "realtool": null,
+          "realtool_contaminated": true
+        },
+        {
+          "task_id": "held2_010_three_sum",
+          "cohort": "held2",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": true
+        },
+        {
+          "task_id": "held2_011_valid_sudoku",
+          "cohort": "held2",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": true
+        },
+        {
+          "task_id": "held2_012_gas_station",
+          "cohort": "held2",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": true
+        },
+        {
+          "task_id": "held2_013_decode_ways",
+          "cohort": "held2",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": true
+        },
+        {
+          "task_id": "held2_014_rotten_oranges",
+          "cohort": "held2",
+          "base": "FAIL",
+          "clean": "FAIL",
+          "realtool": null,
+          "realtool_contaminated": true
+        },
+        {
+          "task_id": "held2_015_longest_consecutive",
+          "cohort": "held2",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": true
+        },
+        {
+          "task_id": "held3_001_valid_anagram",
+          "cohort": "held3",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held3_002_missing_number",
+          "cohort": "held3",
+          "base": "FAIL",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held3_003_majority_element",
+          "cohort": "held3",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held3_004_group_anagrams",
+          "cohort": "held3",
+          "base": "FAIL",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held3_005_top_k_frequent",
+          "cohort": "held3",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held3_006_longest_substring_no_repeat",
+          "cohort": "held3",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held3_007_container_most_water",
+          "cohort": "held3",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held3_008_product_except_self",
+          "cohort": "held3",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held3_009_coin_change",
+          "cohort": "held3",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held3_010_house_robber",
+          "cohort": "held3",
+          "base": "FAIL",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held3_011_letter_combinations",
+          "cohort": "held3",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held3_012_min_window_substring",
+          "cohort": "held3",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held3_013_burst_balloons",
+          "cohort": "held3",
+          "base": "FAIL",
+          "clean": "FAIL",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held3_014_find_duplicate_number",
+          "cohort": "held3",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held3_015_serialize_binary_tree",
+          "cohort": "held3",
+          "base": "FAIL",
+          "clean": "FAIL",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held4_001_roman_to_integer",
+          "cohort": "held4",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held4_002_best_time_stock",
+          "cohort": "held4",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held4_003_longest_common_prefix",
+          "cohort": "held4",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held4_004_rotate_array",
+          "cohort": "held4",
+          "base": "FAIL",
+          "clean": "FAIL",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held4_005_sort_colors",
+          "cohort": "held4",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held4_006_evaluate_rpn",
+          "cohort": "held4",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held4_007_min_stack",
+          "cohort": "held4",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held4_008_validate_bst",
+          "cohort": "held4",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held4_009_level_order",
+          "cohort": "held4",
+          "base": "FAIL",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held4_010_spiral_matrix",
+          "cohort": "held4",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held4_011_trie",
+          "cohort": "held4",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held4_012_largest_rectangle_histogram",
+          "cohort": "held4",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held4_013_max_path_sum",
+          "cohort": "held4",
+          "base": "FAIL",
+          "clean": "FAIL",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held4_014_candy",
+          "cohort": "held4",
+          "base": "FAIL",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        },
+        {
+          "task_id": "held4_015_count_smaller",
+          "cohort": "held4",
+          "base": "PASS",
+          "clean": "PASS",
+          "realtool": null,
+          "realtool_contaminated": false
+        }
+      ],
+      "verdict_primary": {
+        "c1_text_only_clean_30": 0,
+        "c1_threshold": "<= 1/30",
+        "c1_met": true,
+        "c2_clean_pass_30": 26,
+        "c2_base_pass_30": 21,
+        "c2_diff_clean_minus_base": 5,
+        "c2_met": true,
+        "mcnemar_primary_p": 0.0625,
+        "mcnemar_note": "exploratory only; p<0.05 NOT required for the verdict",
+        "verdict": "C1+C2 DAT: fix sach khai quat hoa — hanh vi da sua tren bai chua thay, khong thua base (n=30, 1 luot/o)",
+        "clean_beats_base_by_ge_4": true
+      }
+    }
+  },
+  "pooling_note": "NO POOLED TEST across cohorts; NO test across harnesses (pi-mono only); NO comparison against old-run base numbers — only within-this-run comparisons."
+}
